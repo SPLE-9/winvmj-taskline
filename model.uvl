@@ -23,3 +23,5 @@ features
 				optional
 					SharedNotes
 
+constraints
+	MemberBurndown => ProjectWithMembers
