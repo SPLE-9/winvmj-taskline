@@ -1,7 +1,25 @@
-namespace winvmjtaskline
+namespace TaskLine
 
 features
-	winvmjtaskline {abstract true}
+	TaskLine {abstract true}
+		mandatory
+			Project
+				optional
+					ProjectWithMembers
+			Task
+				optional
+					TaskWithComments
 		optional
-			Base
+			Analytics {abstract true}
+				or
+					ProjectBurndown
+					MemberBurndown
+			Appointment
+			TimeLog
+				alternative
+					DurationTimeLog
+					SessionTimeLog
+			Notes
+				optional
+					SharedNotes
 
