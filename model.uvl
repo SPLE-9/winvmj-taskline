@@ -1,0 +1,7 @@
+namespace winvmjtaskline
+
+features
+	winvmjtaskline {abstract true}
+		optional
+			Base
+
