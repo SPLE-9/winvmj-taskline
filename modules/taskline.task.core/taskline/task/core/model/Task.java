@@ -14,6 +14,8 @@ public interface Task {
 	public void setStatus(status status);
 	public EDate getCreatedAt();
 	public void setCreatedAt(EDate createdAt);
+	public EDate getCompletedAt();
+	public void setCompletedAt(EDate completedAt);
 	public UserImpl getUserimpl();
 	public void setUserimpl(UserImpl userimpl);
 	public ProjectImpl getProjectimpl();

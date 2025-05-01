@@ -41,6 +41,7 @@ public class TaskServiceImpl extends TaskServiceComponent{
 		, description
 		, status
 		, createdAt
+		, completedAt
 		, userimpl
 		, projectimpl
 		);
@@ -54,7 +55,7 @@ public class TaskServiceImpl extends TaskServiceComponent{
 		
 		//to do: fix association attributes
 		
-		  = Factory.create("taskline.task.core.TaskImpl", taskId, title, description, status, createdAt, userimpl, projectimpl);
+		  = Factory.create("taskline.task.core.TaskImpl", taskId, title, description, status, createdAt, completedAt, userimpl, projectimpl);
 		return ;
 	}
 

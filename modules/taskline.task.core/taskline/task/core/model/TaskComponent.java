@@ -21,6 +21,7 @@ public abstract class TaskComponent implements {
 	public String description;
 	public status status;
 	public EDate createdAt;
+	public EDate completedAt;
 	@ManyToOne(targetEntity=taskline.user.core.UserComponent.class)
 	public User userimpl;
 	@ManyToOne(targetEntity=taskline.project.core.ProjectComponent.class)
@@ -32,13 +33,14 @@ public abstract class TaskComponent implements {
 	} 
 
 	public TaskComponent(
-        UUID taskId, String title, String description, status status, EDate createdAt, UserImpl userimpl, ProjectImpl projectimpl
+        UUID taskId, String title, String description, status status, EDate createdAt, EDate completedAt, UserImpl userimpl, ProjectImpl projectimpl
     ) {
         this.taskId = taskId;
         this.title = title;
         this.description = description;
         this.status = status;
         this.createdAt = createdAt;
+        this.completedAt = completedAt;
         this.userimpl = userimpl;
         this.projectimpl = projectimpl;
     }
@@ -62,6 +64,9 @@ public abstract class TaskComponent implements {
 	public abstract EDate getCreatedAt();
 	public abstract void setCreatedAt(EDate createdAt);
 	
+	public abstract EDate getCompletedAt();
+	public abstract void setCompletedAt(EDate completedAt);
+	
 	public abstract UserImpl getUserimpl();
 	public abstract void setUserimpl(UserImpl userimpl);
 	
@@ -79,6 +84,7 @@ public abstract class TaskComponent implements {
             " description='" + getDescription() + "'" +
             " status='" + getStatus() + "'" +
             " createdAt='" + getCreatedAt() + "'" +
+            " completedAt='" + getCompletedAt() + "'" +
             " userimpl='" + getUserimpl() + "'" +
             " projectimpl='" + getProjectimpl() + "'" +
             "}";
