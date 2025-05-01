@@ -1,6 +1,6 @@
-module taskline..opyof_dburndownbyproject_14 {
-	requires taskline..core;
-    exports taskline..opyof_dburndownbyproject_14;
+module taskline.notes.sharednotes {
+	requires taskline.notes.core;
+    exports taskline.notes.sharednotes;
 
 	requires vmj.routing.route;
 	requires vmj.hibernate.integrator;
@@ -10,5 +10,5 @@ module taskline..opyof_dburndownbyproject_14 {
 	requires java.naming;
 	requires java.net.http;
 
-	opens taskline..opyof_dburndownbyproject_14 to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
+	opens taskline.notes.sharednotes to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
 }

@@ -11,16 +11,8 @@ public abstract class NotesResourceDecorator extends NotesResourceComponent{
         this.record = record;
     }
 
-    public List<HashMap<String,Object>> saveNotes(VMJExchange vmjExchange){
-		return record.saveNotes(vmjExchange);
-	}
-
     public Notes createNotes(VMJExchange vmjExchange){
 		return record.createNotes(vmjExchange);
-	}
-
-    public Notes createNotes(VMJExchange vmjExchange, int id){
-		return record.createNotes(vmjExchange, id);
 	}
 
     public HashMap<String, Object> updateNotes(VMJExchange vmjExchange){

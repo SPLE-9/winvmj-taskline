@@ -9,5 +9,5 @@ public interface NotesResource {
     HashMap<String, Object> getNotes(VMJExchange vmjExchange);
     List<HashMap<String,Object>> getAllNotes(VMJExchange vmjExchange);
     List<HashMap<String,Object>> deleteNotes(VMJExchange vmjExchange);
-	HashMap<String, Object> Notes(VMJExchange vmjExhange);
+	HashMap<String, Object> createNotes(VMJExchange vmjExhange);
 }

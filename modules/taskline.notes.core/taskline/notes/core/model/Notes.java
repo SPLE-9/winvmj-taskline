@@ -12,6 +12,5 @@ public interface Notes {
 	public void setNotes(String notes);
 	public UserImpl getUserimpl();
 	public void setUserimpl(UserImpl userimpl);
-	org.eclipse.uml2.uml.internal.impl.ClassImpl@621c85c (name: NotesImpl, visibility: package) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
 	HashMap<String, Object> toHashMap();
 }

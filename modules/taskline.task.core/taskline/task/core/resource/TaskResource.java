@@ -9,5 +9,5 @@ public interface TaskResource {
     HashMap<String, Object> getTask(VMJExchange vmjExchange);
     List<HashMap<String,Object>> getAllTask(VMJExchange vmjExchange);
     List<HashMap<String,Object>> deleteTask(VMJExchange vmjExchange);
-	HashMap<String, Object> Task(VMJExchange vmjExhange);
+	HashMap<String, Object> createTask(VMJExchange vmjExhange);
 }

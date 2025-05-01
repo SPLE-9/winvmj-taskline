@@ -9,5 +9,5 @@ public interface ProjectResource {
     HashMap<String, Object> getProject(VMJExchange vmjExchange);
     List<HashMap<String,Object>> getAllProject(VMJExchange vmjExchange);
     List<HashMap<String,Object>> deleteProject(VMJExchange vmjExchange);
-	HashMap<String, Object> Project(VMJExchange vmjExhange);
+	HashMap<String, Object> createProject(VMJExchange vmjExhange);
 }

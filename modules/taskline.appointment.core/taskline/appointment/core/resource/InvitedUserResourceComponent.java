@@ -9,9 +9,7 @@ public abstract class InvitedUserResourceComponent implements InvitedUserResourc
 	
 	public InvitedUserResourceComponent() { }
  
-    public abstract List<HashMap<String,Object>> saveInvitedUser(VMJExchange vmjExchange);
-    public abstract InvitedUser createInvitedUser(VMJExchange vmjExchange);
-	public abstract InvitedUser createInvitedUser(VMJExchange vmjExchange, int id);    
+    public abstract InvitedUser createInvitedUser(VMJExchange vmjExchange);    
 	public abstract HashMap<String, Object> updateInvitedUser(VMJExchange vmjExchange);
     public abstract HashMap<String, Object> getInvitedUser(VMJExchange vmjExchange);
     public abstract List<HashMap<String,Object>> getAllInvitedUser(VMJExchange vmjExchange);

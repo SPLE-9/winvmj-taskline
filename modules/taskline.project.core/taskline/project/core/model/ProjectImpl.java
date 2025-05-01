@@ -19,14 +19,14 @@ import javax.persistence.OneToMany;
 @Table(name="project_impl")
 public class ProjectImpl extends ProjectComponent {
 
-	public ProjectImpl(UUID projectId, String title, String description, EDouble completion) {
+	public ProjectImpl(UUID projectId, String title, String description, double completion) {
 		this.projectId = projectId;
 		this.title = title;
 		this.description = description;
 		this.completion = completion;
 	}
 
-	public ProjectImpl(UUID projectId, String title, String description, EDouble completion) {
+	public ProjectImpl(UUID projectId, String title, String description, double completion) {
 		this.projectId =  projectId.randomUUID();;
 		this.projectId = projectId;
 		this.title = title;

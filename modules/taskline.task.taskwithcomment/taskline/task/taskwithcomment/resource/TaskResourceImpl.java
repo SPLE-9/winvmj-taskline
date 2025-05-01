@@ -19,67 +19,64 @@ public class TaskResourceImpl extends TaskResourceDecorator {
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		TaskTaskWIthComment tasktaskwithcomment = createTaskTaskWIthComment(vmjExchange);
-		tasktaskwithcommentRepository.saveObject(tasktaskwithcomment);
-		return getAllTaskTaskWIthComment(vmjExchange);
+		  = create(vmjExchange);
+		Repository.saveObject();
+		return getAll(vmjExchange);
 	}
 
-    public Task createTaskTaskWIthComment(VMJExchange vmjExchange){
+    public Task create(VMJExchange vmjExchange){
 		
-		TaskTaskWIthComment tasktaskwithcomment = record.createTaskTaskWIthComment(vmjExchange);
-		TaskTaskWIthComment tasktaskwithcommentdeco = TaskTaskWIthCommentFactory.createTaskTaskWIthComment("taskline.taskwithcomment.core.TaskImpl", tasktaskwithcomment, taskId, title, description, status, createdAt, userimpl, projectimpl
-		);
-			return tasktaskwithcommentdeco;
+		  = record.create(vmjExchange);
+		 deco = Factory.create("taskline.taskwithcomment.core.TaskImpl", , );
+			return deco;
 	}
 
-
-    public Task createTaskTaskWIthComment(VMJExchange vmjExchange, int id){
-		TaskTaskWIthComment tasktaskwithcomment = tasktaskwithcommentRepository.getObject(id);
-		int recordTaskTaskWIthCommentId = (((TaskTaskWIthCommentDecorator) savedTaskTaskWIthComment.getRecord()).getId();
+    public Task create(VMJExchange vmjExchange, int id){
+		  = Repository.getObject(id);
+		int recordId = (((Decorator) saved.getRecord()).getId();
 		
-		TaskTaskWIthComment tasktaskwithcomment = record.createTaskTaskWIthComment(vmjExchange);
-		TaskTaskWIthComment tasktaskwithcommentdeco = TaskTaskWIthCommentFactory.createTaskTaskWIthComment("taskline.taskwithcomment.core.TaskImpl", id, tasktaskwithcomment, taskId, title, description, status, createdAt, userimpl, projectimpl
-		);
-			return tasktaskwithcommentdeco;
+		  = record.create(vmjExchange);
+		 deco = Factory.create("taskline.taskwithcomment.core.TaskImpl", id, , );
+			return deco;
 	}
 
-	// @Restriced(permission = "")
+    // @Restriced(permission = "")
     @Route(url="call/taskwithcomment/update")
-    public HashMap<String, Object> updateTaskTaskWIthComment(VMJExchange vmjExchange){
+    public HashMap<String, Object> update(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		String idStr = (String) vmjExchange.getRequestBodyForm("taskId");
+		String idStr = (String) vmjExchange.getRequestBodyForm("");
 		int id = Integer.parseInt(idStr);
 		
-		TaskTaskWIthComment tasktaskwithcomment = tasktaskwithcommentRepository.getObject(id);
-		tasktaskwithcomment = createTaskTaskWIthComment(vmjExchange, id);
+		  = Repository.getObject(id);
+		 = create(vmjExchange, id);
 		
-		tasktaskwithcommentRepository.updateObject(tasktaskwithcomment);
-		tasktaskwithcomment = tasktaskwithcommentRepository.getObject(id);
+		Repository.updateObject();
+		 = Repository.getObject(id);
 		//to do: fix association attributes
 		
-		return tasktaskwithcomment.toHashMap();
+		return .toHashMap();
 		
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/taskwithcomment/detail")
-    public HashMap<String, Object> getTaskTaskWIthComment(VMJExchange vmjExchange){
-		return record.getTaskTaskWIthComment(vmjExchange);
+    public HashMap<String, Object> get(VMJExchange vmjExchange){
+		return record.getTask(vmjExchange);
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/taskwithcomment/list")
-    public List<HashMap<String,Object>> getAllTaskTaskWIthComment(VMJExchange vmjExchange){
-		List<TaskTaskWIthComment> tasktaskwithcommentList = tasktaskwithcommentRepository.getAllObject("tasktaskwithcomment_impl");
-		return transformTaskTaskWIthCommentListToHashMap(tasktaskwithcommentList);
+    public List<HashMap<String,Object>> getAll(VMJExchange vmjExchange){
+		List<> List = Repository.getAllObject("_impl");
+		return transformListToHashMap(List);
 	}
 
-    public List<HashMap<String,Object>> transformTaskTaskWIthCommentListToHashMap(List<TaskTaskWIthComment> TaskTaskWIthCommentList){
+    public List<HashMap<String,Object>> transformListToHashMap(List<> List){
 		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
-        for(int i = 0; i < TaskTaskWIthCommentList.size(); i++) {
-            resultList.add(TaskTaskWIthCommentList.get(i).toHashMap());
+        for(int i = 0; i < List.size(); i++) {
+            resultList.add(List.get(i).toHashMap());
         }
 
         return resultList;
@@ -87,16 +84,15 @@ public class TaskResourceImpl extends TaskResourceDecorator {
 
 	// @Restriced(permission = "")
     @Route(url="call/taskwithcomment/delete")
-    public List<HashMap<String,Object>> deleteTaskTaskWIthComment(VMJExchange vmjExchange){
+    public List<HashMap<String,Object>> deleteTask(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
 		
-		String idStr = (String) vmjExchange.getRequestBodyForm("taskId");
+		String idStr = (String) vmjExchange.getRequestBodyForm("");
 		int id = Integer.parseInt(idStr);
-		tasktaskwithcommentRepository.deleteObject(id);
-		return getAllTaskTaskWIthComment(vmjExchange);
+		Repository.deleteObject(id);
+		return getAll(vmjExchange);
 	}
 
-	
 }

@@ -19,67 +19,64 @@ public class AnalyticResourceImpl extends AnalyticResourceDecorator {
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		AnalyticBurndownByProject analyticburndownbyproject = createAnalyticBurndownByProject(vmjExchange);
-		analyticburndownbyprojectRepository.saveObject(analyticburndownbyproject);
-		return getAllAnalyticBurndownByProject(vmjExchange);
+		  = create(vmjExchange);
+		Repository.saveObject();
+		return getAll(vmjExchange);
 	}
 
-    public Analytic createAnalyticBurndownByProject(VMJExchange vmjExchange){
+    public Analytic create(VMJExchange vmjExchange){
 		
-		AnalyticBurndownByProject analyticburndownbyproject = record.createAnalyticBurndownByProject(vmjExchange);
-		AnalyticBurndownByProject analyticburndownbyprojectdeco = AnalyticBurndownByProjectFactory.createAnalyticBurndownByProject("taskline.burndownbyproject.core.AnalyticImpl", analyticburndownbyproject, analyticId, startDate, endDate, totalTasks, plannedWork, actualWork
-		);
-			return analyticburndownbyprojectdeco;
+		  = record.create(vmjExchange);
+		 deco = Factory.create("taskline.burndownbyproject.core.AnalyticImpl", , projectimpl);
+			return deco;
 	}
 
-
-    public Analytic createAnalyticBurndownByProject(VMJExchange vmjExchange, int id){
-		AnalyticBurndownByProject analyticburndownbyproject = analyticburndownbyprojectRepository.getObject(id);
-		int recordAnalyticBurndownByProjectId = (((AnalyticBurndownByProjectDecorator) savedAnalyticBurndownByProject.getRecord()).getId();
+    public Analytic create(VMJExchange vmjExchange, int id){
+		  = Repository.getObject(id);
+		int recordId = (((Decorator) saved.getRecord()).getId();
 		
-		AnalyticBurndownByProject analyticburndownbyproject = record.createAnalyticBurndownByProject(vmjExchange);
-		AnalyticBurndownByProject analyticburndownbyprojectdeco = AnalyticBurndownByProjectFactory.createAnalyticBurndownByProject("taskline.burndownbyproject.core.AnalyticImpl", id, analyticburndownbyproject, analyticId, startDate, endDate, totalTasks, plannedWork, actualWork
-		);
-			return analyticburndownbyprojectdeco;
+		  = record.create(vmjExchange);
+		 deco = Factory.create("taskline.burndownbyproject.core.AnalyticImpl", id, , projectimpl);
+			return deco;
 	}
 
-	// @Restriced(permission = "")
+    // @Restriced(permission = "")
     @Route(url="call/burndownbyproject/update")
-    public HashMap<String, Object> updateAnalyticBurndownByProject(VMJExchange vmjExchange){
+    public HashMap<String, Object> update(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		String idStr = (String) vmjExchange.getRequestBodyForm("analyticId");
+		String idStr = (String) vmjExchange.getRequestBodyForm("");
 		int id = Integer.parseInt(idStr);
 		
-		AnalyticBurndownByProject analyticburndownbyproject = analyticburndownbyprojectRepository.getObject(id);
-		analyticburndownbyproject = createAnalyticBurndownByProject(vmjExchange, id);
+		  = Repository.getObject(id);
+		 = create(vmjExchange, id);
 		
-		analyticburndownbyprojectRepository.updateObject(analyticburndownbyproject);
-		analyticburndownbyproject = analyticburndownbyprojectRepository.getObject(id);
+		Repository.updateObject();
+		 = Repository.getObject(id);
 		//to do: fix association attributes
 		
-		return analyticburndownbyproject.toHashMap();
+		return .toHashMap();
 		
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/burndownbyproject/detail")
-    public HashMap<String, Object> getAnalyticBurndownByProject(VMJExchange vmjExchange){
-		return record.getAnalyticBurndownByProject(vmjExchange);
+    public HashMap<String, Object> get(VMJExchange vmjExchange){
+		return record.getAnalytic(vmjExchange);
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/burndownbyproject/list")
-    public List<HashMap<String,Object>> getAllAnalyticBurndownByProject(VMJExchange vmjExchange){
-		List<AnalyticBurndownByProject> analyticburndownbyprojectList = analyticburndownbyprojectRepository.getAllObject("analyticburndownbyproject_impl");
-		return transformAnalyticBurndownByProjectListToHashMap(analyticburndownbyprojectList);
+    public List<HashMap<String,Object>> getAll(VMJExchange vmjExchange){
+		List<> List = Repository.getAllObject("_impl");
+		return transformListToHashMap(List);
 	}
 
-    public List<HashMap<String,Object>> transformAnalyticBurndownByProjectListToHashMap(List<AnalyticBurndownByProject> AnalyticBurndownByProjectList){
+    public List<HashMap<String,Object>> transformListToHashMap(List<> List){
 		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
-        for(int i = 0; i < AnalyticBurndownByProjectList.size(); i++) {
-            resultList.add(AnalyticBurndownByProjectList.get(i).toHashMap());
+        for(int i = 0; i < List.size(); i++) {
+            resultList.add(List.get(i).toHashMap());
         }
 
         return resultList;
@@ -87,19 +84,18 @@ public class AnalyticResourceImpl extends AnalyticResourceDecorator {
 
 	// @Restriced(permission = "")
     @Route(url="call/burndownbyproject/delete")
-    public List<HashMap<String,Object>> deleteAnalyticBurndownByProject(VMJExchange vmjExchange){
+    public List<HashMap<String,Object>> deleteAnalytic(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
 		
-		String idStr = (String) vmjExchange.getRequestBodyForm("analyticId");
+		String idStr = (String) vmjExchange.getRequestBodyForm("");
 		int id = Integer.parseInt(idStr);
-		analyticburndownbyprojectRepository.deleteObject(id);
-		return getAllAnalyticBurndownByProject(vmjExchange);
+		Repository.deleteObject(id);
+		return getAll(vmjExchange);
 	}
 
 	public void calculateBurndownData() {
 		// TODO: implement this method
 	}
-	
 }

@@ -20,6 +20,5 @@ public interface Timelog {
 	public void setUserimpl(UserImpl userimpl);
 	public TaskImpl getTaskimpl();
 	public void setTaskimpl(TaskImpl taskimpl);
-	org.eclipse.uml2.uml.internal.impl.ClassImpl@367c5246 (name: TimelogImpl, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
 	HashMap<String, Object> toHashMap();
 }

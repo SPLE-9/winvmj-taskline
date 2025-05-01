@@ -5,28 +5,16 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import taskline.analytic.AnalyticFactory;
-import prices.auth.vmj.annotations.Restricted;
+//import prices.auth.vmj.annotations.Restricted;
 //add other required packages
-
 
 public class AnalyticResourceImpl extends AnalyticResourceComponent{
 	
 	private AnalyticServiceImpl analyticServiceImpl = new AnalyticServiceImpl();
 
 	// @Restriced(permission = "")
-    @Route(url="call/analytic/save")
-    public List<HashMap<String,Object>> saveAnalytic(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
-		}
-		Analytic analytic = createAnalytic(vmjExchange);
-		analyticRepository.saveObject(analytic);
-		return getAllAnalytic(vmjExchange);
-	}
-
-	// @Restriced(permission = "")
     @Route(url="call/analytic")
-    public HashMap<String,Object> analytic(VMJExchange vmjExchange){
+    public HashMap<String,Object> createanalytic(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
 			Analytic result = analyticServiceImpl.createAnalytic(requestBody);
@@ -35,25 +23,7 @@ public class AnalyticResourceImpl extends AnalyticResourceComponent{
 		throw new NotFoundException("Route tidak ditemukan");
 	}
 
-    public Analytic createAnalytic(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("POST")) {
-		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			Analytic result = analyticServiceImpl.createAnalytic(requestBody);
-			return result.toHashMap();
-		}
-		throw new NotFoundException("Route tidak ditemukan");
-	}
-
-    public Analytic createAnalytic(VMJExchange vmjExchange, int id){
-		if (vmjExchange.getHttpMethod().equals("POST")) {
-		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			Analytic result = analyticServiceImpl.createAnalytic(requestBody, id);
-			return result.toHashMap();
-		}
-		throw new NotFoundException("Route tidak ditemukan");
-	}
-
-	// @Restriced(permission = "")
+    // @Restriced(permission = "")
     @Route(url="call/analytic/update")
     public HashMap<String, Object> updateAnalytic(VMJExchange vmjExchange){
 		Map<String, Object> requestBody = vmjExchange.getPayload(); 
@@ -78,6 +48,7 @@ public class AnalyticResourceImpl extends AnalyticResourceComponent{
 		return analyticServiceImpl.getAllAnalytic(requestBody);
 	}
 
+    
 	// @Restriced(permission = "")
     @Route(url="call/analytic/delete")
     public List<HashMap<String,Object>> deleteAnalytic(VMJExchange vmjExchange){
@@ -88,6 +59,5 @@ public class AnalyticResourceImpl extends AnalyticResourceComponent{
 		
 		return analyticServiceImpl.deleteAnalytic(requestBody);
 	}
-
 
 }

@@ -11,16 +11,8 @@ public abstract class ProjectResourceDecorator extends ProjectResourceComponent{
         this.record = record;
     }
 
-    public List<HashMap<String,Object>> saveProject(VMJExchange vmjExchange){
-		return record.saveProject(vmjExchange);
-	}
-
     public Project createProject(VMJExchange vmjExchange){
 		return record.createProject(vmjExchange);
-	}
-
-    public Project createProject(VMJExchange vmjExchange, int id){
-		return record.createProject(vmjExchange, id);
 	}
 
     public HashMap<String, Object> updateProject(VMJExchange vmjExchange){

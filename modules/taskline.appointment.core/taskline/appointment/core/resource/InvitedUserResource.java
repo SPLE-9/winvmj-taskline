@@ -9,5 +9,5 @@ public interface InvitedUserResource {
     HashMap<String, Object> getInvitedUser(VMJExchange vmjExchange);
     List<HashMap<String,Object>> getAllInvitedUser(VMJExchange vmjExchange);
     List<HashMap<String,Object>> deleteInvitedUser(VMJExchange vmjExchange);
-	HashMap<String, Object> InvitedUser(VMJExchange vmjExhange);
+	HashMap<String, Object> createInvitedUser(VMJExchange vmjExhange);
 }
