@@ -11,83 +11,63 @@ import prices.auth.vmj.annotations.Restricted;
 
 public class AnalyticResourceImpl extends AnalyticResourceComponent{
 	
-	private AnalyticServiceImpl analyticServiceImpl = new AnalyticServiceImpl();
+	private AnalyticService analyticService = new AnalyticServiceImpl();
 
-	// @Restriced(permission = "")
+	// @Restricted(permission = "")
     @Route(url="call/analytic/save")
     public List<HashMap<String,Object>> saveAnalytic(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		Analytic analytic = createAnalytic(vmjExchange);
-		analyticRepository.saveObject(analytic);
-		return getAllAnalytic(vmjExchange);
+		HashMap<String, Object> requestBody = vmjExchange.getPayload(); 
+		List<Analytic> analytics = analyticService.saveAnalytic(requestBody);
+		return analyticService.transformAnalyticListToHashMap(analytics);
 	}
 
-	// @Restriced(permission = "")
-    @Route(url="call/analytic")
-    public HashMap<String,Object> analytic(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("POST")) {
-		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			Analytic result = analyticServiceImpl.createAnalytic(requestBody);
-			return result.toHashMap();
-		}
-		throw new NotFoundException("Route tidak ditemukan");
-	}
-
-    public Analytic createAnalytic(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("POST")) {
-		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			Analytic result = analyticServiceImpl.createAnalytic(requestBody);
-			return result.toHashMap();
-		}
-		throw new NotFoundException("Route tidak ditemukan");
-	}
-
-    public Analytic createAnalytic(VMJExchange vmjExchange, int id){
-		if (vmjExchange.getHttpMethod().equals("POST")) {
-		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			Analytic result = analyticServiceImpl.createAnalytic(requestBody, id);
-			return result.toHashMap();
-		}
-		throw new NotFoundException("Route tidak ditemukan");
-	}
-
-	// @Restriced(permission = "")
+	// @Restricted(permission = "")
     @Route(url="call/analytic/update")
     public HashMap<String, Object> updateAnalytic(VMJExchange vmjExchange){
-		Map<String, Object> requestBody = vmjExchange.getPayload(); 
+		HashMap<String, Object> requestBody = vmjExchange.getPayload(); 
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")){
 			return null;
 		}
-		return analyticServiceImpl.updateAnalytic(requestBody);
+
+		Analytic analytic = analyticService.updateAnalytic(requestBody);
+		return analytic.toHashMap();
 		
 	}
 
-	// @Restriced(permission = "")
+	// @Restricted(permission = "")
     @Route(url="call/analytic/detail")
     public HashMap<String, Object> getAnalytic(VMJExchange vmjExchange){
-		Map<String, Object> requestBody = vmjExchange.getPayload(); 
-		return analyticServiceImpl.getAnalytic(requestBody);
+		String idStr = vmjExchange.getGETParam("id");
+		if (idStr == null) {
+			throw new IllegalArgumentException("Invalid id");
+		}
+		UUID id = UUID.fromString(idStr);
+		Analytic analytic = analyticService.getAnalytic(id);
+		return analytic.toHashMap();
 	}
 
-	// @Restriced(permission = "")
+	// @Restricted(permission = "")
     @Route(url="call/analytic/list")
     public List<HashMap<String,Object>> getAllAnalytic(VMJExchange vmjExchange){
-		Map<String, Object> requestBody = vmjExchange.getPayload(); 
-		return analyticServiceImpl.getAllAnalytic(requestBody);
+		List<Analytic> analytics = analyticService.getAllAnalytic();
+		return analyticService.transformAnalyticListToHashMap(analytics);
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/analytic/delete")
     public List<HashMap<String,Object>> deleteAnalytic(VMJExchange vmjExchange){
-		Map<String, Object> requestBody = vmjExchange.getPayload(); 
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		
-		return analyticServiceImpl.deleteAnalytic(requestBody);
+		String idStr = vmjExchange.getGETParam("id");
+		if (idStr == null) {
+			throw new IllegalArgumentException("Invalid id");
+		}
+		UUID id = UUID.fromString(idStr);
+		List<Analytic> analytics = analyticService.deleteAnalytic(id);
+		return analyticService.transformAnalyticListToHashMap(analytics);
 	}
-
-
 }

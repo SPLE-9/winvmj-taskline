@@ -20,84 +20,50 @@ import prices.auth.vmj.annotations.Restricted;
 
 public class AnalyticServiceImpl extends AnalyticServiceComponent{
 
-    public List<HashMap<String,Object>> saveAnalytic(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
-		}
-		Analytic analytic = createAnalytic(vmjExchange);
+    public List<HashMap<String,Object>> saveAnalytic(HashMap<String, Object> requestBody){
+		String idStr = (String) requestBody.get("id");
+		UUID id = UUID.fromString(idStr);
+
+		EDate startDate = new EDate((String) requestBody.get("startDate"));
+		EDate endDate = new EDate((String) requestBody.get("endDate"));
+
+		Analytic analytic = AnalyticFactory.createAnalytic("taskline.analytic.core.AnalyticImpl", id, startDate, endDate);
 		analyticRepository.saveObject(analytic);
-		return getAllAnalytic(vmjExchange);
+		return getAllAnalytic();
 	}
 
-    public Analytic createAnalytic(Map<String, Object> requestBody){
-		String totalTasksStr = (String) requestBody.get("totalTasks");
-		int totalTasks = Integer.parseInt(totalTasksStr);
-		
-		//to do: fix association attributes
-		Analytic Analytic = AnalyticFactory.createAnalytic(
-			"taskline.analytic.core.AnalyticImpl",
-		analyticId
-		, startDate
-		, endDate
-		, totalTasks
-		, plannedWork
-		, actualWork
-		);
-		Repository.saveObject(analytic);
-		return analytic;
-	}
+    public Analytic updateAnalytic(HashMap<String, Object> requestBody){
+		String idStr = (String) requestBody.get("id");
+		UUID id = UUID.fromString(idStr);
+		Analytic analytic = analyticRepository.getObject(id);
 
-    public Analytic createAnalytic(Map<String, Object> requestBody, int id){
-		String totalTasksStr = (String) vmjExchange.getRequestBodyForm("totalTasks");
-		int totalTasks = Integer.parseInt(totalTasksStr);
-		
-		//to do: fix association attributes
-		
-		Analytic analytic = AnalyticFactory.createAnalytic("taskline.analytic.core.AnalyticImpl", analyticId, startDate, endDate, totalTasks, plannedWork, actualWork);
-		return analytic;
-	}
-
-    public HashMap<String, Object> updateAnalytic(Map<String, Object> requestBody){
-		String idStr = (String) requestBody.get("analyticId");
-		int id = Integer.parseInt(idStr);
-		Analytic analytic = Repository.getObject(id);
+		if (analytic == null) {
+			throw new NotFoundException("Analytic not found");
+		}
 		
 		String totalTasksStr = (String) requestBody.get("totalTasks");
 		analytic.setTotalTasks(Integer.parseInt(totalTasksStr));
 		
-		Repository.updateObject(analytic);
+		analyticRepository.updateObject(analytic);
 		
-		//to do: fix association attributes
-		
-		return analytic.toHashMap();
+		return analytic;
 		
 	}
 
-    public HashMap<String, Object> getAnalytic(Map<String, Object> requestBody){
-		List<HashMap<String, Object>> analyticList = getAllAnalytic("analytic_impl");
-		for (HashMap<String, Object> analytic : analyticList){
-			int record_id = ((Double) analytic.get("record_id")).intValue();
-			if (record_id == id){
-				return analytic;
-			}
-		}
-		return null;
-	}
-
-	public HashMap<String, Object> getAnalyticById(int id){
-		String idStr = vmjExchange.getGETParam("analyticId"); 
-		int id = Integer.parseInt(idStr);
+    public Analytic getAnalytic(UUID id){
 		Analytic analytic = analyticRepository.getObject(id);
-		return analytic.toHashMap();
+		if (analytic == null) {
+			throw new NotFoundException("Analytic not found");
+		}
+		return analytic;
 	}
 
-    public List<HashMap<String,Object>> getAllAnalytic(Map<String, Object> requestBody){
-		String table = (String) requestBody.get("table_name");
-		List<Analytic> List = Repository.getAllObject(table);
-		return transformListToHashMap(List);
+    public List<Analytic> getAllAnalytic(){
+		List<Analytic> List = analyticRepository.getAllObject();
+		return List;
 	}
 
-    public List<HashMap<String,Object>> transformListToHashMap(List<Analytic> List){
+    public List<HashMap<String,Object>> transformAnalyticListToHashMap(List<Analytic> List){
 		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
         for(int i = 0; i < List.size(); i++) {
             resultList.add(List.get(i).toHashMap());
@@ -106,11 +72,13 @@ public class AnalyticServiceImpl extends AnalyticServiceComponent{
         return resultList;
 	}
 
-    public List<HashMap<String,Object>> deleteAnalytic(Map<String, Object> requestBody){
-		String idStr = ((String) requestBody.get("id"));
-		int id = Integer.parseInt(idStr);
-		Repository.deleteObject(id);
-		return getAllAnalytic(requestBody);
+    public List<Analytic> deleteAnalytic(UUID id){
+		Analytic analytic = analyticRepository.getObject(id);
+		if (analytic == null) {
+			throw new NotFoundException("Analytic not found");
+		}
+		analyticRepository.deleteObject(id);
+		return getAllAnalytic();
 	}
 
 }

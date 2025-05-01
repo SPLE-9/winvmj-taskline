@@ -9,5 +9,4 @@ public interface AnalyticResource {
     HashMap<String, Object> getAnalytic(VMJExchange vmjExchange);
     List<HashMap<String,Object>> getAllAnalytic(VMJExchange vmjExchange);
     List<HashMap<String,Object>> deleteAnalytic(VMJExchange vmjExchange);
-	HashMap<String, Object> Analytic(VMJExchange vmjExhange);
 }

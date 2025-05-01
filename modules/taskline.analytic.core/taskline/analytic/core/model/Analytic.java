@@ -12,10 +12,9 @@ public interface Analytic {
 	public void setEndDate(EDate endDate);
 	public int getTotalTasks();
 	public void setTotalTasks(int totalTasks);
-	public EMap getPlannedWork();
-	public void setPlannedWork(EMap plannedWork);
-	public EMap getActualWork();
-	public void setActualWork(EMap actualWork);
-	org.eclipse.uml2.uml.internal.impl.ClassImpl@488021e8 (name: AnalyticImpl, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
-	HashMap<String, Object> toHashMap();
+	public HashMap<Date, Integer> getPlannedWork();
+	public void setPlannedWork(HashMap<Date, Integer> plannedWork);
+	public HashMap<Date, Integer> getActualWork();
+	public void setActualWork(HashMap<Date, Integer> actualWork);
+	public HashMap<String, Object> toHashMap();
 }
