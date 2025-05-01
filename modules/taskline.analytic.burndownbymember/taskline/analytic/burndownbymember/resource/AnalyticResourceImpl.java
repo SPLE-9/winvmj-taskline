@@ -1,5 +1,6 @@
 package taskline.analytic.burndownbymember;
 import java.util.*;
+import java.util.logging.Logger;
 
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
@@ -9,97 +10,84 @@ import taskline.analytic.core.AnalyticImpl;
 import taskline.analytic.core.AnalyticResourceComponent;
 
 public class AnalyticResourceImpl extends AnalyticResourceDecorator {
-    public AnalyticResourceImpl (AnalyticResourceComponent record) {
-        super(record);
+	private AnalyticService analyticService;
+	private static final Logger LOGGER = Logger.getLogger(AnalyticResourceImpl.class.getName());
+
+    public AnalyticResourceImpl(AnalyticResourceComponent recordController, AnalyticServiceComponent recordService) {
+        super(recordController);
+		this.analyticService = new AnalyticServiceImpl(recordService);
     }
 
-    // @Restriced(permission = "")
+    // @Restricted(permission = "")
     @Route(url="call/burndownbymember/save")
-    public List<HashMap<String,Object>> save(VMJExchange vmjExchange){
+    public List<HashMap<String,Object>> saveAnalytic(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		AnalyticBurndownByMember analyticburndownbymember = createAnalyticBurndownByMember(vmjExchange);
-		analyticburndownbymemberRepository.saveObject(analyticburndownbymember);
-		return getAllAnalyticBurndownByMember(vmjExchange);
+		String email = vmjExchange.getAuthPayload().getEmail();
+		HashMap<String, Object> requestBody = (HashMap<String, Object>) vmjExchange.getPayload();
+		requestBody.put("email", email);
+		List<Analytic> analyticList = analyticService.saveAnalytic(requestBody);
+		return analyticService.transformAnalyticListToHashMap(analyticList);
 	}
 
-    public Analytic createAnalyticBurndownByMember(VMJExchange vmjExchange){
-		
-		AnalyticBurndownByMember analyticburndownbymember = record.createAnalyticBurndownByMember(vmjExchange);
-		AnalyticBurndownByMember analyticburndownbymemberdeco = AnalyticBurndownByMemberFactory.createAnalyticBurndownByMember("taskline.burndownbymember.core.AnalyticImpl", analyticburndownbymember, analyticId, startDate, endDate, totalTasks, plannedWork, actualWork
-		);
-			return analyticburndownbymemberdeco;
-	}
-
-
-    public Analytic createAnalyticBurndownByMember(VMJExchange vmjExchange, int id){
-		AnalyticBurndownByMember analyticburndownbymember = analyticburndownbymemberRepository.getObject(id);
-		int recordAnalyticBurndownByMemberId = (((AnalyticBurndownByMemberDecorator) savedAnalyticBurndownByMember.getRecord()).getId();
-		
-		AnalyticBurndownByMember analyticburndownbymember = record.createAnalyticBurndownByMember(vmjExchange);
-		AnalyticBurndownByMember analyticburndownbymemberdeco = AnalyticBurndownByMemberFactory.createAnalyticBurndownByMember("taskline.burndownbymember.core.AnalyticImpl", id, analyticburndownbymember, analyticId, startDate, endDate, totalTasks, plannedWork, actualWork
-		);
-			return analyticburndownbymemberdeco;
-	}
-
-	// @Restriced(permission = "")
+	// @Restricted(permission = "")
     @Route(url="call/burndownbymember/update")
-    public HashMap<String, Object> updateAnalyticBurndownByMember(VMJExchange vmjExchange){
+    public HashMap<String, Object> updateAnalytic(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		String idStr = (String) vmjExchange.getRequestBodyForm("analyticId");
-		int id = Integer.parseInt(idStr);
-		
-		AnalyticBurndownByMember analyticburndownbymember = analyticburndownbymemberRepository.getObject(id);
-		analyticburndownbymember = createAnalyticBurndownByMember(vmjExchange, id);
-		
-		analyticburndownbymemberRepository.updateObject(analyticburndownbymember);
-		analyticburndownbymember = analyticburndownbymemberRepository.getObject(id);
-		//to do: fix association attributes
-		
-		return analyticburndownbymember.toHashMap();
+		HashMap<String, Object> requestBody = (HashMap<String, Object>) vmjExchange.getPayload();
+		Analytic analytic = analyticService.updateAnalytic(requestBody);
+		return analytic.toHashMap();
 		
 	}
 
-	// @Restriced(permission = "")
+	// @Restricted(permission = "")
     @Route(url="call/burndownbymember/detail")
-    public HashMap<String, Object> getAnalyticBurndownByMember(VMJExchange vmjExchange){
-		return record.getAnalyticBurndownByMember(vmjExchange);
+    public HashMap<String, Object> getAnalytic(VMJExchange vmjExchange){
+		String idStr = vmjExchange.getGETParam("id");
+		if (idStr == null) {
+			throw new IllegalArgumentException("Invalid id");
+		}
+		UUID id = UUID.fromString(idStr);
+		Analytic analytic = analyticService.getAnalytic(id);
+		return analytic.toHashMap();
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/burndownbymember/list")
-    public List<HashMap<String,Object>> getAllAnalyticBurndownByMember(VMJExchange vmjExchange){
-		List<AnalyticBurndownByMember> analyticburndownbymemberList = analyticburndownbymemberRepository.getAllObject("analyticburndownbymember_impl");
-		return transformAnalyticBurndownByMemberListToHashMap(analyticburndownbymemberList);
+    public List<HashMap<String,Object>> getAllAnalyticByUser(VMJExchange vmjExchange){
+		String email = vmjExchange.getAuthPayload().getEmail();
+		List<Analytic> analyticList = analyticService.getAllAnalyticByUser(email);
+		return analyticService.transformAnalyticListToHashMap(analyticList);
 	}
 
-    public List<HashMap<String,Object>> transformAnalyticBurndownByMemberListToHashMap(List<AnalyticBurndownByMember> AnalyticBurndownByMemberList){
-		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
-        for(int i = 0; i < AnalyticBurndownByMemberList.size(); i++) {
-            resultList.add(AnalyticBurndownByMemberList.get(i).toHashMap());
-        }
-
-        return resultList;
+	@Route(url="call/burndownbymember/plannedwork")
+	public List<HashMap<String, Object>> getPlannedWork(VMJExchange vmjExchange){
+		String email = vmjExchange.getAuthPayload().getEmail();
+		return analyticService.getPlannedWork(email);
 	}
 
-	// @Restriced(permission = "")
+	@Route(url="call/burndownbymember/actualwork")
+	public List<HashMap<String, Object>> getActualWork(VMJExchange vmjExchange){
+		String email = vmjExchange.getAuthPayload().getEmail();
+		return analyticService.getActualWork(email);
+	}
+
+	// @Restricted(permission = "")
     @Route(url="call/burndownbymember/delete")
     public List<HashMap<String,Object>> deleteAnalyticBurndownByMember(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
 		
-		String idStr = (String) vmjExchange.getRequestBodyForm("analyticId");
-		int id = Integer.parseInt(idStr);
-		analyticburndownbymemberRepository.deleteObject(id);
-		return getAllAnalyticBurndownByMember(vmjExchange);
-	}
-
-	public void calculateBurndownData() {
-		// TODO: implement this method
-	}
-	
+		String idStr = vmjExchange.getGETParam("id");
+		if (idStr == null) {
+			throw new IllegalArgumentException("Invalid id");
+		}
+		UUID id = UUID.fromString(idStr);
+		Analytic analytic = analyticService.deleteAnalytic(id);
+		return analytic.toHashMap();
+	}	
 }

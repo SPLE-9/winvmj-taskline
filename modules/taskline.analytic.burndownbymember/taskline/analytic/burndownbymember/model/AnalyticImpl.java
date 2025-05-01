@@ -15,25 +15,46 @@ import taskline.analytic.core.AnalyticComponent;
 @Entity(name="analytic_burndownbymember")
 @Table(name="analytic_burndownbymember")
 public class AnalyticImpl extends AnalyticDecorator {
+	@OneToOne(targetEntity = taskline.user.core.UserComponent.class)
+	private User user;
 
-	public AnalyticImpl(
+	public AnalyticImpl(){
         super();
         this.objectName = AnalyticImpl.class.getName();
     }
     
-    public AnalyticImpl(UserImpl userimpl) {
+    public AnalyticImpl(User user) {
     	super();
+		this.user = user;
 		this.objectName = AnalyticImpl.class.getName();
     }
 	
-	public AnalyticImpl(AnalyticComponent record, UserImpl userimpl) {
+	public AnalyticImpl(AnalyticComponent record, User user) {
 		super(record);
+		this.user = user;
 		this.objectName = AnalyticImpl.class.getName();
 	}
 
-
-	public void calculateBurndownData() {
-		// TODO: implement this method
+	public User getUser() {
+		return user;
 	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "{"
+			+ "id=" + getId()
+			+ ", record=" + getRecord()
+			+ ", user=" + getUser()
+			+ "}";
+	}
+
+	public HashMap<String, Object> toHashMap() {
+		HashMap<String, Object> map = record.toHashMap();
+		map.put("user", this.getUser().toHashMap());
+		return map;
+	}
 }
