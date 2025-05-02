@@ -14,13 +14,7 @@ public abstract class ProjectDecorator extends ProjectComponent{
     @OneToOne(cascade=CascadeType.ALL)
 	protected ProjectComponent record;
 
-	public ProjectDecorator () {
-		super();
-		this.record = record;
-		this.projectId =  projectId.randomUUID();
-		
 	public ProjectDecorator (ProjectComponent record) {
-		this.projectId =  projectId.randomUUID();
 		this.record = record;
 	}
 
@@ -28,15 +22,43 @@ public abstract class ProjectDecorator extends ProjectComponent{
 		this.projectId =  projectId;
 		this.record = record;
 	}
-	
-	public ProjectDecorator (ProjectComponent record, String objectName) {
-		this.projectId =  projectId.randomUUID();
-		this.record = record;	
-		this.objectName=objectName;
+
+	public ProjectDecorator() {
+		super();
+		this.projectId =  UUID.randomUUID();
 	}
 
-	public ProjectDecorator() { }
+	public UUID getProjectId() {
+		return this.record.getProjectId();
+	}
 
+	public void setProjectId(UUID projectId) {
+		this.record.setProjectId(projectId);
+	}
+	
+	public String getTitle() {
+		return this.record.getTitle();
+	}
+
+	public void setTitle(String title) {
+		this.record.setTitle(title);
+	}
+	
+	public String getDescription() {
+		return this.record.getDescription();
+	}
+
+	public void setDescription(String description) {
+		this.record.setDescription(description);
+	}
+	
+	public double getCompletion() {
+		return this.record.getCompletion();
+	}
+
+	public void setCompletion(double completion) {
+		this.record.setCompletion(completion);
+	}
 
 
 	public HashMap<String, Object> toHashMap() {

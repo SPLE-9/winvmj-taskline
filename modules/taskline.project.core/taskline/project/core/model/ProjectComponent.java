@@ -9,13 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="project_comp")
+@Table(name="project_comp", uniqueConstraints = @UniqueConstraint(columnNames = { "title" }))
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class ProjectComponent implements Project{
 	@Id
-	public UUID projectId; 
 	public UUID projectId;
 	public String title;
 	public String description;
@@ -26,26 +26,44 @@ public abstract class ProjectComponent implements Project{
 
 	} 
 
-	public ProjectComponent(
-        UUID projectId, String title, String description, double completion
-    ) {
+	public ProjectComponent(UUID projectId, String title, String description, double completion) {
         this.projectId = projectId;
         this.title = title;
         this.description = description;
         this.completion = completion;
     }
 
-	public abstract UUID getProjectId();
-	public abstract void setProjectId(UUID projectId);
+	public UUID getProjectId() {
+		return this.projectId;
+	}
+
+	public void setProjectId(UUID projectId) {
+		this.projectId = projectId;
+	}
 	
-	public abstract String getTitle();
-	public abstract void setTitle(String title);
+	public String getTitle() {
+		return this.title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	
-	public abstract String getDescription();
-	public abstract void setDescription(String description);
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
-	public abstract double getCompletion();
-	public abstract void setCompletion(double completion);
+	public double getCompletion() {
+		return this.completion;
+	}
+
+	public void setCompletion(double completion) {
+		this.completion = completion;
+	}
 	
  
 
@@ -57,6 +75,16 @@ public abstract class ProjectComponent implements Project{
             " description='" + getDescription() + "'" +
             " completion='" + getCompletion() + "'" +
             "}";
+    }
+
+	public HashMap<String, Object> toHashMap() {
+        HashMap<String, Object> projectMap = new HashMap<String,Object>();
+		projectMap.put("projectId", getProjectId());
+		projectMap.put("title", getTitle());
+		projectMap.put("description", getDescription());
+		projectMap.put("completion", getCompletion());
+
+        return projectMap;
     }
 	
 }
