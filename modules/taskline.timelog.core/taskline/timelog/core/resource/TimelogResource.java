@@ -9,5 +9,5 @@ public interface TimelogResource {
     HashMap<String, Object> getTimelog(VMJExchange vmjExchange);
     List<HashMap<String,Object>> getAllTimelog(VMJExchange vmjExchange);
     List<HashMap<String,Object>> deleteTimelog(VMJExchange vmjExchange);
-	HashMap<String, Object> createTimelog(VMJExchange vmjExhange);
+	HashMap<String, Object> Timelog(VMJExchange vmjExhange);
 }
