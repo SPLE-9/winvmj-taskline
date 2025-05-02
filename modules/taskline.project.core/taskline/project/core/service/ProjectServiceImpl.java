@@ -15,7 +15,6 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import taskline.project.ProjectFactory;
-import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
 public class ProjectServiceImpl extends ProjectServiceComponent{
@@ -26,11 +25,11 @@ public class ProjectServiceImpl extends ProjectServiceComponent{
             throw new FieldValidationException("Field 'title' not found in the request body.");
         }
 
-		String title = (String) body.get("title");
+		String title = (String) requestBody.get("title");
 
         validateUniqueProjectTitle(title);
 
-		String description = requestBody.containsKey("description") ? (String) body.get("description") : "";
+		String description = requestBody.containsKey("description") ? (String) requestBody.get("description") : "";
 
         UUID projectId = UUID.randomUUID();
 
@@ -87,7 +86,7 @@ public class ProjectServiceImpl extends ProjectServiceComponent{
 	}
 
     public List<HashMap<String,Object>> deleteProject(Map<String, Object> requestBody) {
-		String projectIdStr = (String) body.get("projectId");
+		String projectIdStr = (String) requestBody.get("projectId");
     	UUID projectId = UUID.fromString(projectIdStr);
 		
 		Project project = projectRepository.getObject(projectId);
@@ -103,14 +102,14 @@ public class ProjectServiceImpl extends ProjectServiceComponent{
 	public List<HashMap<String, Object>> transformListToHashMap(List<Project> projectList) {
 		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
         for(Project project : projectList) {
-            resultList.add(projectList.get(i).toHashMap());
+            resultList.add(project.toHashMap());
         }
 
         return resultList;
 	}
 
 	private void validateUniqueProjectTitle(String title) {
-		List<Category> existingProjects = projectRepository.getListObject("project_impl", "title", title);
+		List<Project> existingProjects = projectRepository.getListObject("project_impl", "title", title);
 		if (!existingProjects.isEmpty()) {
             throw new BadRequestException("Project with title '" + title + "' already exists.");
         }

@@ -5,7 +5,7 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import taskline.project.ProjectFactory;
-import taskline.project.ProjectService;
+import taskline.project.core.ProjectService;
 //import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
