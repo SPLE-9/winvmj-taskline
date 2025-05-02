@@ -10,6 +10,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
@@ -20,83 +21,91 @@ import prices.auth.vmj.annotations.Restricted;
 
 public class TimelogServiceImpl extends TimelogServiceComponent{
 
-    public List<HashMap<String,Object>> saveTimelog(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
-		}
-		Timelog timelog = createTimelog(vmjExchange);
-		timelogRepository.saveObject(timelog);
-		return getAllTimelog(vmjExchange);
-	}
+	private TimelogFactory timelogFactory = new TimelogFactory();
 
-    public Timelog createTimelog(Map<String, Object> requestBody){
+    public HashMap<String,Object> saveTimelog(HashMap<String, Object> requestBody){
+
+		Task task = (Task) requestBody.get("task");
+		LocalDateTime timelogDate = (LocalDateTime) requestBody.get("timelogDate");
+		String timelogType = (String) requestBody.get("timelogType");
+
+		validateTimelog(task, timelogType, timelogDate);
+
+		UUID timelogId = UUID.randomUUID();
 		
 		//to do: fix association attributes
-		Timelog Timelog = TimelogFactory.createTimelog(
-			"taskline.timelog.core.TimelogImpl",
-		timelogId
-		, taskId
-		, userId
-		, timelogDate
-		, timelogType
-		, timelogNotes
-		, userimpl
-		, taskimpl
+		Timelog timelog = TimelogFactory.createTimelog(
+			"taskline.timelog.core.TimelogImpl"
+			,timelogId
+			, taskId
+			, userId
+			, timelogDate
+			, timelogType
+			, timelogNotes
+			, userimpl
+			, taskimpl
 		);
-		Repository.saveObject(timelog);
-		return timelog;
-	}
+		
+		timelogRepository.saveObject(timelog);
 
-    public Timelog createTimelog(Map<String, Object> requestBody, int id){
-		
-		//to do: fix association attributes
-		
-		Timelog timelog = TimelogFactory.createTimelog("taskline.timelog.core.TimelogImpl", timelogId, taskId, userId, timelogDate, timelogType, timelogNotes, userimpl, taskimpl);
-		return timelog;
+		return timelogRepository.getObject(timelog.getTimelogId()).toHashMap();
 	}
 
     public HashMap<String, Object> updateTimelog(Map<String, Object> requestBody){
-		String idStr = (String) requestBody.get("timelogIdtaskIduserId");
-		int id = Integer.parseInt(idStr);
-		Timelog timelog = Repository.getObject(id);
-		
-		
-		Repository.updateObject(timelog);
-		
-		//to do: fix association attributes
-		
-		return timelog.toHashMap();
-		
-	}
-
-    public HashMap<String, Object> getTimelog(Map<String, Object> requestBody){
-		List<HashMap<String, Object>> timelogList = getAllTimelog("timelog_impl");
-		for (HashMap<String, Object> timelog : timelogList){
-			int record_id = ((Double) timelog.get("record_id")).intValue();
-			if (record_id == id){
-				return timelog;
-			}
+		if (!requestBody.containsKey("timelogId")) {
+			throw new IllegalArgumentException("Invalid id");
 		}
-		return null;
+
+		String idStr = (String) requestBody.get("timelogId");
+		UUID id = UUID.fromString(idStr);
+
+		Timelog timelog = timelogRepository.getObject(id);
+
+		if (timelog == null) {
+			throw new NotFoundException("Timelog not found with id: " + id);
+		}
+		if (requestBody.containsKey("taskId")) {
+			timelog.setTaskId((UUID) requestBody.get("taskId"));
+		}
+		if (requestBody.containsKey("userId")) {
+			timelog.setUserId((UUID) requestBody.get("userId"));
+		}
+		if (requestBody.containsKey("timelogDate")) {
+			timelog.setTimelogDate((LocalDateTime) requestBody.get("timelogDate"));
+		}
+		if (requestBody.containsKey("timelogType")) {
+			timelog.setTimelogType((String) requestBody.get("timelogType"));
+		}
+		if (requestBody.containsKey("timelogNotes")) {
+			timelog.setTimelogNotes((String) requestBody.get("timelogNotes"));
+		}
+
+		timelogRepository.updateObject(timelog);
+		
+		return timelogRepository.getObject(id).toHashMap();
+		
 	}
 
-	public HashMap<String, Object> getTimelogById(int id){
-		String idStr = vmjExchange.getGETParam("timelogIdtaskIduserId"); 
-		int id = Integer.parseInt(idStr);
-		Timelog timelog = timelogRepository.getObject(id);
+    public HashMap<String, Object> getTimelog(String id){
+		UUID timelogId = UUID.fromString(id);
+
+		Timelog timelog = timelogRepository.getObject(timelogId);
+		if (timelog == null) {
+			throw new NotFoundException("Timelog not found with id: " + timelogId);
+		}
+
 		return timelog.toHashMap();
 	}
 
-    public List<HashMap<String,Object>> getAllTimelog(Map<String, Object> requestBody){
-		String table = (String) requestBody.get("table_name");
-		List<Timelog> List = Repository.getAllObject(table);
-		return transformListToHashMap(List);
+    public List<HashMap<String,Object>> getAllTimelog(){
+		List<Timelog> timelogList = timelogRepository.getAllObject("timelog_impl");
+		return transformListToHashMap(timelogList);
 	}
 
-    public List<HashMap<String,Object>> transformListToHashMap(List<Timelog> List){
+    public List<HashMap<String,Object>> transformListToHashMap(List<Timelog> timelogList){
 		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
-        for(int i = 0; i < List.size(); i++) {
-            resultList.add(List.get(i).toHashMap());
+        for(Timelog timelog : timelogList){ 
+            resultList.add(timelogList.get(i).toHashMap());
         }
 
         return resultList;
@@ -104,16 +113,31 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 
     public List<HashMap<String,Object>> deleteTimelog(Map<String, Object> requestBody){
 		String idStr = ((String) requestBody.get("id"));
-		int id = Integer.parseInt(idStr);
+		UUID id = UUID.fromString(idStr);
+
+		Timelog timelog = timelogRepository.getObject(id);
+		if (timelog == null) {
+			throw new NotFoundException("Timelog not found with id: " + id);
+		}
 		Repository.deleteObject(id);
 		return getAllTimelog(requestBody);
 	}
 
-	public void getTimelogDetail() {
-		// TODO: implement this method
-	}
+	// public void getTimelogDetail() {
+	// 	// TODO: implement this method
 
-	public void validateTimelog() {
+	// }
+
+	public void validateTimelog(Task task, LocalDateTime timelogDate, String timelogType) {
 		// TODO: implement this method
+		if (task == null || task.getTaskId() == null) {
+			throw new IllegalArgumentException("Invalid task");
+		}
+		if (timelogDate == null) {
+			throw new IllegalArgumentException("Invalid timelog date");
+		}
+		if (timelogType == null || timelogType.isEmpty()) {
+			throw new IllegalArgumentException("Invalid timelog type");
+		}
 	}
 }

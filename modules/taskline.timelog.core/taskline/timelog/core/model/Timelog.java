@@ -10,16 +10,15 @@ public interface Timelog {
 	public void setTaskId(UUID taskId);
 	public UUID getUserId();
 	public void setUserId(UUID userId);
-	public EDate getTimelogDate();
-	public void setTimelogDate(EDate timelogDate);
-	public EString getTimelogType();
-	public void setTimelogType(EString timelogType);
-	public EString getTimelogNotes();
-	public void setTimelogNotes(EString timelogNotes);
+	public LocalDateTime getTimelogDate();
+	public void setTimelogDate(LocalDateTime timelogDate);
+	public String getTimelogType();
+	public void setTimelogType(String timelogType);
+	public String getTimelogNotes();
+	public void setTimelogNotes(String timelogNotes);
 	public UserImpl getUserimpl();
 	public void setUserimpl(UserImpl userimpl);
 	public TaskImpl getTaskimpl();
 	public void setTaskimpl(TaskImpl taskimpl);
-	org.eclipse.uml2.uml.internal.impl.ClassImpl@578b900b (name: TimelogImpl, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
 	HashMap<String, Object> toHashMap();
 }

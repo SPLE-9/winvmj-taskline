@@ -1,6 +1,7 @@
 package taskline.timelog.core;
 
 import java.lang.Math;
+import java.time.LocalDateTime;
 import java.util.*;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
@@ -19,7 +20,7 @@ import javax.persistence.OneToMany;
 @Table(name="timelog_impl")
 public class TimelogImpl extends TimelogComponent {
 
-	public TimelogImpl(UUID timelogId, UUID taskId, UUID userId, EDate timelogDate, EString timelogType, EString timelogNotes, UserImpl userimpl, TaskImpl taskimpl) {
+	public TimelogImpl(UUID timelogId, UUID taskId, UUID userId, LocalDateTime timelogDate, String timelogType, String timelogNotes, UserImpl userimpl, TaskImpl taskimpl) {
 		this.timelogId = timelogId;
 		this.taskId = taskId;
 		this.userId = userId;
@@ -30,9 +31,8 @@ public class TimelogImpl extends TimelogComponent {
 		this.taskimpl = taskimpl;
 	}
 
-	public TimelogImpl(UUID timelogId, UUID taskId, UUID userId, EDate timelogDate, EString timelogType, EString timelogNotes, UserImpl userimpl, TaskImpl taskimpl) {
-		this.timelogIdtaskIduserId =  timelogIdtaskIduserId.randomUUID();;
-		this.timelogId = timelogId;
+	public TimelogImpl(UUID timelogId, UUID taskId, UUID userId, LocalDateTime timelogDate, String timelogType, String timelogNotes, UserImpl userimpl, TaskImpl taskimpl) {
+		this.timelogId =  timelogId.randomUUID();;
 		this.taskId = taskId;
 		this.userId = userId;
 		this.timelogDate = timelogDate;
@@ -41,8 +41,6 @@ public class TimelogImpl extends TimelogComponent {
 		this.userimpl = userimpl;
 		this.taskimpl = taskimpl;
 	}
-
-	public TimelogImpl() { }
 
 	public UUID getTimelogId() {
 		return this.timelogId;
@@ -66,12 +64,22 @@ public class TimelogImpl extends TimelogComponent {
 		this.userId = userId;
 	}
 
-	public void getTimelogDetail() {
-		// TODO: implement this method
-	}
+	// public void getTimelogDetail() {
+	// 	// TODO: implement this method
+	// }
 
-	public void validateTimelog() {
+	public void validateTimelog(Task task, LocalDateTime timelogDate, String timelogType) {
 		// TODO: implement this method
+		if (task == null || task.getTaskId() == null) {
+			throw new IllegalArgumentException("Invalid task");
+		}
+		if (timelogDate == null) {
+			throw new IllegalArgumentException("Invalid timelog date");
+		}
+		if (timelogType == null || timelogType.isEmpty()) {
+			throw new IllegalArgumentException("Invalid timelog type");
+		}
+		
 	}
 	
 	public HashMap<String, Object> toHashMap() {

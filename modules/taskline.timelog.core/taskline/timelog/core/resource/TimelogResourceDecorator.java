@@ -11,16 +11,8 @@ public abstract class TimelogResourceDecorator extends TimelogResourceComponent{
         this.record = record;
     }
 
-    public List<HashMap<String,Object>> saveTimelog(VMJExchange vmjExchange){
+    public HashMap<String,Object> saveTimelog(VMJExchange vmjExchange){
 		return record.saveTimelog(vmjExchange);
-	}
-
-    public Timelog createTimelog(VMJExchange vmjExchange){
-		return record.createTimelog(vmjExchange);
-	}
-
-    public Timelog createTimelog(VMJExchange vmjExchange, int id){
-		return record.createTimelog(vmjExchange, id);
 	}
 
     public HashMap<String, Object> updateTimelog(VMJExchange vmjExchange){
@@ -37,13 +29,5 @@ public abstract class TimelogResourceDecorator extends TimelogResourceComponent{
 
     public List<HashMap<String,Object>> deleteTimelog(VMJExchange vmjExchange){
 		return record.deleteTimelog(vmjExchange);
-	}
-
-	public void getTimelogDetail() {
-		return record.getTimelogDetail();
-	}
-
-	public void validateTimelog() {
-		return record.validateTimelog();
 	}
 }

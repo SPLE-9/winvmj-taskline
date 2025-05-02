@@ -16,21 +16,21 @@ import taskline.timelog.core.TimelogComponent;
 @Table(name="timelog_timelogsession")
 public class TimelogImpl extends TimelogDecorator {
 
-	public EDate startTime;
-	public EDate endTime;
+	public Date startTime;
+	public Date endTime;
 	public TimelogImpl(
         super();
         this.objectName = TimelogImpl.class.getName();
     }
     
-    public TimelogImpl(EDate startTime, EDate endTime) {
+    public TimelogImpl(Date startTime, Date endTime) {
     	super();
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.objectName = TimelogImpl.class.getName();
     }
 	
-	public TimelogImpl(TimelogComponent record, EDate startTime, EDate endTime) {
+	public TimelogImpl(TimelogComponent record, Date startTime, Date endTime) {
 		super(record);
 		this.startTime = startTime;
 		this.endTime = endTime;
@@ -40,14 +40,24 @@ public class TimelogImpl extends TimelogDecorator {
 
 	public void calculateTotalDuration() {
 		// TODO: implement this method
+		if (startTime == null || endTime == null || endTime.toDate().before(startTime.toDate())) {
+            return 0;
+        }
+        long durationInMillis = endTime.toDate().getTime() - startTime.toDate().getTime();
+        return TimeUnit.MILLISECONDS.toMinutes(durationInMillis);
 	}
 
 	public void getIsOnGoing() {
 		// TODO: implement this method
+		if (endTime == null) {
+            return true;
+        }
+        return endTime.toDate().after(new Date());
 	}
 
 	public void endSession() {
 		// TODO: implement this method
+		this.endTime = new Date(new Date());
 	}
 
 }

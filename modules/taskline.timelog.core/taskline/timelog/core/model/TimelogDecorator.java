@@ -13,29 +13,15 @@ import javax.persistence.CascadeType;
 public abstract class TimelogDecorator extends TimelogComponent{
     @OneToOne(cascade=CascadeType.ALL)
 	protected TimelogComponent record;
-
-	public TimelogDecorator () {
-		super();
-		this.record = record;
-		this.timelogIdtaskIduserId =  timelogIdtaskIduserId.randomUUID();
 		
 	public TimelogDecorator (TimelogComponent record) {
-		this.timelogIdtaskIduserId =  timelogIdtaskIduserId.randomUUID();
 		this.record = record;
 	}
 
-	public TimelogDecorator (UUID timelogIdUUID taskIdUUID userId, TimelogComponent record) {
-		this.timelogIdtaskIduserId =  timelogIdtaskIduserId;
+	public TimelogDecorator (UUID timelogId, TimelogComponent record) {
+		this.timelogId =  timelogId;
 		this.record = record;
 	}
-	
-	public TimelogDecorator (TimelogComponent record, String objectName) {
-		this.timelogIdtaskIduserId =  timelogIdtaskIduserId.randomUUID();
-		this.record = record;	
-		this.objectName=objectName;
-	}
-
-	public TimelogDecorator() { }
 
 	public UUID getTimelogId() {
 		return record.getTimelogId();
@@ -56,12 +42,12 @@ public abstract class TimelogDecorator extends TimelogComponent{
 		record.setUserId(userId);
 	}
 
-	public void getTimelogDetail() {
-		return record.getTimelogDetail();
-	}
+	// public void getTimelogDetail() {
+	// 	return record.getTimelogDetail();
+	// }
 
-	public void validateTimelog() {
-		return record.validateTimelog();
+	public void validateTimelog(Task task, LocalDateTime timelogDate, String timelogType) {
+		return record.validateTimelog(task, timelogDate, timelogType);
 	}
 
 	public HashMap<String, Object> toHashMap() {
