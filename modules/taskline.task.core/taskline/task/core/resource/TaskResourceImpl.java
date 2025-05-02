@@ -60,7 +60,10 @@ public class TaskResourceImpl extends TaskResourceComponent{
 		return ServiceImpl.delete(requestBody);
 	}
 
+	@Route(url="call/projecttask/list")
 	public void getTasksByProject() {
 		// TODO: implement this method
+		Map<String, Object> requestBody = vmjExchange.getPayload(); 
+		return ServiceImpl.getTasksByProject(requestBody);
 	}
 }

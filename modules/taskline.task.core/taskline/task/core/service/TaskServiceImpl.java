@@ -20,82 +20,80 @@ import prices.auth.vmj.annotations.Restricted;
 
 public class TaskServiceImpl extends TaskServiceComponent{
 
-    public List<HashMap<String,Object>> save(VMJExchange vmjExchange){
+    public List<HashMap<String,Object>> saveTask(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		  = create(vmjExchange);
+		Task task  = createTask(vmjExchange);
 		Repository.saveObject();
 		return getAll(vmjExchange);
 	}
 
-    public  create(Map<String, Object> requestBody){
+    public Task createTask(Map<String, Object> requestBody){
 		String title = (String) requestBody.get("title");
 		String description = (String) requestBody.get("description");
 		
 		//to do: fix association attributes
-		  = Factory.create(
+		Task task  = TaskFactory.createTask(
 			"taskline.task.core.TaskImpl",
 		taskId
 		, title
 		, description
 		, status
 		, createdAt
-		, completedAt
 		, userimpl
 		, projectimpl
+		, completedAt
 		);
 		Repository.saveObject();
-		return ;
+		return task;
 	}
 
-    public  create(Map<String, Object> requestBody, int id){
+    public Task createTask(Map<String, Object> requestBody, int id){
 		String title = (String) vmjExchange.getRequestBodyForm("title");
 		String description = (String) vmjExchange.getRequestBodyForm("description");
 		
 		//to do: fix association attributes
 		
-		  = Factory.create("taskline.task.core.TaskImpl", taskId, title, description, status, createdAt, completedAt, userimpl, projectimpl);
-		return ;
+		Task task = TaskFactory.createTask("taskline.task.core.TaskImpl", taskId, title, description, status, createdAt, userimpl, projectimpl, completedAt);
+		return task;
 	}
 
-    public HashMap<String, Object> update(Map<String, Object> requestBody){
+    public HashMap<String, Object> updateTask(Map<String, Object> requestBody){
 		String idStr = (String) requestBody.get("taskId");
 		int id = Integer.parseInt(idStr);
-		  = Repository.getObject(id);
+		Task task  = Repository.getObject(id);
 		
-		.setTitle((String) requestBody.get("title"));
-		.setDescription((String) requestBody.get("description"));
+		task.setTitle((String) requestBody.get("title"));
+		task.setDescription((String) requestBody.get("description"));
 		
-		Repository.updateObject();
+		Repository.updateObject(task);
 		
-		//to do: fix association attributes
-		
-		return .toHashMap();
+		return task.toHashMap();
 		
 	}
 
-    public HashMap<String, Object> get(Map<String, Object> requestBody){
-		List<HashMap<String, Object>> List = getAll("_impl");
-		for (HashMap<String, Object>  : List){
+    public HashMap<String, Object> getTask(Map<String, Object> requestBody){
+		List<HashMap<String, Object>> taskList = getAllTask("task_impl");
+		for (HashMap<String, Object> task : taskList){
 			int record_id = ((Double) .get("record_id")).intValue();
 			if (record_id == id){
-				return ;
+				return task;
 			}
 		}
 		return null;
 	}
 
-	public HashMap<String, Object> getById(int id){
+	public HashMap<String, Object> getTaskById(int id){
 		String idStr = vmjExchange.getGETParam("taskId"); 
-		int id = Integer.parseInt(idStr);
-		  = Repository.getObject(id);
-		return .toHashMap();
+		int idTask = Integer.parseInt(id);
+		Task task  = Repository.getObject(idTask);
+		return task.toHashMap();
 	}
 
-    public List<HashMap<String,Object>> getAll(Map<String, Object> requestBody){
+    public List<HashMap<String,Object>> getAllTask(Map<String, Object> requestBody){
 		String table = (String) requestBody.get("table_name");
-		List<> List = Repository.getAllObject(table);
+		List<Task> List = Repository.getAllObject(table);
 		return transformListToHashMap(List);
 	}
 
@@ -108,14 +106,17 @@ public class TaskServiceImpl extends TaskServiceComponent{
         return resultList;
 	}
 
-    public List<HashMap<String,Object>> delete(Map<String, Object> requestBody){
+    public List<HashMap<String,Object>> deleteTask(Map<String, Object> requestBody){
 		String idStr = ((String) requestBody.get("id"));
 		int id = Integer.parseInt(idStr);
 		Repository.deleteObject(id);
 		return getAll(requestBody);
 	}
 
-	public void getTasksByProject() {
-		// TODO: implement this method
+	public void getTasksByProject(Map<String, Object> requestBody) {
+		String table = (String) requestBody.get("table_name");
+		String column = (String) requestBody.get("column_name");
+		String filter = (String) requestBody.get("project_id");
+		List<Task> List = Repository.getListObject(table, column, filter);
 	}
 }

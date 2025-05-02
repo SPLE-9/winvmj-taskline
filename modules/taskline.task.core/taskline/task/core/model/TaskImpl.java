@@ -51,10 +51,6 @@ public class TaskImpl extends TaskComponent {
 	public void setTaskId(UUID taskId) {
 		this.taskId = taskId;
 	}
-
-	public void getTasksByProject() {
-		// TODO: implement this method
-	}
 	
 	public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> Map = new HashMap<String,Object>();
