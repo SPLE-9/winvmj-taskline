@@ -34,7 +34,7 @@ public class UserImpl extends UserComponent {
 	public UserImpl() {
 		this.userId = UUID.randomUUID();
 		this.email = "";
-		this.username = "";
+		this.name = "";
 	}
 
 }

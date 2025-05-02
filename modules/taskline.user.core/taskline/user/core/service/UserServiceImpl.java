@@ -15,7 +15,6 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import taskline.user.UserFactory;
-import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
 public class UserServiceImpl extends UserServiceComponent{

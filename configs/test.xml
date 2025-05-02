@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature name="TaskLine"/>
+	<feature name="Project"/>
+	<feature name="ProjectWithMembers"/>
+	<feature name="Task"/>
+	<feature name="TaskWithComments"/>
+	<feature name="Analytics"/>
+	<feature name="ProjectBurndown"/>
+	<feature name="MemberBurndown"/>
+	<feature name="Appointment"/>
+	<feature name="TimeLog"/>
+	<feature name="DurationTimeLog"/>
+	<feature name="SessionTimeLog"/>
+	<feature name="Notes"/>
+	<feature name="SharedNotes"/>
+</configuration>
