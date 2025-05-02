@@ -25,31 +25,16 @@ public class UserImpl extends UserComponent {
 		this.name = name;
 	}
 
-	public UserImpl(UUID userId, String email, String name) {
-		this.userId =  userId.randomUUID();;
-		this.userId = userId;
+	public UserImpl(String email, String name) {
+		this.userId =  UUID.randomUUID();
 		this.email = email;
 		this.name = name;
 	}
 
-	public UserImpl() { }
-
-	public UUID getUserId() {
-		return this.userId;
+	public UserImpl() {
+		this.userId = UUID.randomUUID();
+		this.email = "";
+		this.username = "";
 	}
-
-	public void setUserId(UUID userId) {
-		this.userId = userId;
-	}
-
-	
-	public HashMap<String, Object> toHashMap() {
-        HashMap<String, Object> userMap = new HashMap<String,Object>();
-		userMap.put("userId",getUserId());
-		userMap.put("email",getEmail());
-		userMap.put("name",getName());
-
-        return userMap;
-    }
 
 }
