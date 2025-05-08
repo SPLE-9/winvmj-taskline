@@ -1,9 +1,6 @@
 package taskline.notes.core;
 import java.util.*;
 
-import vmj.routing.route.Route;
-import vmj.routing.route.VMJExchange;
-
 public abstract class NotesResourceDecorator extends NotesResourceComponent{
 	protected NotesResourceComponent record;
 
@@ -31,4 +28,7 @@ public abstract class NotesResourceDecorator extends NotesResourceComponent{
 		return record.deleteNotes(vmjExchange);
 	}
 
+	public void getNotesByUserId(UUID userId) {
+		return record.getNotesByUserId(userId);
+	}
 }
