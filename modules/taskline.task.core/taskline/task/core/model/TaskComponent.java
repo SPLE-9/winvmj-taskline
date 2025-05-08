@@ -9,17 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import taskline.task.core.Status;
 
 @Entity
-@Table(name="_comp")
+@Table(name="task_comp")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class TaskComponent implements {
+public abstract class TaskComponent implements Task {
 	@Id
 	protected UUID taskId; 
-	protected UUID taskId;
 	public String title;
 	public String description;
-	public status status;
+	public Status status;
 	public EDate createdAt;
 	public EDate completedAt;
 	@ManyToOne(targetEntity=taskline.user.core.UserComponent.class)
@@ -33,7 +33,7 @@ public abstract class TaskComponent implements {
 	} 
 
 	public TaskComponent(
-        UUID taskId, String title, String description, status status, EDate createdAt, EDate completedAt, UserImpl userimpl, ProjectImpl projectimpl
+        UUID taskId, String title, String description, Status status, EDate createdAt, EDate completedAt, UserImpl userimpl, ProjectImpl projectimpl
     ) {
         this.taskId = taskId;
         this.title = title;
@@ -58,8 +58,8 @@ public abstract class TaskComponent implements {
 	public abstract String getDescription();
 	public abstract void setDescription(String description);
 	
-	public abstract status getStatus();
-	public abstract void setStatus(status status);
+	public abstract Status getStatus();
+	public abstract void setStatus(Status status);
 	
 	public abstract EDate getCreatedAt();
 	public abstract void setCreatedAt(EDate createdAt);

@@ -18,7 +18,8 @@ public abstract class TaskDecorator extends TaskComponent{
 		super();
 		this.record = record;
 		this.taskId =  taskId.randomUUID();
-		
+	}
+	
 	public TaskDecorator (TaskComponent record) {
 		this.taskId =  taskId.randomUUID();
 		this.record = record;
@@ -35,7 +36,6 @@ public abstract class TaskDecorator extends TaskComponent{
 		this.objectName=objectName;
 	}
 
-	public TaskDecorator() { }
 
 	public UUID getTaskId() {
 		return record.getTaskId();

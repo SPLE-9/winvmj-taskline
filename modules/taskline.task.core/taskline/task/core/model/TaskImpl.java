@@ -13,14 +13,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import taskline.task.core.Status;
 
 
-@Entity(name="_impl")
-@Table(name="_impl")
+
+@Entity(name="task_impl")
+@Table(name="task_impl")
 public class TaskImpl extends TaskComponent {
 
-	public TaskImpl(UUID taskId, String title, String description, status status, EDate createdAt, EDate completedAt, UserImpl userimpl, ProjectImpl projectimpl) {
-		this.taskId = taskId;
+	public TaskImpl(String title, String description, Status status, EDate createdAt, EDate completedAt, UserImpl userimpl, ProjectImpl projectimpl) {
+		this.taskId =  UUID.randomUUID();;
 		this.title = title;
 		this.description = description;
 		this.status = status;
@@ -30,19 +32,6 @@ public class TaskImpl extends TaskComponent {
 		this.projectimpl = projectimpl;
 	}
 
-	public TaskImpl(UUID taskId, String title, String description, status status, EDate createdAt, EDate completedAt, UserImpl userimpl, ProjectImpl projectimpl) {
-		this.taskId =  taskId.randomUUID();;
-		this.taskId = taskId;
-		this.title = title;
-		this.description = description;
-		this.status = status;
-		this.createdAt = createdAt;
-		this.completedAt = completedAt;
-		this.userimpl = userimpl;
-		this.projectimpl = projectimpl;
-	}
-
-	public TaskImpl() { }
 
 	public UUID getTaskId() {
 		return this.taskId;
@@ -50,6 +39,56 @@ public class TaskImpl extends TaskComponent {
 
 	public void setTaskId(UUID taskId) {
 		this.taskId = taskId;
+	}
+
+	public String getTitle() {
+		return this.title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Status getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	public EDate getCreatedAt() {
+		return this.createdAt;
+	}
+
+	public void setCreatedAt(EDate createdAt) {
+		this.createdAt = createdAt;
+	}
+	public EDate getCompletedAt() {
+		return this.completedAt;
+	}
+
+	public void setCompletedAt(EDate completedAt) {
+		this.completedAt = completedAt;
+	}
+	public UserImpl getUserimpl() {
+		return this.userimpl;
+	}
+
+	public void setUserimpl(UserImpl userimpl) {
+		this.userimpl = userimpl;
+	}
+	public ProjectImpl getProjectimpl() {
+		return this.projectimpl;
+	}
+	public void setProjectimpl(ProjectImpl projectimpl) {
+		this.projectimpl = projectimpl;
 	}
 	
 	public HashMap<String, Object> toHashMap() {

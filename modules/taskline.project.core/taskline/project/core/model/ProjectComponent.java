@@ -13,9 +13,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="project_comp")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class ProjectComponent implements Project{
+public abstract class ProjectComponent implements Project {
 	@Id
-	public UUID projectId; 
 	public UUID projectId;
 	public String title;
 	public String description;

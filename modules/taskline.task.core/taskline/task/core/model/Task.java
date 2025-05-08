@@ -10,7 +10,7 @@ public interface Task {
 	public void setTitle(String title);
 	public String getDescription();
 	public void setDescription(String description);
-	public status getStatus();
+	public Status getStatus();
 	public void setStatus(status status);
 	public EDate getCreatedAt();
 	public void setCreatedAt(EDate createdAt);
