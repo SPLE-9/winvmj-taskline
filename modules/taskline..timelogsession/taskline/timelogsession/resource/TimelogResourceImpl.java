@@ -19,69 +19,64 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		invalidTimelogSession invalidtimelogsession = createinvalidTimelogSession(vmjExchange);
-		invalidtimelogsessionRepository.saveObject(invalidtimelogsession);
-		return getAllinvalidTimelogSession(vmjExchange);
+		  = create(vmjExchange);
+		Repository.saveObject();
+		return getAll(vmjExchange);
 	}
 
-    public  createinvalidTimelogSession(VMJExchange vmjExchange){
+    public  create(VMJExchange vmjExchange){
 		
-		invalidTimelogSession invalidtimelogsession = record.createinvalidTimelogSession(vmjExchange);
-		invalidTimelogSession invalidtimelogsessiondeco = invalidTimelogSessionFactory.createinvalidTimelogSession("taskline.timelogsession.core.TimelogImpl", invalidtimelogsession, 
-		startTime, endTime
-		);
-			return invalidtimelogsessiondeco;
+		  = record.create(vmjExchange);
+		 deco = Factory.create("taskline.timelogsession.core.TimelogImpl", , startTime, endTime);
+			return deco;
 	}
 
-
-    public  createinvalidTimelogSession(VMJExchange vmjExchange, int id){
-		invalidTimelogSession invalidtimelogsession = invalidtimelogsessionRepository.getObject(id);
-		int recordinvalidTimelogSessionId = (((invalidTimelogSessionDecorator) savedinvalidTimelogSession.getRecord()).getId();
+    public  create(VMJExchange vmjExchange, int id){
+		  = Repository.getObject(id);
+		int recordId = (((Decorator) saved.getRecord()).getId();
 		
-		invalidTimelogSession invalidtimelogsession = record.createinvalidTimelogSession(vmjExchange);
-		invalidTimelogSession invalidtimelogsessiondeco = invalidTimelogSessionFactory.createinvalidTimelogSession("taskline.timelogsession.core.TimelogImpl", id, invalidtimelogsession, 
-		startTime, endTime
-		);
-			return invalidtimelogsessiondeco;
+		  = record.create(vmjExchange);
+		 deco = Factory.create("taskline.timelogsession.core.TimelogImpl", id, , startTime, endTime);
+			return deco;
 	}
 
-	// @Restriced(permission = "")
+    // @Restriced(permission = "")
     @Route(url="call/timelogsession/update")
-    public HashMap<String, Object> updateinvalidTimelogSession(VMJExchange vmjExchange){
+    public HashMap<String, Object> update(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
 		String idStr = (String) vmjExchange.getRequestBodyForm("");
 		int id = Integer.parseInt(idStr);
 		
-		invalidTimelogSession invalidtimelogsession = invalidtimelogsessionRepository.getObject(id);
-		invalidtimelogsession = createinvalidTimelogSession(vmjExchange, id);
+		  = Repository.getObject(id);
+		 = create(vmjExchange, id);
 		
-		invalidtimelogsessionRepository.updateObject(invalidtimelogsession);
-		invalidtimelogsession = invalidtimelogsessionRepository.getObject(id);
+		Repository.updateObject();
+		 = Repository.getObject(id);
 		//to do: fix association attributes
 		
-		return invalidtimelogsession.toHashMap();
+		return .toHashMap();
 		
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/timelogsession/detail")
-    public HashMap<String, Object> getinvalidTimelogSession(VMJExchange vmjExchange){
-		return record.getinvalidTimelogSession(vmjExchange);
+    public HashMap<String, Object> get(VMJExchange vmjExchange){
+		return record.get(vmjExchange);
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/timelogsession/list")
-    public List<HashMap<String,Object>> getAllinvalidTimelogSession(VMJExchange vmjExchange){
-		List<invalidTimelogSession> invalidtimelogsessionList = invalidtimelogsessionRepository.getAllObject("invalidtimelogsession_impl");
-		return transforminvalidTimelogSessionListToHashMap(invalidtimelogsessionList);
+    public List<HashMap<String,Object>> getAll(VMJExchange vmjExchange){
+		List<> List = Repository.getAllObject("_impl");
+		return transformListToHashMap(List);
 	}
 
-    public List<HashMap<String,Object>> transforminvalidTimelogSessionListToHashMap(List<invalidTimelogSession> invalidTimelogSessionList){
+    public List<HashMap<String,Object>> transformListToHashMap(List<> List){
 		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
-        for(int i = 0; i < invalidTimelogSessionList.size(); i++) {
-            resultList.add(invalidTimelogSessionList.get(i).toHashMap());
+        for(int i = 0; i < List.size(); i++) {
+            resultList.add(List.get(i).toHashMap());
         }
 
         return resultList;
@@ -89,15 +84,15 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
 
 	// @Restriced(permission = "")
     @Route(url="call/timelogsession/delete")
-    public List<HashMap<String,Object>> deleteinvalidTimelogSession(VMJExchange vmjExchange){
+    public List<HashMap<String,Object>> delete(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
 		
 		String idStr = (String) vmjExchange.getRequestBodyForm("");
 		int id = Integer.parseInt(idStr);
-		invalidtimelogsessionRepository.deleteObject(id);
-		return getAllinvalidTimelogSession(vmjExchange);
+		Repository.deleteObject(id);
+		return getAll(vmjExchange);
 	}
 
 	public void calculateTotalDuration() {
@@ -111,5 +106,4 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
 	public void endSession() {
 		// TODO: implement this method
 	}
-	
 }

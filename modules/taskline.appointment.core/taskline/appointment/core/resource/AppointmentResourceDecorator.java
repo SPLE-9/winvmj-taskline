@@ -11,16 +11,8 @@ public abstract class AppointmentResourceDecorator extends AppointmentResourceCo
         this.record = record;
     }
 
-    public List<HashMap<String,Object>> saveAppointment(VMJExchange vmjExchange){
-		return record.saveAppointment(vmjExchange);
-	}
-
     public Appointment createAppointment(VMJExchange vmjExchange){
 		return record.createAppointment(vmjExchange);
-	}
-
-    public Appointment createAppointment(VMJExchange vmjExchange, int id){
-		return record.createAppointment(vmjExchange, id);
 	}
 
     public HashMap<String, Object> updateAppointment(VMJExchange vmjExchange){

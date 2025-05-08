@@ -1,1 +1,8 @@
-{}
+{
+    "Project": ["taskline.project.core"],
+    "Task": ["taskline.task.core"],
+    "User": ["taskline.user.core"],
+    "Analytic": ["taskline.analytic.core"],
+    "ProjectBurndown": ["taskline.analytic.burndownbyproject"],
+    "MemberBurndown": ["taskline.analytic.burndownbymember"]
+}

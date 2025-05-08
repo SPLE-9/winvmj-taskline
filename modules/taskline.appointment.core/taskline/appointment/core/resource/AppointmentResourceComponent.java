@@ -9,9 +9,7 @@ public abstract class AppointmentResourceComponent implements AppointmentResourc
 	
 	public AppointmentResourceComponent() { }
  
-    public abstract List<HashMap<String,Object>> saveAppointment(VMJExchange vmjExchange);
-    public abstract Appointment createAppointment(VMJExchange vmjExchange);
-	public abstract Appointment createAppointment(VMJExchange vmjExchange, int id);    
+    public abstract Appointment createAppointment(VMJExchange vmjExchange);    
 	public abstract HashMap<String, Object> updateAppointment(VMJExchange vmjExchange);
     public abstract HashMap<String, Object> getAppointment(VMJExchange vmjExchange);
     public abstract List<HashMap<String,Object>> getAllAppointment(VMJExchange vmjExchange);

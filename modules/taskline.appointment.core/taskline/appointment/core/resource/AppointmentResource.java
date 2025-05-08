@@ -9,5 +9,5 @@ public interface AppointmentResource {
     HashMap<String, Object> getAppointment(VMJExchange vmjExchange);
     List<HashMap<String,Object>> getAllAppointment(VMJExchange vmjExchange);
     List<HashMap<String,Object>> deleteAppointment(VMJExchange vmjExchange);
-	HashMap<String, Object> Appointment(VMJExchange vmjExhange);
+	HashMap<String, Object> createAppointment(VMJExchange vmjExhange);
 }

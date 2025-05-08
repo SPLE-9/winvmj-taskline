@@ -11,16 +11,8 @@ public abstract class InvitedUserResourceDecorator extends InvitedUserResourceCo
         this.record = record;
     }
 
-    public List<HashMap<String,Object>> saveInvitedUser(VMJExchange vmjExchange){
-		return record.saveInvitedUser(vmjExchange);
-	}
-
     public InvitedUser createInvitedUser(VMJExchange vmjExchange){
 		return record.createInvitedUser(vmjExchange);
-	}
-
-    public InvitedUser createInvitedUser(VMJExchange vmjExchange, int id){
-		return record.createInvitedUser(vmjExchange, id);
 	}
 
     public HashMap<String, Object> updateInvitedUser(VMJExchange vmjExchange){

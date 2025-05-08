@@ -1,9 +1,6 @@
 package taskline.notes.core;
 import java.util.*;
 
-import vmj.routing.route.Route;
-import vmj.routing.route.VMJExchange;
-
 public abstract class NotesResourceDecorator extends NotesResourceComponent{
 	protected NotesResourceComponent record;
 
@@ -11,16 +8,8 @@ public abstract class NotesResourceDecorator extends NotesResourceComponent{
         this.record = record;
     }
 
-    public List<HashMap<String,Object>> saveNotes(VMJExchange vmjExchange){
-		return record.saveNotes(vmjExchange);
-	}
-
     public Notes createNotes(VMJExchange vmjExchange){
 		return record.createNotes(vmjExchange);
-	}
-
-    public Notes createNotes(VMJExchange vmjExchange, int id){
-		return record.createNotes(vmjExchange, id);
 	}
 
     public HashMap<String, Object> updateNotes(VMJExchange vmjExchange){
@@ -39,4 +28,7 @@ public abstract class NotesResourceDecorator extends NotesResourceComponent{
 		return record.deleteNotes(vmjExchange);
 	}
 
+	public void getNotesByUserId(UUID userId) {
+		return record.getNotesByUserId(userId);
+	}
 }

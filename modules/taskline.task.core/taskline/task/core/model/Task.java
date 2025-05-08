@@ -4,6 +4,21 @@ import vmj.routing.route.VMJExchange;
 import java.util.*;
 
 public interface Task {
-	org.eclipse.uml2.uml.internal.impl.ClassImpl@1ea1ddb1 (name: TaskImpl, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)org.eclipse.uml2.uml.internal.impl.DependencyImpl@88e09f9 (name: <unset>, visibility: <unset>)org.eclipse.uml2.uml.internal.impl.DependencyImpl@67e03768 (name: <unset>, visibility: <unset>)org.eclipse.uml2.uml.internal.impl.EnumerationImpl@1fb6570a (name: status, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false)
+	public UUID getTaskId();
+	public void setTaskId(UUID taskId);
+	public String getTitle();
+	public void setTitle(String title);
+	public String getDescription();
+	public void setDescription(String description);
+	public status getStatus();
+	public void setStatus(status status);
+	public EDate getCreatedAt();
+	public void setCreatedAt(EDate createdAt);
+	public EDate getCompletedAt();
+	public void setCompletedAt(EDate completedAt);
+	public UserImpl getUserimpl();
+	public void setUserimpl(UserImpl userimpl);
+	public ProjectImpl getProjectimpl();
+	public void setProjectimpl(ProjectImpl projectimpl);
 	HashMap<String, Object> toHashMap();
 }

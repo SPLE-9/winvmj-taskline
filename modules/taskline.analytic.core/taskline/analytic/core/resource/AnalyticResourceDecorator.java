@@ -11,10 +11,6 @@ public abstract class AnalyticResourceDecorator extends AnalyticResourceComponen
         this.record = record;
     }
 
-    public List<HashMap<String,Object>> saveAnalytic(VMJExchange vmjExchange){
-		return record.saveAnalytic(vmjExchange);
-	}
-
     public Analytic createAnalytic(VMJExchange vmjExchange){
 		return record.createAnalytic(vmjExchange);
 	}

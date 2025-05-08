@@ -19,23 +19,25 @@ import javax.persistence.OneToMany;
 @Table(name="_impl")
 public class TaskImpl extends TaskComponent {
 
-	public TaskImpl(UUID taskId, String title, String description, status status, EDate createdAt, UserImpl userimpl, ProjectImpl projectimpl) {
+	public TaskImpl(UUID taskId, String title, String description, status status, EDate createdAt, EDate completedAt, UserImpl userimpl, ProjectImpl projectimpl) {
 		this.taskId = taskId;
 		this.title = title;
 		this.description = description;
 		this.status = status;
 		this.createdAt = createdAt;
+		this.completedAt = completedAt;
 		this.userimpl = userimpl;
 		this.projectimpl = projectimpl;
 	}
 
-	public TaskImpl(UUID taskId, String title, String description, status status, EDate createdAt, UserImpl userimpl, ProjectImpl projectimpl) {
+	public TaskImpl(UUID taskId, String title, String description, status status, EDate createdAt, EDate completedAt, UserImpl userimpl, ProjectImpl projectimpl) {
 		this.taskId =  taskId.randomUUID();;
 		this.taskId = taskId;
 		this.title = title;
 		this.description = description;
 		this.status = status;
 		this.createdAt = createdAt;
+		this.completedAt = completedAt;
 		this.userimpl = userimpl;
 		this.projectimpl = projectimpl;
 	}
@@ -49,10 +51,6 @@ public class TaskImpl extends TaskComponent {
 	public void setTaskId(UUID taskId) {
 		this.taskId = taskId;
 	}
-
-	public void getTasksByProject() {
-		// TODO: implement this method
-	}
 	
 	public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> Map = new HashMap<String,Object>();
@@ -61,6 +59,7 @@ public class TaskImpl extends TaskComponent {
 		Map.put("description",getDescription());
 		Map.put("status",getStatus());
 		Map.put("createdAt",getCreatedAt());
+		Map.put("completedAt",getCompletedAt());
 		Map.put("userimpl",getUserimpl());
 		Map.put("projectimpl",getProjectimpl());
 

@@ -17,4 +17,8 @@ public class ProjectServiceImpl extends ProjectServiceDecorator {
 	public void getProjectsByUser(UUID userId) {
 		// TODO: implement this method
 	}
+
+	public void getProjectMembers(UUID projectId) {
+		// TODO: implement this method
+	}
 }

@@ -11,16 +11,8 @@ public abstract class UserResourceDecorator extends UserResourceComponent{
         this.record = record;
     }
 
-    public List<HashMap<String,Object>> saveUser(VMJExchange vmjExchange){
-		return record.saveUser(vmjExchange);
-	}
-
     public User createUser(VMJExchange vmjExchange){
 		return record.createUser(vmjExchange);
-	}
-
-    public User createUser(VMJExchange vmjExchange, int id){
-		return record.createUser(vmjExchange, id);
 	}
 
     public HashMap<String, Object> updateUser(VMJExchange vmjExchange){

@@ -1,6 +1,7 @@
-module MProject.project.core {
-	exports MProject.project;
-    exports MProject.project.core;
+module taskline.notes.sharednotes {
+	requires taskline.notes.core;
+    exports taskline.notes.sharednotes;
+
 	requires vmj.routing.route;
 	requires vmj.hibernate.integrator;
 	requires vmj.auth;
@@ -9,5 +10,5 @@ module MProject.project.core {
 	requires java.naming;
 	requires java.net.http;
 
-	opens MProject.project.core to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
+	opens taskline.notes.sharednotes to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
 }

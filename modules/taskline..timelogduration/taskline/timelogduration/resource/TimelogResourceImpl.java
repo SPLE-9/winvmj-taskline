@@ -19,69 +19,64 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		invalidTimelogDuration invalidtimelogduration = createinvalidTimelogDuration(vmjExchange);
-		invalidtimelogdurationRepository.saveObject(invalidtimelogduration);
-		return getAllinvalidTimelogDuration(vmjExchange);
+		  = create(vmjExchange);
+		Repository.saveObject();
+		return getAll(vmjExchange);
 	}
 
-    public  createinvalidTimelogDuration(VMJExchange vmjExchange){
+    public  create(VMJExchange vmjExchange){
 		
-		invalidTimelogDuration invalidtimelogduration = record.createinvalidTimelogDuration(vmjExchange);
-		invalidTimelogDuration invalidtimelogdurationdeco = invalidTimelogDurationFactory.createinvalidTimelogDuration("taskline.timelogduration.core.TimelogImpl", invalidtimelogduration, 
-		timelogDuration
-		);
-			return invalidtimelogdurationdeco;
+		  = record.create(vmjExchange);
+		 deco = Factory.create("taskline.timelogduration.core.TimelogImpl", , timelogDuration);
+			return deco;
 	}
 
-
-    public  createinvalidTimelogDuration(VMJExchange vmjExchange, int id){
-		invalidTimelogDuration invalidtimelogduration = invalidtimelogdurationRepository.getObject(id);
-		int recordinvalidTimelogDurationId = (((invalidTimelogDurationDecorator) savedinvalidTimelogDuration.getRecord()).getId();
+    public  create(VMJExchange vmjExchange, int id){
+		  = Repository.getObject(id);
+		int recordId = (((Decorator) saved.getRecord()).getId();
 		
-		invalidTimelogDuration invalidtimelogduration = record.createinvalidTimelogDuration(vmjExchange);
-		invalidTimelogDuration invalidtimelogdurationdeco = invalidTimelogDurationFactory.createinvalidTimelogDuration("taskline.timelogduration.core.TimelogImpl", id, invalidtimelogduration, 
-		timelogDuration
-		);
-			return invalidtimelogdurationdeco;
+		  = record.create(vmjExchange);
+		 deco = Factory.create("taskline.timelogduration.core.TimelogImpl", id, , timelogDuration);
+			return deco;
 	}
 
-	// @Restriced(permission = "")
+    // @Restriced(permission = "")
     @Route(url="call/timelogduration/update")
-    public HashMap<String, Object> updateinvalidTimelogDuration(VMJExchange vmjExchange){
+    public HashMap<String, Object> update(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
 		String idStr = (String) vmjExchange.getRequestBodyForm("");
 		int id = Integer.parseInt(idStr);
 		
-		invalidTimelogDuration invalidtimelogduration = invalidtimelogdurationRepository.getObject(id);
-		invalidtimelogduration = createinvalidTimelogDuration(vmjExchange, id);
+		  = Repository.getObject(id);
+		 = create(vmjExchange, id);
 		
-		invalidtimelogdurationRepository.updateObject(invalidtimelogduration);
-		invalidtimelogduration = invalidtimelogdurationRepository.getObject(id);
+		Repository.updateObject();
+		 = Repository.getObject(id);
 		//to do: fix association attributes
 		
-		return invalidtimelogduration.toHashMap();
+		return .toHashMap();
 		
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/timelogduration/detail")
-    public HashMap<String, Object> getinvalidTimelogDuration(VMJExchange vmjExchange){
-		return record.getinvalidTimelogDuration(vmjExchange);
+    public HashMap<String, Object> get(VMJExchange vmjExchange){
+		return record.get(vmjExchange);
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/timelogduration/list")
-    public List<HashMap<String,Object>> getAllinvalidTimelogDuration(VMJExchange vmjExchange){
-		List<invalidTimelogDuration> invalidtimelogdurationList = invalidtimelogdurationRepository.getAllObject("invalidtimelogduration_impl");
-		return transforminvalidTimelogDurationListToHashMap(invalidtimelogdurationList);
+    public List<HashMap<String,Object>> getAll(VMJExchange vmjExchange){
+		List<> List = Repository.getAllObject("_impl");
+		return transformListToHashMap(List);
 	}
 
-    public List<HashMap<String,Object>> transforminvalidTimelogDurationListToHashMap(List<invalidTimelogDuration> invalidTimelogDurationList){
+    public List<HashMap<String,Object>> transformListToHashMap(List<> List){
 		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
-        for(int i = 0; i < invalidTimelogDurationList.size(); i++) {
-            resultList.add(invalidTimelogDurationList.get(i).toHashMap());
+        for(int i = 0; i < List.size(); i++) {
+            resultList.add(List.get(i).toHashMap());
         }
 
         return resultList;
@@ -89,19 +84,18 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
 
 	// @Restriced(permission = "")
     @Route(url="call/timelogduration/delete")
-    public List<HashMap<String,Object>> deleteinvalidTimelogDuration(VMJExchange vmjExchange){
+    public List<HashMap<String,Object>> delete(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
 		
 		String idStr = (String) vmjExchange.getRequestBodyForm("");
 		int id = Integer.parseInt(idStr);
-		invalidtimelogdurationRepository.deleteObject(id);
-		return getAllinvalidTimelogDuration(vmjExchange);
+		Repository.deleteObject(id);
+		return getAll(vmjExchange);
 	}
 
 	public void getTotalDuration() {
 		// TODO: implement this method
 	}
-	
 }

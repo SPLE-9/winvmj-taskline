@@ -5,9 +5,8 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import taskline.analytic.AnalyticFactory;
-import prices.auth.vmj.annotations.Restricted;
+//import prices.auth.vmj.annotations.Restricted;
 //add other required packages
-
 
 public class AnalyticResourceImpl extends AnalyticResourceComponent{
 	
@@ -56,6 +55,7 @@ public class AnalyticResourceImpl extends AnalyticResourceComponent{
 		return analyticService.transformAnalyticListToHashMap(analytics);
 	}
 
+    
 	// @Restriced(permission = "")
     @Route(url="call/analytic/delete")
     public List<HashMap<String,Object>> deleteAnalytic(VMJExchange vmjExchange){

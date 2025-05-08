@@ -77,7 +77,7 @@ public class AnalyticResourceImpl extends AnalyticResourceDecorator {
 
 	// @Restricted(permission = "")
     @Route(url="call/burndownbymember/delete")
-    public List<HashMap<String,Object>> deleteAnalyticBurndownByMember(VMJExchange vmjExchange){
+    public List<HashMap<String,Object>> deleteAnalytic(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}

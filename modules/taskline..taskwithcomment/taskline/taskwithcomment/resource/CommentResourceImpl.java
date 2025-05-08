@@ -11,7 +11,6 @@ public class CommentResourceImpl extends CommentResourceComponent{
 	protected CommentResourceComponent record;
 
 	// @Restriced(permission = "")
-	// @Restriced(permission = "")
     @Route(url="call/taskwithcomment/save")
     public List<HashMap<String,Object>> save(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {

@@ -10,6 +10,5 @@ public interface User {
 	public void setEmail(String email);
 	public String getName();
 	public void setName(String name);
-	org.eclipse.uml2.uml.internal.impl.ClassImpl@53abf5d7 (name: UserImpl, visibility: package) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
 	HashMap<String, Object> toHashMap();
 }

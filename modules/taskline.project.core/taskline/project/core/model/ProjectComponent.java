@@ -19,7 +19,7 @@ public abstract class ProjectComponent implements Project{
 	public UUID projectId;
 	public String title;
 	public String description;
-	public EDouble completion;
+	public double completion;
 	protected String objectName = ProjectComponent.class.getName();
 
 	public ProjectComponent() {
@@ -27,7 +27,7 @@ public abstract class ProjectComponent implements Project{
 	} 
 
 	public ProjectComponent(
-        UUID projectId, String title, String description, EDouble completion
+        UUID projectId, String title, String description, double completion
     ) {
         this.projectId = projectId;
         this.title = title;
@@ -44,8 +44,8 @@ public abstract class ProjectComponent implements Project{
 	public abstract String getDescription();
 	public abstract void setDescription(String description);
 	
-	public abstract EDouble getCompletion();
-	public abstract void setCompletion(EDouble completion);
+	public abstract double getCompletion();
+	public abstract void setCompletion(double completion);
 	
  
 

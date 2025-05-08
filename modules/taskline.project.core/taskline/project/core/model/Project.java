@@ -4,6 +4,13 @@ import vmj.routing.route.VMJExchange;
 import java.util.*;
 
 public interface Project {
-	org.eclipse.uml2.uml.internal.impl.ClassImpl@776ca919 (name: ProjectImpl, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)org.eclipse.uml2.uml.internal.impl.PackageImpl@5633a8bc (name: MProject, visibility: <unset>) (URI: null)
+	public UUID getProjectId();
+	public void setProjectId(UUID projectId);
+	public String getTitle();
+	public void setTitle(String title);
+	public String getDescription();
+	public void setDescription(String description);
+	public double getCompletion();
+	public void setCompletion(double completion);
 	HashMap<String, Object> toHashMap();
 }

@@ -11,16 +11,8 @@ public abstract class TaskResourceDecorator extends TaskResourceComponent{
         this.record = record;
     }
 
-    public List<HashMap<String,Object>> save(VMJExchange vmjExchange){
-		return record.save(vmjExchange);
-	}
-
     public  create(VMJExchange vmjExchange){
 		return record.create(vmjExchange);
-	}
-
-    public  create(VMJExchange vmjExchange, int id){
-		return record.create(vmjExchange, id);
 	}
 
     public HashMap<String, Object> update(VMJExchange vmjExchange){

@@ -36,4 +36,8 @@ public class ProjectImpl extends ProjectDecorator {
 		// TODO: implement this method
 	}
 
+	public void getProjectMembers(UUID projectId) {
+		// TODO: implement this method
+	}
+
 }
