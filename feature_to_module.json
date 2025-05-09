@@ -1,4 +1,5 @@
 {
+    "User": ["taskline.user.core"],
     "Project": ["taskline.project.core"],
     "Task": ["taskline.task.core"],
     "Appointment": ["taskline.appointment.core"],
