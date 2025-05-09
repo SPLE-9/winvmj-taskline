@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import taskline.task.core.Status;
 import taskline.user.core.UserImpl;
 import taskline.project.core.ProjectImpl;
+import taskline.user.core.User;
+import taskline.project.core.Project;
 
 
 
@@ -24,7 +26,7 @@ import taskline.project.core.ProjectImpl;
 @Table(name="task_impl")
 public class TaskImpl extends TaskComponent {
 
-	public TaskImpl(String title, String description, Status status, Date createdAt, Date completedAt, UserImpl userimpl, ProjectImpl projectimpl) {
+	public TaskImpl(String title, String description, Status status, Date createdAt, Date completedAt, User userimpl, Project projectimpl) {
 		this.taskId =  UUID.randomUUID();;
 		this.title = title;
 		this.description = description;
@@ -35,7 +37,7 @@ public class TaskImpl extends TaskComponent {
 		this.projectimpl = projectimpl;
 	}
 
-	public TaskImpl(String title, String description, ProjectImpl projectimpl) {
+	public TaskImpl(String title, String description, Project projectimpl) {
 		this.taskId =  UUID.randomUUID();
 		this.title = title;
 		this.description = description;

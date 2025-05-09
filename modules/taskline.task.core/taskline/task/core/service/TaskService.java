@@ -8,7 +8,7 @@ public interface TaskService {
     HashMap<String,Object> saveTask(Map<String, Object> requestBody); 
     HashMap<String,Object> deleteTask(Map<String, Object> requestBody);
 	HashMap<String, Object> updateTask(Map<String, Object> requestBody);
-    List<HashMap<String,Object>> getAllProject();
+    List<HashMap<String,Object>> getAllTask();
     List<HashMap<String,Object>> getTaskByProjectId(String projectId);
     HashMap<String, Object> getTaskById(String taskId);
 

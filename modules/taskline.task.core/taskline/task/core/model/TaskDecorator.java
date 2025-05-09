@@ -7,6 +7,10 @@ import vmj.routing.route.VMJExchange;
 import javax.persistence.OneToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.CascadeType;
+import taskline.user.core.UserImpl;
+import taskline.project.core.ProjectImpl;
+import taskline.user.core.User;
+import taskline.project.core.Project;
 //add other required packages
 
 @MappedSuperclass
@@ -75,14 +79,14 @@ public abstract class TaskDecorator extends TaskComponent{
 	public void setCompletedAt(Date completedAt) {
 		this.record.setCompletedAt(completedAt);
 	}
-	public UserImpl getUserimpl() {
+	public User getUserimpl() {
 		return this.record.getUserimpl();
 	}
 
 	public void setUserimpl(UserImpl userimpl) {
 		this.record.setUserimpl(userimpl);
 	}
-	public ProjectImpl getProjectimpl() {
+	public Project getProjectimpl() {
 		return this.record.getProjectimpl();
 	}
 	public void setProjectimpl(ProjectImpl projectimpl) {

@@ -40,7 +40,7 @@ public abstract class TaskComponent implements Task {
 	} 
 
 	public TaskComponent(
-        UUID taskId, String title, String description, Status status, Date createdAt, Date completedAt, UserImpl userimpl, ProjectImpl projectimpl
+        UUID taskId, String title, String description, Status status, Date createdAt, Date completedAt, User userimpl, Project projectimpl
     ) {
         this.taskId = taskId;
         this.title = title;
@@ -96,14 +96,14 @@ public abstract class TaskComponent implements Task {
 	public void setCompletedAt(Date completedAt) {
 		this.completedAt = completedAt;
 	}
-	public UserImpl getUserimpl() {
+	public User getUserimpl() {
 		return this.userimpl;
 	}
 
 	public void setUserimpl(UserImpl userimpl) {
 		this.userimpl = userimpl;
 	}
-	public ProjectImpl getProjectimpl() {
+	public Project getProjectimpl() {
 		return this.projectimpl;
 	}
 	public void setProjectimpl(ProjectImpl projectimpl) {

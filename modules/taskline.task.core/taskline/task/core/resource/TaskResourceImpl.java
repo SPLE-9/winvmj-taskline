@@ -8,9 +8,6 @@ import taskline.task.TaskFactory;
 import taskline.task.core.TaskService;
 //import prices.auth.vmj.annotations.Restricted;
 //add other required packages
-import taskline.task.core.TaskServiceImpl;
-import taskline.user.core.UserImpl;
-import taskline.project.core.ProjectImpl;
 
 public class TaskResourceImpl extends TaskResourceComponent{
 	
@@ -62,7 +59,7 @@ public class TaskResourceImpl extends TaskResourceComponent{
     
 	// @Restriced(permission = "")
     @Route(url="call/task/delete")
-    public List<HashMap<String,Object>> deleteTask(VMJExchange vmjExchange){
+    public HashMap<String,Object> deleteTask(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("DELETE")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
 			return taskService.deleteTask(requestBody);
@@ -72,7 +69,7 @@ public class TaskResourceImpl extends TaskResourceComponent{
 	}
 
 	@Route(url="call/project-task/list")
-	public void getTasksByProjectId() {
+	public void getTasksByProjectId(VMJExchange vmjExchange) {
 		if (vmjExchange.getHttpMethod().equals("GET")) {
 		    String projectIdStr = vmjExchange.getGETParam("projectId");
 			return taskService.getTaskByProjectId(projectIdStr);

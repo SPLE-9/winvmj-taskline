@@ -19,7 +19,10 @@ import taskline.task.TaskFactory;
 import taskline.task.core.Task;
 import taskline.project.core.ProjectService;
 import taskline.project.core.ProjectServiceImpl;
+import taskline.user.core.UserImpl;
 import taskline.project.core.ProjectImpl;
+import taskline.user.core.User;
+import taskline.project.core.Project;
 
 public class TaskServiceImpl extends TaskServiceComponent {
 	
@@ -37,7 +40,7 @@ public class TaskServiceImpl extends TaskServiceComponent {
 		HashMap<String, Object> projectMap = projectService.getProject(projectId);
 		String json = gson.toJson(projectMap);
 		
-		ProjectImpl project = gson.fromJson(json, ProjectImpl.class);
+		Project project = gson.fromJson(json, Project.class);
 		String title = (String) requestBody.get("title");
 		String description = (String) requestBody.get("description");
 
