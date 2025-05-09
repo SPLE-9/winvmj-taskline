@@ -8,7 +8,7 @@
 	<feature name="Analytics"/>
 	<feature name="ProjectBurndown"/>
 	<feature name="MemberBurndown"/>
-	<feature manual="selected" name="Appointment"/>
+	<feature name="Appointment"/>
 	<feature name="TimeLog"/>
 	<feature name="DurationTimeLog"/>
 	<feature name="SessionTimeLog"/>
