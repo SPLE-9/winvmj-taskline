@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.CascadeType;
 import javax.persistence.Table;
 import taskline.task.core.Status;
 
@@ -24,7 +26,7 @@ public abstract class TaskComponent implements Task {
 	public EDate completedAt;
 	@ManyToOne(targetEntity=taskline.user.core.UserComponent.class)
 	public User userimpl;
-	@ManyToOne(targetEntity=taskline.project.core.ProjectComponent.class)
+	@ManyToOne(targetEntity=taskline.project.core.ProjectComponent.class, cascade = CascadeType.REMOVE)
 	public Project projectimpl;
 	protected String objectName = TaskComponent.class.getName();
 
@@ -52,29 +54,57 @@ public abstract class TaskComponent implements Task {
 	public void setTaskId(UUID taskId) {
 		this.taskId = taskId;
 	}
-	public abstract String getTitle();
-	public abstract void setTitle(String title);
+
+	public String getTitle() {
+		return this.title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Status getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	public EDate getCreatedAt() {
+		return this.createdAt;
+	}
+
+	public void setCreatedAt(EDate createdAt) {
+		this.createdAt = createdAt;
+	}
+	public EDate getCompletedAt() {
+		return this.completedAt;
+	}
+
+	public void setCompletedAt(EDate completedAt) {
+		this.completedAt = completedAt;
+	}
+	public UserImpl getUserimpl() {
+		return this.userimpl;
+	}
+
+	public void setUserimpl(UserImpl userimpl) {
+		this.userimpl = userimpl;
+	}
+	public ProjectImpl getProjectimpl() {
+		return this.projectimpl;
+	}
+	public void setProjectimpl(ProjectImpl projectimpl) {
+		this.projectimpl = projectimpl;
+	}
 	
-	public abstract String getDescription();
-	public abstract void setDescription(String description);
-	
-	public abstract Status getStatus();
-	public abstract void setStatus(Status status);
-	
-	public abstract EDate getCreatedAt();
-	public abstract void setCreatedAt(EDate createdAt);
-	
-	public abstract EDate getCompletedAt();
-	public abstract void setCompletedAt(EDate completedAt);
-	
-	public abstract UserImpl getUserimpl();
-	public abstract void setUserimpl(UserImpl userimpl);
-	
-	public abstract ProjectImpl getProjectimpl();
-	public abstract void setProjectimpl(ProjectImpl projectimpl);
-	
- 
-	public abstract void getTasksByProject();
 
 	@Override
     public String toString() {

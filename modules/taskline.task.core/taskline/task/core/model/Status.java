@@ -3,9 +3,7 @@ package taskline.task.core;
 public enum Status {
     TODO("To Do"),
     IN_PROGRESS("In Progress"),
-    COMPLETED("Completed"),
-    BLOCKED("Blocked"),
-    CANCELLED("Cancelled");
+    COMPLETED("Completed");
 
     private final String displayName;
 

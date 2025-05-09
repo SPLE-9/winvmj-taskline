@@ -32,64 +32,17 @@ public class TaskImpl extends TaskComponent {
 		this.projectimpl = projectimpl;
 	}
 
-
-	public UUID getTaskId() {
-		return this.taskId;
-	}
-
-	public void setTaskId(UUID taskId) {
-		this.taskId = taskId;
-	}
-
-	public String getTitle() {
-		return this.title;
-	}
-	public void setTitle(String title) {
+	public TaskImpl(String title, String description, ProjectImpl projectimpl) {
+		this.taskId =  UUID.randomUUID();
 		this.title = title;
-	}
-
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Status getStatus() {
-		return this.status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-	public EDate getCreatedAt() {
-		return this.createdAt;
-	}
-
-	public void setCreatedAt(EDate createdAt) {
-		this.createdAt = createdAt;
-	}
-	public EDate getCompletedAt() {
-		return this.completedAt;
-	}
-
-	public void setCompletedAt(EDate completedAt) {
-		this.completedAt = completedAt;
-	}
-	public UserImpl getUserimpl() {
-		return this.userimpl;
-	}
-
-	public void setUserimpl(UserImpl userimpl) {
-		this.userimpl = userimpl;
-	}
-	public ProjectImpl getProjectimpl() {
-		return this.projectimpl;
-	}
-	public void setProjectimpl(ProjectImpl projectimpl) {
+		this.status = Status.TODO;
+		this.createdAt = new EDate();
+		this.completedAt = null;
+		this.userimpl = null;
 		this.projectimpl = projectimpl;
 	}
+
 	
 	public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> Map = new HashMap<String,Object>();

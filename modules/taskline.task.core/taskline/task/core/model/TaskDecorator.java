@@ -17,21 +17,21 @@ public abstract class TaskDecorator extends TaskComponent{
 	public TaskDecorator () {
 		super();
 		this.record = record;
-		this.taskId =  taskId.randomUUID();
+		this.taskId = UUID.randomUUID();
 	}
 	
 	public TaskDecorator (TaskComponent record) {
-		this.taskId =  taskId.randomUUID();
+		this.taskId = UUID.randomUUID();
 		this.record = record;
 	}
 
 	public TaskDecorator (UUID taskId, TaskComponent record) {
-		this.taskId =  taskId;
+		this.taskId = taskId;
 		this.record = record;
 	}
 	
 	public TaskDecorator (TaskComponent record, String objectName) {
-		this.taskId =  taskId.randomUUID();
+		this.taskId = UUID.randomUUID();
 		this.record = record;	
 		this.objectName=objectName;
 	}
