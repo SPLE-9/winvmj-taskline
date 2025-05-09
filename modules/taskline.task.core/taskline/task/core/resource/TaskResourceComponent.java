@@ -10,7 +10,7 @@ public abstract class TaskResourceComponent implements TaskResource {
 	
 	protected RepositoryUtil<Task> taskRepository;
 
-    public TaskServiceComponent(){
+    public TaskResourceComponent() {
         this.taskRepository = new RepositoryUtil<Task>(taskline.task.core.TaskComponent.class);
     }	
  
