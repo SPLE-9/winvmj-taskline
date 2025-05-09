@@ -69,7 +69,7 @@ public class TaskResourceImpl extends TaskResourceComponent{
 	}
 
 	@Route(url="call/project-task/list")
-	public void getTasksByProjectId(VMJExchange vmjExchange) {
+	public List<HashMap<String,Object>> getTaskByProjectId(VMJExchange vmjExchange) {
 		if (vmjExchange.getHttpMethod().equals("GET")) {
 		    String projectIdStr = vmjExchange.getGETParam("projectId");
 			return taskService.getTaskByProjectId(projectIdStr);

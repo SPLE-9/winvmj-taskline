@@ -22,6 +22,8 @@ features
 			Notes
 				optional
 					SharedNotes
+		mandatory
+			User
 
 constraints
 	MemberBurndown => ProjectWithMembers

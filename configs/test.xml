@@ -14,4 +14,5 @@
 	<feature name="SessionTimeLog"/>
 	<feature name="Notes"/>
 	<feature name="SharedNotes"/>
+	<feature name="User"/>
 </configuration>
