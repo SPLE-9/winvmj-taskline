@@ -1,1 +1,8 @@
-{}
+{
+    "Project": ["taskline.project.core"],
+    "Task": ["taskline.task.core"],
+    "Appointment": ["taskline.appointment.core"],
+    "Analytic": ["taskline.analytic.core"],
+    "TimeLog": ["taskline.timelog.core"],
+    "Notes": ["taskline.notes.core"]
+}

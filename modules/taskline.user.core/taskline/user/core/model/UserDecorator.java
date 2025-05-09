@@ -11,16 +11,10 @@ import javax.persistence.CascadeType;
 
 @MappedSuperclass
 public abstract class UserDecorator extends UserComponent{
-    @OneToOne(cascade=CascadeType.ALL)
-	protected UserComponent record;
+	@OneToOne(cascade=CascadeType.ALL)
+    protected UserComponent record;
 
-	public UserDecorator () {
-		super();
-		this.record = record;
-		this.userId =  userId.randomUUID();
-		
 	public UserDecorator (UserComponent record) {
-		this.userId =  userId.randomUUID();
 		this.record = record;
 	}
 
@@ -28,22 +22,35 @@ public abstract class UserDecorator extends UserComponent{
 		this.userId =  userId;
 		this.record = record;
 	}
-	
-	public UserDecorator (UserComponent record, String objectName) {
-		this.userId =  userId.randomUUID();
-		this.record = record;	
-		this.objectName=objectName;
-	}
 
-	public UserDecorator() { }
+	public UserDecorator() {
+		super();
+		this.userId = UUID.randomUUID();
+	}
 
 	public UUID getUserId() {
-		return record.getUserId();
-	}
-	public void setUserId(UUID userId) {
-		record.setUserId(userId);
+		return this.record.getUserId();
 	}
 
+	public void setUserId(UUID userId) {
+		this.record.setUserId(userId);
+	}
+
+	public String getEmail() {
+        return this.record.getEmail();
+    }
+
+    public void setEmail(String email) {
+        this.record.setEmail(email);
+    }
+
+	public String getName() {
+        return this.record.getName();
+    }
+
+    public void setName(String name) {
+        this.record.setName(name);
+    }
 
 	public HashMap<String, Object> toHashMap() {
         return this.record.toHashMap();
