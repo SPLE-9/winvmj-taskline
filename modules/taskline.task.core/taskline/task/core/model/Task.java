@@ -1,6 +1,11 @@
 package taskline.task.core;
+
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
+
+import taskline.user.core.UserImpl;
+import taskline.project.core.ProjectImpl;
+import taskline.task.core.Status;
 import java.util.*;
 
 public interface Task {
@@ -11,11 +16,11 @@ public interface Task {
 	public String getDescription();
 	public void setDescription(String description);
 	public Status getStatus();
-	public void setStatus(status status);
+	public void setStatus(Status status);
 	public Date getCreatedAt();
-	public void setCreatedAt(EDate createdAt);
+	public void setCreatedAt(Date createdAt);
 	public Date getCompletedAt();
-	public void setCompletedAt(EDate completedAt);
+	public void setCompletedAt(Date completedAt);
 	public UserImpl getUserimpl();
 	public void setUserimpl(UserImpl userimpl);
 	public ProjectImpl getProjectimpl();

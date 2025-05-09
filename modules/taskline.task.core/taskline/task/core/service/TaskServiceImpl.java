@@ -25,6 +25,7 @@ public class TaskServiceImpl extends TaskServiceComponent {
 	
 	private TaskFactory taskFactory = new TaskFactory();
 	private ProjectService projectService = new ProjectServiceImpl();
+	private final Gson gson = new Gson();
 
 
     public HashMap<String,Object> saveTask(Map<String, Object> requestBody){
@@ -41,7 +42,7 @@ public class TaskServiceImpl extends TaskServiceComponent {
 		String description = (String) requestBody.get("description");
 
 
-		Task task = taskFactory.taskProject("taskline.task.core.TaskImpl", title, description, project);
+		Task task = taskFactory.createTask("taskline.task.core.TaskImpl", title, description, project);
 		
 		return task.toHashMap();
 	}
@@ -117,7 +118,7 @@ public class TaskServiceImpl extends TaskServiceComponent {
 
 	}
 
-	public void getTaskByProjectId(String projectIdStr) {
+	public List<HashMap<String,Object>> getTaskByProjectId(String projectIdStr) {
 		UUID projectId = UUID.fromString(projectIdStr);
 		List<Task> taskList = taskRepository.getListObject("task_impl", "projectimpl_id", projectId);
 

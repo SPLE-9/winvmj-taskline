@@ -5,10 +5,12 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import taskline.task.TaskFactory;
-import taskline.task.TaskService;
+import taskline.task.core.TaskService;
 //import prices.auth.vmj.annotations.Restricted;
 //add other required packages
-import taskline.task.core.service.TaskServiceImpl;
+import taskline.task.core.TaskServiceImpl;
+import taskline.user.core.UserImpl;
+import taskline.project.core.ProjectImpl;
 
 public class TaskResourceImpl extends TaskResourceComponent{
 	

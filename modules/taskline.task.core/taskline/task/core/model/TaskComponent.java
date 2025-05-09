@@ -11,6 +11,11 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.Table;
+
+import taskline.user.core.UserImpl;
+import taskline.project.core.ProjectImpl;
+import taskline.user.core.User;
+import taskline.project.core.Project;
 import taskline.task.core.Status;
 
 @Entity

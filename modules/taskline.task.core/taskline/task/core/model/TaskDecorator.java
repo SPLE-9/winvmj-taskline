@@ -14,13 +14,12 @@ public abstract class TaskDecorator extends TaskComponent{
     @OneToOne(cascade=CascadeType.ALL)
 	protected TaskComponent record;
 
-	public TaskDecorator () {
+	public TaskDecorator() {
 		super();
-		this.record = record;
 		this.taskId = UUID.randomUUID();
 	}
 	
-	public TaskDecorator (TaskComponent record) {
+	public TaskDecorator(TaskComponent record) {
 		this.taskId = UUID.randomUUID();
 		this.record = record;
 	}
@@ -30,22 +29,64 @@ public abstract class TaskDecorator extends TaskComponent{
 		this.record = record;
 	}
 	
-	public TaskDecorator (TaskComponent record, String objectName) {
-		this.taskId = UUID.randomUUID();
-		this.record = record;	
-		this.objectName=objectName;
-	}
 
 
 	public UUID getTaskId() {
-		return record.getTaskId();
-	}
-	public void setTaskId(UUID taskId) {
-		record.setTaskId(taskId);
+		return this.record.getTaskId();
 	}
 
-	public void getTasksByProject() {
-		return record.getTasksByProject();
+	public void setTaskId(UUID taskId) {
+		this.record.setTaskId(taskId);
+	}
+
+	public String getTitle() {
+		return this.record.getTitle();
+	}
+	public void setTitle(String title) {
+		this.record.setTitle(title);
+	}
+
+	public String getDescription() {
+		return this.record.getDescription();
+	}
+
+	public void setDescription(String description) {
+		this.record.setDescription(description);
+	}
+
+	public Status getStatus() {
+		return this.record.getStatus();
+	}
+
+	public void setStatus(Status status) {
+		this.record.setStatus(status);
+	}
+	public Date getCreatedAt() {
+		return this.record.getCreatedAt();
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.record.setCreatedAt(createdAt);
+	}
+	public Date getCompletedAt() {
+		return this.record.getCompletedAt();
+	}
+
+	public void setCompletedAt(Date completedAt) {
+		this.record.setCompletedAt(completedAt);
+	}
+	public UserImpl getUserimpl() {
+		return this.record.getUserimpl();
+	}
+
+	public void setUserimpl(UserImpl userimpl) {
+		this.record.setUserimpl(userimpl);
+	}
+	public ProjectImpl getProjectimpl() {
+		return this.record.getProjectimpl();
+	}
+	public void setProjectimpl(ProjectImpl projectimpl) {
+		this.record.setProjectimpl(projectimpl);
 	}
 
 	public HashMap<String, Object> toHashMap() {

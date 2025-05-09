@@ -13,7 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 import taskline.task.core.Status;
+import taskline.user.core.UserImpl;
+import taskline.project.core.ProjectImpl;
 
 
 
