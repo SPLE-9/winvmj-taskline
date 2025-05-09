@@ -13,46 +13,36 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import taskline.task.core.Status;
 
 
-@Entity(name="_impl")
-@Table(name="_impl")
+
+@Entity(name="task_impl")
+@Table(name="task_impl")
 public class TaskImpl extends TaskComponent {
 
-	public TaskImpl(UUID taskId, String title, String description, status status, EDate createdAt, UserImpl userimpl, ProjectImpl projectimpl) {
-		this.taskId = taskId;
+	public TaskImpl(String title, String description, Status status, EDate createdAt, EDate completedAt, UserImpl userimpl, ProjectImpl projectimpl) {
+		this.taskId =  UUID.randomUUID();;
 		this.title = title;
 		this.description = description;
 		this.status = status;
 		this.createdAt = createdAt;
+		this.completedAt = completedAt;
 		this.userimpl = userimpl;
 		this.projectimpl = projectimpl;
 	}
 
-	public TaskImpl(UUID taskId, String title, String description, status status, EDate createdAt, UserImpl userimpl, ProjectImpl projectimpl) {
-		this.taskId =  taskId.randomUUID();;
-		this.taskId = taskId;
+	public TaskImpl(String title, String description, ProjectImpl projectimpl) {
+		this.taskId =  UUID.randomUUID();
 		this.title = title;
 		this.description = description;
-		this.status = status;
-		this.createdAt = createdAt;
-		this.userimpl = userimpl;
+		this.status = Status.TODO;
+		this.createdAt = new EDate();
+		this.completedAt = null;
+		this.userimpl = null;
 		this.projectimpl = projectimpl;
 	}
 
-	public TaskImpl() { }
-
-	public UUID getTaskId() {
-		return this.taskId;
-	}
-
-	public void setTaskId(UUID taskId) {
-		this.taskId = taskId;
-	}
-
-	public void getTasksByProject() {
-		// TODO: implement this method
-	}
 	
 	public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> Map = new HashMap<String,Object>();
@@ -61,6 +51,7 @@ public class TaskImpl extends TaskComponent {
 		Map.put("description",getDescription());
 		Map.put("status",getStatus());
 		Map.put("createdAt",getCreatedAt());
+		Map.put("completedAt",getCompletedAt());
 		Map.put("userimpl",getUserimpl());
 		Map.put("projectimpl",getProjectimpl());
 

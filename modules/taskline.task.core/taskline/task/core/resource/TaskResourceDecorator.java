@@ -11,27 +11,27 @@ public abstract class TaskResourceDecorator extends TaskResourceComponent{
         this.record = record;
     }
 
-    public  create(VMJExchange vmjExchange){
-		return record.create(vmjExchange);
+    public HashMap<String,Object> saveTask(VMJExchange vmjExchange) {
+		return record.saveTask(vmjExchange);
 	}
 
-    public HashMap<String, Object> update(VMJExchange vmjExchange){
-		return record.update(vmjExchange);
+    public HashMap<String, Object> updateTask(VMJExchange vmjExchange) {
+		return record.updateTask(vmjExchange);
 	}
 
-    public HashMap<String, Object> get(VMJExchange vmjExchange){
-		return record.get(vmjExchange);
+    public HashMap<String, Object> getTaskById(VMJExchange vmjExchange) {
+		return record.getTaskById(vmjExchange);
 	}
 
-    public List<HashMap<String,Object>> getAll(VMJExchange vmjExchange){
-		return record.getAll(vmjExchange);
+    public HashMap<String,Object> deleteTask(VMJExchange vmjExchange) {
+		return record.deleteTask(vmjExchange);
 	}
 
-    public List<HashMap<String,Object>> delete(VMJExchange vmjExchange){
-		return record.delete(vmjExchange);
+    public List<HashMap<String,Object>> getAllTask(VMJExchange vmjExchange) {
+		return record.getAllTask(vmjExchange);
 	}
 
-	public void getTasksByProject() {
-		return record.getTasksByProject();
+    public List<HashMap<String,Object>> getTaskByProjectId(VMJExchange vmjExchange) {
+		return record.getAllTask(vmjExchange);
 	}
 }

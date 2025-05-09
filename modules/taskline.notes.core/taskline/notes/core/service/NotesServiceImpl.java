@@ -33,7 +33,6 @@ public class NotesServiceImpl extends NotesServiceComponent{
 		String title = (String) requestBody.get("title");
 		String notes = (String) requestBody.get("notes");
 		
-		//to do: fix association attributes
 		Notes Notes = NotesFactory.createNotes(
 			"taskline.notes.core.NotesImpl",
 		notesId
@@ -44,16 +43,7 @@ public class NotesServiceImpl extends NotesServiceComponent{
 		Repository.saveObject(notes);
 		return notes;
 	}
-
-    public Notes createNotes(Map<String, Object> requestBody, int id){
-		String title = (String) vmjExchange.getRequestBodyForm("title");
-		String notes = (String) vmjExchange.getRequestBodyForm("notes");
-		
-		//to do: fix association attributes
-		
-		Notes notes = NotesFactory.createNotes("taskline.notes.core.NotesImpl", notesId, title, notes, userimpl);
-		return notes;
-	}
+   
 
     public HashMap<String, Object> updateNotes(Map<String, Object> requestBody){
 		String idStr = (String) requestBody.get("notesId");
@@ -111,4 +101,7 @@ public class NotesServiceImpl extends NotesServiceComponent{
 		return getAllNotes(requestBody);
 	}
 
+	public Notes getNotesByUserId(UUID userId) {
+		return Repository.getObject(userId)
+	}
 }

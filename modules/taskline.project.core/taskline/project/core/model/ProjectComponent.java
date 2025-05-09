@@ -14,7 +14,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name="project_comp", uniqueConstraints = @UniqueConstraint(columnNames = { "title" }))
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class ProjectComponent implements Project{
+public abstract class ProjectComponent implements Project {
 	@Id
 	public UUID projectId;
 	public String title;

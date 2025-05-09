@@ -10,10 +10,12 @@ public interface Task {
 	public void setTitle(String title);
 	public String getDescription();
 	public void setDescription(String description);
-	public status getStatus();
+	public Status getStatus();
 	public void setStatus(status status);
 	public EDate getCreatedAt();
 	public void setCreatedAt(EDate createdAt);
+	public EDate getCompletedAt();
+	public void setCompletedAt(EDate completedAt);
 	public UserImpl getUserimpl();
 	public void setUserimpl(UserImpl userimpl);
 	public ProjectImpl getProjectimpl();

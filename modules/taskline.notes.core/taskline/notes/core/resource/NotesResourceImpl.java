@@ -1,10 +1,6 @@
 package taskline.notes.core;
 import java.util.*;
 
-import vmj.routing.route.Route;
-import vmj.routing.route.VMJExchange;
-import vmj.routing.route.exceptions.*;
-import taskline.notes.NotesFactory;
 //import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
@@ -59,5 +55,15 @@ public class NotesResourceImpl extends NotesResourceComponent{
 		
 		return notesServiceImpl.deleteNotes(requestBody);
 	}
+    
+    @Route(url="call/notes/id}")
+    public HashMap<String, Object> getNotesByUserId(VMJExchange vmjExchange) {
+    	 String idStr = vmjExchange.getGETParam("id");
+         if (idStr == null) {
+             throw new IllegalArgumentException("Invalid id");
+         }
+    	UUID userId = UUID.fromString(idStr);
+    	return notesServiceImpl.getNotesByUserId(userId);
+    }
 
 }
