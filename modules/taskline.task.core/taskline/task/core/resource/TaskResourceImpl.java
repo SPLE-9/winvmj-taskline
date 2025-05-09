@@ -37,7 +37,7 @@ public class TaskResourceImpl extends TaskResourceComponent{
 
 	// @Restriced(permission = "")
     @Route(url="call/task/detail")
-    public HashMap<String, Object> getTaskByid(VMJExchange vmjExchange){
+    public HashMap<String, Object> getTaskById(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("GET")) {
 		    String taskIdStr = vmjExchange.getGETParam("taskId");
 			return taskService.getTaskById(taskIdStr);
