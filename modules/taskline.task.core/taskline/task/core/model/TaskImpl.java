@@ -21,7 +21,7 @@ import taskline.task.core.Status;
 @Table(name="task_impl")
 public class TaskImpl extends TaskComponent {
 
-	public TaskImpl(String title, String description, Status status, EDate createdAt, EDate completedAt, UserImpl userimpl, ProjectImpl projectimpl) {
+	public TaskImpl(String title, String description, Status status, Date createdAt, Date completedAt, UserImpl userimpl, ProjectImpl projectimpl) {
 		this.taskId =  UUID.randomUUID();;
 		this.title = title;
 		this.description = description;
@@ -37,7 +37,7 @@ public class TaskImpl extends TaskComponent {
 		this.title = title;
 		this.description = description;
 		this.status = Status.TODO;
-		this.createdAt = new EDate();
+		this.createdAt = new Date();
 		this.completedAt = null;
 		this.userimpl = null;
 		this.projectimpl = projectimpl;

@@ -12,9 +12,9 @@ public interface Task {
 	public void setDescription(String description);
 	public Status getStatus();
 	public void setStatus(status status);
-	public EDate getCreatedAt();
+	public Date getCreatedAt();
 	public void setCreatedAt(EDate createdAt);
-	public EDate getCompletedAt();
+	public Date getCompletedAt();
 	public void setCompletedAt(EDate completedAt);
 	public UserImpl getUserimpl();
 	public void setUserimpl(UserImpl userimpl);
