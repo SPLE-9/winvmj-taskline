@@ -123,7 +123,7 @@ public class TaskServiceImpl extends TaskServiceComponent {
 
 	public List<HashMap<String,Object>> getTaskByProjectId(String projectIdStr) {
 		UUID projectId = UUID.fromString(projectIdStr);
-		List<Task> taskList = taskRepository.getListObject("task_impl", "projectimpl_id", projectId);
+		List<Task> taskList = taskRepository.getListObject("task_impl", "projectimpl_projectid", projectId);
 
 		return transformListToHashMap(taskList);
 	}
