@@ -28,7 +28,7 @@ public abstract class NotesResourceDecorator extends NotesResourceComponent{
 		return record.deleteNotes(vmjExchange);
 	}
 
-	public void getNotesByUserId(UUID userId) {
-		return record.getNotesByUserId(userId);
+	public void getNotesByMemberId(UUID memberId) {
+		return record.getNotesByMemberId(memberId);
 	}
 }

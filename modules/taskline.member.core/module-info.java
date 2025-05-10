@@ -1,6 +1,6 @@
-module taskline.user.core {
-	exports taskline.user;
-    exports taskline.user.core;
+module taskline.member.core {
+	exports taskline.member;
+    exports taskline.member.core;
 	requires vmj.routing.route;
 	requires vmj.hibernate.integrator;
 	requires vmj.auth;
@@ -9,5 +9,5 @@ module taskline.user.core {
 	requires java.naming;
 	requires java.net.http;
 
-	opens taskline.user.core to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
+	opens taskline.member.core to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
 }

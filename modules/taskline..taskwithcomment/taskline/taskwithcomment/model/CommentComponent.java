@@ -21,7 +21,7 @@ public abstract class CommentComponent implements {
 	public String content;
 	public EDate createdAt;
 	public TaskImpl taskimpl;
-	public UserImpl userimpl;
+	public MemberImpl memberimpl;
 
 	public CommentComponent() {
 

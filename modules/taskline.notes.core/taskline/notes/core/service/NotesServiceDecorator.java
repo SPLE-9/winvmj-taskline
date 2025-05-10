@@ -45,7 +45,7 @@ public abstract class NotesServiceDecorator extends NotesServiceComponent{
         return record.getNotesById(id);
     }
 
-	public void getNotesByUserId(UUID userId) {
-		return record.getNotesByUserId(userId);
+	public void getNotesByMemberId(UUID memberId) {
+		return record.getNotesByMemberId(memberId);
 	}
 }

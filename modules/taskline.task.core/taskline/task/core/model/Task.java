@@ -3,9 +3,9 @@ package taskline.task.core;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 
-import taskline.user.core.UserImpl;
+import taskline.member.core.MemberImpl;
 import taskline.project.core.ProjectImpl;
-import taskline.user.core.User;
+import taskline.member.core.Member;
 import taskline.project.core.Project;
 import taskline.task.core.Status;
 import java.util.*;
@@ -23,8 +23,8 @@ public interface Task {
 	public void setCreatedAt(Date createdAt);
 	public Date getCompletedAt();
 	public void setCompletedAt(Date completedAt);
-	public User getUserimpl();
-	public void setUserimpl(UserImpl userimpl);
+	public Member getMemberimpl();
+	public void setMemberimpl(MemberImpl memberimpl);
 	public Project getProjectimpl();
 	public void setProjectimpl(ProjectImpl projectimpl);
 	HashMap<String, Object> toHashMap();

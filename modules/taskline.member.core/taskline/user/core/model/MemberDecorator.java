@@ -1,4 +1,4 @@
-package taskline.user.core;
+package taskline.member.core;
 
 import java.util.*;
 import vmj.routing.route.Route;
@@ -10,30 +10,30 @@ import javax.persistence.CascadeType;
 //add other required packages
 
 @MappedSuperclass
-public abstract class UserDecorator extends UserComponent{
+public abstract class MemberDecorator extends MemberComponent{
 	@OneToOne(cascade=CascadeType.ALL)
-    protected UserComponent record;
+    protected MemberComponent record;
 
-	public UserDecorator (UserComponent record) {
+	public MemberDecorator (MemberComponent record) {
 		this.record = record;
 	}
 
-	public UserDecorator (UUID userId, UserComponent record) {
-		this.userId =  userId;
+	public MemberDecorator (UUID memberId, MemberComponent record) {
+		this.memberId =  memberId;
 		this.record = record;
 	}
 
-	public UserDecorator() {
+	public MemberDecorator() {
 		super();
-		this.userId = UUID.randomUUID();
+		this.memberId = UUID.randomUUID();
 	}
 
-	public UUID getUserId() {
-		return this.record.getUserId();
+	public UUID getMemberId() {
+		return this.record.getMemberId();
 	}
 
-	public void setUserId(UUID userId) {
-		this.record.setUserId(userId);
+	public void setMemberId(UUID memberId) {
+		this.record.setMemberId(memberId);
 	}
 
 	public String getEmail() {

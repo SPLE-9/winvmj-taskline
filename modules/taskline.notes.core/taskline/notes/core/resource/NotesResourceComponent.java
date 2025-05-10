@@ -12,5 +12,5 @@ public abstract class NotesResourceComponent implements NotesResource{
     public abstract List<HashMap<String,Object>> getAllNotes(VMJExchange vmjExchange);
     public abstract List<HashMap<String,Object>> deleteNotes(VMJExchange vmjExchange);
 
-	public abstract void getNotesByUserId(UUID userId);
+	public abstract void getNotesByMemberId(UUID memberId);
 }

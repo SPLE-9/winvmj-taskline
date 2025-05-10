@@ -15,9 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import taskline.task.core.Status;
-import taskline.user.core.UserImpl;
+import taskline.member.core.MemberImpl;
 import taskline.project.core.ProjectImpl;
-import taskline.user.core.User;
+import taskline.member.core.Member;
 import taskline.project.core.Project;
 
 
@@ -26,14 +26,14 @@ import taskline.project.core.Project;
 @Table(name="task_impl")
 public class TaskImpl extends TaskComponent {
 
-	public TaskImpl(String title, String description, Status status, Date createdAt, Date completedAt, User userimpl, Project projectimpl) {
+	public TaskImpl(String title, String description, Status status, Date createdAt, Date completedAt, Member memberimpl, Project projectimpl) {
 		this.taskId =  UUID.randomUUID();;
 		this.title = title;
 		this.description = description;
 		this.status = status;
 		this.createdAt = createdAt;
 		this.completedAt = completedAt;
-		this.userimpl = userimpl;
+		this.memberimpl = memberimpl;
 		this.projectimpl = projectimpl;
 	}
 
@@ -44,7 +44,7 @@ public class TaskImpl extends TaskComponent {
 		this.status = Status.TODO;
 		this.createdAt = new Date();
 		this.completedAt = null;
-		this.userimpl = null;
+		this.memberimpl = null;
 		this.projectimpl = projectimpl;
 	}
 
@@ -57,7 +57,7 @@ public class TaskImpl extends TaskComponent {
 		Map.put("status",getStatus());
 		Map.put("createdAt",getCreatedAt());
 		Map.put("completedAt",getCompletedAt());
-		Map.put("userimpl",getUserimpl());
+		Map.put("memberimpl",getMemberimpl());
 		Map.put("projectimpl",getProjectimpl());
 
         return Map;

@@ -57,13 +57,13 @@ public class NotesResourceImpl extends NotesResourceComponent{
 	}
     
     @Route(url="call/notes/id}")
-    public HashMap<String, Object> getNotesByUserId(VMJExchange vmjExchange) {
+    public HashMap<String, Object> getNotesByMemberId(VMJExchange vmjExchange) {
     	 String idStr = vmjExchange.getGETParam("id");
          if (idStr == null) {
              throw new IllegalArgumentException("Invalid id");
          }
-    	UUID userId = UUID.fromString(idStr);
-    	return notesServiceImpl.getNotesByUserId(userId);
+    	UUID memberId = UUID.fromString(idStr);
+    	return notesServiceImpl.getNotesByMemberId(memberId);
     }
 
 }

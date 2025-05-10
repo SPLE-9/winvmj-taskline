@@ -1,4 +1,4 @@
-package taskline.user.core;
+package taskline.member.core;
 
 import java.util.*;
 import vmj.routing.route.Route;
@@ -12,29 +12,29 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="user_comp", uniqueConstraints = @UniqueConstraint(columnNames = { "email" }))
+@Table(name="member_comp", uniqueConstraints = @UniqueConstraint(columnNames = { "email" }))
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class UserComponent implements User{
+public abstract class MemberComponent implements Member{
 	@Id
-	protected UUID userId;
+	protected UUID memberId;
 	public String email;
 	public String name;
-	protected String objectName = UserComponent.class.getName();
+	protected String objectName = MemberComponent.class.getName();
 
-	public UserComponent() { }
+	public MemberComponent() { }
 
-	public UserComponent(UUID userId, String email, String name) {
-        this.userId = userId;
+	public MemberComponent(UUID memberId, String email, String name) {
+        this.memberId = memberId;
         this.email = email;
         this.name = name;
     }
 
-	public UUID getUserId() {
-		return this.userId;
+	public UUID getMemberId() {
+		return this.memberId;
 	}
 
-	public void setUserId(UUID userId) {
-		this.userId = userId;
+	public void setMemberId(UUID memberId) {
+		this.memberId = memberId;
 	}
 
 	public String getEmail() {
@@ -57,18 +57,18 @@ public abstract class UserComponent implements User{
 	@Override
     public String toString() {
         return "{" +
-            " userId='" + getUserId() + "'" +
+            " memberId='" + getMemberId() + "'" +
             " email='" + getEmail() + "'" +
             " name='" + getName() + "'" +
             "}";
     }
 
 	public HashMap<String, Object> toHashMap() {
-		HashMap<String, Object> userMap = new HashMap<String,Object>();
-		userMap.put("id", getUserId());
-		userMap.put("email", getEmail());
-		userMap.put("name", getName());
-        return userMap;
+		HashMap<String, Object> memberMap = new HashMap<String,Object>();
+		memberMap.put("id", getMemberId());
+		memberMap.put("email", getEmail());
+		memberMap.put("name", getName());
+        return memberMap;
 	}
 	
 }

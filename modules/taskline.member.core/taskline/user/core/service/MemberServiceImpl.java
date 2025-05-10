@@ -1,4 +1,4 @@
-package taskline.user.core;
+package taskline.member.core;
 import java.util.*;
 import com.google.gson.Gson;
 import java.util.*;
@@ -14,24 +14,24 @@ import java.nio.charset.StandardCharsets;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
-import taskline.user.UserFactory;
+import taskline.member.MemberFactory;
 //add other required packages
 
-public class UserServiceImpl extends UserServiceComponent{
+public class MemberServiceImpl extends MemberServiceComponent{
 
-    public User getUserByEmail(String email) {
+    public Member getMemberByEmail(String email) {
 		try {
-			List<User> users = userRepository.getListObject("user_comp", "email", email);
+			List<Member> members = memberRepository.getListObject("member_comp", "email", email);
 			
-			if (users == null || users.isEmpty()) {
-				throw new NotFoundException("User with email " + email + " does not exist.");
+			if (members == null || members.isEmpty()) {
+				throw new NotFoundException("Member with email " + email + " does not exist.");
 			}
 
-			return users.get(0);
+			return members.get(0);
 		} catch (NotFoundException e) {
 			throw e;
 		} catch (Exception e) {
-			throw new RuntimeException("Failed to retrieve user due to system error.", e);
+			throw new RuntimeException("Failed to retrieve member due to system error.", e);
 		}
 	}
 

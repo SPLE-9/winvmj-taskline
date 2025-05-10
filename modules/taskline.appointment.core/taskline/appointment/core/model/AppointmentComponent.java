@@ -19,8 +19,8 @@ public abstract class AppointmentComponent implements Appointment{
 	public EDate startTime;
 	public EDate endTime;
 	public String description;
-	@ManyToOne(targetEntity=taskline.user.core.UserComponent.class)
-	public User userimpl;
+	@ManyToOne(targetEntity=taskline.member.core.MemberComponent.class)
+	public Member memberimpl;
 	protected String objectName = AppointmentComponent.class.getName();
 
 	public AppointmentComponent() {
@@ -28,12 +28,12 @@ public abstract class AppointmentComponent implements Appointment{
 	} 
 
 	public AppointmentComponent(
-        EDate startTime, EDate endTime, String description, UserImpl userimpl
+        EDate startTime, EDate endTime, String description, MemberImpl memberimpl
     ) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.description = description;
-        this.userimpl = userimpl;
+        this.memberimpl = memberimpl;
     }
 
 	public abstract EDate getStartTime();
@@ -45,8 +45,8 @@ public abstract class AppointmentComponent implements Appointment{
 	public abstract String getDescription();
 	public abstract void setDescription(String description);
 	
-	public abstract UserImpl getUserimpl();
-	public abstract void setUserimpl(UserImpl userimpl);
+	public abstract MemberImpl getMemberimpl();
+	public abstract void setMemberimpl(MemberImpl memberimpl);
 	
  
 
@@ -56,7 +56,7 @@ public abstract class AppointmentComponent implements Appointment{
             " startTime='" + getStartTime() + "'" +
             " endTime='" + getEndTime() + "'" +
             " description='" + getDescription() + "'" +
-            " userimpl='" + getUserimpl() + "'" +
+            " memberimpl='" + getMemberimpl() + "'" +
             "}";
     }
 	

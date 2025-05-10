@@ -21,12 +21,12 @@ public class AnalyticImpl extends AnalyticDecorator {
         this.objectName = AnalyticImpl.class.getName();
     }
     
-    public AnalyticImpl(UserImpl userimpl) {
+    public AnalyticImpl(MemberImpl memberimpl) {
     	super();
 		this.objectName = AnalyticImpl.class.getName();
     }
 	
-	public AnalyticImpl(AnalyticComponent record, UserImpl userimpl) {
+	public AnalyticImpl(AnalyticComponent record, MemberImpl memberimpl) {
 		super(record);
 		this.objectName = AnalyticImpl.class.getName();
 	}

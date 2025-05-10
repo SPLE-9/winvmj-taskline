@@ -19,9 +19,9 @@ import taskline.task.TaskFactory;
 import taskline.task.core.Task;
 import taskline.project.core.ProjectService;
 import taskline.project.core.ProjectServiceImpl;
-import taskline.user.core.UserImpl;
+import taskline.member.core.MemberImpl;
 import taskline.project.core.ProjectImpl;
-import taskline.user.core.User;
+import taskline.member.core.Member;
 import taskline.project.core.Project;
 
 public class TaskServiceImpl extends TaskServiceComponent {

@@ -38,7 +38,7 @@ public class AppointmentServiceImpl extends AppointmentServiceComponent{
 		startTime
 		, endTime
 		, description
-		, userimpl
+		, memberimpl
 		);
 		Repository.saveObject(appointment);
 		return appointment;
@@ -49,7 +49,7 @@ public class AppointmentServiceImpl extends AppointmentServiceComponent{
 		
 		//to do: fix association attributes
 		
-		Appointment appointment = AppointmentFactory.createAppointment("taskline.appointment.core.AppointmentImpl", startTime, endTime, description, userimpl);
+		Appointment appointment = AppointmentFactory.createAppointment("taskline.appointment.core.AppointmentImpl", startTime, endTime, description, memberimpl);
 		return appointment;
 	}
 

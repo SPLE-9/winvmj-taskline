@@ -1,5 +1,5 @@
 module taskline.task.core {
-	requires taskline.user.core;
+	requires taskline.member.core;
 	requires taskline.project.core;
 	exports taskline.task;
     exports taskline.task.core;

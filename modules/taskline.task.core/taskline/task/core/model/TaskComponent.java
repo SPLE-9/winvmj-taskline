@@ -12,9 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.Table;
 
-import taskline.user.core.UserImpl;
+import taskline.member.core.MemberImpl;
 import taskline.project.core.ProjectImpl;
-import taskline.user.core.User;
+import taskline.member.core.Member;
 import taskline.project.core.Project;
 import taskline.task.core.Status;
 
@@ -29,8 +29,8 @@ public abstract class TaskComponent implements Task {
 	public Status status;
 	public Date createdAt;
 	public Date completedAt;
-	@ManyToOne(targetEntity=taskline.user.core.UserComponent.class)
-	public User userimpl;
+	@ManyToOne(targetEntity=taskline.member.core.MemberComponent.class)
+	public Member memberimpl;
 	@ManyToOne(targetEntity=taskline.project.core.ProjectComponent.class, cascade = CascadeType.REMOVE)
 	public Project projectimpl;
 	protected String objectName = TaskComponent.class.getName();
@@ -40,7 +40,7 @@ public abstract class TaskComponent implements Task {
 	} 
 
 	public TaskComponent(
-        UUID taskId, String title, String description, Status status, Date createdAt, Date completedAt, User userimpl, Project projectimpl
+        UUID taskId, String title, String description, Status status, Date createdAt, Date completedAt, Member memberimpl, Project projectimpl
     ) {
         this.taskId = taskId;
         this.title = title;
@@ -48,7 +48,7 @@ public abstract class TaskComponent implements Task {
         this.status = status;
         this.createdAt = createdAt;
         this.completedAt = completedAt;
-        this.userimpl = userimpl;
+        this.memberimpl = memberimpl;
         this.projectimpl = projectimpl;
     }
 
@@ -96,12 +96,12 @@ public abstract class TaskComponent implements Task {
 	public void setCompletedAt(Date completedAt) {
 		this.completedAt = completedAt;
 	}
-	public User getUserimpl() {
-		return this.userimpl;
+	public Member getMemberimpl() {
+		return this.memberimpl;
 	}
 
-	public void setUserimpl(UserImpl userimpl) {
-		this.userimpl = userimpl;
+	public void setMemberimpl(MemberImpl memberimpl) {
+		this.memberimpl = memberimpl;
 	}
 	public Project getProjectimpl() {
 		return this.projectimpl;
@@ -120,7 +120,7 @@ public abstract class TaskComponent implements Task {
             " status='" + getStatus() + "'" +
             " createdAt='" + getCreatedAt() + "'" +
             " completedAt='" + getCompletedAt() + "'" +
-            " userimpl='" + getUserimpl() + "'" +
+            " memberimpl='" + getMemberimpl() + "'" +
             " projectimpl='" + getProjectimpl() + "'" +
             "}";
     }

@@ -10,32 +10,32 @@ import javax.persistence.CascadeType;
 //add other required packages
 
 @MappedSuperclass
-public abstract class InvitedUserDecorator extends InvitedUserComponent{
+public abstract class InvitedMemberDecorator extends InvitedMemberComponent{
     @OneToOne(cascade=CascadeType.ALL)
-	protected InvitedUserComponent record;
+	protected InvitedMemberComponent record;
 
-	public InvitedUserDecorator () {
+	public InvitedMemberDecorator () {
 		super();
 		this.record = record;
 		this. =  .randomUUID();
 		
-	public InvitedUserDecorator (InvitedUserComponent record) {
+	public InvitedMemberDecorator (InvitedMemberComponent record) {
 		this. =  .randomUUID();
 		this.record = record;
 	}
 
-	public InvitedUserDecorator (, InvitedUserComponent record) {
+	public InvitedMemberDecorator (, InvitedMemberComponent record) {
 		this. =  ;
 		this.record = record;
 	}
 	
-	public InvitedUserDecorator (InvitedUserComponent record, String objectName) {
+	public InvitedMemberDecorator (InvitedMemberComponent record, String objectName) {
 		this. =  .randomUUID();
 		this.record = record;	
 		this.objectName=objectName;
 	}
 
-	public InvitedUserDecorator() { }
+	public InvitedMemberDecorator() { }
 
 
 

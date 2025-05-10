@@ -1,4 +1,4 @@
-package taskline.user.core;
+package taskline.member.core;
 
 import java.lang.Math;
 import java.util.*;
@@ -15,24 +15,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
-@Entity(name="user_impl")
-@Table(name="user_impl")
-public class UserImpl extends UserComponent {
+@Entity(name="member_impl")
+@Table(name="member_impl")
+public class MemberImpl extends MemberComponent {
 
-	public UserImpl(UUID userId, String email, String name) {
-		this.userId = userId;
+	public MemberImpl(UUID memberId, String email, String name) {
+		this.memberId = memberId;
 		this.email = email;
 		this.name = name;
 	}
 
-	public UserImpl(String email, String name) {
-		this.userId =  UUID.randomUUID();
+	public MemberImpl(String email, String name) {
+		this.memberId =  UUID.randomUUID();
 		this.email = email;
 		this.name = name;
 	}
 
-	public UserImpl() {
-		this.userId = UUID.randomUUID();
+	public MemberImpl() {
+		this.memberId = UUID.randomUUID();
 		this.email = "";
 		this.name = "";
 	}

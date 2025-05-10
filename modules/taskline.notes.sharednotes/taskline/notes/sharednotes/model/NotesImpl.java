@@ -21,18 +21,18 @@ public class NotesImpl extends NotesDecorator {
         this.objectName = NotesImpl.class.getName();
     }
     
-    public NotesImpl(UserImpl userimpl) {
+    public NotesImpl(MemberImpl memberimpl) {
     	super();
 		this.objectName = NotesImpl.class.getName();
     }
 	
-	public NotesImpl(NotesComponent record, UserImpl userimpl) {
+	public NotesImpl(NotesComponent record, MemberImpl memberimpl) {
 		super(record);
 		this.objectName = NotesImpl.class.getName();
 	}
 
 
-	public void getSharedUsers() {
+	public void getSharedMembers() {
 		// TODO: implement this method
 	}
 

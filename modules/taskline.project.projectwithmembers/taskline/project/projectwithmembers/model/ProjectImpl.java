@@ -21,18 +21,18 @@ public class ProjectImpl extends ProjectDecorator {
         this.objectName = ProjectImpl.class.getName();
     }
     
-    public ProjectImpl(UserImpl userimpl) {
+    public ProjectImpl(MemberImpl memberimpl) {
     	super();
 		this.objectName = ProjectImpl.class.getName();
     }
 	
-	public ProjectImpl(ProjectComponent record, UserImpl userimpl) {
+	public ProjectImpl(ProjectComponent record, MemberImpl memberimpl) {
 		super(record);
 		this.objectName = ProjectImpl.class.getName();
 	}
 
 
-	public void getProjectsByUser(UUID userId) {
+	public void getProjectsByMember(UUID memberId) {
 		// TODO: implement this method
 	}
 

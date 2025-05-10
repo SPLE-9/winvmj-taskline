@@ -23,7 +23,7 @@ features
 				optional
 					SharedNotes
 		mandatory
-			User
+			Member
 
 constraints
 	MemberBurndown => ProjectWithMembers
