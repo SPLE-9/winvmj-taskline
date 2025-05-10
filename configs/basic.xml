@@ -14,5 +14,5 @@
 	<feature name="SessionTimeLog"/>
 	<feature name="Notes"/>
 	<feature name="SharedNotes"/>
-	<feature name="Member"/>
+	<feature automatic="selected" name="Member"/>
 </configuration>
