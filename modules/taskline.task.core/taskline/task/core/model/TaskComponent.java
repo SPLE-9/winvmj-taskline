@@ -16,6 +16,8 @@ import taskline.member.core.MemberImpl;
 import taskline.project.core.ProjectImpl;
 import taskline.member.core.Member;
 import taskline.project.core.Project;
+import taskline.member.core.MemberComponent;
+import taskline.project.core.ProjectComponent;
 import taskline.task.core.Status;
 
 @Entity
@@ -29,9 +31,9 @@ public abstract class TaskComponent implements Task {
 	public Status status;
 	public Date createdAt;
 	public Date completedAt;
-	@ManyToOne(targetEntity=taskline.member.core.MemberImpl.class)
+	@ManyToOne(targetEntity=taskline.member.core.MemberComponent.class)
 	public Member memberimpl;
-	@ManyToOne(targetEntity=taskline.project.core.ProjectImpl.class, cascade = CascadeType.REMOVE)
+	@ManyToOne(targetEntity=taskline.project.core.ProjectComponent.class, cascade = CascadeType.REMOVE)
 	public Project projectimpl;
 	protected String objectName = TaskComponent.class.getName();
 
