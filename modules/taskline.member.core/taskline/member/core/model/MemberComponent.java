@@ -11,7 +11,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-@Entity
+@Entity(name="member_comp")
 @Table(name="member_comp", uniqueConstraints = @UniqueConstraint(columnNames = { "email" }))
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class MemberComponent implements Member{

@@ -20,7 +20,7 @@ import taskline.member.core.MemberComponent;
 import taskline.project.core.ProjectComponent;
 import taskline.task.core.Status;
 
-@Entity
+@Entity(name="task_comp")
 @Table(name="task_comp")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class TaskComponent implements Task {
