@@ -29,9 +29,9 @@ public abstract class TaskComponent implements Task {
 	public Status status;
 	public Date createdAt;
 	public Date completedAt;
-	@ManyToOne(targetEntity=taskline.member.core.MemberComponent.class)
+	@ManyToOne(targetEntity=taskline.member.core.MemberImpl.class)
 	public Member memberimpl;
-	@ManyToOne(targetEntity=taskline.project.core.ProjectComponent.class, cascade = CascadeType.REMOVE)
+	@ManyToOne(targetEntity=taskline.project.core.ProjectImpl.class, cascade = CascadeType.REMOVE)
 	public Project projectimpl;
 	protected String objectName = TaskComponent.class.getName();
 
