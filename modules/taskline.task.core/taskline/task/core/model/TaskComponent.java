@@ -33,7 +33,7 @@ public abstract class TaskComponent implements Task {
 	public Date completedAt;
 	@ManyToOne(targetEntity=taskline.member.core.MemberComponent.class)
 	public Member memberimpl;
-	@ManyToOne(targetEntity=taskline.project.core.ProjectComponent.class, cascade = CascadeType.REMOVE)
+	@ManyToOne(targetEntity=taskline.project.core.ProjectComponent.class)
 	public Project projectimpl;
 	protected String objectName = TaskComponent.class.getName();
 

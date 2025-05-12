@@ -48,6 +48,17 @@ public class TaskImpl extends TaskComponent {
 		this.projectimpl = projectimpl;
 	}
 
+	public TaskImpl() {
+		this.taskId = UUID.randomUUID();
+		this.title = "";
+		this.description = "";
+		this.status = Status.TODO;
+		this.createdAt = new Date();
+		this.completedAt = null;
+		this.memberimpl = null;
+		this.projectimpl = null;
+	}
+
 	
 	public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> Map = new HashMap<String,Object>();

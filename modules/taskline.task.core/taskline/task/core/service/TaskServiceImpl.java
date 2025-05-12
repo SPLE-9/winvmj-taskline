@@ -40,12 +40,13 @@ public class TaskServiceImpl extends TaskServiceComponent {
 		HashMap<String, Object> projectMap = projectService.getProject(projectId);
 		String json = gson.toJson(projectMap);
 		
-		Project project = gson.fromJson(json, Project.class);
+		Project project = gson.fromJson(json, ProjectImpl.class);
 		String title = (String) requestBody.get("title");
 		String description = (String) requestBody.get("description");
 
 
 		Task task = taskFactory.createTask("taskline.task.core.TaskImpl", title, description, project);
+		taskRepository.saveObject(task);
 		
 		return task.toHashMap();
 	}
