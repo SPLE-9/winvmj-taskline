@@ -94,8 +94,13 @@ public class ProjectServiceImpl extends ProjectServiceComponent{
 			throw new NotFoundException("Project with projectId " + projectId +" not found");
 		}
 
-		// TODO: Handle task deletion
 		projectRepository.deleteObject(projectId);
+
+		Project deletedProject = projectRepository.getObject(projectId);
+		if (deletedProject != null) {
+			throw new NotFoundException("Project with projectId " + projectId +" still has tasks, delete all tasks to delete this project.");
+		}
+
 		return getAllProject();
 	}
 
