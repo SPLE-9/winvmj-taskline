@@ -16,28 +16,10 @@ import taskline.project.core.ProjectComponent;
 @Table(name="project_projectwithmembers")
 public class ProjectImpl extends ProjectDecorator {
 
-	public ProjectImpl(
-        super();
-        this.objectName = ProjectImpl.class.getName();
-    }
-    
-    public ProjectImpl(MemberImpl memberimpl) {
-    	super();
-		this.objectName = ProjectImpl.class.getName();
-    }
-	
-	public ProjectImpl(ProjectComponent record, MemberImpl memberimpl) {
+	public ProjectImpl(ProjectComponent record, ) {
 		super(record);
-		this.objectName = ProjectImpl.class.getName();
 	}
 
 
-	public void getProjectsByMember(UUID memberId) {
-		// TODO: implement this method
-	}
-
-	public void getProjectMembers(UUID projectId) {
-		// TODO: implement this method
-	}
 
 }

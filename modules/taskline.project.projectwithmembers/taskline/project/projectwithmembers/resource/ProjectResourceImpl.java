@@ -27,7 +27,7 @@ public class ProjectResourceImpl extends ProjectResourceDecorator {
     public Project create(VMJExchange vmjExchange){
 		
 		  = record.create(vmjExchange);
-		 deco = Factory.create("taskline.projectwithmembers.core.ProjectImpl", , memberimpl);
+		 deco = Factory.create("taskline.projectwithmembers.core.ProjectImpl", , );
 			return deco;
 	}
 
@@ -36,7 +36,7 @@ public class ProjectResourceImpl extends ProjectResourceDecorator {
 		int recordId = (((Decorator) saved.getRecord()).getId();
 		
 		  = record.create(vmjExchange);
-		 deco = Factory.create("taskline.projectwithmembers.core.ProjectImpl", id, , memberimpl);
+		 deco = Factory.create("taskline.projectwithmembers.core.ProjectImpl", id, , );
 			return deco;
 	}
 
@@ -95,11 +95,4 @@ public class ProjectResourceImpl extends ProjectResourceDecorator {
 		return getAll(vmjExchange);
 	}
 
-	public void getProjectsByMember(UUID memberId) {
-		// TODO: implement this method
-	}
-
-	public void getProjectMembers(UUID projectId) {
-		// TODO: implement this method
-	}
 }
