@@ -39,6 +39,16 @@ public abstract class AppointmentComponent implements Appointment{
         this.member = member;
     }
 
+	public AppointmentComponent(
+        UUID appointmentId, Date startTime, Date endTime, String description
+    ) {
+        this.appointmentId = appointmentId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.description = description;
+        this.member = null;
+    }
+
 	public UUID getAppointmentId() {
 		return this.appointmentId;
 	}

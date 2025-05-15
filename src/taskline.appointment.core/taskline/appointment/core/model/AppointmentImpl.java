@@ -35,6 +35,14 @@ public class AppointmentImpl extends AppointmentComponent {
 		this.member = member;
 	}
 
+	public AppointmentImpl(Date startTime, Date endTime, String description) {
+		this.appointmentId = UUID.randomUUID();
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.description = description;
+		this.member = null;
+	}
+
 	public AppointmentImpl() {
 		this.appointmentId = UUID.randomUUID();
 		this.startTime = new Date();

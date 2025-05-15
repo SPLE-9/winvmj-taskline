@@ -10,6 +10,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
@@ -23,10 +25,6 @@ public class AppointmentServiceImpl extends AppointmentServiceComponent{
 	MemberService memberService = new MemberServiceImpl();
 
     public HashMap<String,Object> saveAppointment(Map<String, Object> requestBody){
-		if (!requestBody.containsKey("memberId")) {
-            throw new FieldValidationException("Field 'memberId' not found in the request body.");
-        }
-
 		if (!requestBody.containsKey("startTime")) {
             throw new FieldValidationException("Field 'startTime' not found in the request body.");
         }
@@ -36,19 +34,21 @@ public class AppointmentServiceImpl extends AppointmentServiceComponent{
 		if (!requestBody.containsKey("description")) {
             throw new FieldValidationException("Field 'description' not found in the request body.");
         }
-		if (!requestBody.containsKey("invitedUserIds")) {
-			throw new FieldValidationException("Field 'title' not found in the request body.");
-		}
-
-		String memberIdStr = (String) requestBody.get("memberId");
-        UUID memberId = UUID.fromString(memberIdStr);
-		Date startTime = (Date) requestBody.get("startTime");
-		Date endTime = (Date) requestBody.get("endTime");
+		String startTimeStr = (String) requestBody.get("startTime");
+		String endTimeStr = (String) requestBody.get("endTime");
 		String description = (String) requestBody.get("description");
 
-		Member member = memberService.getMemberById(memberId);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		Date startTime;
+		Date endTime;
+		try {
+			startTime = formatter.parse(startTimeStr);
+			endTime = formatter.parse(endTimeStr);
+		} catch (ParseException e) {
+			throw new FieldValidationException("Invalid date format. Please use yyyy-MM-dd' 'HH:mm:ss");
+		}
 
-		Appointment appointment = appointmentFactory.createAppointment("taskline.appointment.core.AppointmentImpl", startTime, endTime, description, member);
+		Appointment appointment = appointmentFactory.createAppointment("taskline.appointment.core.AppointmentImpl", startTime, endTime, description);
 		appointmentRepository.saveObject(appointment);
 		return appointment.toHashMap();
 	}
@@ -66,14 +66,27 @@ public class AppointmentServiceImpl extends AppointmentServiceComponent{
 		if (appointment == null) {
 	        throw new NotFoundException("Appointment with appointmentId " + appointmentId +" not found");
 	    }
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		Date startTime;
+		Date endTime;
 
 		if (requestBody.containsKey("startTime")) {
-        	Date startTime =  (Date) requestBody.get("startTime");
+        	String startTimeStr = (String) requestBody.get("startTime");
+			try {
+				startTime = formatter.parse(startTimeStr);
+			} catch (ParseException e) {
+				throw new FieldValidationException("Invalid date format. Please use yyyy-MM-dd' 'HH:mm:ss");
+			}
             appointment.setStartTime(startTime);
         }
 		
 		if (requestBody.containsKey("endTime")) {
-        	Date endTime =  (Date) requestBody.get("endTime");
+        	String endTimeStr = (String) requestBody.get("endTime");
+			try {
+				endTime = formatter.parse(endTimeStr);
+			} catch (ParseException e) {
+				throw new FieldValidationException("Invalid date format. Please use yyyy-MM-dd' 'HH:mm:ss");
+			}
             appointment.setEndTime(endTime);
         }
 
