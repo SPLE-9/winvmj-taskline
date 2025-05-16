@@ -1,6 +1,13 @@
 package taskline.task.core;
+
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
+
+import taskline.member.core.MemberImpl;
+import taskline.project.core.ProjectImpl;
+import taskline.member.core.Member;
+import taskline.project.core.Project;
+import taskline.task.core.Status;
 import java.util.*;
 
 public interface Task {
@@ -10,13 +17,15 @@ public interface Task {
 	public void setTitle(String title);
 	public String getDescription();
 	public void setDescription(String description);
-	public status getStatus();
-	public void setStatus(status status);
-	public EDate getCreatedAt();
-	public void setCreatedAt(EDate createdAt);
-	public UserImpl getUserimpl();
-	public void setUserimpl(UserImpl userimpl);
-	public ProjectImpl getProjectimpl();
+	public Status getStatus();
+	public void setStatus(Status status);
+	public Date getCreatedAt();
+	public void setCreatedAt(Date createdAt);
+	public Date getCompletedAt();
+	public void setCompletedAt(Date completedAt);
+	public Member getMemberimpl();
+	public void setMemberimpl(MemberImpl memberimpl);
+	public Project getProjectimpl();
 	public void setProjectimpl(ProjectImpl projectimpl);
 	HashMap<String, Object> toHashMap();
 }

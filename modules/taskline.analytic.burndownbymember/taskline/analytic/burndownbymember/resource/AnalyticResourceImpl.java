@@ -27,7 +27,7 @@ public class AnalyticResourceImpl extends AnalyticResourceDecorator {
     public Analytic create(VMJExchange vmjExchange){
 		
 		  = record.create(vmjExchange);
-		 deco = Factory.create("taskline.burndownbymember.core.AnalyticImpl", , userimpl);
+		 deco = Factory.create("taskline.burndownbymember.core.AnalyticImpl", , memberimpl);
 			return deco;
 	}
 
@@ -36,7 +36,7 @@ public class AnalyticResourceImpl extends AnalyticResourceDecorator {
 		int recordId = (((Decorator) saved.getRecord()).getId();
 		
 		  = record.create(vmjExchange);
-		 deco = Factory.create("taskline.burndownbymember.core.AnalyticImpl", id, , userimpl);
+		 deco = Factory.create("taskline.burndownbymember.core.AnalyticImpl", id, , memberimpl);
 			return deco;
 	}
 

@@ -14,45 +14,51 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import taskline.task.core.Status;
+import taskline.member.core.MemberImpl;
+import taskline.project.core.ProjectImpl;
+import taskline.member.core.Member;
+import taskline.project.core.Project;
 
-@Entity(name="_impl")
-@Table(name="_impl")
+
+
+@Entity(name="task_impl")
+@Table(name="task_impl")
 public class TaskImpl extends TaskComponent {
 
-	public TaskImpl(UUID taskId, String title, String description, status status, EDate createdAt, UserImpl userimpl, ProjectImpl projectimpl) {
-		this.taskId = taskId;
+	public TaskImpl(String title, String description, Status status, Date createdAt, Date completedAt, Member memberimpl, Project projectimpl) {
+		this.taskId =  UUID.randomUUID();;
 		this.title = title;
 		this.description = description;
 		this.status = status;
 		this.createdAt = createdAt;
-		this.userimpl = userimpl;
+		this.completedAt = completedAt;
+		this.memberimpl = memberimpl;
 		this.projectimpl = projectimpl;
 	}
 
-	public TaskImpl(UUID taskId, String title, String description, status status, EDate createdAt, UserImpl userimpl, ProjectImpl projectimpl) {
-		this.taskId =  taskId.randomUUID();;
-		this.taskId = taskId;
+	public TaskImpl(String title, String description, Project projectimpl) {
+		this.taskId =  UUID.randomUUID();
 		this.title = title;
 		this.description = description;
-		this.status = status;
-		this.createdAt = createdAt;
-		this.userimpl = userimpl;
+		this.status = Status.TODO;
+		this.createdAt = new Date();
+		this.completedAt = null;
+		this.memberimpl = null;
 		this.projectimpl = projectimpl;
 	}
 
-	public TaskImpl() { }
-
-	public UUID getTaskId() {
-		return this.taskId;
+	public TaskImpl() {
+		this.taskId = UUID.randomUUID();
+		this.title = "";
+		this.description = "";
+		this.status = Status.TODO;
+		this.createdAt = new Date();
+		this.completedAt = null;
+		this.memberimpl = null;
+		this.projectimpl = null;
 	}
 
-	public void setTaskId(UUID taskId) {
-		this.taskId = taskId;
-	}
-
-	public void getTasksByProject() {
-		// TODO: implement this method
-	}
 	
 	public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> Map = new HashMap<String,Object>();
@@ -61,7 +67,8 @@ public class TaskImpl extends TaskComponent {
 		Map.put("description",getDescription());
 		Map.put("status",getStatus());
 		Map.put("createdAt",getCreatedAt());
-		Map.put("userimpl",getUserimpl());
+		Map.put("completedAt",getCompletedAt());
+		Map.put("memberimpl",getMemberimpl());
 		Map.put("projectimpl",getProjectimpl());
 
         return Map;

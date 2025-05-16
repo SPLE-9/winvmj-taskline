@@ -19,8 +19,8 @@ public abstract class NotesComponent implements Notes{
 	public UUID notesId;
 	public String title;
 	public String notes;
-	@ManyToOne(targetEntity=taskline.user.core.UserComponent.class)
-	public User userimpl;
+	@ManyToOne(targetEntity=taskline.member.core.MemberComponent.class)
+	public Member memberimpl;
 	protected String objectName = NotesComponent.class.getName();
 
 	public NotesComponent() {
@@ -28,12 +28,12 @@ public abstract class NotesComponent implements Notes{
 	} 
 
 	public NotesComponent(
-        UUID notesId, String title, String notes, UserImpl userimpl
+        UUID notesId, String title, String notes, MemberImpl memberimpl
     ) {
         this.notesId = notesId;
         this.title = title;
         this.notes = notes;
-        this.userimpl = userimpl;
+        this.memberimpl = memberimpl;
     }
 
 	public abstract UUID getNotesId();
@@ -45,8 +45,8 @@ public abstract class NotesComponent implements Notes{
 	public abstract String getNotes();
 	public abstract void setNotes(String notes);
 	
-	public abstract UserImpl getUserimpl();
-	public abstract void setUserimpl(UserImpl userimpl);
+	public abstract MemberImpl getMemberimpl();
+	public abstract void setMemberimpl(MemberImpl memberimpl);
 	
  
 
@@ -56,7 +56,7 @@ public abstract class NotesComponent implements Notes{
             " notesId='" + getNotesId() + "'" +
             " title='" + getTitle() + "'" +
             " notes='" + getNotes() + "'" +
-            " userimpl='" + getUserimpl() + "'" +
+            " memberimpl='" + getMemberimpl() + "'" +
             "}";
     }
 	

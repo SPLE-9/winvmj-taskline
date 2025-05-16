@@ -1,6 +1,7 @@
 package taskline.task.core;
 import java.util.*;
 
+import taskline.task.core.Task;
 import vmj.routing.route.VMJExchange;
 
 public abstract class TaskServiceDecorator extends TaskServiceComponent{
@@ -10,43 +11,32 @@ public abstract class TaskServiceDecorator extends TaskServiceComponent{
         this.record = record;
     }
 
-	public TaskImpl create(Map<String, Object> requestBody){
-		return record.create(requestBody);
+	public HashMap<String, Object> getTaskById(String taskId){
+		return record.getTaskById(taskId);
 	}
 
-    public  create(Map<String, Object> requestBody, Map<String, Object> response){
-		return record.create(requestBody, response);
+	public List<HashMap<String,Object>> getAllTask(){
+		return record.getAllTask();
 	}
 
-	public HashMap<String, Object> get(Map<String, Object> requestBody){
-		return record.get(requestBody);
+    public HashMap<String,Object> saveTask(Map<String, Object> requestBody){
+		return record.saveTask(requestBody);
 	}
 
-	public List<HashMap<String,Object>> getAll(Map<String, Object> requestBody){
-		return record.getAll(requestBody);
+    public HashMap<String, Object> updateTask(Map<String, Object> requestBody){
+		return record.updateTask(requestBody);
 	}
 
-    public List<HashMap<String,Object>> save(VMJExchange vmjExchange){
-		return record.save(vmjExchange);
+    public List<HashMap<String,Object>> transformListToHashMap(List<Task> taskList){
+		return record.transformListToHashMap(taskList);
 	}
 
-    public HashMap<String, Object> update(Map<String, Object> requestBody){
-		return record.update(requestBody);
+    public HashMap<String,Object> deleteTask(Map<String, Object> requestBody){
+		return record.deleteTask(requestBody);
 	}
 
-    public List<HashMap<String,Object>> transformListToHashMap(List<> List){
-		return record.transformListToHashMap(List);
-	}
-
-    public List<HashMap<String,Object>> delete(Map<String, Object> requestBody){
-		return record.delete(requestBody);
-	}
-
-	public HashMap<String, Object> getById(int id){
-        return record.getById(id);
+	public List<HashMap<String, Object>> getTaskByProjectId(String projectId){
+        return record.getTaskByProjectId(projectId);
     }
 
-	public void getTasksByProject() {
-		return record.getTasksByProject();
-	}
 }

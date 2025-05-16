@@ -11,10 +11,10 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-@Entity
+@Entity(name="project_comp")
 @Table(name="project_comp", uniqueConstraints = @UniqueConstraint(columnNames = { "title" }))
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class ProjectComponent implements Project{
+public abstract class ProjectComponent implements Project {
 	@Id
 	public UUID projectId;
 	public String title;

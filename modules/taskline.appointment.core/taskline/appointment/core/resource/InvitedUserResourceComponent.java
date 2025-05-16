@@ -5,14 +5,14 @@ import vmj.hibernate.integrator.RepositoryUtil;
 import vmj.routing.route.VMJExchange;
 //add other required packages
 
-public abstract class InvitedUserResourceComponent implements InvitedUserResource{
+public abstract class InvitedMemberResourceComponent implements InvitedMemberResource{
 	
-	public InvitedUserResourceComponent() { }
+	public InvitedMemberResourceComponent() { }
  
-    public abstract InvitedUser createInvitedUser(VMJExchange vmjExchange);    
-	public abstract HashMap<String, Object> updateInvitedUser(VMJExchange vmjExchange);
-    public abstract HashMap<String, Object> getInvitedUser(VMJExchange vmjExchange);
-    public abstract List<HashMap<String,Object>> getAllInvitedUser(VMJExchange vmjExchange);
-    public abstract List<HashMap<String,Object>> deleteInvitedUser(VMJExchange vmjExchange);
+    public abstract InvitedMember createInvitedMember(VMJExchange vmjExchange);    
+	public abstract HashMap<String, Object> updateInvitedMember(VMJExchange vmjExchange);
+    public abstract HashMap<String, Object> getInvitedMember(VMJExchange vmjExchange);
+    public abstract List<HashMap<String,Object>> getAllInvitedMember(VMJExchange vmjExchange);
+    public abstract List<HashMap<String,Object>> deleteInvitedMember(VMJExchange vmjExchange);
 
 }

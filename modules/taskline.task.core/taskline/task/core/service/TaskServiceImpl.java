@@ -15,106 +15,117 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import taskline.task.TaskFactory;
-import prices.auth.vmj.annotations.Restricted;
 //add other required packages
+import taskline.task.core.Task;
+import taskline.project.core.ProjectService;
+import taskline.project.core.ProjectServiceImpl;
+import taskline.member.core.MemberImpl;
+import taskline.project.core.ProjectImpl;
+import taskline.member.core.Member;
+import taskline.project.core.Project;
 
-public class TaskServiceImpl extends TaskServiceComponent{
+public class TaskServiceImpl extends TaskServiceComponent {
+	
+	private TaskFactory taskFactory = new TaskFactory();
+	private ProjectService projectService = new ProjectServiceImpl();
+	private final Gson gson = new Gson();
 
-    public List<HashMap<String,Object>> save(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
-		}
-		  = create(vmjExchange);
-		Repository.saveObject();
-		return getAll(vmjExchange);
-	}
 
-    public  create(Map<String, Object> requestBody){
+    public HashMap<String,Object> saveTask(Map<String, Object> requestBody){
+		if (!requestBody.containsKey("title") || !requestBody.containsKey("projectId")) {
+            throw new FieldValidationException("Field 'title' not found in the request body.");
+        }
+
+		String projectId = (String) requestBody.get("projectId");
+		HashMap<String, Object> projectMap = projectService.getProject(projectId);
+		String json = gson.toJson(projectMap);
+		
+		Project project = gson.fromJson(json, ProjectImpl.class);
 		String title = (String) requestBody.get("title");
 		String description = (String) requestBody.get("description");
+
+
+		Task task = taskFactory.createTask("taskline.task.core.TaskImpl", title, description, project);
+		taskRepository.saveObject(task);
 		
-		//to do: fix association attributes
-		  = Factory.create(
-			"taskline.task.core.TaskImpl",
-		taskId
-		, title
-		, description
-		, status
-		, createdAt
-		, userimpl
-		, projectimpl
-		);
-		Repository.saveObject();
-		return ;
+		return task.toHashMap();
 	}
 
-    public  create(Map<String, Object> requestBody, int id){
-		String title = (String) vmjExchange.getRequestBodyForm("title");
-		String description = (String) vmjExchange.getRequestBodyForm("description");
-		
-		//to do: fix association attributes
-		
-		  = Factory.create("taskline.task.core.TaskImpl", taskId, title, description, status, createdAt, userimpl, projectimpl);
-		return ;
-	}
+    public HashMap<String, Object> updateTask(Map<String, Object> requestBody){
+		if (!requestBody.containsKey("taskId")) {
+    		throw new NotFoundException("Field 'taskId' not found in the request body.");
+    	}
 
-    public HashMap<String, Object> update(Map<String, Object> requestBody){
-		String idStr = (String) requestBody.get("taskId");
-		int id = Integer.parseInt(idStr);
-		  = Repository.getObject(id);
+		String taskIdStr = (String) requestBody.get("taskId");
+		UUID taskId = UUID.fromString(taskIdStr);
 		
-		.setTitle((String) requestBody.get("title"));
-		.setDescription((String) requestBody.get("description"));
+		Task task  = taskRepository.getObject(taskId);
+		if (task == null) {
+	        throw new NotFoundException("Project with projectId " + taskId +" not found");
+	    }
+
+		if (requestBody.containsKey("title")) {
+        	String title =  (String) requestBody.get("title");
+            task.setTitle(title);
+        }
+
+		if (requestBody.containsKey("description")) {
+        	String description =  (String) requestBody.get("description");
+            task.setDescription(description);
+        }
 		
-		Repository.updateObject();
+		taskRepository.updateObject(task);
 		
-		//to do: fix association attributes
-		
-		return .toHashMap();
+		return task.toHashMap();
 		
 	}
 
-    public HashMap<String, Object> get(Map<String, Object> requestBody){
-		List<HashMap<String, Object>> List = getAll("_impl");
-		for (HashMap<String, Object>  : List){
-			int record_id = ((Double) .get("record_id")).intValue();
-			if (record_id == id){
-				return ;
-			}
+
+	public HashMap<String, Object> getTaskById(String taskIdStr){
+		UUID taskId = UUID.fromString(taskIdStr);
+		Task task = taskRepository.getObject(taskId);
+		
+		if (task == null) {
+			throw new NotFoundException("Task with taskId " + taskId +" not found");
 		}
-		return null;
+
+		return task.toHashMap();
 	}
 
-	public HashMap<String, Object> getById(int id){
-		String idStr = vmjExchange.getGETParam("taskId"); 
-		int id = Integer.parseInt(idStr);
-		  = Repository.getObject(id);
-		return .toHashMap();
+    public List<HashMap<String,Object>> getAllTask(){
+		List<Task> taskList = taskRepository.getAllObject("task_impl");
+		
+		return transformListToHashMap(taskList);
 	}
 
-    public List<HashMap<String,Object>> getAll(Map<String, Object> requestBody){
-		String table = (String) requestBody.get("table_name");
-		List<> List = Repository.getAllObject(table);
-		return transformListToHashMap(List);
-	}
-
-    public List<HashMap<String,Object>> transformListToHashMap(List<> List){
+    public List<HashMap<String,Object>> transformListToHashMap(List<Task> taskList){
 		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
-        for(int i = 0; i < List.size(); i++) {
-            resultList.add(List.get(i).toHashMap());
+        for(Task task : taskList) {
+            resultList.add(task.toHashMap());
         }
 
         return resultList;
 	}
 
-    public List<HashMap<String,Object>> delete(Map<String, Object> requestBody){
-		String idStr = ((String) requestBody.get("id"));
-		int id = Integer.parseInt(idStr);
-		Repository.deleteObject(id);
-		return getAll(requestBody);
+    public HashMap<String,Object> deleteTask(Map<String, Object> requestBody){
+		String taskIdStr = (String) requestBody.get("taskId");
+		UUID taskId = UUID.fromString(taskIdStr);
+		Task task = taskRepository.getObject(taskId);
+		
+		if (task == null) {
+			throw new NotFoundException("Task with taskId " + taskId +" not found");
+		}
+
+		taskRepository.deleteObject(taskId);
+		
+		return task.toHashMap();
+
 	}
 
-	public void getTasksByProject() {
-		// TODO: implement this method
+	public List<HashMap<String,Object>> getTaskByProjectId(String projectIdStr) {
+		UUID projectId = UUID.fromString(projectIdStr);
+		List<Task> taskList = taskRepository.getListObject("task_impl", "projectimpl_projectid", projectId);
+
+		return transformListToHashMap(taskList);
 	}
 }

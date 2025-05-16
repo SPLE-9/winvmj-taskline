@@ -1,7 +1,6 @@
 package taskline.notes.core;
 import java.util.*;
 
-import vmj.routing.route.VMJExchange;
 
 public abstract class NotesServiceDecorator extends NotesServiceComponent{
 	protected NotesServiceComponent record;
@@ -46,4 +45,7 @@ public abstract class NotesServiceDecorator extends NotesServiceComponent{
         return record.getNotesById(id);
     }
 
+	public void getNotesByMemberId(UUID memberId) {
+		return record.getNotesByMemberId(memberId);
+	}
 }

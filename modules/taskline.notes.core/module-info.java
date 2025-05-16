@@ -1,5 +1,5 @@
 module taskline.notes.core {
-	requires taskline.user.core;
+	requires taskline.member.core;
 	exports taskline.notes;
     exports taskline.notes.core;
 	requires vmj.routing.route;

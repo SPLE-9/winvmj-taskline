@@ -14,7 +14,7 @@ public class NotesServiceImpl extends NotesServiceDecorator {
     }
 
     
-	public void getSharedUsers() {
+	public void getSharedMembers() {
 		// TODO: implement this method
 	}
 }

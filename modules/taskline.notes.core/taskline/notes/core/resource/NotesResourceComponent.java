@@ -1,8 +1,5 @@
 package taskline.notes.core;
 import java.util.*;
-
-import vmj.hibernate.integrator.RepositoryUtil;
-import vmj.routing.route.VMJExchange;
 //add other required packages
 
 public abstract class NotesResourceComponent implements NotesResource{
@@ -15,4 +12,5 @@ public abstract class NotesResourceComponent implements NotesResource{
     public abstract List<HashMap<String,Object>> getAllNotes(VMJExchange vmjExchange);
     public abstract List<HashMap<String,Object>> deleteNotes(VMJExchange vmjExchange);
 
+	public abstract void getNotesByMemberId(UUID memberId);
 }

@@ -26,7 +26,7 @@ public class CommentResourceImpl extends CommentResourceComponent{
 		
 		//to do: fix association attributes
 		
-		  = Factory.create("taskline.taskwithcomment.core.CommentImpl", commentId, content, createdAt, taskimpl, userimpl);
+		  = Factory.create("taskline.taskwithcomment.core.CommentImpl", commentId, content, createdAt, taskimpl, memberimpl);
 			return ;
 	}
 

@@ -8,21 +8,31 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.CascadeType;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="_comp")
+import taskline.member.core.MemberImpl;
+import taskline.project.core.ProjectImpl;
+import taskline.member.core.Member;
+import taskline.project.core.Project;
+import taskline.member.core.MemberComponent;
+import taskline.project.core.ProjectComponent;
+import taskline.task.core.Status;
+
+@Entity(name="task_comp")
+@Table(name="task_comp")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class TaskComponent implements {
+public abstract class TaskComponent implements Task {
 	@Id
 	protected UUID taskId; 
-	protected UUID taskId;
 	public String title;
 	public String description;
-	public status status;
-	public EDate createdAt;
-	@ManyToOne(targetEntity=taskline.user.core.UserComponent.class)
-	public User userimpl;
+	public Status status;
+	public Date createdAt;
+	public Date completedAt;
+	@ManyToOne(targetEntity=taskline.member.core.MemberComponent.class)
+	public Member memberimpl;
 	@ManyToOne(targetEntity=taskline.project.core.ProjectComponent.class)
 	public Project projectimpl;
 	protected String objectName = TaskComponent.class.getName();
@@ -32,14 +42,15 @@ public abstract class TaskComponent implements {
 	} 
 
 	public TaskComponent(
-        UUID taskId, String title, String description, status status, EDate createdAt, UserImpl userimpl, ProjectImpl projectimpl
+        UUID taskId, String title, String description, Status status, Date createdAt, Date completedAt, Member memberimpl, Project projectimpl
     ) {
         this.taskId = taskId;
         this.title = title;
         this.description = description;
         this.status = status;
         this.createdAt = createdAt;
-        this.userimpl = userimpl;
+        this.completedAt = completedAt;
+        this.memberimpl = memberimpl;
         this.projectimpl = projectimpl;
     }
 
@@ -50,26 +61,57 @@ public abstract class TaskComponent implements {
 	public void setTaskId(UUID taskId) {
 		this.taskId = taskId;
 	}
-	public abstract String getTitle();
-	public abstract void setTitle(String title);
+
+	public String getTitle() {
+		return this.title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Status getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	public Date getCreatedAt() {
+		return this.createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Date getCompletedAt() {
+		return this.completedAt;
+	}
+
+	public void setCompletedAt(Date completedAt) {
+		this.completedAt = completedAt;
+	}
+	public Member getMemberimpl() {
+		return this.memberimpl;
+	}
+
+	public void setMemberimpl(MemberImpl memberimpl) {
+		this.memberimpl = memberimpl;
+	}
+	public Project getProjectimpl() {
+		return this.projectimpl;
+	}
+	public void setProjectimpl(ProjectImpl projectimpl) {
+		this.projectimpl = projectimpl;
+	}
 	
-	public abstract String getDescription();
-	public abstract void setDescription(String description);
-	
-	public abstract status getStatus();
-	public abstract void setStatus(status status);
-	
-	public abstract EDate getCreatedAt();
-	public abstract void setCreatedAt(EDate createdAt);
-	
-	public abstract UserImpl getUserimpl();
-	public abstract void setUserimpl(UserImpl userimpl);
-	
-	public abstract ProjectImpl getProjectimpl();
-	public abstract void setProjectimpl(ProjectImpl projectimpl);
-	
- 
-	public abstract void getTasksByProject();
 
 	@Override
     public String toString() {
@@ -79,7 +121,8 @@ public abstract class TaskComponent implements {
             " description='" + getDescription() + "'" +
             " status='" + getStatus() + "'" +
             " createdAt='" + getCreatedAt() + "'" +
-            " userimpl='" + getUserimpl() + "'" +
+            " completedAt='" + getCompletedAt() + "'" +
+            " memberimpl='" + getMemberimpl() + "'" +
             " projectimpl='" + getProjectimpl() + "'" +
             "}";
     }

@@ -10,10 +10,10 @@ public interface Appointment {
 	public void setEndTime(EDate endTime);
 	public String getDescription();
 	public void setDescription(String description);
-	public UserImpl getUserimpl();
-	public void setUserimpl(UserImpl userimpl);
-	public UserImpl getUserimpl();
-	public void setUserimpl(UserImpl userimpl);
+	public MemberImpl getMemberimpl();
+	public void setMemberimpl(MemberImpl memberimpl);
+	public MemberImpl getMemberimpl();
+	public void setMemberimpl(MemberImpl memberimpl);
 	public AppointmentImpl getAppointmentimpl();
 	public void setAppointmentimpl(AppointmentImpl appointmentimpl);
 	HashMap<String, Object> toHashMap();

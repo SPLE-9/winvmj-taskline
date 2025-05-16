@@ -32,11 +32,11 @@ public abstract class TimelogComponent implements Timelog{
     ) {
         this.timelogId = timelogId;
         this.taskId = taskId;
-        this.userId = userId;
+        this.memberId = memberId;
         this.timelogDate = timelogDate;
         this.timelogType = timelogType;
         this.timelogNotes = timelogNotes;
-        this.userimpl = userimpl;
+        this.memberimpl = memberimpl;
         this.taskimpl = taskimpl;
     }
 
@@ -54,12 +54,12 @@ public abstract class TimelogComponent implements Timelog{
 	public void setTaskId(UUID taskId) {
 		this.taskId = taskId;
 	}
-	public UUID getUserId() {
-		return this.userId;
+	public UUID getMemberId() {
+		return this.memberId;
 	}
 
-	public void setUserId(UUID userId) {
-		this.userId = userId;
+	public void setMemberId(UUID memberId) {
+		this.memberId = memberId;
 	}
 	public abstract LocalDateTime getTimelogDate();
 	public abstract void setTimelogDate(LocalDateTime timelogDate);
@@ -70,8 +70,8 @@ public abstract class TimelogComponent implements Timelog{
 	public abstract String getTimelogNotes();
 	public abstract void setTimelogNotes(String timelogNotes);
 	
-	public abstract UserImpl getUserimpl();
-	public abstract void setUserimpl(UserImpl userimpl);
+	public abstract MemberImpl getMemberimpl();
+	public abstract void setMemberimpl(MemberImpl memberimpl);
 	
 	public abstract TaskImpl getTaskimpl();
 	public abstract void setTaskimpl(TaskImpl taskimpl);
@@ -86,11 +86,11 @@ public abstract class TimelogComponent implements Timelog{
         return "{" +
             " timelogId='" + getTimelogId() + "'" +
             " taskId='" + getTaskId() + "'" +
-            " userId='" + getUserId() + "'" +
+            " memberId='" + getMemberId() + "'" +
             " timelogDate='" + getTimelogDate() + "'" +
             " timelogType='" + getTimelogType() + "'" +
             " timelogNotes='" + getTimelogNotes() + "'" +
-            " userimpl='" + getUserimpl() + "'" +
+            " memberimpl='" + getMemberimpl() + "'" +
             " taskimpl='" + getTaskimpl() + "'" +
             "}";
     }

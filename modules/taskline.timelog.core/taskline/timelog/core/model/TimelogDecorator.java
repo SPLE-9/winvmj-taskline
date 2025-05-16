@@ -35,11 +35,11 @@ public abstract class TimelogDecorator extends TimelogComponent{
 	public void setTaskId(UUID taskId) {
 		record.setTaskId(taskId);
 	}
-	public UUID getUserId() {
-		return record.getUserId();
+	public UUID getMemberId() {
+		return record.getMemberId();
 	}
-	public void setUserId(UUID userId) {
-		record.setUserId(userId);
+	public void setMemberId(UUID memberId) {
+		record.setMemberId(memberId);
 	}
 
 	// public void getTimelogDetail() {

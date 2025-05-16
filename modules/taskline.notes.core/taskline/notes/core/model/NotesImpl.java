@@ -19,19 +19,19 @@ import javax.persistence.OneToMany;
 @Table(name="notes_impl")
 public class NotesImpl extends NotesComponent {
 
-	public NotesImpl(UUID notesId, String title, String notes, UserImpl userimpl) {
+	public NotesImpl(UUID notesId, String title, String notes, MemberImpl memberimpl) {
 		this.notesId = notesId;
 		this.title = title;
 		this.notes = notes;
-		this.userimpl = userimpl;
+		this.memberimpl = memberimpl;
 	}
 
-	public NotesImpl(UUID notesId, String title, String notes, UserImpl userimpl) {
+	public NotesImpl(UUID notesId, String title, String notes, MemberImpl memberimpl) {
 		this.notesId =  notesId.randomUUID();;
 		this.notesId = notesId;
 		this.title = title;
 		this.notes = notes;
-		this.userimpl = userimpl;
+		this.memberimpl = memberimpl;
 	}
 
 	public NotesImpl() { }
@@ -43,7 +43,7 @@ public class NotesImpl extends NotesComponent {
 		notesMap.put("notesId",getNotesId());
 		notesMap.put("title",getTitle());
 		notesMap.put("notes",getNotes());
-		notesMap.put("userimpl",getUserimpl());
+		notesMap.put("memberimpl",getMemberimpl());
 
         return notesMap;
     }

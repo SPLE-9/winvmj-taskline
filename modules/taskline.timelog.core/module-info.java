@@ -1,5 +1,5 @@
 module taskline.timelog.core {
-	requires taskline.user.core;
+	requires taskline.member.core;
 	requires taskline.task.core;
 	exports taskline.timelog;
     exports taskline.timelog.core;

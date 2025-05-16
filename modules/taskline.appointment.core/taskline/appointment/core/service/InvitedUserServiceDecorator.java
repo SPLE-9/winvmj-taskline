@@ -3,47 +3,47 @@ import java.util.*;
 
 import vmj.routing.route.VMJExchange;
 
-public abstract class InvitedUserServiceDecorator extends InvitedUserServiceComponent{
-	protected InvitedUserServiceComponent record;
+public abstract class InvitedMemberServiceDecorator extends InvitedMemberServiceComponent{
+	protected InvitedMemberServiceComponent record;
 
-    public InvitedUserServiceDecorator(InvitedUserServiceComponent record) {
+    public InvitedMemberServiceDecorator(InvitedMemberServiceComponent record) {
         this.record = record;
     }
 
-	public InvitedUserImpl createInvitedUser(Map<String, Object> requestBody){
-		return record.createInvitedUser(requestBody);
+	public InvitedMemberImpl createInvitedMember(Map<String, Object> requestBody){
+		return record.createInvitedMember(requestBody);
 	}
 
-    public InvitedUser createInvitedUser(Map<String, Object> requestBody, Map<String, Object> response){
-		return record.createInvitedUser(requestBody, response);
+    public InvitedMember createInvitedMember(Map<String, Object> requestBody, Map<String, Object> response){
+		return record.createInvitedMember(requestBody, response);
 	}
 
-	public HashMap<String, Object> getInvitedUser(Map<String, Object> requestBody){
-		return record.getInvitedUser(requestBody);
+	public HashMap<String, Object> getInvitedMember(Map<String, Object> requestBody){
+		return record.getInvitedMember(requestBody);
 	}
 
-	public List<HashMap<String,Object>> getAllInvitedUser(Map<String, Object> requestBody){
-		return record.getAllInvitedUser(requestBody);
+	public List<HashMap<String,Object>> getAllInvitedMember(Map<String, Object> requestBody){
+		return record.getAllInvitedMember(requestBody);
 	}
 
-    public List<HashMap<String,Object>> saveInvitedUser(VMJExchange vmjExchange){
-		return record.saveInvitedUser(vmjExchange);
+    public List<HashMap<String,Object>> saveInvitedMember(VMJExchange vmjExchange){
+		return record.saveInvitedMember(vmjExchange);
 	}
 
-    public HashMap<String, Object> updateInvitedUser(Map<String, Object> requestBody){
-		return record.updateInvitedUser(requestBody);
+    public HashMap<String, Object> updateInvitedMember(Map<String, Object> requestBody){
+		return record.updateInvitedMember(requestBody);
 	}
 
-    public List<HashMap<String,Object>> transformListToHashMap(List<InvitedUser> List){
+    public List<HashMap<String,Object>> transformListToHashMap(List<InvitedMember> List){
 		return record.transformListToHashMap(List);
 	}
 
-    public List<HashMap<String,Object>> deleteInvitedUser(Map<String, Object> requestBody){
-		return record.deleteInvitedUser(requestBody);
+    public List<HashMap<String,Object>> deleteInvitedMember(Map<String, Object> requestBody){
+		return record.deleteInvitedMember(requestBody);
 	}
 
-	public HashMap<String, Object> getInvitedUserById(int id){
-        return record.getInvitedUserById(id);
+	public HashMap<String, Object> getInvitedMemberById(int id){
+        return record.getInvitedMemberById(id);
     }
 
 }
