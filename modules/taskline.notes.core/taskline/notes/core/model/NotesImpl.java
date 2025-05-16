@@ -34,7 +34,12 @@ public class NotesImpl extends NotesComponent {
 		this.memberimpl = memberimpl;
 	}
 
-	public NotesImpl() { }
+	public NotesImpl() { 
+		this.notesId = UUID.randomUUID();
+		this.title = "";
+		this.notes = "";
+		this.memberImpl = null;
+	}
 
 
 	
