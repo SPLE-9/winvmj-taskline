@@ -17,8 +17,21 @@ import vmj.routing.route.exceptions.*;
 import taskline.notes.NotesFactory;
 import prices.auth.vmj.annotations.Restricted;
 //add other required packages
+import taskline.task.core.Task;
+import taskline.project.core.ProjectService;
+import taskline.project.core.ProjectServiceImpl;
+import taskline.member.core.MemberService;
+import taskline.member.core.MemberImpl;
+import taskline.project.core.ProjectImpl;
+import taskline.member.core.Member;
+import taskline.project.core.Project;
 
 public class NotesServiceImpl extends NotesServiceComponent{
+	
+	private NotesFactory notesFactory = new NotesFactory();
+//	private ProjectService projectService = new ProjectServiceImpl();
+	private MemberService memberServices = new MemberServiceImpl();
+	private final Gson gson = new Gson();
 
     public List<HashMap<String,Object>> saveNotes(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
@@ -28,22 +41,6 @@ public class NotesServiceImpl extends NotesServiceComponent{
 		notesRepository.saveObject(notes);
 		return getAllNotes(vmjExchange);
 	}
-
-    public Notes createNotes(Map<String, Object> requestBody){
-		String title = (String) requestBody.get("title");
-		String notes = (String) requestBody.get("notes");
-		
-		Notes Notes = NotesFactory.createNotes(
-			"taskline.notes.core.NotesImpl",
-		notesId
-		, title
-		, notes
-		, memberimpl
-		);
-		Repository.saveObject(notes);
-		return notes;
-	}
-   
 
     public HashMap<String, Object> updateNotes(Map<String, Object> requestBody){
 		String idStr = (String) requestBody.get("notesId");
@@ -61,47 +58,55 @@ public class NotesServiceImpl extends NotesServiceComponent{
 		
 	}
 
-    public HashMap<String, Object> getNotes(Map<String, Object> requestBody){
-		List<HashMap<String, Object>> notesList = getAllNotes("notes_impl");
-		for (HashMap<String, Object> notes : notesList){
-			int record_id = ((Double) notes.get("record_id")).intValue();
-			if (record_id == id){
-				return notes;
-			}
+	public HashMap<String, Object> getNotesById(String notesIdStr){
+		UUID notesId = UUID.fromString(notesIdStr);
+		Notes notes = notesRepository.getObject(notesId);
+		
+		if (notes == null) {
+			throw new NotFoundException("Notes with notesId " + notesId +" not found");
 		}
-		return null;
-	}
 
-	public HashMap<String, Object> getNotesById(int id){
-		String idStr = vmjExchange.getGETParam("notesId"); 
-		int id = Integer.parseInt(idStr);
-		Notes notes = notesRepository.getObject(id);
 		return notes.toHashMap();
 	}
 
-    public List<HashMap<String,Object>> getAllNotes(Map<String, Object> requestBody){
-		String table = (String) requestBody.get("table_name");
-		List<Notes> List = Repository.getAllObject(table);
-		return transformListToHashMap(List);
+    public List<HashMap<String,Object>> getAllNotes(){
+    	List<Notes> notesList = notesRepository.getAllObject("notesImpl");
+
+		return transformListToHashMap(notesList);
 	}
 
-    public List<HashMap<String,Object>> transformListToHashMap(List<Notes> List){
+    public List<HashMap<String,Object>> transformListToHashMap(List<Notes> notesList){
 		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
-        for(int i = 0; i < List.size(); i++) {
-            resultList.add(List.get(i).toHashMap());
+        for(Notes notes: notesList) {
+            resultList.add(notes.toHashMap());
         }
 
         return resultList;
 	}
+    
+    public HashMap<String,Object> deleteNotes(Map<String, Object> requestBody){
+		String notesIdStr = (String) requestBody.get("notesId");
+		UUID notesId = UUID.fromString(notesIdStr);
+		Notes notes = notesRepository.getObject(notesId);
+		
+		if (notes == null) {
+			throw new NotFoundException("Notes with notesId " + notesId +" not found");
+		}
 
-    public List<HashMap<String,Object>> deleteNotes(Map<String, Object> requestBody){
-		String idStr = ((String) requestBody.get("id"));
-		int id = Integer.parseInt(idStr);
-		Repository.deleteObject(id);
-		return getAllNotes(requestBody);
+		notesRepository.deleteObject(notesId);
+		
+		return notes.toHashMap();
+
 	}
 
-	public Notes getNotesByMemberId(UUID memberId) {
-		return Repository.getObject(memberId)
+//	public Notes getNotesByMemberId(UUID memberId) {
+//		return Repository.getObject(memberId);
+//	}
+	
+	public List<HashMap<String,Object>> getNotesByMemberId(String memberIdStr) {
+		UUID memberId = UUID.fromString(memberIdStr);
+		List<Notes> notesList = notesRepository.getListObject("notes_impl", "memberimpl_memberid", memberId);
+
+		return transformListToHashMap(notesList);
 	}
 }

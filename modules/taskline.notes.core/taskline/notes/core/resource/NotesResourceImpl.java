@@ -1,69 +1,77 @@
 package taskline.notes.core;
 import java.util.*;
 
+import taskline.notes.core.NotesService;
+
 //import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
 public class NotesResourceImpl extends NotesResourceComponent{
 	
-	private NotesServiceImpl notesServiceImpl = new NotesServiceImpl();
-
-	// @Restriced(permission = "")
-    @Route(url="call/notes")
-    public HashMap<String,Object> createnotes(VMJExchange vmjExchange){
+	private NotesService notesService = new NotesServiceImpl();
+    
+	@Route(url="call/notes/save")
+    public HashMap<String,Object> saveNotes(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			Notes result = notesServiceImpl.createNotes(requestBody);
-			return result.toHashMap();
+			return notesService.saveNotes(requestBody);
 		}
+
 		throw new NotFoundException("Route tidak ditemukan");
 	}
 
     // @Restriced(permission = "")
     @Route(url="call/notes/update")
     public HashMap<String, Object> updateNotes(VMJExchange vmjExchange){
-		Map<String, Object> requestBody = vmjExchange.getPayload(); 
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")){
-			return null;
+		if (vmjExchange.getHttpMethod().equals("PUT")) {
+		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
+			return notesService.updateNotes(requestBody);
 		}
-		return notesServiceImpl.updateNotes(requestBody);
+
+		throw new NotFoundException("Route tidak ditemukan");
 		
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/notes/detail")
-    public HashMap<String, Object> getNotes(VMJExchange vmjExchange){
-		Map<String, Object> requestBody = vmjExchange.getPayload(); 
-		return notesServiceImpl.getNotes(requestBody);
+    public HashMap<String, Object> getNotesById(VMJExchange vmjExchange){
+		if (vmjExchange.getHttpMethod().equals("GET")) {
+		    String notesIdStr = vmjExchange.getGETParam("notesId");
+			return notesService.getNotesById(notesIdStr);
+		}
+
+		throw new NotFoundException("Route tidak ditemukan");
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/notes/list")
     public List<HashMap<String,Object>> getAllNotes(VMJExchange vmjExchange){
-		Map<String, Object> requestBody = vmjExchange.getPayload(); 
-		return notesServiceImpl.getAllNotes(requestBody);
-	}
+		if (vmjExchange.getHttpMethod().equals("GET")) {
+			return notesService.getAllNotes();
+		}
 
+		throw new NotFoundException("Route tidak ditemukan");
+	}
     
 	// @Restriced(permission = "")
     @Route(url="call/notes/delete")
-    public List<HashMap<String,Object>> deleteNotes(VMJExchange vmjExchange){
-		Map<String, Object> requestBody = vmjExchange.getPayload(); 
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
+    public HashMap<String,Object> deleteNotes(VMJExchange vmjExchange){
+		if (vmjExchange.getHttpMethod().equals("DELETE")) {
+		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
+			return notesService.deleteNotes(requestBody);
 		}
-		
-		return notesServiceImpl.deleteNotes(requestBody);
+
+		throw new NotFoundException("Route tidak ditemukan");
 	}
     
-    @Route(url="call/notes/id}")
-    public HashMap<String, Object> getNotesByMemberId(VMJExchange vmjExchange) {
-    	 String idStr = vmjExchange.getGETParam("id");
-         if (idStr == null) {
-             throw new IllegalArgumentException("Invalid id");
-         }
-    	UUID memberId = UUID.fromString(idStr);
-    	return notesServiceImpl.getNotesByMemberId(memberId);
-    }
+	@Route(url="call/member-notes/list")
+	public List<HashMap<String,Object>> getNotesByMemberId(VMJExchange vmjExchange) {
+		if (vmjExchange.getHttpMethod().equals("GET")) {
+		    String memberIdStr = vmjExchange.getGETParam("memberId");
+			return taskService.getNotesByMemberId(memberIdStr);
+		}
+
+		throw new NotFoundException("Route tidak ditemukan");
+	}
 
 }
