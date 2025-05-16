@@ -6,23 +6,20 @@ import vmj.routing.route.VMJExchange;
 //add other required packages
 
 public abstract class TimelogServiceComponent implements TimelogService{
-	protected RepositoryUtil<Timelog> Repository;
+	protected RepositoryUtil<Timelog> timelogRepository;
 
     public TimelogServiceComponent(){
-        this.Repository = new RepositoryUtil<Timelog>(taskline.timelog.core.TimelogComponent.class);
+        this.timelogRepository = new RepositoryUtil<Timelog>(taskline.timelog.core.TimelogComponent.class);
     }	
 
-    public abstract List<HashMap<String,Object>> saveTimelog(VMJExchange vmjExchange);
-    public abstract Timelog createTimelog(Map<String, Object> requestBodye);
-	public abstract Timelog createTimelog(Map<String, Object> requestBody, Map<String, Object> response);    
+    public abstract HashMap<String,Object> saveTimelog(VMJExchange vmjExchange);  
 	public abstract HashMap<String, Object> updateTimelog(Map<String, Object> requestBody);
-    public abstract HashMap<String, Object> getTimelog(Map<String, Object> requestBody);
-    public abstract List<HashMap<String,Object>> getAllTimelog(Map<String, Object> requestBody);
-    public abstract List<HashMap<String,Object>> transformListToHashMap(List<Timelog> List);
+    public abstract HashMap<String, Object> getTimelog(String id);
+    public abstract List<HashMap<String,Object>> getAllTimelog();
+    public abstract List<HashMap<String,Object>> transformListToHashMap(List<Timelog> timelogList);
     public abstract List<HashMap<String,Object>> deleteTimelog(Map<String, Object> requestBody);
-	public abstract HashMap<String, Object> getTimelogById(int id);
 
-	public abstract void getTimelogDetail();
+	// public abstract void getTimelogDetail();
 
-	public abstract void validateTimelog();
+	public abstract void validateTimelog(Task task, LocalDateTime timelogDate, String timelogType);
 }

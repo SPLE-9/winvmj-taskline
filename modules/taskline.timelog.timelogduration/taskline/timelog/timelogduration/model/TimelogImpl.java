@@ -1,4 +1,4 @@
-package taskline..timelogduration;
+package taskline.timelog.timelogduration;
 
 import java.util.*;
 import vmj.routing.route.Route;
@@ -8,12 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Column;
 
-import taskline..core.TimelogDecorator;
-import taskline..core.Timelog;
-import taskline..core.TimelogComponent;
+import taskline.timelog.core.TimelogDecorator;
+import taskline.timelog.core.Timelog;
+import taskline.timelog.core.TimelogComponent;
 
-@Entity(name="_timelogduration")
-@Table(name="_timelogduration")
+@Entity(name="timelog_timelogduration")
+@Table(name="timelog_timelogduration")
 public class TimelogImpl extends TimelogDecorator {
 
 	public EFloat timelogDuration;
