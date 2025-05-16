@@ -15,7 +15,6 @@ import java.nio.charset.StandardCharsets;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
-import taskline.task.CommentFactory;
 //add other required packages
 import taskline.task.core.TaskService;
 import taskline.task.core.TaskServiceImpl;
@@ -48,16 +47,15 @@ public class CommentServiceImpl extends CommentServiceComponent {
             throw new FieldValidationException("Field 'memberId' not found in the request body.");
         }
 
-		String memberId = (String) requestBody.get("membrId");
-		HashMap<String, Object> memberMap = taskService.getProject(memberId);
-		String memberjson = gson.toJson(memberMap);
+		String memberIdStr = (String) requestBody.get("memberId");
+		UUID memberId = UUID.fromString(memberIdStr);
+		Member member= memberService.getMemberById(memberId);
 
 		String taskId = (String) requestBody.get("taskId");
-		HashMap<String, Object> taskMap = taskService.getProject(taskId);
+		HashMap<String, Object> taskMap = taskService.getTaskById(taskId);
 		String taskjson = gson.toJson(taskMap);
 		
 		Task task = gson.fromJson(taskjson, TaskImpl.class);
-		Member member = gson.fromJson(memberjson, MemberImpl.class);
 		String content = (String) requestBody.get("content");
 
 
@@ -112,7 +110,7 @@ public class CommentServiceImpl extends CommentServiceComponent {
 			throw new NotFoundException("Comment with commentId " + commentId +" not found");
 		}
 
-		return task.toHashMap();
+		return comment.toHashMap();
 	}
 
     public List<HashMap<String,Object>> getAllComment(){

@@ -1,6 +1,5 @@
-package taskline.task;
+package taskline.task.taskwithcomment;
 
-import taskline.task.taskwithcomment.Comment;
 import java.lang.reflect.Constructor;
 import java.util.logging.Logger;
 

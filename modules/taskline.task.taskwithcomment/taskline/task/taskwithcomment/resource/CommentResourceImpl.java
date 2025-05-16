@@ -4,13 +4,12 @@ import java.util.*;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
-import taskline.task.CommentFactory;
 //import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
-public class CommentResourceImpl extends CommentResourceComponen {
+public class CommentResourceImpl extends CommentResourceComponent {
 	
-	private CommentService commentService = new commentServiceImpl();
+	private CommentService commentService = new CommentServiceImpl();
 
 	@Route(url="call/comment/save")
     public HashMap<String,Object> saveComment(VMJExchange vmjExchange){
@@ -68,10 +67,10 @@ public class CommentResourceImpl extends CommentResourceComponen {
 	}
 
 	@Route(url="call/task-comment/list")
-	public List<HashMap<String,Object>> getCommentByProjectId(VMJExchange vmjExchange) {
+	public List<HashMap<String,Object>> getCommentByTaskId(VMJExchange vmjExchange) {
 		if (vmjExchange.getHttpMethod().equals("GET")) {
 		    String projectIdStr = vmjExchange.getGETParam("taskId");
-			return commentService.getCommentByProjectId(projectIdStr);
+			return commentService.getCommentByTaskId(projectIdStr);
 		}
 
 		throw new NotFoundException("Route tidak ditemukan");

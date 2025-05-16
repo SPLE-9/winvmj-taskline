@@ -49,7 +49,7 @@ public abstract class CommentComponent implements Comment {
     }
 
 	public UUID getCommentId() {
-		return this.CommentId;
+		return this.commentId;
 	}
 
 	public void setCommentId(UUID commentId) {
@@ -78,10 +78,10 @@ public abstract class CommentComponent implements Comment {
 	public void setMemberimpl(MemberImpl memberimpl) {
 		this.memberimpl = memberimpl;
 	}
-	public Project getTaskimpl() {
+	public Task getTaskimpl() {
 		return this.taskimpl;
 	}
-	public void setTaskimpl(Taskimpl taskimpl) {
+	public void setTaskimpl(TaskImpl taskimpl) {
 		this.taskimpl = taskimpl;
 	}
 	

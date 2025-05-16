@@ -57,7 +57,7 @@ public class CommentImpl extends CommentComponent {
 	public HashMap<String, Object> toHashMap() {
 		HashMap<String, Object> Map = new HashMap<String, Object>();
 		Map.put("commentId", getCommentId());
-		Map.put("content", getcontent());
+		Map.put("content", getContent());
 		Map.put("createdAt", getCreatedAt());
 		Map.put("memberimpl", getMemberimpl());
 		Map.put("taskimpl", getTaskimpl());
