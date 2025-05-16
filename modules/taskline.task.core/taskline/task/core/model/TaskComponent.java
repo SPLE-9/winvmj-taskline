@@ -18,7 +18,6 @@ import taskline.member.core.Member;
 import taskline.project.core.Project;
 import taskline.member.core.MemberComponent;
 import taskline.project.core.ProjectComponent;
-import taskline.task.core.Status;
 
 @Entity(name="task_comp")
 @Table(name="task_comp")

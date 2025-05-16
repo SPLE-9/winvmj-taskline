@@ -7,7 +7,6 @@ import taskline.member.core.MemberImpl;
 import taskline.project.core.ProjectImpl;
 import taskline.member.core.Member;
 import taskline.project.core.Project;
-import taskline.task.core.Status;
 import java.util.*;
 
 public interface Task {

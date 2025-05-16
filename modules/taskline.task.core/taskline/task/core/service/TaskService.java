@@ -1,7 +1,6 @@
 package taskline.task.core;
 
 import java.util.*;
-import taskline.task.core.Task;
 import vmj.routing.route.VMJExchange;
 
 public interface TaskService {

@@ -16,7 +16,6 @@ import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import taskline.task.TaskFactory;
 //add other required packages
-import taskline.task.core.Task;
 import taskline.project.core.ProjectService;
 import taskline.project.core.ProjectServiceImpl;
 import taskline.member.core.MemberImpl;
@@ -32,9 +31,14 @@ public class TaskServiceImpl extends TaskServiceComponent {
 
 
     public HashMap<String,Object> saveTask(Map<String, Object> requestBody){
-		if (!requestBody.containsKey("title") || !requestBody.containsKey("projectId")) {
+		if (!requestBody.containsKey("title")) {
             throw new FieldValidationException("Field 'title' not found in the request body.");
         }
+
+		if (!requestBody.containsKey("projectId")) {
+            throw new FieldValidationException("Field 'projectId' not found in the request body.");
+        }
+
 
 		String projectId = (String) requestBody.get("projectId");
 		HashMap<String, Object> projectMap = projectService.getProject(projectId);

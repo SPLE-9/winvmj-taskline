@@ -3,7 +3,6 @@ import java.util.*;
 
 import vmj.hibernate.integrator.RepositoryUtil;
 import vmj.routing.route.VMJExchange;
-import taskline.task.core.Task;
 //add other required packages
 
 public abstract class TaskServiceComponent implements TaskService {
