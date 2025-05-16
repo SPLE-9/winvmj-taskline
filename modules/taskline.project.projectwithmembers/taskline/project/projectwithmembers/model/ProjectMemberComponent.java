@@ -65,8 +65,10 @@ public abstract class ProjectMemberComponent implements ProjectMember{
     public String toString() {
         return "{" +
             " projectMemberId='" + getProjectMemberId() + "'" +
-            " project='" + getProject() + "'" +
-            " member='" + getMember() + "'" +
+            " projectId='" + getProject().getProjectId() + "'" +
+            " memberId='" + getMember().getMemberId() + "'" +
+			" name='" + getMember().getName() + "'" +
+			" emeil='" + getMember().getEmail() + "'" +
             "}";
     }
 
@@ -75,6 +77,8 @@ public abstract class ProjectMemberComponent implements ProjectMember{
 		projectMemberMap.put("projectMemberId", getProjectMemberId());
 		projectMemberMap.put("projectId", getProject().getProjectId());
 		projectMemberMap.put("memberId", getMember().getMemberId());
+		projectMemberMap.put("name", getMember().getName());
+		projectMemberMap.put("email", getMember().getEmail());
 
         return projectMemberMap;
     }
