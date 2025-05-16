@@ -14,4 +14,8 @@ public abstract class MemberServiceDecorator extends MemberServiceComponent{
 		return record.getMemberByEmail(email);
 	}
 
+	public Member getMemberById(UUID memberId) {
+		return record.getMemberById(memberId);
+	}
+
 }

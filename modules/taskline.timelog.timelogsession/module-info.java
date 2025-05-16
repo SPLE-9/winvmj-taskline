@@ -1,6 +1,6 @@
-module taskline..timelogsession {
-	requires taskline..core;
-    exports taskline..timelogsession;
+module taskline.timelog.timelogsession {
+	requires taskline.timelog.core;
+    exports taskline.timelog.timelogsession;
 
 	requires vmj.routing.route;
 	requires vmj.hibernate.integrator;
@@ -10,5 +10,5 @@ module taskline..timelogsession {
 	requires java.naming;
 	requires java.net.http;
 
-	opens taskline..timelogsession to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
+	opens taskline.timelog.timelogsession to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
 }

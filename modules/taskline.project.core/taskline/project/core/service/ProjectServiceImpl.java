@@ -80,6 +80,15 @@ public class ProjectServiceImpl extends ProjectServiceComponent{
 		return project.toHashMap();
 	}
 
+	public Project getProjectById(UUID projectId) {
+		Project project = projectRepository.getObject(projectId);
+		if (project == null) {
+			throw new NotFoundException("Project with projectId " + projectId +" not found");
+		}
+
+		return project;
+	}
+
     public List<HashMap<String,Object>> getAllProject() {
 		List<Project> projectList = projectRepository.getAllObject("project_impl");
 		return transformListToHashMap(projectList);
@@ -94,8 +103,13 @@ public class ProjectServiceImpl extends ProjectServiceComponent{
 			throw new NotFoundException("Project with projectId " + projectId +" not found");
 		}
 
-		// TODO: Handle task deletion
 		projectRepository.deleteObject(projectId);
+
+		Project deletedProject = projectRepository.getObject(projectId);
+		if (deletedProject != null) {
+			throw new NotFoundException("Project with projectId " + projectId +" still has tasks, delete all tasks to delete this project.");
+		}
+
 		return getAllProject();
 	}
 

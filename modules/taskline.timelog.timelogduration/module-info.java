@@ -1,6 +1,6 @@
-module taskline..timelogduration {
-	requires taskline..core;
-    exports taskline..timelogduration;
+module taskline.timelog.timelogduration {
+	requires taskline.timelog.core;
+    exports taskline.timelog.timelogduration;
 
 	requires vmj.routing.route;
 	requires vmj.hibernate.integrator;
@@ -10,5 +10,5 @@ module taskline..timelogduration {
 	requires java.naming;
 	requires java.net.http;
 
-	opens taskline..timelogduration to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
+	opens taskline.timelog.timelogduration to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
 }

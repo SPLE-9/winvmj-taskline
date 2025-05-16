@@ -1,5 +1,6 @@
 module taskline.project.projectwithmembers {
 	requires taskline.project.core;
+	requires taskline.member.core;
     exports taskline.project.projectwithmembers;
 
 	requires vmj.routing.route;
