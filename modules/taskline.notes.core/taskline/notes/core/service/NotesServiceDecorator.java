@@ -9,24 +9,12 @@ public abstract class NotesServiceDecorator extends NotesServiceComponent{
         this.record = record;
     }
 
-	public NotesImpl createNotes(Map<String, Object> requestBody){
-		return record.createNotes(requestBody);
+	public List<HashMap<String,Object>> getAllNotes(){
+		return record.getAllNotes();
 	}
 
-    public Notes createNotes(Map<String, Object> requestBody, Map<String, Object> response){
-		return record.createNotes(requestBody, response);
-	}
-
-	public HashMap<String, Object> getNotes(Map<String, Object> requestBody){
-		return record.getNotes(requestBody);
-	}
-
-	public List<HashMap<String,Object>> getAllNotes(Map<String, Object> requestBody){
-		return record.getAllNotes(requestBody);
-	}
-
-    public List<HashMap<String,Object>> saveNotes(VMJExchange vmjExchange){
-		return record.saveNotes(vmjExchange);
+    public HashMap<String,Object> saveNotes(Map<String, Object> requestBody){
+		return record.saveNotes(requestBody);
 	}
 
     public HashMap<String, Object> updateNotes(Map<String, Object> requestBody){
@@ -41,11 +29,15 @@ public abstract class NotesServiceDecorator extends NotesServiceComponent{
 		return record.deleteNotes(requestBody);
 	}
 
-	public HashMap<String, Object> getNotesById(int id){
-        return record.getNotesById(id);
+	public HashMap<String, Object> getNotesById(String notesId){
+        return record.getNotesById(notesId);
+    }
+	
+	public List<HashMap<String, Object>> getNotesByMemberId(String projectId){
+        return record.getNotesByMemberId(projectId);
     }
 
-	public void getNotesByMemberId(UUID memberId) {
-		return record.getNotesByMemberId(memberId);
-	}
+//	public void getNotesByMemberId(UUID memberId) {
+//		return record.getNotesByMemberId(memberId);
+//	}
 }

@@ -18,6 +18,7 @@ public abstract class NotesDecorator extends NotesComponent{
 		super();
 		this.record = record;
 		this.notesId =  notesId.randomUUID();
+	}
 		
 	public NotesDecorator (NotesComponent record) {
 		this.notesId =  notesId.randomUUID();
@@ -36,7 +37,37 @@ public abstract class NotesDecorator extends NotesComponent{
 	}
 
 	public NotesDecorator() { }
+	
+	public UUID getNotesId() {
+		return this.record.getNotesId();
+	}
 
+	public void setNotesId(UUID notesId) {
+		this.record.setNotesId(notesId);
+	}
+
+	public String getTitle() {
+		return this.record.getTitle();
+	}
+	public void setTitle(String title) {
+		this.record.setTitle(title);
+	}
+
+	public String getNotes() {
+		return this.record.getNotes();
+	}
+
+	public void setNotes(String notes) {
+		this.record.setNotes(notes);
+	}
+
+	public Member getMemberimpl() {
+		return this.record.getMemberimpl();
+	}
+
+	public void setMemberimpl(MemberImpl memberimpl) {
+		this.record.setMemberimpl(memberimpl);
+	}
 
 
 	public HashMap<String, Object> toHashMap() {
