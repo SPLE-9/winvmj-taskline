@@ -1,4 +1,4 @@
-package taskline..projectwithmembers;
+package taskline.project.projectwithmembers;
 
 import java.lang.Math;
 import java.util.*;
@@ -14,23 +14,30 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import taskline.member.core.*;
+import taskline.project.core.*;
+
 
 @Entity(name="projectmember_impl")
 @Table(name="projectmember_impl")
 public class ProjectMemberImpl extends ProjectMemberComponent {
 
-	public ProjectMemberImpl(UUID projectMemberId, ProjectImpl projectimpl, MemberImpl memberimpl) {
+	public ProjectMemberImpl(UUID projectMemberId, Project project, Member member) {
 		this.projectMemberId = projectMemberId;
-		this.projectimpl = projectimpl;
-		this.memberimpl = memberimpl;
+		this.project = project;
+		this.member = member;
 	}
 
-	public void getProjectsByMember(UUID memberId) {
-		// TODO: implement this method
+	public ProjectMemberImpl(Project project, Member member) {
+		this.projectMemberId = UUID.randomUUID();
+		this.project = project;
+		this.member = member;
 	}
 
-	public void getProjectMembers(UUID projectId) {
-		// TODO: implement this method
+	public ProjectMemberImpl() {
+		this.projectMemberId = UUID.randomUUID();
+		this.project = null;
+		this.member = null;
 	}
 
 }

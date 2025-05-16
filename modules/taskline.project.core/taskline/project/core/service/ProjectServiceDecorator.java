@@ -22,6 +22,10 @@ public abstract class ProjectServiceDecorator extends ProjectServiceComponent{
 		return record.getProject(projectIdStr);
 	}
 
+	public Project getProjectById(UUID projectId) {
+		return record.getProjectById(projectId);
+	}
+
     public List<HashMap<String,Object>> getAllProject() {
 		return record.getAllProject();
 	}

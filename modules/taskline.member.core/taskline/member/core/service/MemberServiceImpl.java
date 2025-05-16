@@ -35,4 +35,13 @@ public class MemberServiceImpl extends MemberServiceComponent{
 		}
 	}
 
+	public Member getMemberById(UUID memberId) {
+		Member member = memberRepository.getObject(memberId);
+		if (member == null) {
+			throw new NotFoundException("Member with memberId " + memberId +" not found");
+		}
+
+		return member;
+	}
+
 }

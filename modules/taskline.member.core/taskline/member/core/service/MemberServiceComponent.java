@@ -13,5 +13,6 @@ public abstract class MemberServiceComponent implements MemberService{
     }	
 
     public abstract Member getMemberByEmail(String email);
+    public abstract Member getMemberById(UUID memberId);
 
 }
