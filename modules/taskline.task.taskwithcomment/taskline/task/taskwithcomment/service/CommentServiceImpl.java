@@ -66,6 +66,10 @@ public class CommentServiceImpl extends CommentServiceComponent {
 	}
 
     public HashMap<String, Object> updateComment(Map<String, Object> requestBody){
+		if (!requestBody.containsKey("content")) {
+            throw new FieldValidationException("Field 'content' not found in the request body.");
+        }
+		
 		if (!requestBody.containsKey("commentId")) {
     		throw new FieldValidationException("Field 'commentId' not found in the request body.");
     	}
