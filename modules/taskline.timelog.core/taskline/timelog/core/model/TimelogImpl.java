@@ -15,33 +15,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import taskline.task.core.*;
+import taskline.member.core.*;
 
 @Entity(name="timelog_impl")
 @Table(name="timelog_impl")
 public class TimelogImpl extends TimelogComponent {
 
-	public TimelogImpl(UUID timelogId, UUID taskId, UUID userId, LocalDateTime timelogDate, String timelogType, String timelogNotes, UserImpl userimpl, TaskImpl taskimpl) {
-		this.timelogId = timelogId;
-		this.taskId = taskId;
-		this.memberId = memberId;
-		this.timelogDate = timelogDate;
-		this.timelogType = timelogType;
-		this.timelogNotes = timelogNotes;
-		this.memberimpl = memberimpl;
-		this.taskimpl = taskimpl;
+	public TimelogImpl(
+			UUID timelogId, UUID taskId, UUID memberId, 
+			LocalDateTime timelogDate, 
+			String timelogType, String timelogNotes, 
+			Task taskimpl, Member memberimpl) {
+		super(timelogId, taskId, memberId, timelogDate, timelogType, timelogNotes, taskimpl, memberimpl);
+        this.taskimpl = taskimpl;
+        this.memberimpl = memberimpl;
 	}
-
-	public TimelogImpl(UUID timelogId, UUID taskId, UUID userId, LocalDateTime timelogDate, String timelogType, String timelogNotes, UserImpl userimpl, TaskImpl taskimpl) {
-		this.timelogId =  timelogId.randomUUID();;
-		this.taskId = taskId;
-		this.memberId = memberId;
-		this.timelogDate = timelogDate;
-		this.timelogType = timelogType;
-		this.timelogNotes = timelogNotes;
-		this.memberimpl = memberimpl;
-		this.taskimpl = taskimpl;
-	}
-
+	
 	public UUID getTimelogId() {
 		return this.timelogId;
 	}
@@ -49,6 +39,7 @@ public class TimelogImpl extends TimelogComponent {
 	public void setTimelogId(UUID timelogId) {
 		this.timelogId = timelogId;
 	}
+	
 	public UUID getTaskId() {
 		return this.taskId;
 	}
