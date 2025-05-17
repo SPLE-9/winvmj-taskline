@@ -84,15 +84,19 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 		
 	}
 
-    public HashMap<String, Object> getTimelog(String id){
-		UUID timelogId = UUID.fromString(id);
+    public List<HashMap<String,Object>> getMyTimelog(String memberEmail){
+    	Member member = memberService.getMemberByEmail(memberEmail);
+    	UUID memberId = member.getMemberId();
+		List<Timelog> allTimelogList = timelogRepository.getAllObject("timelog_impl");
 
-		Timelog timelog = timelogRepository.getObject(timelogId);
-		if (timelog == null) {
-			throw new NotFoundException("Timelog not found with id: " + timelogId);
+		List<Timelog> myTimelogList = new ArrayList<Timelog>();
+		for (Timelog timelog : allTimelogList) {
+			if (timelog.getMemberId().equals(memberId)) {
+				myTimelogList.add(timelog);
+			}
 		}
 
-		return timelog.toHashMap();
+		return transformListToHashMap(myTimelogList);
 	}
 
     public List<HashMap<String,Object>> getAllTimelog(){
@@ -120,11 +124,6 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 		timelogRepository.deleteObject(id);
 		return getAllTimelog();
 	}
-
-	// public void getTimelogDetail() {
-	// 	// TODO: implement this method
-
-	// }
 
 	public void validateTimelog(UUID taskId, LocalDateTime timelogDate, String timelogType) {
 		// TODO: implement this method
