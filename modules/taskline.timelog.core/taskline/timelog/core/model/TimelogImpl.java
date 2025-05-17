@@ -47,6 +47,47 @@ public class TimelogImpl extends TimelogComponent {
 	public void setTaskId(UUID taskId) {
 		this.taskId = taskId;
 	}
+	
+	public String getTimelogNotes() {
+		return this.timelogNotes;
+	}
+
+	public void setTimelogNotes(String timelogNotes) {
+		this.timelogNotes = timelogNotes;
+	}
+
+	public void setTimelogType(String timelogType) {
+		this.timelogType = timelogType;
+	}
+	
+	public String getTimelogType() {
+		return this.timelogType;
+	}
+	
+	public void setTimelogDate(LocalDateTime timelogDate) {
+		this.timelogDate = timelogDate;
+	}
+	
+	public LocalDateTime getTimelogDate() {
+		return this.timelogDate;
+	}
+	
+	public Task getTaskimpl() {
+		return this.taskimpl;
+	}
+	
+	public void setTaskimpl(Task taskimpl) {
+		this.taskimpl = taskimpl;
+	}
+	
+	public Member getMemberimpl() {
+		return this.memberimpl;
+	}
+	
+	public void setMemberimpl(Member memberimpl) {
+		this.memberimpl = memberimpl;
+	}
+	
 	public UUID getMemberId() {
 		return this.memberId;
 	}
@@ -59,9 +100,9 @@ public class TimelogImpl extends TimelogComponent {
 	// 	// TODO: implement this method
 	// }
 
-	public void validateTimelog(Task task, LocalDateTime timelogDate, String timelogType) {
+	public void validateTimelog(UUID taskId, LocalDateTime timelogDate, String timelogType) {
 		// TODO: implement this method
-		if (task == null || task.getTaskId() == null) {
+		if (taskId == null) {
 			throw new IllegalArgumentException("Invalid task");
 		}
 		if (timelogDate == null) {
