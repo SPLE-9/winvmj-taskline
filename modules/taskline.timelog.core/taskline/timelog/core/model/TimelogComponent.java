@@ -47,6 +47,10 @@ public abstract class TimelogComponent implements Timelog{
         this.memberimpl = memberimpl;
         this.taskimpl = taskimpl;
     }
+	
+	public TimelogComponent() {
+		
+	}
 
 	public UUID getTimelogId() {
 		return this.timelogId;
