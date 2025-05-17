@@ -7,7 +7,6 @@ import vmj.routing.route.exceptions.*;
 import taskline.timelog.TimelogFactory;
 import prices.auth.vmj.annotations.Restricted;
 //add other required packages
-import taskline.timelog.TimelogService;
 
 
 public class TimelogResourceImpl extends TimelogResourceComponent{
@@ -16,7 +15,7 @@ public class TimelogResourceImpl extends TimelogResourceComponent{
 
 	// @Restriced(permission = "")
     @Route(url="call/timelog/save")
-    public List<HashMap<String,Object>> saveTimelog(VMJExchange vmjExchange){
+    public HashMap<String,Object> saveTimelog(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload();
 			return timelogService.saveTimelog(requestBody);
@@ -31,7 +30,7 @@ public class TimelogResourceImpl extends TimelogResourceComponent{
     public HashMap<String, Object> updateTimelog(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("PUT")){
 			Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			return timelogService.updateTimelog(requestBody);;
+			return timelogService.updateTimelog(requestBody);
 		}
 
 		throw new NotFoundException("Route tidak ditemukan");
@@ -69,7 +68,7 @@ public class TimelogResourceImpl extends TimelogResourceComponent{
 			Map<String, Object> requestBody = vmjExchange.getPayload(); 
 			return timelogService.deleteTimelog(requestBody);
 		}
+		throw new NotFoundException("Route tidak ditemukan");
 		
-		return timelogServiceImpl.deleteTimelog(requestBody);
 	}
 }

@@ -8,6 +8,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.CascadeType;
 //add other required packages
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public abstract class TimelogDecorator extends TimelogComponent{
@@ -46,8 +47,8 @@ public abstract class TimelogDecorator extends TimelogComponent{
 	// 	return record.getTimelogDetail();
 	// }
 
-	public void validateTimelog(Task task, LocalDateTime timelogDate, String timelogType) {
-		return record.validateTimelog(task, timelogDate, timelogType);
+	public void validateTimelog(UUID taskId, LocalDateTime timelogDate, String timelogType) {
+		record.validateTimelog(taskId, timelogDate, timelogType);
 	}
 
 	public HashMap<String, Object> toHashMap() {

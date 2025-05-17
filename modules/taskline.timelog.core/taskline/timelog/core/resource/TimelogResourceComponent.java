@@ -14,7 +14,6 @@ public abstract class TimelogResourceComponent implements TimelogResource{
     }
  
     public abstract HashMap<String,Object> saveTimelog(VMJExchange vmjExchange);
-    public abstract Timelog createTimelog(VMJExchange vmjExchange);   
 	public abstract HashMap<String, Object> updateTimelog(VMJExchange vmjExchange);
     public abstract HashMap<String, Object> getTimelog(VMJExchange vmjExchange);
     public abstract List<HashMap<String,Object>> getAllTimelog(VMJExchange vmjExchange);

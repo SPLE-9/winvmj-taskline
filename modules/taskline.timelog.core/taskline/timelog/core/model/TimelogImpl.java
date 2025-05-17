@@ -15,33 +15,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import taskline.task.core.*;
+import taskline.member.core.*;
 
 @Entity(name="timelog_impl")
 @Table(name="timelog_impl")
 public class TimelogImpl extends TimelogComponent {
 
-	public TimelogImpl(UUID timelogId, UUID taskId, UUID userId, LocalDateTime timelogDate, String timelogType, String timelogNotes, UserImpl userimpl, TaskImpl taskimpl) {
-		this.timelogId = timelogId;
-		this.taskId = taskId;
-		this.memberId = memberId;
-		this.timelogDate = timelogDate;
-		this.timelogType = timelogType;
-		this.timelogNotes = timelogNotes;
-		this.memberimpl = memberimpl;
-		this.taskimpl = taskimpl;
+	public TimelogImpl(
+			UUID timelogId, UUID taskId, UUID memberId, 
+			LocalDateTime timelogDate, 
+			String timelogType, String timelogNotes, 
+			Task taskimpl, Member memberimpl) {
+		super(timelogId, taskId, memberId, timelogDate, timelogType, timelogNotes, taskimpl, memberimpl);
+        this.taskimpl = taskimpl;
+        this.memberimpl = memberimpl;
 	}
-
-	public TimelogImpl(UUID timelogId, UUID taskId, UUID userId, LocalDateTime timelogDate, String timelogType, String timelogNotes, UserImpl userimpl, TaskImpl taskimpl) {
-		this.timelogId =  timelogId.randomUUID();;
-		this.taskId = taskId;
-		this.memberId = memberId;
-		this.timelogDate = timelogDate;
-		this.timelogType = timelogType;
-		this.timelogNotes = timelogNotes;
-		this.memberimpl = memberimpl;
-		this.taskimpl = taskimpl;
-	}
-
+	
 	public UUID getTimelogId() {
 		return this.timelogId;
 	}
@@ -49,6 +39,7 @@ public class TimelogImpl extends TimelogComponent {
 	public void setTimelogId(UUID timelogId) {
 		this.timelogId = timelogId;
 	}
+	
 	public UUID getTaskId() {
 		return this.taskId;
 	}
@@ -56,6 +47,47 @@ public class TimelogImpl extends TimelogComponent {
 	public void setTaskId(UUID taskId) {
 		this.taskId = taskId;
 	}
+	
+	public String getTimelogNotes() {
+		return this.timelogNotes;
+	}
+
+	public void setTimelogNotes(String timelogNotes) {
+		this.timelogNotes = timelogNotes;
+	}
+
+	public void setTimelogType(String timelogType) {
+		this.timelogType = timelogType;
+	}
+	
+	public String getTimelogType() {
+		return this.timelogType;
+	}
+	
+	public void setTimelogDate(LocalDateTime timelogDate) {
+		this.timelogDate = timelogDate;
+	}
+	
+	public LocalDateTime getTimelogDate() {
+		return this.timelogDate;
+	}
+	
+	public Task getTaskimpl() {
+		return this.taskimpl;
+	}
+	
+	public void setTaskimpl(Task taskimpl) {
+		this.taskimpl = taskimpl;
+	}
+	
+	public Member getMemberimpl() {
+		return this.memberimpl;
+	}
+	
+	public void setMemberimpl(Member memberimpl) {
+		this.memberimpl = memberimpl;
+	}
+	
 	public UUID getMemberId() {
 		return this.memberId;
 	}
@@ -68,9 +100,9 @@ public class TimelogImpl extends TimelogComponent {
 	// 	// TODO: implement this method
 	// }
 
-	public void validateTimelog(Task task, LocalDateTime timelogDate, String timelogType) {
+	public void validateTimelog(UUID taskId, LocalDateTime timelogDate, String timelogType) {
 		// TODO: implement this method
-		if (task == null || task.getTaskId() == null) {
+		if (taskId == null) {
 			throw new IllegalArgumentException("Invalid task");
 		}
 		if (timelogDate == null) {
