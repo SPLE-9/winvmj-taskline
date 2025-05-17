@@ -64,12 +64,12 @@ public class TimelogImpl extends TimelogComponent {
 		return this.timelogType;
 	}
 	
-	public void setTimelogDate(LocalDateTime timelogDate) {
-		this.timelogDate = timelogDate;
+	public void setStartDate(LocalDateTime startDate) {
+		this.startDate = startDate;
 	}
 	
-	public LocalDateTime getTimelogDate() {
-		return this.timelogDate;
+	public LocalDateTime getStartDate() {
+		return this.startDate;
 	}
 	
 	public Task getTaskimpl() {
@@ -100,13 +100,13 @@ public class TimelogImpl extends TimelogComponent {
 	// 	// TODO: implement this method
 	// }
 
-	public void validateTimelog(UUID taskId, LocalDateTime timelogDate, String timelogType) {
+	public void validateTimelog(UUID taskId, LocalDateTime startDate, String timelogType) {
 		// TODO: implement this method
 		if (taskId == null) {
 			throw new IllegalArgumentException("Invalid task");
 		}
-		if (timelogDate == null) {
-			throw new IllegalArgumentException("Invalid timelog date");
+		if (startDate == null) {
+			throw new IllegalArgumentException("Invalid timelog start date");
 		}
 		if (timelogType == null || timelogType.isEmpty()) {
 			throw new IllegalArgumentException("Invalid timelog type");
@@ -119,7 +119,7 @@ public class TimelogImpl extends TimelogComponent {
 		timelogMap.put("timelogId",getTimelogId());
 		timelogMap.put("taskId",getTaskId());
 		timelogMap.put("memberId",getMemberId());
-		timelogMap.put("timelogDate",getTimelogDate());
+		timelogMap.put("startDate",getStartDate());
 		timelogMap.put("timelogType",getTimelogType());
 		timelogMap.put("timelogNotes",getTimelogNotes());
 		timelogMap.put("memberimpl",getMemberimpl());

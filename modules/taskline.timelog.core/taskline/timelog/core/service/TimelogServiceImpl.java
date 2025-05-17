@@ -19,12 +19,13 @@ import taskline.timelog.TimelogFactory;
 import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 import java.time.LocalDateTime;
-import java.util.UUID;
 import java.util.stream.Collectors;
+import taskline.member.core.*;
 
 public class TimelogServiceImpl extends TimelogServiceComponent{
 
 	private TimelogFactory timelogFactory = new TimelogFactory();
+	MemberService memberService = new MemberServiceImpl();
 	
 	public HashMap<String, Object> saveTimelog(Map<String, Object> requestBody) {
 		
@@ -68,8 +69,8 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 		if (requestBody.containsKey("taskId")) {
 			timelog.setTaskId((UUID) requestBody.get("taskId"));
 		}
-		if (requestBody.containsKey("timelogDate")) {
-			timelog.setTimelogDate((LocalDateTime) requestBody.get("timelogDate"));
+		if (requestBody.containsKey("startDate")) {
+			timelog.setStartDate((LocalDateTime) requestBody.get("startDate"));
 		}
 		if (requestBody.containsKey("timelogType")) {
 			timelog.setTimelogType((String) requestBody.get("timelogType"));
