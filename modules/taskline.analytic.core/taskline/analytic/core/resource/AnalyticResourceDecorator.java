@@ -11,24 +11,12 @@ public abstract class AnalyticResourceDecorator extends AnalyticResourceComponen
         this.record = record;
     }
 
-    public Analytic createAnalytic(VMJExchange vmjExchange){
-		return record.createAnalytic(vmjExchange);
+    public List<HashMap<String, Object>> getPlannedWork(VMJExchange vmjExchange){
+		return record.getPlannedWork(vmjExchange);
 	}
 
-    public HashMap<String, Object> updateAnalytic(VMJExchange vmjExchange){
-		return record.updateAnalytic(vmjExchange);
-	}
-
-    public HashMap<String, Object> getAnalytic(VMJExchange vmjExchange){
-		return record.getAnalytic(vmjExchange);
-	}
-
-    public List<HashMap<String,Object>> getAllAnalytic(VMJExchange vmjExchange){
-		return record.getAllAnalytic(vmjExchange);
-	}
-
-    public List<HashMap<String,Object>> deleteAnalytic(VMJExchange vmjExchange){
-		return record.deleteAnalytic(vmjExchange);
+	public List<HashMap<String, Object>> getActualWork(VMJExchange vmjExchange){
+		return record.getActualWork(vmjExchange);
 	}
 
 }

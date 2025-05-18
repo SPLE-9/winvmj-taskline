@@ -14,11 +14,12 @@ public abstract class AnalyticDecorator extends AnalyticComponent{
     @OneToOne(cascade=CascadeType.ALL)
 	protected AnalyticComponent record;
 
-	public AnalyticDecorator () {
+	public AnalyticDecorator() {
 		super();
 		this.record = record;
 		this.analyticId =  analyticId.randomUUID();
-		
+	}
+
 	public AnalyticDecorator (AnalyticComponent record) {
 		this.analyticId =  analyticId.randomUUID();
 		this.record = record;
@@ -35,24 +36,22 @@ public abstract class AnalyticDecorator extends AnalyticComponent{
 		this.objectName=objectName;
 	}
 
-	public AnalyticDecorator() { }
-
 	public UUID getAnalyticId() {
 		return record.getAnalyticId();
 	}
 	public void setAnalyticId(UUID analyticId) {
 		record.setAnalyticId(analyticId);
 	}
-	public EDate getStartDate() {
+	public Date getStartDate() {
 		return record.getStartDate();
 	}
-	public void setStartDate(EDate startDate) {
+	public void setStartDate(Date startDate) {
 		record.setStartDate(startDate);
 	}
-	public EDate getEndDate() {
+	public Date getEndDate() {
 		return record.getEndDate();
 	}
-	public void setEndDate(EDate endDate) {
+	public void setEndDate(Date endDate) {
 		record.setEndDate(endDate);
 	}
 	public int getTotalTasks() {
@@ -61,19 +60,18 @@ public abstract class AnalyticDecorator extends AnalyticComponent{
 	public void setTotalTasks(int totalTasks) {
 		record.setTotalTasks(totalTasks);
 	}
-	public EMap getPlannedWork() {
+	public HashMap<Date, Integer> getPlannedWork() {
 		return record.getPlannedWork();
 	}
-	public void setPlannedWork(EMap plannedWork) {
+	public void setPlannedWork(HashMap<Date, Integer> plannedWork) {
 		record.setPlannedWork(plannedWork);
 	}
-	public EMap getActualWork() {
+	public HashMap<Date, Integer> getActualWork() {
 		return record.getActualWork();
 	}
-	public void setActualWork(EMap actualWork) {
+	public void setActualWork(HashMap<Date, Integer> actualWork) {
 		record.setActualWork(actualWork);
 	}
-
 
 	public HashMap<String, Object> toHashMap() {
         return this.record.toHashMap();

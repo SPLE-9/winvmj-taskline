@@ -2,6 +2,10 @@ package taskline.notes.core;
 import java.util.*;
 
 import taskline.notes.core.NotesService;
+import vmj.routing.route.Route;
+import vmj.routing.route.VMJExchange;
+import vmj.routing.route.exceptions.*;
+import taskline.notes.NotesFactory;
 
 //import prices.auth.vmj.annotations.Restricted;
 //add other required packages
@@ -68,7 +72,7 @@ public class NotesResourceImpl extends NotesResourceComponent{
 	public List<HashMap<String,Object>> getNotesByMemberId(VMJExchange vmjExchange) {
 		if (vmjExchange.getHttpMethod().equals("GET")) {
 		    String memberIdStr = vmjExchange.getGETParam("memberId");
-			return taskService.getNotesByMemberId(memberIdStr);
+			return notesService.getNotesByMemberId(memberIdStr);
 		}
 
 		throw new NotFoundException("Route tidak ditemukan");

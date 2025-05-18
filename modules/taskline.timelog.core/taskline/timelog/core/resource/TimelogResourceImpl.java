@@ -7,7 +7,6 @@ import vmj.routing.route.exceptions.*;
 import taskline.timelog.TimelogFactory;
 import prices.auth.vmj.annotations.Restricted;
 //add other required packages
-import taskline.timelog.TimelogService;
 
 
 public class TimelogResourceImpl extends TimelogResourceComponent{
@@ -16,7 +15,7 @@ public class TimelogResourceImpl extends TimelogResourceComponent{
 
 	// @Restriced(permission = "")
     @Route(url="call/timelog/save")
-    public List<HashMap<String,Object>> saveTimelog(VMJExchange vmjExchange){
+    public HashMap<String,Object> saveTimelog(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload();
 			return timelogService.saveTimelog(requestBody);
@@ -31,7 +30,7 @@ public class TimelogResourceImpl extends TimelogResourceComponent{
     public HashMap<String, Object> updateTimelog(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("PUT")){
 			Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			return timelogService.updateTimelog(requestBody);;
+			return timelogService.updateTimelog(requestBody);
 		}
 
 		throw new NotFoundException("Route tidak ditemukan");
@@ -39,22 +38,18 @@ public class TimelogResourceImpl extends TimelogResourceComponent{
 	}
 
 	// @Restriced(permission = "")
-    @Route(url="call/timelog/detail")
-    public HashMap<String, Object> getTimelog(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("GET")) {
-		    String idStr = vmjExchange.getGETParam("id");
-			if (idStr == null) {
-				throw new IllegalArgumentException("Invalid id");
-			}
-			return timelogService.getTimelog(idStr);
+    @Route(url="call/timelog/list/me")
+    public List<HashMap<String,Object>> getMyTimelog(VMJExchange vmjExchange){		
+    	if (vmjExchange.getHttpMethod().equals("GET")) {
+		    String memberEmail = vmjExchange.getAuthPayload().getEmail(); 
+			return timelogService.getMyTimelog(memberEmail);
 		}
-
 		throw new NotFoundException("Route tidak ditemukan");
 
 	}
 
 	// @Restriced(permission = "")
-    @Route(url="call/timelog/list")
+    @Route(url="call/timelog/list/all")
     public List<HashMap<String,Object>> getAllTimelog(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("GET")) {
 		    return timelogService.getAllTimelog();
@@ -69,7 +64,7 @@ public class TimelogResourceImpl extends TimelogResourceComponent{
 			Map<String, Object> requestBody = vmjExchange.getPayload(); 
 			return timelogService.deleteTimelog(requestBody);
 		}
+		throw new NotFoundException("Route tidak ditemukan");
 		
-		return timelogServiceImpl.deleteTimelog(requestBody);
 	}
 }

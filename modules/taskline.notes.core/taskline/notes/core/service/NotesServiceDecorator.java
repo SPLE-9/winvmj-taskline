@@ -25,7 +25,7 @@ public abstract class NotesServiceDecorator extends NotesServiceComponent{
 		return record.transformListToHashMap(List);
 	}
 
-    public List<HashMap<String,Object>> deleteNotes(Map<String, Object> requestBody){
+    public HashMap<String,Object> deleteNotes(Map<String, Object> requestBody){
 		return record.deleteNotes(requestBody);
 	}
 

@@ -10,18 +10,17 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name="analytic_comp")
 @Table(name="analytic_comp")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class AnalyticComponent implements Analytic{
 	@Id
 	protected UUID analyticId; 
-	protected UUID analyticId;
-	protected EDate startDate;
-	protected EDate endDate;
+	protected Date startDate;
+	protected Date endDate;
 	protected int totalTasks;
-	protected EMap plannedWork;
-	protected EMap actualWork;
+	protected HashMap<Date, Integer> plannedWork;
+	protected HashMap<Date, Integer> actualWork;
 	protected String objectName = AnalyticComponent.class.getName();
 
 	public AnalyticComponent() {
@@ -29,7 +28,7 @@ public abstract class AnalyticComponent implements Analytic{
 	} 
 
 	public AnalyticComponent(
-        UUID analyticId, EDate startDate, EDate endDate, int totalTasks, EMap plannedWork, EMap actualWork
+        UUID analyticId, Date startDate, Date endDate, int totalTasks, HashMap<Date, Integer> plannedWork, HashMap<Date, Integer> actualWork
     ) {
         this.analyticId = analyticId;
         this.startDate = startDate;
@@ -46,18 +45,18 @@ public abstract class AnalyticComponent implements Analytic{
 	public void setAnalyticId(UUID analyticId) {
 		this.analyticId = analyticId;
 	}
-	public EDate getStartDate() {
+	public Date getStartDate() {
 		return this.startDate;
 	}
 
-	public void setStartDate(EDate startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public EDate getEndDate() {
+	public Date getEndDate() {
 		return this.endDate;
 	}
 
-	public void setEndDate(EDate endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 	public int getTotalTasks() {
@@ -67,22 +66,21 @@ public abstract class AnalyticComponent implements Analytic{
 	public void setTotalTasks(int totalTasks) {
 		this.totalTasks = totalTasks;
 	}
-	public EMap getPlannedWork() {
+	public HashMap<Date, Integer> getPlannedWork() {
 		return this.plannedWork;
 	}
 
-	public void setPlannedWork(EMap plannedWork) {
+	public void setPlannedWork(HashMap<Date, Integer> plannedWork) {
 		this.plannedWork = plannedWork;
 	}
-	public EMap getActualWork() {
+	public HashMap<Date, Integer> getActualWork() {
 		return this.actualWork;
 	}
 
-	public void setActualWork(EMap actualWork) {
+	public void setActualWork(HashMap<Date, Integer> actualWork) {
 		this.actualWork = actualWork;
 	}
  
-
 	@Override
     public String toString() {
         return "{" +

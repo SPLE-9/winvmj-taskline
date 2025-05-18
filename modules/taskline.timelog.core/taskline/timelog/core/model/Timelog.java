@@ -3,22 +3,26 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import java.util.*;
 
+import taskline.task.core.*;
+import taskline.member.core.*;
+import java.time.LocalDate;
+
 public interface Timelog {
 	public UUID getTimelogId();
 	public void setTimelogId(UUID timelogId);
 	public UUID getTaskId();
 	public void setTaskId(UUID taskId);
-	public UUID getUserId();
-	public void setUserId(UUID userId);
-	public LocalDateTime getTimelogDate();
-	public void setTimelogDate(LocalDateTime timelogDate);
+	public UUID getMemberId();
+	public void setMemberId(UUID memberId);
+	public LocalDate getTimelogDate();
+	public void setTimelogDate(LocalDate timelogDate);
 	public String getTimelogType();
 	public void setTimelogType(String timelogType);
 	public String getTimelogNotes();
 	public void setTimelogNotes(String timelogNotes);
-	public UserImpl getUserimpl();
-	public void setUserimpl(UserImpl userimpl);
-	public TaskImpl getTaskimpl();
-	public void setTaskimpl(TaskImpl taskimpl);
+	public Task getTaskimpl();
+	public void setTaskimpl(Task taskimpl);
+	public Member getMemberimpl();
+	public void setMemberimpl(Member memberimpl);
 	HashMap<String, Object> toHashMap();
 }

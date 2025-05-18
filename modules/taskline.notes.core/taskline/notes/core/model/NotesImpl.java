@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import taskline.member.core.MemberImpl;
+import taskline.member.core.Member;
+
 
 @Entity(name="notes_impl")
 @Table(name="notes_impl")
@@ -26,19 +29,19 @@ public class NotesImpl extends NotesComponent {
 		this.memberimpl = memberimpl;
 	}
 
-	public NotesImpl(UUID notesId, String title, String notes, MemberImpl memberimpl) {
-		this.notesId =  notesId.randomUUID();;
-		this.notesId = notesId;
-		this.title = title;
-		this.notes = notes;
-		this.memberimpl = memberimpl;
-	}
+//	public NotesImpl(UUID notesId, String title, String notes, MemberImpl memberimpl) {
+//		this.notesId =  notesId.randomUUID();;
+//		this.notesId = notesId;
+//		this.title = title;
+//		this.notes = notes;
+//		this.memberimpl = memberimpl;
+//	}
 
 	public NotesImpl() { 
 		this.notesId = UUID.randomUUID();
 		this.title = "";
 		this.notes = "";
-		this.memberImpl = null;
+		this.memberimpl = null;
 	}
 
 

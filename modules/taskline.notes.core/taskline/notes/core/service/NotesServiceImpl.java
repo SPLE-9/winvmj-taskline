@@ -15,44 +15,46 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import taskline.notes.NotesFactory;
-import prices.auth.vmj.annotations.Restricted;
 //add other required packages
-import taskline.task.core.Task;
-import taskline.project.core.ProjectService;
-import taskline.project.core.ProjectServiceImpl;
+import taskline.notes.core.Notes;
 import taskline.member.core.MemberService;
 import taskline.member.core.MemberImpl;
-import taskline.project.core.ProjectImpl;
 import taskline.member.core.Member;
-import taskline.project.core.Project;
+import taskline.member.core.MemberServiceImpl;
+
 
 public class NotesServiceImpl extends NotesServiceComponent{
 	
 	private NotesFactory notesFactory = new NotesFactory();
-//	private ProjectService projectService = new ProjectServiceImpl();
 	private MemberService memberServices = new MemberServiceImpl();
 	private final Gson gson = new Gson();
 
-    public List<HashMap<String,Object>> saveNotes(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
-		}
-		Notes notes = createNotes(vmjExchange);
-		notesRepository.saveObject(notes);
-		return getAllNotes(vmjExchange);
+    public HashMap<String,Object> saveNotes(Map<String, Object> requestBody){
+		String title = (String) requestBody.get("title");
+		String notes = (String) requestBody.get("notes");
+
+		Notes notesF = notesFactory.createNotes("taskline.notes.core.NotesImpl", title, notes);
+		notesRepository.saveObject(notesF);
+		
+		return notesF.toHashMap();
 	}
 
     public HashMap<String, Object> updateNotes(Map<String, Object> requestBody){
-		String idStr = (String) requestBody.get("notesId");
-		int id = Integer.parseInt(idStr);
-		Notes notes = Repository.getObject(id);
+    	String notesIdStr = (String) requestBody.get("notesId");
+		UUID notesId = UUID.fromString(notesIdStr);
+    	Notes notes = notesRepository.getObject(notesId);
+    	
+		if (requestBody.containsKey("title")) {
+        	String title =  (String) requestBody.get("title");
+            notes.setTitle(title);
+        }
+
+		if (requestBody.containsKey("notes")) {
+        	String description =  (String) requestBody.get("notes");
+            notes.setNotes(description);
+        }
 		
-		notes.setTitle((String) requestBody.get("title"));
-		notes.setNotes((String) requestBody.get("notes"));
-		
-		Repository.updateObject(notes);
-		
-		//to do: fix association attributes
+		notesRepository.updateObject(notes);
 		
 		return notes.toHashMap();
 		
