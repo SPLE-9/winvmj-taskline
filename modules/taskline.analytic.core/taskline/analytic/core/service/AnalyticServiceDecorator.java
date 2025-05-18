@@ -10,11 +10,11 @@ public abstract class AnalyticServiceDecorator extends AnalyticServiceComponent{
         this.record = record;
     }
 
-	public List<HashMap<String, Object>> getPlannedWork(Map<String, Object> requestBody){
+	public List<HashMap<String, Object>> getPlannedWork(HashMap<String, Object> requestBody){
 		return record.getPlannedWork(requestBody);
 	}
 
-	public List<HashMap<String, Object>> getActualWork(Map<String, Object> requestBody){
+	public List<HashMap<String, Object>> getActualWork(HashMap<String, Object> requestBody){
 		return record.getActualWork(requestBody);
 	}
 
