@@ -4,10 +4,10 @@ import java.util.*;
 
 import vmj.routing.route.VMJExchange;
 
-import taskline.analytic.core.AnalyticServiceDecorator;
-import taskline.analytic.core.AnalyticImpl;
-import taskline.analytic.core.AnalyticServiceComponent;
+import taskline.analytic.AnalyticFactory;
+import taskline.analytic.core.*;
 import taskline.project.core.*;
+import taskline.task.core.*;
 public class AnalyticServiceImpl extends AnalyticServiceDecorator {
     private AnalyticFactory analyticFactory = new AnalyticFactory();
     private ProjectService projectService = new ProjectServiceImpl();
@@ -17,13 +17,11 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
         super(record);
     }
 
-    public Analytic getAnalyticByProjectId(HashMap<String, Object> requestBody) {
-        String projectIdStr = (String) requestBody.get("projectId");
-		UUID projectId = UUID.fromString(projectIdStr);
+    public Analytic getAnalyticByProjectId(UUID projectId) {
 		Project project = projectService.getProjectById(projectId);
 		List<Analytic> analyticList = repository.getListObject("analytic_burndownbyproject", "project_projectid", project.getProjectId());
         Analytic analyticProject = analyticList.get(0);
-        Analytic analytic = repository.getObject(analyticProject.getId());
+        Analytic analytic = repository.getObject(analyticProject.getAnalyticId());
         return analytic;
     }
 
@@ -66,11 +64,14 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
     }
 
     public Analytic calculateBurndownData(Project project) {
-        List<Task> taskList = taskService.getTaskByProjectId(project.getProjectId());
+        List<Task> taskList = taskService.getTaskByProjectId(project.getProjectId().toString());
         if (taskList.isEmpty()) return null;
 
-        // Tentukan startDate = tanggal dibuatnya project (atau earliest task kalau mau fleksibel)
-        Date startDate = project.getCreatedAt();
+         // Tentukan startDate = earliest task start date
+         Date startDate = taskList.stream()
+         .map(Task::getCreatedAt)
+         .min(Date::compareTo)
+         .orElse(new Date());
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(startDate);
@@ -114,12 +115,12 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
         }
 
         // Build Analytic
-        Analytic analytic = getAnalyticByProject(project.getProjectId());
+        Analytic analytic = getAnalyticByProjectId(project.getProjectId().toString());
         if (analytic == null) {
             analytic = analyticFactory.createAnalytic(
                 "taskline.analytic.core.AnalyticImpl",
-                new Date(startDate),
-                new Date(calendar.getTime()),
+                startDate, 
+                calendar.getTime(),
                 totalTasks,
                 plannedWork,
                 actualWork
@@ -142,7 +143,7 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
             repository.updateObject(analytic);
         }
 
-        return repository.getObject(analytic.getId());
+        return repository.getObject(analytic.getAnalyticId());
     }
 
     

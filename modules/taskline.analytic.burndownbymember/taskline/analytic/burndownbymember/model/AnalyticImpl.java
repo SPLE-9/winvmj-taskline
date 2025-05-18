@@ -7,10 +7,9 @@ import vmj.routing.route.VMJExchange;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Column;
+import javax.persistence.OneToOne;
 
-import taskline.analytic.core.AnalyticDecorator;
-import taskline.analytic.core.Analytic;
-import taskline.analytic.core.AnalyticComponent;
+import taskline.analytic.core.*;
 
 import taskline.member.core.*;
 
@@ -48,7 +47,7 @@ public class AnalyticImpl extends AnalyticDecorator {
 	@Override
 	public String toString() {
 		return "{"
-			+ "id=" + getId()
+			+ "id=" + getAnalyticId()
 			+ ", record=" + getRecord()
 			+ ", member=" + getMember()
 			+ "}";

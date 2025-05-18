@@ -5,9 +5,7 @@ import java.util.logging.Logger;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 
-import taskline.analytic.core.AnalyticResourceDecorator;
-import taskline.analytic.core.AnalyticImpl;
-import taskline.analytic.core.AnalyticResourceComponent;
+import taskline.analytic.core.*;
 
 public class AnalyticResourceImpl extends AnalyticResourceDecorator {
 	private AnalyticService analyticService;

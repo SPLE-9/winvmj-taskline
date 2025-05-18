@@ -6,12 +6,14 @@ import vmj.routing.route.VMJExchange;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.OneToOne;
 import javax.persistence.Column;
 
 import taskline.analytic.core.AnalyticDecorator;
 import taskline.analytic.core.Analytic;
 import taskline.analytic.core.AnalyticComponent;
 
+import taskline.analytic.core.*;
 import taskline.project.core.*;
 
 @Entity(name="analytic_burndownbyproject")
@@ -48,7 +50,7 @@ public class AnalyticImpl extends AnalyticDecorator {
 	@Override
 	public String toString() {
 		return "{"
-			+ "id=" + getId()
+			+ "id=" + getAnalyticId()
 			+ ", record=" + getRecord()
 			+ ", project=" + getProject()
 			+ "}";

@@ -4,9 +4,8 @@ import java.util.*;
 
 import vmj.routing.route.VMJExchange;
 
-import taskline.analytic.core.AnalyticServiceDecorator;
-import taskline.analytic.core.AnalyticImpl;
-import taskline.analytic.core.AnalyticServiceComponent;
+import taskline.analytic.AnalyticFactory;
+import taskline.analytic.core.*;
 import taskline.task.core.*;
 import taskline.member.core.*;
 
@@ -23,7 +22,7 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
         Member member = memberService.getMemberByEmail(email);
 		List<Analytic> analyticList = repository.getListObject("analytic_burndownbymember", "member_memberid", member.getMemberId());
         Analytic analyticMember = analyticList.get(0);
-        Analytic analytic = repository.getObject(analyticMember.getId());
+        Analytic analytic = repository.getObject(analyticMember.getAnalyticId());
         return analytic;
     }
 
@@ -67,12 +66,12 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
         List<Task> taskList = taskService.getTaskByMemberId(member.getMemberId());
         if (taskList.isEmpty()) return null;
     
-        // Tentukan startDate = earliest project start date
+        // Tentukan startDate = earliest task start date
         Date startDate = taskList.stream()
-            .map(t -> ((Project) t.getProjectimpl()).getCreatedAt())
+            .map(Task::getCreatedAt)
             .min(Date::compareTo)
             .orElse(new Date());
-    
+
         // Rolling weekly window: cari minggu aktif sampai semua task selesai
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(startDate);
@@ -121,12 +120,11 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
         // Build Analytic
         Analytic analytic = getAnalyticByMember(member.getEmail());
         if (analytic == null) {
-            analytic = analyticFactory.createAnalytic("taskline.analytic.core.AnalyticImpl", (new Date(startDate)), (new Date(calendar.getTime())), totalTasks, plannedWork, actualWork);
+            analytic = analyticFactory.createAnalytic("taskline.analytic.core.AnalyticImpl", startDate, calendar.getTime(), totalTasks, plannedWork, actualWork);
             Analytic analyticMember = analyticFactory.createAnalytic("taskline.analytic.burndownbymember.AnalyticImpl", analytic, member);
             repository.saveObject(analytic);
             repository.saveObject(analyticMember);
         } else {
-            analytic.setPlannedWork(plannedWork);
             analytic.setPlannedWork(plannedWork);
             analytic.setActualWork(actualWork);
             analytic.setTotalTasks(totalTasks);
@@ -134,7 +132,7 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
             analytic.setEndDate(calendar.getTime());
             repository.updateObject(analytic);
         }
-        analytic = repository.getObject(analytic.getId());
+        analytic = repository.getObject(analytic.getAnalyticId());
         return analytic;
     }
     

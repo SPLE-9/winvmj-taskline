@@ -36,11 +36,18 @@ public abstract class AnalyticDecorator extends AnalyticComponent{
 		this.objectName=objectName;
 	}
 
+	public AnalyticComponent getRecord() {
+		return this.record;
+	}
+
+	public void setRecord(AnalyticComponent record) {
+		this.record = record;
+	}
 	public UUID getAnalyticId() {
-		return record.getAnalyticId();
+		return this.analyticId;
 	}
 	public void setAnalyticId(UUID analyticId) {
-		record.setAnalyticId(analyticId);
+		this.analyticId = analyticId;
 	}
 	public Date getStartDate() {
 		return record.getStartDate();
