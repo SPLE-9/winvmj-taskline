@@ -2,6 +2,8 @@ package taskline.notes.core;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import java.util.*;
+import taskline.member.core.MemberImpl;
+import taskline.member.core.Member;
 
 public interface Notes {
 	public UUID getNotesId();
@@ -10,7 +12,7 @@ public interface Notes {
 	public void setTitle(String title);
 	public String getNotes();
 	public void setNotes(String notes);
-	public MemberImpl getMemberimpl();
+	public Member getMemberimpl();
 	public void setMemberimpl(MemberImpl memberimpl);
 	HashMap<String, Object> toHashMap();
 }

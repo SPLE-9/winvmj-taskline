@@ -8,7 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.CascadeType;
 import javax.persistence.Table;
+
+import taskline.member.core.MemberImpl;
+import taskline.member.core.Member;
+import taskline.member.core.MemberComponent;
 
 @Entity
 @Table(name="notes_comp")
@@ -16,7 +22,6 @@ import javax.persistence.Table;
 public abstract class NotesComponent implements Notes{
 	@Id
 	public UUID notesId; 
-	public UUID notesId;
 	public String title;
 	public String notes;
 	@ManyToOne(targetEntity=taskline.member.core.MemberComponent.class)
@@ -36,17 +41,35 @@ public abstract class NotesComponent implements Notes{
         this.memberimpl = memberimpl;
     }
 
-	public abstract UUID getNotesId();
-	public abstract void setNotesId(UUID notesId);
+	public UUID getNotesId() {
+		return this.notesId;
+	}
+	public void setNotesId(UUID notesId) {
+		this.notesId = notesId;
+	}
 	
-	public abstract String getTitle();
-	public abstract void setTitle(String title);
+	public String getTitle() {
+		return this.title;
+	}
 	
-	public abstract String getNotes();
-	public abstract void setNotes(String notes);
+	public void setTitle(String title){
+		this.title = title;
+	}
 	
-	public abstract MemberImpl getMemberimpl();
-	public abstract void setMemberimpl(MemberImpl memberimpl);
+	public String getNotes() {
+		return this.notes;
+	}
+	
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+	
+	public Member getMemberimpl() {
+		return this.memberimpl;
+	}
+	public void setMemberimpl(MemberImpl memberimpl) {
+		this.memberimpl = memberimpl;
+	}
 	
  
 

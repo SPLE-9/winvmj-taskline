@@ -7,6 +7,8 @@ import vmj.routing.route.VMJExchange;
 import javax.persistence.OneToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.CascadeType;
+import taskline.member.core.MemberImpl;
+import taskline.member.core.Member;
 //add other required packages
 
 @MappedSuperclass
@@ -35,8 +37,6 @@ public abstract class NotesDecorator extends NotesComponent{
 		this.record = record;	
 		this.objectName=objectName;
 	}
-
-	public NotesDecorator() { }
 	
 	public UUID getNotesId() {
 		return this.record.getNotesId();

@@ -16,7 +16,6 @@ public abstract class NotesResourceComponent implements NotesResource{
  
 	public abstract HashMap<String,Object> saveNotes(VMJExchange vmjExchange);
 	public abstract HashMap<String, Object> updateNotes(VMJExchange vmjExchange);
-    public abstract HashMap<String, Object> getNotes(VMJExchange vmjExchange);
     public abstract List<HashMap<String,Object>> getAllNotes(VMJExchange vmjExchange);
     public abstract HashMap<String,Object> deleteNotes(VMJExchange vmjExchange);
     public abstract List<HashMap<String,Object>> getNotesByMemberId(VMJExchange vmjExchange);
