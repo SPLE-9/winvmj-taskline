@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 @Table(name="analytic_impl")
 public class AnalyticImpl extends AnalyticComponent {
 
-	public AnalyticImpl(UUID analyticId, EDate startDate, EDate endDate, int totalTasks, EMap plannedWork, EMap actualWork) {
+	public AnalyticImpl(UUID analyticId, Date startDate, Date endDate, int totalTasks, HashMap<Date, Integer> plannedWork, HashMap<Date, Integer> actualWork) {
 		this.analyticId = analyticId;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -28,9 +28,8 @@ public class AnalyticImpl extends AnalyticComponent {
 		this.actualWork = actualWork;
 	}
 
-	public AnalyticImpl(UUID analyticId, EDate startDate, EDate endDate, int totalTasks, EMap plannedWork, EMap actualWork) {
-		this.analyticId =  analyticId.randomUUID();;
-		this.analyticId = analyticId;
+	public AnalyticImpl(Date startDate, Date endDate, int totalTasks, HashMap<Date, Integer> plannedWork, HashMap<Date, Integer> actualWork) {
+		this.analyticId =  analyticId.randomUUID();
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.totalTasks = totalTasks;
@@ -38,6 +37,14 @@ public class AnalyticImpl extends AnalyticComponent {
 		this.actualWork = actualWork;
 	}
 
+	public AnalyticImpl(UUID analyticId, Date startDate, Date endDate) {
+		this.analyticId = analyticId;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.totalTasks = 0;
+		this.plannedWork = null;
+		this.actualWork = null;
+	}
 	public AnalyticImpl() { }
 
 	public UUID getAnalyticId() {
@@ -47,18 +54,18 @@ public class AnalyticImpl extends AnalyticComponent {
 	public void setAnalyticId(UUID analyticId) {
 		this.analyticId = analyticId;
 	}
-	public EDate getStartDate() {
+	public Date getStartDate() {
 		return this.startDate;
 	}
 
-	public void setStartDate(EDate startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public EDate getEndDate() {
+	public Date getEndDate() {
 		return this.endDate;
 	}
 
-	public void setEndDate(EDate endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 	public int getTotalTasks() {
@@ -68,18 +75,18 @@ public class AnalyticImpl extends AnalyticComponent {
 	public void setTotalTasks(int totalTasks) {
 		this.totalTasks = totalTasks;
 	}
-	public EMap getPlannedWork() {
+	public HashMap<Date, Integer> getPlannedWork() {
 		return this.plannedWork;
 	}
 
-	public void setPlannedWork(EMap plannedWork) {
+	public void setPlannedWork(HashMap<Date, Integer> plannedWork) {
 		this.plannedWork = plannedWork;
 	}
-	public EMap getActualWork() {
+	public HashMap<Date, Integer> getActualWork() {
 		return this.actualWork;
 	}
 
-	public void setActualWork(EMap actualWork) {
+	public void setActualWork(HashMap<Date, Integer> actualWork) {
 		this.actualWork = actualWork;
 	}
 

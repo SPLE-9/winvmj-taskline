@@ -4,6 +4,8 @@
     "Task": ["taskline.task.core"],
     "Appointment": ["taskline.appointment.core"],
     "Analytic": ["taskline.analytic.core"],
+    "ProjectBurndown": ["taskline.analytic.burndownbyproject"],
+    "MemberBurndown": ["taskline.analytic.burndownbymember"],
     "TimeLog": ["taskline.timelog.core"],
     "Notes": ["taskline.notes.core"],
     "TaskWithComments": ["taskline.task.taskwithcomment"]

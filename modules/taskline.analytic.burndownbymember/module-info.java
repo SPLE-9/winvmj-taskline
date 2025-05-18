@@ -1,5 +1,8 @@
 module taskline.analytic.burndownbymember {
 	requires taskline.analytic.core;
+	requires taskline.member.core;
+	requires taskline.project.core;
+	requires taskline.task.core;
     exports taskline.analytic.burndownbymember;
 
 	requires vmj.routing.route;

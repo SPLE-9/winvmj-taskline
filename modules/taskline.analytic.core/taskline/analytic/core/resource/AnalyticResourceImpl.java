@@ -10,54 +10,25 @@ import taskline.analytic.AnalyticFactory;
 
 public class AnalyticResourceImpl extends AnalyticResourceComponent{
 	
-	private AnalyticServiceImpl analyticServiceImpl = new AnalyticServiceImpl();
+	private AnalyticService analyticService = new AnalyticServiceImpl();
 
-	// @Restriced(permission = "")
-    @Route(url="call/analytic")
-    public HashMap<String,Object> createanalytic(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("POST")) {
-		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			Analytic result = analyticServiceImpl.createAnalytic(requestBody);
-			return result.toHashMap();
-		}
-		throw new NotFoundException("Route tidak ditemukan");
-	}
-
-    // @Restriced(permission = "")
-    @Route(url="call/analytic/update")
-    public HashMap<String, Object> updateAnalytic(VMJExchange vmjExchange){
-		Map<String, Object> requestBody = vmjExchange.getPayload(); 
+    @Route(url="call/analytic/planned")
+    public List<HashMap<String, Object>> getPlannedWork(VMJExchange vmjExchange){
+		HashMap<String, Object> requestBody = (HashMap<String, Object>) vmjExchange.getPayload(); 
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")){
 			return null;
 		}
-		return analyticServiceImpl.updateAnalytic(requestBody);
+
+		return analyticService.getPlannedWork(requestBody);
 		
 	}
 
-	// @Restriced(permission = "")
-    @Route(url="call/analytic/detail")
-    public HashMap<String, Object> getAnalytic(VMJExchange vmjExchange){
-		Map<String, Object> requestBody = vmjExchange.getPayload(); 
-		return analyticServiceImpl.getAnalytic(requestBody);
-	}
-
-	// @Restriced(permission = "")
-    @Route(url="call/analytic/list")
-    public List<HashMap<String,Object>> getAllAnalytic(VMJExchange vmjExchange){
-		Map<String, Object> requestBody = vmjExchange.getPayload(); 
-		return analyticServiceImpl.getAllAnalytic(requestBody);
-	}
-
-    
-	// @Restriced(permission = "")
-    @Route(url="call/analytic/delete")
-    public List<HashMap<String,Object>> deleteAnalytic(VMJExchange vmjExchange){
-		Map<String, Object> requestBody = vmjExchange.getPayload(); 
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
+    @Route(url="call/analytic/actual")
+    public List<HashMap<String, Object>> getActualWork(VMJExchange vmjExchange){
+		HashMap<String, Object> requestBody = (HashMap<String, Object>) vmjExchange.getPayload(); 
+		if (vmjExchange.getHttpMethod().equals("OPTIONS")){
 			return null;
 		}
-		
-		return analyticServiceImpl.deleteAnalytic(requestBody);
+		return analyticService.getActualWork(requestBody);
 	}
-
 }
