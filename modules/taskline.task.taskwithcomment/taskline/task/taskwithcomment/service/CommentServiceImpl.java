@@ -34,7 +34,7 @@ public class CommentServiceImpl extends CommentServiceComponent {
 	private final Gson gson = new Gson();
 
 
-    public HashMap<String,Object> saveComment(Map<String, Object> requestBody){
+    public HashMap<String,Object> saveComment(Map<String, Object> requestBody, String email){
 		if (!requestBody.containsKey("content")) {
             throw new FieldValidationException("Field 'content' not found in the request body.");
         }
@@ -43,19 +43,12 @@ public class CommentServiceImpl extends CommentServiceComponent {
             throw new FieldValidationException("Field 'taskId' not found in the request body.");
         }
 
-		if (!requestBody.containsKey("memberId")) {
-            throw new FieldValidationException("Field 'memberId' not found in the request body.");
-        }
-
-		String memberIdStr = (String) requestBody.get("memberId");
-		UUID memberId = UUID.fromString(memberIdStr);
-		Member member= memberService.getMemberById(memberId);
-
 		String taskId = (String) requestBody.get("taskId");
 		HashMap<String, Object> taskMap = taskService.getTaskById(taskId);
 		String taskjson = gson.toJson(taskMap);
 		
 		Task task = gson.fromJson(taskjson, TaskImpl.class);
+		Member member = memberService.getMemberByEmail(email);
 		String content = (String) requestBody.get("content");
 
 
@@ -65,7 +58,7 @@ public class CommentServiceImpl extends CommentServiceComponent {
 		return comment.toHashMap();
 	}
 
-    public HashMap<String, Object> updateComment(Map<String, Object> requestBody){
+    public HashMap<String, Object> updateComment(Map<String, Object> requestBody, String email){
 		if (!requestBody.containsKey("content")) {
             throw new FieldValidationException("Field 'content' not found in the request body.");
         }
@@ -74,15 +67,8 @@ public class CommentServiceImpl extends CommentServiceComponent {
     		throw new FieldValidationException("Field 'commentId' not found in the request body.");
     	}
 
-		if (!requestBody.containsKey("memberId")) {
-    		throw new FieldValidationException("Field 'memberId' not found in the request body.");
-    	}
-
 		String commentIdStr = (String) requestBody.get("commentId");
 		UUID commentId = UUID.fromString(commentIdStr);
-
-		String memberIdStr = (String) requestBody.get("memberId");
-		UUID memberId = UUID.fromString(memberIdStr);
 		
 		Comment comment  = commentRepository.getObject(commentId);
 		if (comment == null) {
@@ -90,7 +76,8 @@ public class CommentServiceImpl extends CommentServiceComponent {
 	    }
 
 		Member commentBy = comment.getMemberimpl();
-		if (!memberId.equals(commentBy.getMemberId())) {
+		Member currentUser = memberService.getMemberByEmail(email);
+		if (!currentUser.getMemberId().equals(commentBy.getMemberId())) {
 	        throw new NotFoundException("Different Member Id, can't update comment");
 	    }
 
@@ -132,17 +119,11 @@ public class CommentServiceImpl extends CommentServiceComponent {
         return resultList;
 	}
 
-    public HashMap<String,Object> deleteComment(Map<String, Object> requestBody){
+    public HashMap<String,Object> deleteComment(Map<String, Object> requestBody, String email){
 		if (!requestBody.containsKey("commentId")) {
     		throw new FieldValidationException("Field 'commentId' not found in the request body.");
     	}
 
-		if (!requestBody.containsKey("memberId")) {
-    		throw new FieldValidationException("Field 'memberId' not found in the request body.");
-    	}
-		
-		String memberIdStr = (String) requestBody.get("memberId");
-		UUID memberId = UUID.fromString(memberIdStr);
 
 		String commentIdStr = (String) requestBody.get("commentId");
 		UUID commentId = UUID.fromString(commentIdStr);
@@ -153,8 +134,9 @@ public class CommentServiceImpl extends CommentServiceComponent {
 		}
 
 		Member commentBy = comment.getMemberimpl();
-		if (!memberId.equals(commentBy.getMemberId())) {
-	        throw new NotFoundException("Different Member Id, can't delete comment");
+		Member currentUser = memberService.getMemberByEmail(email);
+		if (!currentUser.getMemberId().equals(commentBy.getMemberId())) {
+	        throw new NotFoundException("Different Member Id, can't edit comment");
 	    }
 
 		commentRepository.deleteObject(commentId);

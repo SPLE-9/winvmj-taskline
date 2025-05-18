@@ -12,9 +12,9 @@ public abstract class CommentServiceComponent implements CommentService {
         this.commentRepository = new RepositoryUtil<Comment>(taskline.task.taskwithcomment.CommentComponent.class);
     }	
 
-    public abstract HashMap<String,Object> saveComment(Map<String, Object> requestBody); 
-    public abstract HashMap<String,Object> deleteComment(Map<String, Object> requestBody);
-	public abstract HashMap<String, Object> updateComment(Map<String, Object> requestBody);
+    public abstract HashMap<String,Object> saveComment(Map<String, Object> requestBody, String email); 
+    public abstract HashMap<String,Object> deleteComment(Map<String, Object> requestBody, String email);
+	public abstract HashMap<String, Object> updateComment(Map<String, Object> requestBody, String email);
     public abstract List<HashMap<String,Object>> getAllComment();
     public abstract List<HashMap<String,Object>> getCommentByTaskId(String taskId);
     public abstract HashMap<String, Object> getCommentById(String commentId);

@@ -14,8 +14,9 @@ public class CommentResourceImpl extends CommentResourceComponent {
 	@Route(url="call/comment/save")
     public HashMap<String,Object> saveComment(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
-		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			return commentService.saveComment(requestBody);
+		    Map<String, Object> requestBody = vmjExchange.getPayload();
+			String email = vmjExchange.getAuthPayload().getEmail(); 
+			return commentService.saveComment(requestBody, email);
 		}
 
 		throw new NotFoundException("Route tidak ditemukan");
@@ -26,7 +27,8 @@ public class CommentResourceImpl extends CommentResourceComponent {
     public HashMap<String, Object> updateComment(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("PUT")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			return commentService.updateComment(requestBody);
+			String email = vmjExchange.getAuthPayload().getEmail(); 
+			return commentService.updateComment(requestBody, email);
 		}
 
 		throw new NotFoundException("Route tidak ditemukan");
@@ -60,7 +62,8 @@ public class CommentResourceImpl extends CommentResourceComponent {
     public HashMap<String,Object> deleteComment(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("DELETE")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			return commentService.deleteComment(requestBody);
+			String email = vmjExchange.getAuthPayload().getEmail(); 
+			return commentService.deleteComment(requestBody, email);
 		}
 
 		throw new NotFoundException("Route tidak ditemukan");
