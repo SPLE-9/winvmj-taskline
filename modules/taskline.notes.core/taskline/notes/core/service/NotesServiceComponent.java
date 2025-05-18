@@ -1,20 +1,23 @@
 package taskline.notes.core;
 import java.util.*;
 
+import vmj.hibernate.integrator.RepositoryUtil;
+import vmj.routing.route.VMJExchange;
+
 //add other required packages
 
 public abstract class NotesServiceComponent implements NotesService{
-	protected RepositoryUtil<Notes> Repository;
+	protected RepositoryUtil<Notes> notesRepository;
 
     public NotesServiceComponent(){
-        this.Repository = new RepositoryUtil<Notes>(taskline.notes.core.NotesComponent.class);
+        this.notesRepository = new RepositoryUtil<Notes>(taskline.notes.core.NotesComponent.class);
     }	
 
-    public abstract List<HashMap<String,Object>> saveNotes(VMJExchange vmjExchange);
+    public abstract HashMap<String,Object> saveNotes(Map<String, Object> requestBody);
 	public abstract HashMap<String, Object> updateNotes(Map<String, Object> requestBody);
     public abstract List<HashMap<String,Object>> getAllNotes();
-    public abstract List<HashMap<String,Object>> deleteNotes(Map<String, Object> requestBody);
-	public abstract HashMap<String, Object> getNotesById(string notesId);
+    public abstract HashMap<String,Object> deleteNotes(Map<String, Object> requestBody);
+	public abstract HashMap<String, Object> getNotesById(String notesId);
 	public abstract List<HashMap<String,Object>> getNotesByMemberId(String projectId);
 	
 	public abstract List<HashMap<String,Object>> transformListToHashMap(List<Notes> List);
