@@ -8,6 +8,7 @@ import taskline.analytic.AnalyticFactory;
 import taskline.analytic.core.*;
 import taskline.project.core.*;
 import taskline.task.core.*;
+import taskline.task.core.TaskImpl;
 public class AnalyticServiceImpl extends AnalyticServiceDecorator {
     private AnalyticFactory analyticFactory = new AnalyticFactory();
     private ProjectService projectService = new ProjectServiceImpl();
@@ -64,7 +65,38 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
     }
 
     public Analytic calculateBurndownData(Project project) {
-        List<Task> taskList = taskService.getTaskByProjectId(project.getProjectId().toString());
+        List<HashMap<String, Object>> taskMapList = taskService.getTaskByProjectId(project.getProjectId().toString());
+        if (taskMapList.isEmpty()) return null;
+        
+        // Konversi HashMap ke objek Task
+        List<Task> taskList = new ArrayList<>();
+        for (HashMap<String, Object> taskMap : taskMapList) {
+            String taskIdStr = (String) taskMap.get("taskId");
+            HashMap<String, Object> taskObj = taskService.getTaskById(taskIdStr);
+            
+            // Ambil informasi yang diperlukan dari HashMap dan buat objek Task sederhana
+            String title = (String) taskObj.get("title");
+            String description = (String) taskObj.get("description");
+            Date createdAt = null;
+            Date completedAt = null;
+            
+            if (taskObj.get("createdAt") != null) {
+                createdAt = new Date((Long) taskObj.get("createdAt"));
+            }
+            
+            if (taskObj.get("completedAt") != null) {
+                completedAt = new Date((Long) taskObj.get("completedAt"));
+            }
+            
+            Task task = new TaskImpl();
+            task.setTaskId(UUID.fromString(taskIdStr));
+            task.setTitle(title);
+            task.setDescription(description);
+            task.setCreatedAt(createdAt);
+            task.setCompletedAt(completedAt);
+            taskList.add(task);
+        }
+        
         if (taskList.isEmpty()) return null;
 
          // Tentukan startDate = earliest task start date
@@ -115,7 +147,7 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
         }
 
         // Build Analytic
-        Analytic analytic = getAnalyticByProjectId(project.getProjectId().toString());
+        Analytic analytic = getAnalyticByProjectId(project.getProjectId());
         if (analytic == null) {
             analytic = analyticFactory.createAnalytic(
                 "taskline.analytic.core.AnalyticImpl",
