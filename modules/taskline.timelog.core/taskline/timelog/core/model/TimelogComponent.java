@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 
 import taskline.task.core.*;
 import taskline.member.core.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="timelog_comp")
@@ -23,7 +23,7 @@ public abstract class TimelogComponent implements Timelog{
 	protected UUID timelogId;
 	protected UUID taskId;
 	protected UUID memberId;
-	public LocalDateTime startDate;
+	public LocalDate timelogDate;
 	public String timelogType;
 	public String timelogNotes;
 	@ManyToOne(targetEntity=taskline.task.core.TaskComponent.class)
@@ -34,14 +34,14 @@ public abstract class TimelogComponent implements Timelog{
 
 	public TimelogComponent(
         UUID timelogId, UUID taskId, UUID memberId, 
-        LocalDateTime startDate, 
+        LocalDate timelogDate, 
         String timelogType, String timelogNotes, 
         Task taskimpl, Member memberimpl
     ) {
         this.timelogId = timelogId;
         this.taskId = taskId;
         this.memberId = memberId;
-        this.startDate = startDate;
+        this.timelogDate = timelogDate;
         this.timelogType = timelogType;
         this.timelogNotes = timelogNotes;
         this.memberimpl = memberimpl;
@@ -73,8 +73,8 @@ public abstract class TimelogComponent implements Timelog{
 	public void setMemberId(UUID memberId) {
 		this.memberId = memberId;
 	}
-	public abstract LocalDateTime getStartDate();
-	public abstract void setStartDate(LocalDateTime startDate);
+	public abstract LocalDate getTimelogDate();
+	public abstract void setTimelogDate(LocalDate timelogDate);
 	
 	public abstract String getTimelogType();
 	public abstract void setTimelogType(String timelogType);
@@ -91,7 +91,7 @@ public abstract class TimelogComponent implements Timelog{
  
 	// public abstract void getTimelogDetail();
 
-	public abstract void validateTimelog(UUID taskId, LocalDateTime startDate, String timelogType);
+	public abstract void validateTimelog(UUID taskId, LocalDate timelogDate, String timelogType);
 
 	@Override
     public String toString() {
@@ -99,7 +99,7 @@ public abstract class TimelogComponent implements Timelog{
             " timelogId='" + getTimelogId() + "'" +
             " taskId='" + getTaskId() + "'" +
             " memberId='" + getMemberId() + "'" +
-            " startDate='" + getStartDate() + "'" +
+            " timelogDate='" + getTimelogDate() + "'" +
             " timelogType='" + getTimelogType() + "'" +
             " timelogNotes='" + getTimelogNotes() + "'" +
             " memberimpl='" + getMemberimpl() + "'" +
@@ -111,7 +111,7 @@ public abstract class TimelogComponent implements Timelog{
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("timelogId", this.timelogId);
 		map.put("taskId", this.taskId);
-		map.put("startDate", this.startDate);
+		map.put("timelogDate", this.timelogDate);
 		map.put("timelogType", this.timelogType);
 		map.put("timelogNotes", this.timelogNotes);
 		map.put("taskimpl", this.taskimpl.toHashMap());

@@ -5,7 +5,7 @@ import java.util.*;
 
 import taskline.task.core.*;
 import taskline.member.core.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public interface Timelog {
 	public UUID getTimelogId();
@@ -14,8 +14,8 @@ public interface Timelog {
 	public void setTaskId(UUID taskId);
 	public UUID getMemberId();
 	public void setMemberId(UUID memberId);
-	public LocalDateTime getStartDate();
-	public void setStartDate(LocalDateTime timelogDate);
+	public LocalDate getTimelogDate();
+	public void setTimelogDate(LocalDate timelogDate);
 	public String getTimelogType();
 	public void setTimelogType(String timelogType);
 	public String getTimelogNotes();

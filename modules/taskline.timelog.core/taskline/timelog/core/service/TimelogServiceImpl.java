@@ -10,7 +10,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
 
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
@@ -18,7 +17,7 @@ import vmj.routing.route.exceptions.*;
 import taskline.timelog.TimelogFactory;
 import prices.auth.vmj.annotations.Restricted;
 //add other required packages
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.stream.Collectors;
 import taskline.member.core.*;
 
@@ -29,7 +28,8 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 	
 	public HashMap<String, Object> saveTimelog(Map<String, Object> requestBody) {
 		
-        LocalDateTime timelogDate = (LocalDateTime) requestBody.get("timelogDate");
+		String timelogDateString = (String) requestBody.get("timelogDate");
+		LocalDate timelogDate = LocalDate.parse(timelogDateString);
         String timelogType = (String) requestBody.get("timelogType");
         UUID timelogId = UUID.randomUUID();
         UUID taskId = UUID.fromString((String) requestBody.get("taskId"));
@@ -69,8 +69,8 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 		if (requestBody.containsKey("taskId")) {
 			timelog.setTaskId((UUID) requestBody.get("taskId"));
 		}
-		if (requestBody.containsKey("startDate")) {
-			timelog.setStartDate((LocalDateTime) requestBody.get("startDate"));
+		if (requestBody.containsKey("timelogDate")) {
+			timelog.setTimelogDate((LocalDate) requestBody.get("timelogDate"));
 		}
 		if (requestBody.containsKey("timelogType")) {
 			timelog.setTimelogType((String) requestBody.get("timelogType"));
@@ -126,7 +126,7 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 		return getAllTimelog();
 	}
 
-	public void validateTimelog(UUID taskId, LocalDateTime timelogDate, String timelogType) {
+	public void validateTimelog(UUID taskId, LocalDate timelogDate, String timelogType) {
 		// TODO: implement this method
 		if (taskId == null) {
 			throw new IllegalArgumentException("Invalid task");

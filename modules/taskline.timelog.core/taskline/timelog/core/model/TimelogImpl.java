@@ -1,7 +1,7 @@
 package taskline.timelog.core;
 
 import java.lang.Math;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.*;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
@@ -24,7 +24,7 @@ public class TimelogImpl extends TimelogComponent {
 
 	public TimelogImpl(
 			UUID timelogId, UUID taskId, UUID memberId, 
-			LocalDateTime timelogDate, 
+			LocalDate timelogDate, 
 			String timelogType, String timelogNotes, 
 			Task taskimpl, Member memberimpl) {
 		super(timelogId, taskId, memberId, timelogDate, timelogType, timelogNotes, taskimpl, memberimpl);
@@ -64,12 +64,12 @@ public class TimelogImpl extends TimelogComponent {
 		return this.timelogType;
 	}
 	
-	public void setStartDate(LocalDateTime startDate) {
-		this.startDate = startDate;
+	public void setTimelogDate(LocalDate timelogDate) {
+		this.timelogDate = timelogDate;
 	}
 	
-	public LocalDateTime getStartDate() {
-		return this.startDate;
+	public LocalDate getTimelogDate() {
+		return this.timelogDate;
 	}
 	
 	public Task getTaskimpl() {
@@ -96,11 +96,7 @@ public class TimelogImpl extends TimelogComponent {
 		this.memberId = memberId;
 	}
 
-	// public void getTimelogDetail() {
-	// 	// TODO: implement this method
-	// }
-
-	public void validateTimelog(UUID taskId, LocalDateTime startDate, String timelogType) {
+	public void validateTimelog(UUID taskId, LocalDate timelogDate, String timelogType) {
 		// TODO: implement this method
 		if (taskId == null) {
 			throw new IllegalArgumentException("Invalid task");
@@ -119,7 +115,7 @@ public class TimelogImpl extends TimelogComponent {
 		timelogMap.put("timelogId",getTimelogId());
 		timelogMap.put("taskId",getTaskId());
 		timelogMap.put("memberId",getMemberId());
-		timelogMap.put("startDate",getStartDate());
+		timelogMap.put("timelogDate",getTimelogDate());
 		timelogMap.put("timelogType",getTimelogType());
 		timelogMap.put("timelogNotes",getTimelogNotes());
 		timelogMap.put("memberimpl",getMemberimpl());

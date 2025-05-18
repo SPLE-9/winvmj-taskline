@@ -8,7 +8,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.CascadeType;
 //add other required packages
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @MappedSuperclass
 public abstract class TimelogDecorator extends TimelogComponent{
@@ -43,7 +43,7 @@ public abstract class TimelogDecorator extends TimelogComponent{
 		record.setMemberId(memberId);
 	}
 
-	public void validateTimelog(UUID taskId, LocalDateTime startDate, String timelogType) {
+	public void validateTimelog(UUID taskId, LocalDate timelogDate, String timelogType) {
 		record.validateTimelog(taskId, startDate, timelogType);
 	}
 
