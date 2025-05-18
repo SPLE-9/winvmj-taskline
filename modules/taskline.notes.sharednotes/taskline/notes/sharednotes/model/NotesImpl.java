@@ -33,7 +33,7 @@ public class NotesImpl extends NotesDecorator {
 
 
 	public void getSharedMembers() {
-		// TODO: implement this method
+		
 	}
 
 }
