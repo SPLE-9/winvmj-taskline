@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 @Table(name="analytic_impl")
 public class AnalyticImpl extends AnalyticComponent {
 
-	public AnalyticImpl(UUID analyticId, EDate startDate, EDate endDate, int totalTasks, HashMap<Date, Integer> plannedWork, HashMap<Date, Integer> actualWork) {
+	public AnalyticImpl(UUID analyticId, Date startDate, Date endDate, int totalTasks, HashMap<Date, Integer> plannedWork, HashMap<Date, Integer> actualWork) {
 		this.analyticId = analyticId;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -28,7 +28,7 @@ public class AnalyticImpl extends AnalyticComponent {
 		this.actualWork = actualWork;
 	}
 
-	public AnalyticImpl(EDate startDate, EDate endDate, int totalTasks, HashMap<Date, Integer> plannedWork, HashMap<Date, Integer> actualWork) {
+	public AnalyticImpl(Date startDate, Date endDate, int totalTasks, HashMap<Date, Integer> plannedWork, HashMap<Date, Integer> actualWork) {
 		this.analyticId =  analyticId.randomUUID();
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -37,7 +37,7 @@ public class AnalyticImpl extends AnalyticComponent {
 		this.actualWork = actualWork;
 	}
 
-	public AnalyticImpl(UUID analyticId, EDate startDate, EDate endDate) {
+	public AnalyticImpl(UUID analyticId, Date startDate, Date endDate) {
 		this.analyticId = analyticId;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -54,18 +54,18 @@ public class AnalyticImpl extends AnalyticComponent {
 	public void setAnalyticId(UUID analyticId) {
 		this.analyticId = analyticId;
 	}
-	public EDate getStartDate() {
+	public Date getStartDate() {
 		return this.startDate;
 	}
 
-	public void setStartDate(EDate startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public EDate getEndDate() {
+	public Date getEndDate() {
 		return this.endDate;
 	}
 
-	public void setEndDate(EDate endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 	public int getTotalTasks() {

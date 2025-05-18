@@ -12,11 +12,6 @@ public abstract class AnalyticServiceComponent implements AnalyticService{
         this.repository = new RepositoryUtil<Analytic>(taskline.analytic.core.AnalyticComponent.class);
     }	
 
-    public abstract List<HashMap<String,Object>> saveAnalytic(HashMap<String, Object> requestBody);
-	public abstract HashMap<String, Object> updateAnalytic(HashMap<String, Object> requestBody);
-    public abstract HashMap<String, Object> getAnalytic(UUID id);
-    public abstract List<HashMap<String,Object>> getAllAnalytic();
-    public abstract List<HashMap<String,Object>> transformAnalyticListToHashMap(List<Analytic> list);
-    public abstract List<HashMap<String,Object>> deleteAnalytic(UUID id);
-
+	public abstract List<HashMap<String, Object>> getPlannedWork(HashMap<String, Object> requestBody);
+	public abstract List<HashMap<String, Object>> getActualWork(HashMap<String, Object> requestBody);
 }

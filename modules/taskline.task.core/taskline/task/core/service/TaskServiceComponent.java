@@ -19,7 +19,7 @@ public abstract class TaskServiceComponent implements TaskService {
     public abstract List<HashMap<String,Object>> getAllTask();
     public abstract List<HashMap<String,Object>> getTaskByProjectId(String projectId);
     public abstract HashMap<String, Object> getTaskById(String taskId);
-
+    public abstract List<Task> getTaskByMemberId(UUID memberId);
     public abstract List<HashMap<String,Object>> transformListToHashMap(List<Task> taskList);
     
 }

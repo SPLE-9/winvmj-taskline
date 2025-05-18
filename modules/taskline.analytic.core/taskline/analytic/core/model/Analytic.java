@@ -6,10 +6,10 @@ import java.util.*;
 public interface Analytic {
 	public UUID getAnalyticId();
 	public void setAnalyticId(UUID analyticId);
-	public EDate getStartDate();
-	public void setStartDate(EDate startDate);
-	public EDate getEndDate();
-	public void setEndDate(EDate endDate);
+	public Date getStartDate();
+	public void setStartDate(Date startDate);
+	public Date getEndDate();
+	public void setEndDate(Date endDate);
 	public int getTotalTasks();
 	public void setTotalTasks(int totalTasks);
 	public HashMap<Date, Integer> getPlannedWork();

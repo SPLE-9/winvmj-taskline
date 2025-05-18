@@ -6,14 +6,11 @@ import vmj.routing.route.VMJExchange;
 //add other required packages
 
 public abstract class AnalyticResourceComponent implements AnalyticResource{
-	
-	public AnalyticResourceComponent() { }
+	protected RepositoryUtil repository;
+	public AnalyticResourceComponent() {
+        this.repository = new RepositoryUtil<Analytic>(taskline.analytic.core.AnalyticComponent.class);
+     }
  
-    public abstract List<HashMap<String,Object>> saveAnalytic(VMJExchange vmjExchange);
-    public abstract Analytic createAnalytic(VMJExchange vmjExchange);
-	public abstract HashMap<String, Object> updateAnalytic(VMJExchange vmjExchange);
-    public abstract HashMap<String, Object> getAnalytic(VMJExchange vmjExchange);
-    public abstract List<HashMap<String,Object>> getAllAnalytic(VMJExchange vmjExchange);
-    public abstract List<HashMap<String,Object>> deleteAnalytic(VMJExchange vmjExchange);
-
+    public abstract List<HashMap<String, Object>> getPlannedWork(VMJExchange vmjExchange);
+	public abstract List<HashMap<String, Object>> getActualWork(VMJExchange vmjExchange);
 }

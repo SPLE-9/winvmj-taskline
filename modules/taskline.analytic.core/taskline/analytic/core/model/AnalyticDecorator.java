@@ -42,16 +42,16 @@ public abstract class AnalyticDecorator extends AnalyticComponent{
 	public void setAnalyticId(UUID analyticId) {
 		record.setAnalyticId(analyticId);
 	}
-	public EDate getStartDate() {
+	public Date getStartDate() {
 		return record.getStartDate();
 	}
-	public void setStartDate(EDate startDate) {
+	public void setStartDate(Date startDate) {
 		record.setStartDate(startDate);
 	}
-	public EDate getEndDate() {
+	public Date getEndDate() {
 		return record.getEndDate();
 	}
-	public void setEndDate(EDate endDate) {
+	public void setEndDate(Date endDate) {
 		record.setEndDate(endDate);
 	}
 	public int getTotalTasks() {

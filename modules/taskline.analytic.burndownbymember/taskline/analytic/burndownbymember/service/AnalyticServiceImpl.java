@@ -7,33 +7,30 @@ import vmj.routing.route.VMJExchange;
 import taskline.analytic.core.AnalyticServiceDecorator;
 import taskline.analytic.core.AnalyticImpl;
 import taskline.analytic.core.AnalyticServiceComponent;
-import taskline.user.core.*;
+import taskline.task.core.*;
+import taskline.member.core.*;
 
 public class AnalyticServiceImpl extends AnalyticServiceDecorator {
     private AnalyticFactory analyticFactory = new AnalyticFactory();
-    private UserService userService = new UserServiceImpl();
+    private MemberService memberService = new MemberServiceImpl();
+    private TaskService taskService = new TaskServiceImpl();
 
     public AnalyticServiceImpl(AnalyticServiceComponent record) {
         super(record);
     }
 
-    public List<Analytic> saveAnalytic(HashMap<String, Object> requestBody) {
-        String email = (String) requestBody.get("email");
-        User user = userService.getUserByEmail(email);
-
-        calculateBurndownData(user);
-        return getAllAnalyticByUser(email);
-    }   
-
-    public List<Analytic> getAllAnalyticByUser(String email) {
-        User user = userService.getUserByEmail(email);
-		List<Analytic> analyticList = repository.getListObject("analytic_comp", "user_userid", user.getUserId());
-        return analyticList;
+    public Analytic getAnalyticByMember(String email) {
+        Member member = memberService.getMemberByEmail(email);
+		List<Analytic> analyticList = repository.getListObject("analytic_burndownbymember", "member_memberid", member.getMemberId());
+        Analytic analyticMember = analyticList.get(0);
+        Analytic analytic = repository.getObject(analyticMember.getId());
+        return analytic;
     }
 
-    public List<HashMap<String, Object>> getPlannedWork(String email) {
-        User user = userService.getUserByEmail(email);
-        Analytic analytic = calculateBurndownData(user);
+    public List<HashMap<String, Object>> getPlannedWork(HashMap<String, Object> requestBody) {
+        String email = (String) requestBody.get("email");
+        Member member = memberService.getMemberByEmail(email);
+        Analytic analytic = calculateBurndownData(member);
     
         HashMap<Date, Integer> plannedWork = analytic.getPlannedWork();
         List<HashMap<String, Object>> result = new ArrayList<>();
@@ -48,9 +45,10 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
         return result;
     }
 
-    public List<HashMap<String, Object>> getActualWork(String email) {
-        User user = userService.getUserByEmail(email);
-        Analytic analytic = calculateBurndownData(user);
+    public List<HashMap<String, Object>> getActualWork(HashMap<String, Object> requestBody) {
+        String email = (String) requestBody.get("email");
+        Member member = memberService.getMemberByEmail(email);
+        Analytic analytic = calculateBurndownData(member);
     
         HashMap<Date, Integer> actualWork = analytic.getActualWork();
         List<HashMap<String, Object>> result = new ArrayList<>();
@@ -65,13 +63,13 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
         return result;
     }
 
-	public Analytic calculateBurndownData(User user) {
-        List<Task> taskList = taskService.getTaskListByUser(user.getUserId());
+	public Analytic calculateBurndownData(Member member) {
+        List<Task> taskList = taskService.getTaskByMemberId(member.getMemberId());
         if (taskList.isEmpty()) return null;
     
         // Tentukan startDate = earliest project start date
         Date startDate = taskList.stream()
-            .map(t -> t.getProject().getCreatedAt())
+            .map(t -> ((Project) t.getProjectimpl()).getCreatedAt())
             .min(Date::compareTo)
             .orElse(new Date());
     
@@ -121,11 +119,23 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
         }
     
         // Build Analytic
-        Analytic analytic = analyticFactory.createAnalytic("taskline.analytic.core.AnalyticImpl", (new EDate(startDate)), (new EDate(calendar.getTime())), totalTasks, plannedWork, actualWork);
-        Analytic analyticMember = analyticFactory.createAnalytic("taskline.analytic.burndownbymember.AnalyticImpl", analytic, user);
-        repository.saveObject(analytic);
-        repository.saveObject(analyticMember);
-        return analyticMember;
+        Analytic analytic = getAnalyticByMember(member.getEmail());
+        if (analytic == null) {
+            analytic = analyticFactory.createAnalytic("taskline.analytic.core.AnalyticImpl", (new Date(startDate)), (new Date(calendar.getTime())), totalTasks, plannedWork, actualWork);
+            Analytic analyticMember = analyticFactory.createAnalytic("taskline.analytic.burndownbymember.AnalyticImpl", analytic, member);
+            repository.saveObject(analytic);
+            repository.saveObject(analyticMember);
+        } else {
+            analytic.setPlannedWork(plannedWork);
+            analytic.setPlannedWork(plannedWork);
+            analytic.setActualWork(actualWork);
+            analytic.setTotalTasks(totalTasks);
+            analytic.setStartDate(startDate);
+            analytic.setEndDate(calendar.getTime());
+            repository.updateObject(analytic);
+        }
+        analytic = repository.getObject(analytic.getId());
+        return analytic;
     }
     
 }

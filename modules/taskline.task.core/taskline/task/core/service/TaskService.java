@@ -11,6 +11,6 @@ public interface TaskService {
     List<HashMap<String,Object>> getAllTask();
     List<HashMap<String,Object>> getTaskByProjectId(String projectId);
     HashMap<String, Object> getTaskById(String taskId);
-
+    List<Task> getTaskByMemberId(UUID memberId);
     List<HashMap<String,Object>> transformListToHashMap(List<Task> taskList);
 }

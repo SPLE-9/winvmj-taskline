@@ -12,35 +12,37 @@ import taskline.analytic.core.AnalyticDecorator;
 import taskline.analytic.core.Analytic;
 import taskline.analytic.core.AnalyticComponent;
 
+import taskline.member.core.*;
+
 @Entity(name="analytic_burndownbymember")
 @Table(name="analytic_burndownbymember")
 public class AnalyticImpl extends AnalyticDecorator {
-	@OneToOne(targetEntity = taskline.user.core.UserComponent.class)
-	private User user;
+	@OneToOne(targetEntity = taskline.member.core.MemberComponent.class)
+	private Member member;
 
 	public AnalyticImpl(){
         super();
         this.objectName = AnalyticImpl.class.getName();
     }
     
-    public AnalyticImpl(User user) {
+    public AnalyticImpl(Member member) {
     	super();
-		this.user = user;
+		this.member = member;
 		this.objectName = AnalyticImpl.class.getName();
     }
 	
-	public AnalyticImpl(AnalyticComponent record, User user) {
+	public AnalyticImpl(AnalyticComponent record, Member member) {
 		super(record);
-		this.user = user;
+		this.member = member;
 		this.objectName = AnalyticImpl.class.getName();
 	}
 
-	public User getUser() {
-		return user;
+	public Member getMember() {
+		return member;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 	@Override
@@ -48,13 +50,13 @@ public class AnalyticImpl extends AnalyticDecorator {
 		return "{"
 			+ "id=" + getId()
 			+ ", record=" + getRecord()
-			+ ", user=" + getUser()
+			+ ", member=" + getMember()
 			+ "}";
 	}
 
 	public HashMap<String, Object> toHashMap() {
 		HashMap<String, Object> map = record.toHashMap();
-		map.put("user", this.getUser().toHashMap());
+		map.put("member", this.getMember());
 		return map;
 	}
 }

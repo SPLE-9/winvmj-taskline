@@ -16,8 +16,8 @@ import javax.persistence.Table;
 public abstract class AnalyticComponent implements Analytic{
 	@Id
 	protected UUID analyticId; 
-	protected EDate startDate;
-	protected EDate endDate;
+	protected Date startDate;
+	protected Date endDate;
 	protected int totalTasks;
 	protected HashMap<Date, Integer> plannedWork;
 	protected HashMap<Date, Integer> actualWork;
@@ -28,7 +28,7 @@ public abstract class AnalyticComponent implements Analytic{
 	} 
 
 	public AnalyticComponent(
-        UUID analyticId, EDate startDate, EDate endDate, int totalTasks, HashMap<Date, Integer> plannedWork, HashMap<Date, Integer> actualWork
+        UUID analyticId, Date startDate, Date endDate, int totalTasks, HashMap<Date, Integer> plannedWork, HashMap<Date, Integer> actualWork
     ) {
         this.analyticId = analyticId;
         this.startDate = startDate;
@@ -45,18 +45,18 @@ public abstract class AnalyticComponent implements Analytic{
 	public void setAnalyticId(UUID analyticId) {
 		this.analyticId = analyticId;
 	}
-	public EDate getStartDate() {
+	public Date getStartDate() {
 		return this.startDate;
 	}
 
-	public void setStartDate(EDate startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public EDate getEndDate() {
+	public Date getEndDate() {
 		return this.endDate;
 	}
 
-	public void setEndDate(EDate endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 	public int getTotalTasks() {
