@@ -19,12 +19,12 @@ import javax.persistence.OneToMany;
 @Table(name="_impl")
 public class CommentImpl extends CommentComponent {
 
-	public CommentImpl(UUID commentId, String content, EDate createdAt, TaskImpl taskimpl, UserImpl userimpl) {
+	public CommentImpl(UUID commentId, String content, EDate createdAt, TaskImpl taskimpl, MemberImpl memberimpl) {
 		this.commentId = commentId;
 		this.content = content;
 		this.createdAt = createdAt;
 		this.taskimpl = taskimpl;
-		this.userimpl = userimpl;
+		this.memberimpl = memberimpl;
 	}
 
 

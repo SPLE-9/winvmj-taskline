@@ -10,40 +10,28 @@ public abstract class ProjectServiceDecorator extends ProjectServiceComponent{
         this.record = record;
     }
 
-	public ProjectImpl createProject(Map<String, Object> requestBody){
-		return record.createProject(requestBody);
+	public HashMap<String,Object> saveProject(Map<String, Object> requestBody) {
+		return record.saveProject(requestBody);
 	}
 
-    public Project createProject(Map<String, Object> requestBody, Map<String, Object> response){
-		return record.createProject(requestBody, response);
-	}
-
-	public HashMap<String, Object> getProject(Map<String, Object> requestBody){
-		return record.getProject(requestBody);
-	}
-
-	public List<HashMap<String,Object>> getAllProject(Map<String, Object> requestBody){
-		return record.getAllProject(requestBody);
-	}
-
-    public List<HashMap<String,Object>> saveProject(VMJExchange vmjExchange){
-		return record.saveProject(vmjExchange);
-	}
-
-    public HashMap<String, Object> updateProject(Map<String, Object> requestBody){
+    public HashMap<String, Object> updateProject(Map<String, Object> requestBody) {
 		return record.updateProject(requestBody);
 	}
 
-    public List<HashMap<String,Object>> transformListToHashMap(List<Project> List){
-		return record.transformListToHashMap(List);
+	public HashMap<String, Object> getProject(String projectIdStr) {
+		return record.getProject(projectIdStr);
 	}
 
-    public List<HashMap<String,Object>> deleteProject(Map<String, Object> requestBody){
+    public List<HashMap<String,Object>> getAllProject() {
+		return record.getAllProject();
+	}
+
+    public List<HashMap<String,Object>> deleteProject(Map<String, Object> requestBody) {
 		return record.deleteProject(requestBody);
 	}
-
-	public HashMap<String, Object> getProjectById(int id){
-        return record.getProjectById(id);
-    }
+	
+	public List<HashMap<String, Object>> transformListToHashMap(List<Project> projectList) {
+		return record.transformListToHashMap(projectList);
+	}
 
 }

@@ -20,5 +20,5 @@ public abstract class NotesServiceComponent implements NotesService{
     public abstract List<HashMap<String,Object>> deleteNotes(Map<String, Object> requestBody);
 	public abstract HashMap<String, Object> getNotesById(int id);
 
-	public abstract void getNotesByUserId(UUID userId);
+	public abstract void getNotesByMemberId(UUID memberId);
 }

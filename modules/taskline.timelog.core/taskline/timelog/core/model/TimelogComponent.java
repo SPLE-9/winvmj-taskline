@@ -15,15 +15,15 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class TimelogComponent implements Timelog{
 	@Id
-	protected UUID timelogId; protected UUID taskId; protected UUID userId; 
+	protected UUID timelogId; protected UUID taskId; protected UUID memberId; 
 	protected UUID timelogId;
 	protected UUID taskId;
-	protected UUID userId;
+	protected UUID memberId;
 	public EDate timelogDate;
 	public EString timelogType;
 	public EString timelogNotes;
-	@ManyToOne(targetEntity=taskline.user.core.UserComponent.class)
-	public User userimpl;
+	@ManyToOne(targetEntity=taskline.member.core.MemberComponent.class)
+	public Member memberimpl;
 	@ManyToOne(targetEntity=taskline..core.Component.class)
 	public  taskimpl;
 	protected String objectName = TimelogComponent.class.getName();
@@ -33,15 +33,15 @@ public abstract class TimelogComponent implements Timelog{
 	} 
 
 	public TimelogComponent(
-        UUID timelogId, UUID taskId, UUID userId, EDate timelogDate, EString timelogType, EString timelogNotes, UserImpl userimpl, TaskImpl taskimpl
+        UUID timelogId, UUID taskId, UUID memberId, EDate timelogDate, EString timelogType, EString timelogNotes, MemberImpl memberimpl, TaskImpl taskimpl
     ) {
         this.timelogId = timelogId;
         this.taskId = taskId;
-        this.userId = userId;
+        this.memberId = memberId;
         this.timelogDate = timelogDate;
         this.timelogType = timelogType;
         this.timelogNotes = timelogNotes;
-        this.userimpl = userimpl;
+        this.memberimpl = memberimpl;
         this.taskimpl = taskimpl;
     }
 
@@ -59,12 +59,12 @@ public abstract class TimelogComponent implements Timelog{
 	public void setTaskId(UUID taskId) {
 		this.taskId = taskId;
 	}
-	public UUID getUserId() {
-		return this.userId;
+	public UUID getMemberId() {
+		return this.memberId;
 	}
 
-	public void setUserId(UUID userId) {
-		this.userId = userId;
+	public void setMemberId(UUID memberId) {
+		this.memberId = memberId;
 	}
 	public abstract EDate getTimelogDate();
 	public abstract void setTimelogDate(EDate timelogDate);
@@ -75,8 +75,8 @@ public abstract class TimelogComponent implements Timelog{
 	public abstract EString getTimelogNotes();
 	public abstract void setTimelogNotes(EString timelogNotes);
 	
-	public abstract UserImpl getUserimpl();
-	public abstract void setUserimpl(UserImpl userimpl);
+	public abstract MemberImpl getMemberimpl();
+	public abstract void setMemberimpl(MemberImpl memberimpl);
 	
 	public abstract TaskImpl getTaskimpl();
 	public abstract void setTaskimpl(TaskImpl taskimpl);
@@ -91,11 +91,11 @@ public abstract class TimelogComponent implements Timelog{
         return "{" +
             " timelogId='" + getTimelogId() + "'" +
             " taskId='" + getTaskId() + "'" +
-            " userId='" + getUserId() + "'" +
+            " memberId='" + getMemberId() + "'" +
             " timelogDate='" + getTimelogDate() + "'" +
             " timelogType='" + getTimelogType() + "'" +
             " timelogNotes='" + getTimelogNotes() + "'" +
-            " userimpl='" + getUserimpl() + "'" +
+            " memberimpl='" + getMemberimpl() + "'" +
             " taskimpl='" + getTaskimpl() + "'" +
             "}";
     }

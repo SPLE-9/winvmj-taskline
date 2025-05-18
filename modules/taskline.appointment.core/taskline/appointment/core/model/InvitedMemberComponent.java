@@ -11,30 +11,30 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="inviteduser_comp")
+@Table(name="invitedmember_comp")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class InvitedUserComponent implements InvitedUser{
+public abstract class InvitedMemberComponent implements InvitedMember{
 	@Id
 	
-	@ManyToOne(targetEntity=taskline.user.core.UserComponent.class)
-	public User userimpl;
+	@ManyToOne(targetEntity=taskline.member.core.MemberComponent.class)
+	public Member memberimpl;
 	@ManyToOne(targetEntity=taskline.appointment.core.AppointmentComponent.class)
 	public Appointment appointmentimpl;
-	protected String objectName = InvitedUserComponent.class.getName();
+	protected String objectName = InvitedMemberComponent.class.getName();
 
-	public InvitedUserComponent() {
+	public InvitedMemberComponent() {
 
 	} 
 
-	public InvitedUserComponent(
-        UserImpl userimpl, AppointmentImpl appointmentimpl
+	public InvitedMemberComponent(
+        MemberImpl memberimpl, AppointmentImpl appointmentimpl
     ) {
-        this.userimpl = userimpl;
+        this.memberimpl = memberimpl;
         this.appointmentimpl = appointmentimpl;
     }
 
-	public abstract UserImpl getUserimpl();
-	public abstract void setUserimpl(UserImpl userimpl);
+	public abstract MemberImpl getMemberimpl();
+	public abstract void setMemberimpl(MemberImpl memberimpl);
 	
 	public abstract AppointmentImpl getAppointmentimpl();
 	public abstract void setAppointmentimpl(AppointmentImpl appointmentimpl);
@@ -44,7 +44,7 @@ public abstract class InvitedUserComponent implements InvitedUser{
 	@Override
     public String toString() {
         return "{" +
-            " userimpl='" + getUserimpl() + "'" +
+            " memberimpl='" + getMemberimpl() + "'" +
             " appointmentimpl='" + getAppointmentimpl() + "'" +
             "}";
     }

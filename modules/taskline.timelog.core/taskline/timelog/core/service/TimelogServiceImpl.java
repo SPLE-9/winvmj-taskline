@@ -36,11 +36,11 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 			"taskline.timelog.core.TimelogImpl",
 		timelogId
 		, taskId
-		, userId
+		, memberId
 		, timelogDate
 		, timelogType
 		, timelogNotes
-		, userimpl
+		, memberimpl
 		, taskimpl
 		);
 		Repository.saveObject(timelog);
@@ -51,12 +51,12 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 		
 		//to do: fix association attributes
 		
-		Timelog timelog = TimelogFactory.createTimelog("taskline.timelog.core.TimelogImpl", timelogId, taskId, userId, timelogDate, timelogType, timelogNotes, userimpl, taskimpl);
+		Timelog timelog = TimelogFactory.createTimelog("taskline.timelog.core.TimelogImpl", timelogId, taskId, memberId, timelogDate, timelogType, timelogNotes, memberimpl, taskimpl);
 		return timelog;
 	}
 
     public HashMap<String, Object> updateTimelog(Map<String, Object> requestBody){
-		String idStr = (String) requestBody.get("timelogIdtaskIduserId");
+		String idStr = (String) requestBody.get("timelogIdtaskIdmemberId");
 		int id = Integer.parseInt(idStr);
 		Timelog timelog = Repository.getObject(id);
 		
@@ -81,7 +81,7 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 	}
 
 	public HashMap<String, Object> getTimelogById(int id){
-		String idStr = vmjExchange.getGETParam("timelogIdtaskIduserId"); 
+		String idStr = vmjExchange.getGETParam("timelogIdtaskIdmemberId"); 
 		int id = Integer.parseInt(idStr);
 		Timelog timelog = timelogRepository.getObject(id);
 		return timelog.toHashMap();

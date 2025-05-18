@@ -19,26 +19,26 @@ import javax.persistence.OneToMany;
 @Table(name="timelog_impl")
 public class TimelogImpl extends TimelogComponent {
 
-	public TimelogImpl(UUID timelogId, UUID taskId, UUID userId, EDate timelogDate, EString timelogType, EString timelogNotes, UserImpl userimpl, TaskImpl taskimpl) {
+	public TimelogImpl(UUID timelogId, UUID taskId, UUID memberId, EDate timelogDate, EString timelogType, EString timelogNotes, MemberImpl memberimpl, TaskImpl taskimpl) {
 		this.timelogId = timelogId;
 		this.taskId = taskId;
-		this.userId = userId;
+		this.memberId = memberId;
 		this.timelogDate = timelogDate;
 		this.timelogType = timelogType;
 		this.timelogNotes = timelogNotes;
-		this.userimpl = userimpl;
+		this.memberimpl = memberimpl;
 		this.taskimpl = taskimpl;
 	}
 
-	public TimelogImpl(UUID timelogId, UUID taskId, UUID userId, EDate timelogDate, EString timelogType, EString timelogNotes, UserImpl userimpl, TaskImpl taskimpl) {
-		this.timelogIdtaskIduserId =  timelogIdtaskIduserId.randomUUID();;
+	public TimelogImpl(UUID timelogId, UUID taskId, UUID memberId, EDate timelogDate, EString timelogType, EString timelogNotes, MemberImpl memberimpl, TaskImpl taskimpl) {
+		this.timelogIdtaskIdmemberId =  timelogIdtaskIdmemberId.randomUUID();;
 		this.timelogId = timelogId;
 		this.taskId = taskId;
-		this.userId = userId;
+		this.memberId = memberId;
 		this.timelogDate = timelogDate;
 		this.timelogType = timelogType;
 		this.timelogNotes = timelogNotes;
-		this.userimpl = userimpl;
+		this.memberimpl = memberimpl;
 		this.taskimpl = taskimpl;
 	}
 
@@ -58,12 +58,12 @@ public class TimelogImpl extends TimelogComponent {
 	public void setTaskId(UUID taskId) {
 		this.taskId = taskId;
 	}
-	public UUID getUserId() {
-		return this.userId;
+	public UUID getMemberId() {
+		return this.memberId;
 	}
 
-	public void setUserId(UUID userId) {
-		this.userId = userId;
+	public void setMemberId(UUID memberId) {
+		this.memberId = memberId;
 	}
 
 	public void getTimelogDetail() {
@@ -78,11 +78,11 @@ public class TimelogImpl extends TimelogComponent {
         HashMap<String, Object> timelogMap = new HashMap<String,Object>();
 		timelogMap.put("timelogId",getTimelogId());
 		timelogMap.put("taskId",getTaskId());
-		timelogMap.put("userId",getUserId());
+		timelogMap.put("memberId",getMemberId());
 		timelogMap.put("timelogDate",getTimelogDate());
 		timelogMap.put("timelogType",getTimelogType());
 		timelogMap.put("timelogNotes",getTimelogNotes());
-		timelogMap.put("userimpl",getUserimpl());
+		timelogMap.put("memberimpl",getMemberimpl());
 		timelogMap.put("taskimpl",getTaskimpl());
 
         return timelogMap;

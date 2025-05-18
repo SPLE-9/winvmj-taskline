@@ -26,26 +26,32 @@ public class ProjectImpl extends ProjectComponent {
 		this.completion = completion;
 	}
 
-	public ProjectImpl(UUID projectId, String title, String description, double completion) {
-		this.projectId =  projectId.randomUUID();;
+	public ProjectImpl(UUID projectId, String title, String description) {
 		this.projectId = projectId;
+		this.title = title;
+		this.description = description;
+		this.completion = 0;
+	}
+
+	public ProjectImpl(String title, String description, double completion) {
+		this.projectId = UUID.randomUUID();
 		this.title = title;
 		this.description = description;
 		this.completion = completion;
 	}
 
-	public ProjectImpl() { }
+	public ProjectImpl(String title, String description) {
+		this.projectId = UUID.randomUUID();
+		this.title = title;
+		this.description = description;
+		this.completion = 0;
+	}
 
-
-	
-	public HashMap<String, Object> toHashMap() {
-        HashMap<String, Object> projectMap = new HashMap<String,Object>();
-		projectMap.put("projectId",getProjectId());
-		projectMap.put("title",getTitle());
-		projectMap.put("description",getDescription());
-		projectMap.put("completion",getCompletion());
-
-        return projectMap;
-    }
+	public ProjectImpl() {
+		this.projectId = UUID.randomUUID();
+		this.title = "";
+		this.description = "";
+		this.completion = 0;
+	}
 
 }

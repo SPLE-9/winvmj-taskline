@@ -1,6 +1,6 @@
 module taskline.appointment.core {
-	requires taskline.user.core;
-	requires taskline.user.core;
+	requires taskline.member.core;
+	requires taskline.member.core;
 	requires taskline.appointment.core;
 	exports taskline.appointment;
     exports taskline.appointment.core;

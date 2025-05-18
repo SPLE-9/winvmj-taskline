@@ -10,7 +10,7 @@ public interface Notes {
 	public void setTitle(String title);
 	public String getNotes();
 	public void setNotes(String notes);
-	public UserImpl getUserimpl();
-	public void setUserimpl(UserImpl userimpl);
+	public MemberImpl getMemberimpl();
+	public void setMemberimpl(MemberImpl memberimpl);
 	HashMap<String, Object> toHashMap();
 }

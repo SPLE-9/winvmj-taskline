@@ -3,24 +3,23 @@ import java.util.*;
 
 import vmj.hibernate.integrator.RepositoryUtil;
 import vmj.routing.route.VMJExchange;
+import taskline.task.core.Task;
 //add other required packages
 
-public abstract class TaskServiceComponent implements Service{
-	protected RepositoryUtil<> Repository;
+public abstract class TaskServiceComponent implements TaskService {
+	protected RepositoryUtil<Task> taskRepository;
 
     public TaskServiceComponent(){
-        this.Repository = new RepositoryUtil<>(taskline.task.core.TaskComponent.class);
+        this.taskRepository = new RepositoryUtil<Task>(taskline.task.core.TaskComponent.class);
     }	
 
-    public abstract List<HashMap<String,Object>> save(VMJExchange vmjExchange);
-    public abstract  create(Map<String, Object> requestBodye);
-	public abstract  create(Map<String, Object> requestBody, Map<String, Object> response);    
-	public abstract HashMap<String, Object> update(Map<String, Object> requestBody);
-    public abstract HashMap<String, Object> get(Map<String, Object> requestBody);
-    public abstract List<HashMap<String,Object>> getAll(Map<String, Object> requestBody);
-    public abstract List<HashMap<String,Object>> transformListToHashMap(List<> List);
-    public abstract List<HashMap<String,Object>> delete(Map<String, Object> requestBody);
-	public abstract HashMap<String, Object> getById(int id);
+    public abstract HashMap<String,Object> saveTask(Map<String, Object> requestBody); 
+    public abstract HashMap<String,Object> deleteTask(Map<String, Object> requestBody);
+	public abstract HashMap<String, Object> updateTask(Map<String, Object> requestBody);
+    public abstract List<HashMap<String,Object>> getAllTask();
+    public abstract List<HashMap<String,Object>> getTaskByProjectId(String projectId);
+    public abstract HashMap<String, Object> getTaskById(String taskId);
 
-	public abstract void getTasksByProject();
+    public abstract List<HashMap<String,Object>> transformListToHashMap(List<Task> taskList);
+    
 }

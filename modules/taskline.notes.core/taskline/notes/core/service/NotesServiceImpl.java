@@ -38,7 +38,7 @@ public class NotesServiceImpl extends NotesServiceComponent{
 		notesId
 		, title
 		, notes
-		, userimpl
+		, memberimpl
 		);
 		Repository.saveObject(notes);
 		return notes;
@@ -101,7 +101,7 @@ public class NotesServiceImpl extends NotesServiceComponent{
 		return getAllNotes(requestBody);
 	}
 
-	public Notes getNotesByUserId(UUID userId) {
-		return Repository.getObject(userId)
+	public Notes getNotesByMemberId(UUID memberId) {
+		return Repository.getObject(memberId)
 	}
 }

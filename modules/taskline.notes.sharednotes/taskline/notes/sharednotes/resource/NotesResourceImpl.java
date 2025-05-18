@@ -27,7 +27,7 @@ public class NotesResourceImpl extends NotesResourceDecorator {
     public Notes create(VMJExchange vmjExchange){
 		
 		  = record.create(vmjExchange);
-		 deco = Factory.create("taskline.sharednotes.core.NotesImpl", , userimpl);
+		 deco = Factory.create("taskline.sharednotes.core.NotesImpl", , memberimpl);
 			return deco;
 	}
 
@@ -36,7 +36,7 @@ public class NotesResourceImpl extends NotesResourceDecorator {
 		int recordId = (((Decorator) saved.getRecord()).getId();
 		
 		  = record.create(vmjExchange);
-		 deco = Factory.create("taskline.sharednotes.core.NotesImpl", id, , userimpl);
+		 deco = Factory.create("taskline.sharednotes.core.NotesImpl", id, , memberimpl);
 			return deco;
 	}
 
@@ -95,7 +95,7 @@ public class NotesResourceImpl extends NotesResourceDecorator {
 		return getAll(vmjExchange);
 	}
 
-	public void getSharedUsers() {
+	public void getSharedMembers() {
 		// TODO: implement this method
 	}
 }

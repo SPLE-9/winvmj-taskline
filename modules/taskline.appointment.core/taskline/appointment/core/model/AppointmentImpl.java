@@ -19,19 +19,19 @@ import javax.persistence.OneToMany;
 @Table(name="appointment_impl")
 public class AppointmentImpl extends AppointmentComponent {
 
-	public AppointmentImpl(EDate startTime, EDate endTime, String description, UserImpl userimpl) {
+	public AppointmentImpl(EDate startTime, EDate endTime, String description, MemberImpl memberimpl) {
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.description = description;
-		this.userimpl = userimpl;
+		this.memberimpl = memberimpl;
 	}
 
-	public AppointmentImpl(EDate startTime, EDate endTime, String description, UserImpl userimpl) {
+	public AppointmentImpl(EDate startTime, EDate endTime, String description, MemberImpl memberimpl) {
 		this. =  .randomUUID();;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.description = description;
-		this.userimpl = userimpl;
+		this.memberimpl = memberimpl;
 	}
 
 	public AppointmentImpl() { }
@@ -43,7 +43,7 @@ public class AppointmentImpl extends AppointmentComponent {
 		appointmentMap.put("startTime",getStartTime());
 		appointmentMap.put("endTime",getEndTime());
 		appointmentMap.put("description",getDescription());
-		appointmentMap.put("userimpl",getUserimpl());
+		appointmentMap.put("memberimpl",getMemberimpl());
 
         return appointmentMap;
     }

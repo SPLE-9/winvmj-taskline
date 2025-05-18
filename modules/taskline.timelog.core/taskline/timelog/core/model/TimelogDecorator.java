@@ -17,20 +17,20 @@ public abstract class TimelogDecorator extends TimelogComponent{
 	public TimelogDecorator () {
 		super();
 		this.record = record;
-		this.timelogIdtaskIduserId =  timelogIdtaskIduserId.randomUUID();
+		this.timelogIdtaskIdmemberId =  timelogIdtaskIdmemberId.randomUUID();
 		
 	public TimelogDecorator (TimelogComponent record) {
-		this.timelogIdtaskIduserId =  timelogIdtaskIduserId.randomUUID();
+		this.timelogIdtaskIdmemberId =  timelogIdtaskIdmemberId.randomUUID();
 		this.record = record;
 	}
 
-	public TimelogDecorator (UUID timelogIdUUID taskIdUUID userId, TimelogComponent record) {
-		this.timelogIdtaskIduserId =  timelogIdtaskIduserId;
+	public TimelogDecorator (UUID timelogIdUUID taskIdUUID memberId, TimelogComponent record) {
+		this.timelogIdtaskIdmemberId =  timelogIdtaskIdmemberId;
 		this.record = record;
 	}
 	
 	public TimelogDecorator (TimelogComponent record, String objectName) {
-		this.timelogIdtaskIduserId =  timelogIdtaskIduserId.randomUUID();
+		this.timelogIdtaskIdmemberId =  timelogIdtaskIdmemberId.randomUUID();
 		this.record = record;	
 		this.objectName=objectName;
 	}
@@ -49,11 +49,11 @@ public abstract class TimelogDecorator extends TimelogComponent{
 	public void setTaskId(UUID taskId) {
 		record.setTaskId(taskId);
 	}
-	public UUID getUserId() {
-		return record.getUserId();
+	public UUID getMemberId() {
+		return record.getMemberId();
 	}
-	public void setUserId(UUID userId) {
-		record.setUserId(userId);
+	public void setMemberId(UUID memberId) {
+		record.setMemberId(memberId);
 	}
 
 	public void getTimelogDetail() {
