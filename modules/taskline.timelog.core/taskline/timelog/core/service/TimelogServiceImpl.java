@@ -10,7 +10,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
 
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
@@ -18,17 +17,19 @@ import vmj.routing.route.exceptions.*;
 import taskline.timelog.TimelogFactory;
 import prices.auth.vmj.annotations.Restricted;
 //add other required packages
-import java.time.LocalDateTime;
-import java.util.UUID;
+import java.time.LocalDate;
 import java.util.stream.Collectors;
+import taskline.member.core.*;
 
 public class TimelogServiceImpl extends TimelogServiceComponent{
 
 	private TimelogFactory timelogFactory = new TimelogFactory();
+	MemberService memberService = new MemberServiceImpl();
 	
 	public HashMap<String, Object> saveTimelog(Map<String, Object> requestBody) {
 		
-        LocalDateTime timelogDate = (LocalDateTime) requestBody.get("timelogDate");
+		String timelogDateString = (String) requestBody.get("timelogDate");
+		LocalDate timelogDate = LocalDate.parse(timelogDateString);
         String timelogType = (String) requestBody.get("timelogType");
         UUID timelogId = UUID.randomUUID();
         UUID taskId = UUID.fromString((String) requestBody.get("taskId"));
@@ -69,7 +70,7 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 			timelog.setTaskId((UUID) requestBody.get("taskId"));
 		}
 		if (requestBody.containsKey("timelogDate")) {
-			timelog.setTimelogDate((LocalDateTime) requestBody.get("timelogDate"));
+			timelog.setTimelogDate((LocalDate) requestBody.get("timelogDate"));
 		}
 		if (requestBody.containsKey("timelogType")) {
 			timelog.setTimelogType((String) requestBody.get("timelogType"));
@@ -84,15 +85,19 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 		
 	}
 
-    public HashMap<String, Object> getTimelog(String id){
-		UUID timelogId = UUID.fromString(id);
+    public List<HashMap<String,Object>> getMyTimelog(String memberEmail){
+    	Member member = memberService.getMemberByEmail(memberEmail);
+    	UUID memberId = member.getMemberId();
+		List<Timelog> allTimelogList = timelogRepository.getAllObject("timelog_impl");
 
-		Timelog timelog = timelogRepository.getObject(timelogId);
-		if (timelog == null) {
-			throw new NotFoundException("Timelog not found with id: " + timelogId);
+		List<Timelog> myTimelogList = new ArrayList<Timelog>();
+		for (Timelog timelog : allTimelogList) {
+			if (timelog.getMemberId().equals(memberId)) {
+				myTimelogList.add(timelog);
+			}
 		}
 
-		return timelog.toHashMap();
+		return transformListToHashMap(myTimelogList);
 	}
 
     public List<HashMap<String,Object>> getAllTimelog(){
@@ -121,12 +126,7 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 		return getAllTimelog();
 	}
 
-	// public void getTimelogDetail() {
-	// 	// TODO: implement this method
-
-	// }
-
-	public void validateTimelog(UUID taskId, LocalDateTime timelogDate, String timelogType) {
+	public void validateTimelog(UUID taskId, LocalDate timelogDate, String timelogType) {
 		// TODO: implement this method
 		if (taskId == null) {
 			throw new IllegalArgumentException("Invalid task");

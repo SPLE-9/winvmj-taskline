@@ -19,8 +19,8 @@ public abstract class TimelogResourceDecorator extends TimelogResourceComponent{
 		return record.updateTimelog(vmjExchange);
 	}
 
-    public HashMap<String, Object> getTimelog(VMJExchange vmjExchange){
-		return record.getTimelog(vmjExchange);
+    public List<HashMap<String,Object>> getMyTimelog(VMJExchange vmjExchange){
+		return record.getMyTimelog(vmjExchange);
 	}
 
     public List<HashMap<String,Object>> getAllTimelog(VMJExchange vmjExchange){

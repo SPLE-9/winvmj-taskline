@@ -4,7 +4,7 @@ import java.util.*;
 import vmj.hibernate.integrator.RepositoryUtil;
 import vmj.routing.route.VMJExchange;
 //add other required packages
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public abstract class TimelogServiceComponent implements TimelogService{
 	protected RepositoryUtil<Timelog> timelogRepository;
@@ -15,12 +15,9 @@ public abstract class TimelogServiceComponent implements TimelogService{
 
     public abstract HashMap<String, Object> saveTimelog(Map<String, Object> requestBody);
 	public abstract HashMap<String, Object> updateTimelog(Map<String, Object> requestBody);
-    public abstract HashMap<String, Object> getTimelog(String id);
+    public abstract List<HashMap<String,Object>> getMyTimelog(String memberEmail);
     public abstract List<HashMap<String,Object>> getAllTimelog();
     public abstract List<HashMap<String,Object>> transformListToHashMap(List<Timelog> timelogList);
     public abstract List<HashMap<String,Object>> deleteTimelog(Map<String, Object> requestBody);
-
-	// public abstract void getTimelogDetail();
-
-	public abstract void validateTimelog(UUID taskId, LocalDateTime timelogDate, String timelogType);
+	public abstract void validateTimelog(UUID taskId, LocalDate timelogDate, String timelogType);
 }

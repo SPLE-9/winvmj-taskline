@@ -38,22 +38,18 @@ public class TimelogResourceImpl extends TimelogResourceComponent{
 	}
 
 	// @Restriced(permission = "")
-    @Route(url="call/timelog/detail")
-    public HashMap<String, Object> getTimelog(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("GET")) {
-		    String idStr = vmjExchange.getGETParam("id");
-			if (idStr == null) {
-				throw new IllegalArgumentException("Invalid id");
-			}
-			return timelogService.getTimelog(idStr);
+    @Route(url="call/timelog/list/me")
+    public List<HashMap<String,Object>> getMyTimelog(VMJExchange vmjExchange){		
+    	if (vmjExchange.getHttpMethod().equals("GET")) {
+		    String memberEmail = vmjExchange.getAuthPayload().getEmail(); 
+			return timelogService.getMyTimelog(memberEmail);
 		}
-
 		throw new NotFoundException("Route tidak ditemukan");
 
 	}
 
 	// @Restriced(permission = "")
-    @Route(url="call/timelog/list")
+    @Route(url="call/timelog/list/all")
     public List<HashMap<String,Object>> getAllTimelog(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("GET")) {
 		    return timelogService.getAllTimelog();

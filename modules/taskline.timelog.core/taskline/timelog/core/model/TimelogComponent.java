@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 
 import taskline.task.core.*;
 import taskline.member.core.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="timelog_comp")
@@ -23,7 +23,7 @@ public abstract class TimelogComponent implements Timelog{
 	protected UUID timelogId;
 	protected UUID taskId;
 	protected UUID memberId;
-	public LocalDateTime timelogDate;
+	public LocalDate timelogDate;
 	public String timelogType;
 	public String timelogNotes;
 	@ManyToOne(targetEntity=taskline.task.core.TaskComponent.class)
@@ -34,7 +34,7 @@ public abstract class TimelogComponent implements Timelog{
 
 	public TimelogComponent(
         UUID timelogId, UUID taskId, UUID memberId, 
-        LocalDateTime timelogDate, 
+        LocalDate timelogDate, 
         String timelogType, String timelogNotes, 
         Task taskimpl, Member memberimpl
     ) {
@@ -73,8 +73,8 @@ public abstract class TimelogComponent implements Timelog{
 	public void setMemberId(UUID memberId) {
 		this.memberId = memberId;
 	}
-	public abstract LocalDateTime getTimelogDate();
-	public abstract void setTimelogDate(LocalDateTime timelogDate);
+	public abstract LocalDate getTimelogDate();
+	public abstract void setTimelogDate(LocalDate timelogDate);
 	
 	public abstract String getTimelogType();
 	public abstract void setTimelogType(String timelogType);
@@ -91,7 +91,7 @@ public abstract class TimelogComponent implements Timelog{
  
 	// public abstract void getTimelogDetail();
 
-	public abstract void validateTimelog(UUID taskId, LocalDateTime timelogDate, String timelogType);
+	public abstract void validateTimelog(UUID taskId, LocalDate timelogDate, String timelogType);
 
 	@Override
     public String toString() {

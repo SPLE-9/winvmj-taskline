@@ -1,7 +1,7 @@
 package taskline.timelog.core;
 
 import java.lang.Math;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.*;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
@@ -24,7 +24,7 @@ public class TimelogImpl extends TimelogComponent {
 
 	public TimelogImpl(
 			UUID timelogId, UUID taskId, UUID memberId, 
-			LocalDateTime timelogDate, 
+			LocalDate timelogDate, 
 			String timelogType, String timelogNotes, 
 			Task taskimpl, Member memberimpl) {
 		super(timelogId, taskId, memberId, timelogDate, timelogType, timelogNotes, taskimpl, memberimpl);
@@ -64,11 +64,11 @@ public class TimelogImpl extends TimelogComponent {
 		return this.timelogType;
 	}
 	
-	public void setTimelogDate(LocalDateTime timelogDate) {
+	public void setTimelogDate(LocalDate timelogDate) {
 		this.timelogDate = timelogDate;
 	}
 	
-	public LocalDateTime getTimelogDate() {
+	public LocalDate getTimelogDate() {
 		return this.timelogDate;
 	}
 	
@@ -96,17 +96,13 @@ public class TimelogImpl extends TimelogComponent {
 		this.memberId = memberId;
 	}
 
-	// public void getTimelogDetail() {
-	// 	// TODO: implement this method
-	// }
-
-	public void validateTimelog(UUID taskId, LocalDateTime timelogDate, String timelogType) {
+	public void validateTimelog(UUID taskId, LocalDate timelogDate, String timelogType) {
 		// TODO: implement this method
 		if (taskId == null) {
 			throw new IllegalArgumentException("Invalid task");
 		}
-		if (timelogDate == null) {
-			throw new IllegalArgumentException("Invalid timelog date");
+		if (startDate == null) {
+			throw new IllegalArgumentException("Invalid timelog start date");
 		}
 		if (timelogType == null || timelogType.isEmpty()) {
 			throw new IllegalArgumentException("Invalid timelog type");
