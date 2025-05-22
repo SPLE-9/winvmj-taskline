@@ -65,7 +65,7 @@ public abstract class MemberComponent implements Member{
 
 	public HashMap<String, Object> toHashMap() {
 		HashMap<String, Object> memberMap = new HashMap<String,Object>();
-		memberMap.put("id", getMemberId());
+		memberMap.put("memberId", getMemberId());
 		memberMap.put("email", getEmail());
 		memberMap.put("name", getName());
         return memberMap;
