@@ -10,6 +10,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.ManyToOne;
+import javax.persistence.UniqueConstraint;
 
 import taskline.member.core.*;
 import taskline.project.core.*;
