@@ -44,4 +44,18 @@ public class MemberServiceImpl extends MemberServiceComponent{
 		return member;
 	}
 
+	public List<HashMap<String,Object>> getAllMember() {
+		List<Member> memberList = memberRepository.getAllObject("member_impl");
+		return transformListToHashMap(memberList);
+	}
+
+	public List<HashMap<String, Object>> transformListToHashMap(List<Member> memberList) {
+		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
+        for(Member member : memberList) {
+            resultList.add(member.toHashMap());
+        }
+
+        return resultList;
+	}
+
 }
