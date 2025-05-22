@@ -15,7 +15,7 @@ import taskline.member.core.*;
 import taskline.project.core.*;
 
 @Entity(name="projectmember_comp")
-@Table(name="projectmember_comp")
+@Table(name="projectmember_comp", uniqueConstraints = @UniqueConstraint(columnNames = { "project_projectId", "member_memberId" }))
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class ProjectMemberComponent implements ProjectMember{
 	@Id

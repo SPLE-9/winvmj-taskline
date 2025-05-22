@@ -1,6 +1,7 @@
 {
     "Member": ["taskline.member.core"],
     "Project": ["taskline.project.core"],
+    "ProjectWithMembers": ["taskline.project.projectwithmembers"],
     "Task": ["taskline.task.core"],
     "Appointment": ["taskline.appointment.core"],
     "Analytics": ["taskline.analytic.core"],

@@ -1,8 +1,8 @@
 package taskline.project.projectwithmembers;
 
 import java.util.*;
+import java.util.stream.*;
 import com.google.gson.Gson;
-import java.util.*;
 import java.util.logging.Logger;
 import java.io.File;
 import java.net.URI;
@@ -42,6 +42,8 @@ public class ProjectMemberServiceImpl extends ProjectMemberServiceComponent {
 		String memberIdStr = (String) requestBody.get("memberId");
         UUID memberId = UUID.fromString(memberIdStr);
         Member member = memberService.getMemberById(memberId);
+
+        validateUniqueProjectMember(projectId, memberId);
 
         UUID projectMemberId = UUID.randomUUID();
 
@@ -92,6 +94,17 @@ public class ProjectMemberServiceImpl extends ProjectMemberServiceComponent {
         }
 
         return resultList;
+	}
+
+    private void validateUniqueProjectMember(UUID projectId, UUID memberId) {
+		List<ProjectMember> existingProjectMembers = projectMemberRepository.getListObject("projectmember_impl", "project_projectid", projectId);
+        Set<UUID> existingMemberIds = existingProjectMembers.stream()
+                            .map(pm -> pm.getMember().getMemberId())
+                            .collect(Collectors.toSet());
+        
+        if (existingMemberIds.contains(memberId)) {
+            throw new BadRequestException("Member with id '" + memberId + "' is already a project member.");
+        }
 	}
     
 }
