@@ -1,0 +1,175 @@
+public vmj.auth.storages.StorageImpl()
+public vmj.auth.verifiers.VerifierImpl()
+May 23, 2025 9:20:41 PM org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate ORM core version [WORKING]
+May 23, 2025 9:20:41 PM org.hibernate.cfg.Environment <clinit>
+INFO: HHH000205: Loaded properties from resource hibernate.properties: {hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.PostgreSQL94Dialect, hibernate.driver_class=org.postgresql.Driver, hibernate.connection.password=****, hibernate.connection.username=postgres, hibernate.connection.url=jdbc:postgresql://localhost:5432/taskline_product_variantone, hibernate.bytecode.use_reflection_optimizer=false, hibernate.show_sql=false}
+May 23, 2025 9:20:41 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
+INFO: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+May 23, 2025 9:20:41 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+May 23, 2025 9:20:41 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: using driver [null] at URL [jdbc:postgresql://localhost:5432/taskline_product_variantone]
+May 23, 2025 9:20:41 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=postgres}
+May 23, 2025 9:20:41 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+May 23, 2025 9:20:41 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
+May 23, 2025 9:20:41 PM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+May 23, 2025 9:20:42 PM org.hibernate.tuple.PojoInstantiator <init>
+INFO: HHH000182: No default (no-argument) constructor for class: taskline.timelog.core.TimelogImpl (class must be instantiated by Interceptor)
+May 23, 2025 9:20:43 PM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@25a7fedf] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+May 23, 2025 9:20:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper$StandardWarningHandler logWarning
+WARN: SQL Warning Code: 0, SQLState: 00000
+May 23, 2025 9:20:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper$StandardWarningHandler logWarning
+WARN: constraint "uk_i0n8vyqertrnckipwwxufumta" of relation "auth_user_impl" does not exist, skipping
+May 23, 2025 9:20:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper$StandardWarningHandler logWarning
+WARN: SQL Warning Code: 0, SQLState: 00000
+May 23, 2025 9:20:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper$StandardWarningHandler logWarning
+WARN: constraint "ukqkwj2deeqi2arfokhreqfc093" of relation "member_comp" does not exist, skipping
+May 23, 2025 9:20:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper$StandardWarningHandler logWarning
+WARN: SQL Warning Code: 0, SQLState: 00000
+May 23, 2025 9:20:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper$StandardWarningHandler logWarning
+WARN: constraint "uk50k906pe24cjgg2jnr7whtrdi" of relation "project_comp" does not exist, skipping
+May 23, 2025 9:20:43 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+== CREATING OBJECTS AND BINDING ENDPOINTS ==
+public vmj.auth.model.core.UserResourceImpl()
+public vmj.auth.model.core.RoleResourceImpl()
+public vmj.auth.model.core.UserResourceImpl()
+public vmj.auth.model.passworded.UserResourceImpl(vmj.auth.model.core.UserResourceComponent)
+UserResourceImpl constructor start
+UserResourceImpl constructor middle
+UserResourceImpl userRoleDao: vmj.hibernate.integrator.RepositoryUtil@1fd7a37
+UserResourceImpl constructor end
+taskwithcommentComment2Resource endpoints binding
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/task-comment/list
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/comment/save
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/comment/update
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/comment/detail
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/comment/list
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/comment/delete
+taskwithcommentComment2Service endpoints binding
+timelogTimelog2Resource endpoints binding
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/timelog/list/all
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/timelog/save
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/timelog/update
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/timelog/list/me
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/timelog/delete
+timelogTimelog2Service endpoints binding
+taskTask2Resource endpoints binding
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/project-task/list
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/task/save
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/task/update
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/task/detail
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/task/list
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/task/delete
+taskTask2Service endpoints binding
+projectProject2Resource endpoints binding
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/project/list
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/project/save
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/project/update
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/project/detail
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/project/delete
+projectProject2Service endpoints binding
+memberMember2Resource endpoints binding
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/member/list
+memberMember2Service endpoints binding
+authResource endpoints binding
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/auth/forgot-password-token
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/auth/user/save
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/user/delete
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/user/save
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/auth/forgot-password
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/auth/login/pwd
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/role/list
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/role/update
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/role/save
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/role/delete
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/role/detail
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/user/update
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/user/list
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/auth/register
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/user/changerole
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/user/detail

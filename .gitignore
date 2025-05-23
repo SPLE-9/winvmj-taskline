@@ -3,6 +3,5 @@ modules-gen/
 bin-comp/
 db.properties
 .DS_Store
-src/
-src-gen/
+
 
