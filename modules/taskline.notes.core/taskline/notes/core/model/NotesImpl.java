@@ -22,11 +22,11 @@ import taskline.member.core.Member;
 @Table(name="notes_impl")
 public class NotesImpl extends NotesComponent {
 
-	public NotesImpl(UUID notesId, String title, String notes, MemberImpl memberimpl) {
-		this.notesId = notesId;
+	public NotesImpl(String title, String notes) {
+		this.notesId = UUID.randomUUID();
 		this.title = title;
 		this.notes = notes;
-		this.memberimpl = memberimpl;
+		this.memberimpl = null;
 	}
 
 //	public NotesImpl(UUID notesId, String title, String notes, MemberImpl memberimpl) {
