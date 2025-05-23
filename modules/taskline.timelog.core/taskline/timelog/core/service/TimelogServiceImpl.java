@@ -32,7 +32,9 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 		LocalDate timelogDate = LocalDate.parse(timelogDateString);
         UUID timelogId = UUID.randomUUID();
         UUID taskId = UUID.fromString((String) requestBody.get("taskId"));
-        UUID memberId = UUID.fromString((String) requestBody.get("memberId"));
+
+		Member member = memberService.getMemberByEmail((String) requestBody.get("memberEmail"));
+        UUID memberId = member.getMemberId();
         String timelogNotes = (String) requestBody.getOrDefault("timelogNotes", "");
         
         validateTimelog(taskId, timelogDate);
