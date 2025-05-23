@@ -3,6 +3,7 @@ namespace TaskLine
 features
 	TaskLine {abstract true}
 		mandatory
+			Member
 			Project
 				optional
 					ProjectWithMembers
@@ -22,8 +23,4 @@ features
 			Notes
 				optional
 					SharedNotes
-		mandatory
-			Member
 
-constraints
-	MemberBurndown => ProjectWithMembers
