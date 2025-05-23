@@ -33,7 +33,7 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
         String timelogType = (String) requestBody.get("timelogType");
         UUID timelogId = UUID.randomUUID();
         UUID taskId = UUID.fromString((String) requestBody.get("taskId"));
-        UUID userId = UUID.fromString((String) requestBody.get("userId"));
+        UUID memberId = UUID.fromString((String) requestBody.get("memberId"));
         String timelogNotes = (String) requestBody.getOrDefault("timelogNotes", "");
         
         validateTimelog(taskId, timelogDate, timelogType);
@@ -42,7 +42,7 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
             "taskline.timelog.core.TimelogImpl",
             timelogId,
             taskId,
-            userId,
+            memberId,
             timelogDate,
             timelogType,
             timelogNotes

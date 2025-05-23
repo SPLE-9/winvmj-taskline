@@ -16,33 +16,12 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
     // @Restriced(permission = "")
     @Route(url="call/timelogsession/save")
     public List<HashMap<String,Object>> save(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
+		if (vmjExchange.getHttpMethod().equals("POST")) {
+			TimelogTimelogSession timelogtimelogsession = createTimelogTimelogSession(vmjExchange);
+			timelogtimelogsessionRepository.saveObject(timelogtimelogsession);
+			return getAllTimelogTimelogSession(vmjExchange);
 		}
-		TimelogTimelogSession timelogtimelogsession = createTimelogTimelogSession(vmjExchange);
-		timelogtimelogsessionRepository.saveObject(timelogtimelogsession);
-		return getAllTimelogTimelogSession(vmjExchange);
-	}
-
-    public Timelog createTimelogTimelogSession(VMJExchange vmjExchange){
 		
-		TimelogTimelogSession timelogtimelogsession = record.createTimelogTimelogSession(vmjExchange);
-		TimelogTimelogSession timelogtimelogsessiondeco = TimelogTimelogSessionFactory.createTimelogTimelogSession("taskline.timelogsession.core.TimelogImpl", timelogtimelogsession, timelogId, taskId, userId, timelogDate, timelogType, timelogNotes, userimpl, taskimpl
-		startTime, endTime
-		);
-			return timelogtimelogsessiondeco;
-	}
-
-
-    public Timelog createTimelogTimelogSession(VMJExchange vmjExchange, int id){
-		TimelogTimelogSession timelogtimelogsession = timelogtimelogsessionRepository.getObject(id);
-		int recordTimelogTimelogSessionId = (((TimelogTimelogSessionDecorator) savedTimelogTimelogSession.getRecord()).getId();
-		
-		TimelogTimelogSession timelogtimelogsession = record.createTimelogTimelogSession(vmjExchange);
-		TimelogTimelogSession timelogtimelogsessiondeco = TimelogTimelogSessionFactory.createTimelogTimelogSession("taskline.timelogsession.core.TimelogImpl", id, timelogtimelogsession, timelogId, taskId, userId, timelogDate, timelogType, timelogNotes, userimpl, taskimpl
-		startTime, endTime
-		);
-			return timelogtimelogsessiondeco;
 	}
 
 	// @Restriced(permission = "")
@@ -98,46 +77,6 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
 		int id = Integer.parseInt(idStr);
 		timelogtimelogsessionRepository.deleteObject(id);
 		return getAllTimelogTimelogSession(vmjExchange);
-	}
-
-	public void calculateTotalDuration() {
-		// TODO: implement this method
-		List<TimelogTimelogSession> sessions = timelogtimelogsessionRepository.getAllObject("timelogtimelogsession_impl");
-
-        for (TimelogTimelogSession session : sessions) {
-            if (session instanceof TimelogImpl) {
-                TimelogImpl impl = (TimelogImpl) session;
-                long duration = impl.calculateTotalDuration();
-                System.out.println("Session ID: " + impl.getId() + " - Duration (minutes): " + duration);
-            }
-        }
-	}
-
-	public void getIsOnGoing() {
-		// TODO: implement this method
-		List<TimelogTimelogSession> sessions = timelogtimelogsessionRepository.getAllObject("timelogtimelogsession_impl");
-
-        for (TimelogTimelogSession session : sessions) {
-            if (session instanceof TimelogImpl) {
-                TimelogImpl impl = (TimelogImpl) session;
-                boolean isOngoing = impl.getIsOnGoing();
-                System.out.println("Session ID: " + impl.getId() + " - Ongoing: " + isOngoing);
-            }
-        }
-	}
-
-	public void endSession() {
-		// TODO: implement this method
-		List<TimelogTimelogSession> sessions = timelogtimelogsessionRepository.getAllObject("timelogtimelogsession_impl");
-
-        for (TimelogTimelogSession session : sessions) {
-            if (session instanceof TimelogImpl) {
-                TimelogImpl impl = (TimelogImpl) session;
-                impl.endSession();
-                timelogtimelogsessionRepository.updateObject(impl);
-                System.out.println("Session ID: " + impl.getId() + " ended.");
-            }
-        }
 	}
 	
 }

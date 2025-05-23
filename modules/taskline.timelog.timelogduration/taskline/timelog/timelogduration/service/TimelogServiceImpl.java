@@ -13,8 +13,4 @@ public class TimelogServiceImpl extends TimelogServiceDecorator {
         super(record);
     }
 
-    
-	public void getTotalDuration() {
-		// TODO: implement this method
-	}
 }
