@@ -101,7 +101,7 @@ public class TimelogImpl extends TimelogComponent {
 		if (taskId == null) {
 			throw new IllegalArgumentException("Invalid task");
 		}
-		if (startDate == null) {
+		if (timelogDate == null) {
 			throw new IllegalArgumentException("Invalid timelog start date");
 		}
 		if (timelogType == null || timelogType.isEmpty()) {
