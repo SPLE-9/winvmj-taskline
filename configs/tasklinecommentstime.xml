@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="TaskLine"/>
+	<feature automatic="selected" name="Member"/>
+	<feature automatic="selected" name="Project"/>
+	<feature name="ProjectWithMembers"/>
+	<feature automatic="selected" name="Task"/>
+	<feature manual="selected" name="TaskWithComments"/>
+	<feature name="Analytics"/>
+	<feature name="ProjectBurndown"/>
+	<feature name="MemberBurndown"/>
+	<feature name="Appointment"/>
+	<feature automatic="selected" manual="selected" name="TimeLog"/>
+	<feature manual="selected" name="DurationTimeLog"/>
+	<feature automatic="unselected" name="SessionTimeLog"/>
+	<feature name="Notes"/>
+	<feature name="SharedNotes"/>
+</configuration>
