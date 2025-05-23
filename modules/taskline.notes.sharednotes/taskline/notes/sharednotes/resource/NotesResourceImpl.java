@@ -96,6 +96,6 @@ public class NotesResourceImpl extends NotesResourceDecorator {
 	}
 
 	public void getSharedMembers() {
-		// TODO: implement this method
+		
 	}
 }
