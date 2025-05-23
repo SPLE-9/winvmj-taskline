@@ -63,7 +63,7 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
     }
 
 	public Analytic calculateBurndownData(Member member) {
-        List<Task> taskList = taskService.getTaskByMemberId(member.getMemberId());
+        List<Task> taskList = taskService.getTaskByMemberId(UUID.fromString(member.getMemberId().toString()));
         if (taskList.isEmpty()) return null;
     
         // Tentukan startDate = earliest task start date

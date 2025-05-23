@@ -71,7 +71,7 @@ public class AnalyticServiceImpl extends AnalyticServiceDecorator {
         // Konversi HashMap ke objek Task
         List<Task> taskList = new ArrayList<>();
         for (HashMap<String, Object> taskMap : taskMapList) {
-            String taskIdStr = (String) taskMap.get("taskId");
+            String taskIdStr = UUID.fromString((String) taskMap.get("taskId")).toString();
             HashMap<String, Object> taskObj = taskService.getTaskById(taskIdStr);
             
             // Ambil informasi yang diperlukan dari HashMap dan buat objek Task sederhana
