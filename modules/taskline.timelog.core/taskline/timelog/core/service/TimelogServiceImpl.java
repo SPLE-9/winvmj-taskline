@@ -30,13 +30,12 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 		
 		String timelogDateString = (String) requestBody.get("timelogDate");
 		LocalDate timelogDate = LocalDate.parse(timelogDateString);
-        String timelogType = (String) requestBody.get("timelogType");
         UUID timelogId = UUID.randomUUID();
         UUID taskId = UUID.fromString((String) requestBody.get("taskId"));
         UUID memberId = UUID.fromString((String) requestBody.get("memberId"));
         String timelogNotes = (String) requestBody.getOrDefault("timelogNotes", "");
         
-        validateTimelog(taskId, timelogDate, timelogType);
+        validateTimelog(taskId, timelogDate);
 
         Timelog timelog = TimelogFactory.createTimelog(
             "taskline.timelog.core.TimelogImpl",
@@ -44,7 +43,6 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
             taskId,
             memberId,
             timelogDate,
-            timelogType,
             timelogNotes
         );
 
@@ -71,9 +69,6 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 		}
 		if (requestBody.containsKey("timelogDate")) {
 			timelog.setTimelogDate((LocalDate) requestBody.get("timelogDate"));
-		}
-		if (requestBody.containsKey("timelogType")) {
-			timelog.setTimelogType((String) requestBody.get("timelogType"));
 		}
 		if (requestBody.containsKey("timelogNotes")) {
 			timelog.setTimelogNotes((String) requestBody.get("timelogNotes"));
@@ -126,16 +121,13 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 		return getAllTimelog();
 	}
 
-	public void validateTimelog(UUID taskId, LocalDate timelogDate, String timelogType) {
+	public void validateTimelog(UUID taskId, LocalDate timelogDate) {
 		// TODO: implement this method
 		if (taskId == null) {
 			throw new IllegalArgumentException("Invalid task");
 		}
 		if (timelogDate == null) {
 			throw new IllegalArgumentException("Invalid timelog date");
-		}
-		if (timelogType == null || timelogType.isEmpty()) {
-			throw new IllegalArgumentException("Invalid timelog type");
 		}
 	}
 }
