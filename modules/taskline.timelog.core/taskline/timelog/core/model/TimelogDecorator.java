@@ -44,7 +44,7 @@ public abstract class TimelogDecorator extends TimelogComponent{
 	}
 
 	public void validateTimelog(UUID taskId, LocalDate timelogDate, String timelogType) {
-		record.validateTimelog(taskId, startDate, timelogType);
+		record.validateTimelog(taskId, timelogDate, timelogType);
 	}
 
 	public HashMap<String, Object> toHashMap() {
