@@ -14,5 +14,7 @@ public abstract class MemberServiceComponent implements MemberService{
 
     public abstract Member getMemberByEmail(String email);
     public abstract Member getMemberById(UUID memberId);
+    public abstract List<HashMap<String,Object>> getAllMember();
+    public abstract List<HashMap<String, Object>> transformListToHashMap(List<Member> memberList);
 
 }

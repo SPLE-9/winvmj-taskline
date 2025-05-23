@@ -38,4 +38,8 @@ public abstract class TaskServiceDecorator extends TaskServiceComponent{
         return record.getTaskByProjectId(projectId);
     }
 
+	public List<Task> getTaskByMemberId(UUID memberId){
+        return record.getTaskByMemberId(memberId);
+    }
+
 }

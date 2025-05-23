@@ -132,4 +132,9 @@ public class TaskServiceImpl extends TaskServiceComponent {
 
 		return transformListToHashMap(taskList);
 	}
+
+	public List<Task> getTaskByMemberId(UUID memberId){
+		List<Task> taskList = taskRepository.getListObject("task_comp", "member_memberid", memberId);
+		return taskList;
+	}
 }
