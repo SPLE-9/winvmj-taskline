@@ -2,6 +2,7 @@ module taskline.task.taskwithcomment {
 	requires taskline.task.core;
     exports taskline.task.taskwithcomment;
 	requires taskline.member.core;
+	requires taskline.project.core;
 	requires vmj.routing.route;
 	requires vmj.hibernate.integrator;
 	requires vmj.auth;

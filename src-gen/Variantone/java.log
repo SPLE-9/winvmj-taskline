@@ -1,41 +1,74 @@
 public vmj.auth.storages.StorageImpl()
 public vmj.auth.verifiers.VerifierImpl()
-May 23, 2025 9:20:41 PM org.hibernate.Version logVersion
+May 24, 2025 9:55:52 PM org.hibernate.Version logVersion
 INFO: HHH000412: Hibernate ORM core version [WORKING]
-May 23, 2025 9:20:41 PM org.hibernate.cfg.Environment <clinit>
+May 24, 2025 9:55:52 PM org.hibernate.cfg.Environment <clinit>
 INFO: HHH000205: Loaded properties from resource hibernate.properties: {hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.PostgreSQL94Dialect, hibernate.driver_class=org.postgresql.Driver, hibernate.connection.password=****, hibernate.connection.username=postgres, hibernate.connection.url=jdbc:postgresql://localhost:5432/taskline_product_variantone, hibernate.bytecode.use_reflection_optimizer=false, hibernate.show_sql=false}
-May 23, 2025 9:20:41 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
+May 24, 2025 9:55:52 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
 INFO: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-May 23, 2025 9:20:41 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+May 24, 2025 9:55:52 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
 WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-May 23, 2025 9:20:41 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+May 24, 2025 9:55:52 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001005: using driver [null] at URL [jdbc:postgresql://localhost:5432/taskline_product_variantone]
-May 23, 2025 9:20:41 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+May 24, 2025 9:55:52 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001001: Connection properties: {password=****, user=postgres}
-May 23, 2025 9:20:41 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+May 24, 2025 9:55:52 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001003: Autocommit mode: false
-May 23, 2025 9:20:41 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+May 24, 2025 9:55:52 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
 INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
-May 23, 2025 9:20:41 PM org.hibernate.dialect.Dialect <init>
+May 24, 2025 9:55:53 PM org.hibernate.dialect.Dialect <init>
 INFO: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
-May 23, 2025 9:20:42 PM org.hibernate.tuple.PojoInstantiator <init>
+May 24, 2025 9:55:53 PM org.hibernate.tuple.PojoInstantiator <init>
 INFO: HHH000182: No default (no-argument) constructor for class: taskline.timelog.core.TimelogImpl (class must be instantiated by Interceptor)
-May 23, 2025 9:20:43 PM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
-INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@25a7fedf] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-May 23, 2025 9:20:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper$StandardWarningHandler logWarning
-WARN: SQL Warning Code: 0, SQLState: 00000
-May 23, 2025 9:20:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper$StandardWarningHandler logWarning
-WARN: constraint "uk_i0n8vyqertrnckipwwxufumta" of relation "auth_user_impl" does not exist, skipping
-May 23, 2025 9:20:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper$StandardWarningHandler logWarning
-WARN: SQL Warning Code: 0, SQLState: 00000
-May 23, 2025 9:20:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper$StandardWarningHandler logWarning
-WARN: constraint "ukqkwj2deeqi2arfokhreqfc093" of relation "member_comp" does not exist, skipping
-May 23, 2025 9:20:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper$StandardWarningHandler logWarning
-WARN: SQL Warning Code: 0, SQLState: 00000
-May 23, 2025 9:20:43 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper$StandardWarningHandler logWarning
-WARN: constraint "uk50k906pe24cjgg2jnr7whtrdi" of relation "project_comp" does not exist, skipping
-May 23, 2025 9:20:43 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+May 24, 2025 9:55:53 PM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5792c08c] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+May 24, 2025 9:55:54 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+May 24, 2025 9:55:54 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+WARN: SQL Error: 0, SQLState: 42701
+May 24, 2025 9:55:54 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+ERROR: ERROR: column "modulesequence" of relation "task_comp" already exists
+javax.persistence.PersistenceException: org.hibernate.exception.SQLGrammarException: could not execute statement
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:154)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:181)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.query.internal.AbstractProducedQuery.executeUpdate(AbstractProducedQuery.java:1705)
+	at vmj.hibernate.integrator/vmj.hibernate.integrator.HibernateUtil.addColumn(HibernateUtil.java:98)
+	at vmj.hibernate.integrator/vmj.hibernate.integrator.HibernateUtil.configureSupportColumns(HibernateUtil.java:60)
+	at vmj.hibernate.integrator/vmj.hibernate.integrator.HibernateUtil.buildSessionFactory(HibernateUtil.java:45)
+	at taskline.product.variantone/taskline.product.variantone.Variantone.main(Variantone.java:112)
+Caused by: org.hibernate.exception.SQLGrammarException: could not execute statement
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:103)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:200)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.query.spi.NativeSQLQueryPlan.performExecuteUpdate(NativeSQLQueryPlan.java:107)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.executeNativeUpdate(SessionImpl.java:1538)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.query.internal.NativeQueryImpl.doExecuteUpdate(NativeQueryImpl.java:298)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.query.internal.AbstractProducedQuery.executeUpdate(AbstractProducedQuery.java:1696)
+	... 4 more
+Caused by: org.postgresql.util.PSQLException: ERROR: column "modulesequence" of relation "task_comp" already exists
+	at org.postgresql.jdbc@42.2.21/org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2575)
+	at org.postgresql.jdbc@42.2.21/org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2297)
+	at org.postgresql.jdbc@42.2.21/org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:335)
+	at org.postgresql.jdbc@42.2.21/org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:481)
+	at org.postgresql.jdbc@42.2.21/org.postgresql.jdbc.PgStatement.execute(PgStatement.java:401)
+	at org.postgresql.jdbc@42.2.21/org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:164)
+	at org.postgresql.jdbc@42.2.21/org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:130)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	... 8 more
+org.hibernate.exception.SQLGrammarException: could not execute statement
+java.lang.IllegalStateException: org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl@2e5e6fc4 is closed
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.errorIfClosed(AbstractLogicalConnectionImplementor.java:37)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:137)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getConnectionForTransactionManagement(LogicalConnectionManagedImpl.java:276)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.rollback(AbstractLogicalConnectionImplementor.java:121)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.rollback(JdbcResourceLocalTransactionCoordinatorImpl.java:304)
+	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.transaction.internal.TransactionImpl.rollback(TransactionImpl.java:142)
+	at vmj.hibernate.integrator/vmj.hibernate.integrator.HibernateUtil.addColumn(HibernateUtil.java:104)
+	at vmj.hibernate.integrator/vmj.hibernate.integrator.HibernateUtil.configureSupportColumns(HibernateUtil.java:60)
+	at vmj.hibernate.integrator/vmj.hibernate.integrator.HibernateUtil.buildSessionFactory(HibernateUtil.java:45)
+	at taskline.product.variantone/taskline.product.variantone.Variantone.main(Variantone.java:112)
 == CREATING OBJECTS AND BINDING ENDPOINTS ==
 public vmj.auth.model.core.UserResourceImpl()
 public vmj.auth.model.core.RoleResourceImpl()
@@ -43,17 +76,17 @@ public vmj.auth.model.core.UserResourceImpl()
 public vmj.auth.model.passworded.UserResourceImpl(vmj.auth.model.core.UserResourceComponent)
 UserResourceImpl constructor start
 UserResourceImpl constructor middle
-UserResourceImpl userRoleDao: vmj.hibernate.integrator.RepositoryUtil@1fd7a37
+UserResourceImpl userRoleDao: vmj.hibernate.integrator.RepositoryUtil@52454457
 UserResourceImpl constructor end
 taskwithcommentComment2Resource endpoints binding
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
 http://localhost:7776/call/task-comment/list
 Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: false
+Is Single Perm Annotation Present: true
 http://localhost:7776/call/comment/save
 Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: false
+Is Single Perm Annotation Present: true
 http://localhost:7776/call/comment/update
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
@@ -62,7 +95,7 @@ Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
 http://localhost:7776/call/comment/list
 Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: false
+Is Single Perm Annotation Present: true
 http://localhost:7776/call/comment/delete
 taskwithcommentComment2Service endpoints binding
 timelogTimelog2Resource endpoints binding
@@ -130,10 +163,7 @@ Is Single Perm Annotation Present: false
 http://localhost:7776/auth/forgot-password-token
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
-http://localhost:7776/auth/user/save
-Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: true
-http://localhost:7776/call/user/delete
+http://localhost:7776/auth/login/pwd
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
 http://localhost:7776/call/user/save
@@ -142,7 +172,13 @@ Is Single Perm Annotation Present: false
 http://localhost:7776/auth/forgot-password
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
-http://localhost:7776/auth/login/pwd
+http://localhost:7776/auth/user/save
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/user/delete
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/role/detail
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
 http://localhost:7776/call/role/list
@@ -157,7 +193,7 @@ Is Single Perm Annotation Present: true
 http://localhost:7776/call/role/delete
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
-http://localhost:7776/call/role/detail
+http://localhost:7776/call/user/detail
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
 http://localhost:7776/call/user/update
@@ -170,6 +206,3 @@ http://localhost:7776/auth/register
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
 http://localhost:7776/call/user/changerole
-Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: true
-http://localhost:7776/call/user/detail

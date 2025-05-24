@@ -4,6 +4,7 @@ import java.util.*;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
+import vmj.auth.annotations.Restricted;
 //import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
@@ -11,6 +12,7 @@ public class CommentResourceImpl extends CommentResourceComponent {
 	
 	private CommentService commentService = new CommentServiceImpl();
 
+	@Restricted(permissionName = "member")
 	@Route(url="call/comment/save")
     public HashMap<String,Object> saveComment(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
@@ -22,7 +24,7 @@ public class CommentResourceImpl extends CommentResourceComponent {
 		throw new NotFoundException("Route tidak ditemukan");
 	}
 
-    // @Restriced(permission = "")
+    @Restricted(permissionName = "member")
     @Route(url="call/comment/update")
     public HashMap<String, Object> updateComment(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("PUT")) {
@@ -57,7 +59,7 @@ public class CommentResourceImpl extends CommentResourceComponent {
 	}
 
     
-	// @Restriced(permission = "")
+	@Restricted(permissionName = "member")
     @Route(url="call/comment/delete")
     public HashMap<String,Object> deleteComment(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("DELETE")) {

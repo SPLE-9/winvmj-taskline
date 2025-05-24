@@ -1,7 +1,7 @@
 package taskline.task.taskwithcomment;
 
 import java.util.*;
-import com.google.gson.Gson;
+import com.google.gson.*;
 import java.util.*;
 import java.util.logging.Logger;
 import java.io.File;
@@ -24,6 +24,8 @@ import taskline.member.core.MemberService;
 import taskline.member.core.MemberServiceImpl;
 import taskline.member.core.MemberImpl;
 import taskline.member.core.Member;
+import taskline.project.core.Project;
+import taskline.project.core.ProjectImpl;
 
 
 public class CommentServiceImpl extends CommentServiceComponent {
@@ -31,7 +33,10 @@ public class CommentServiceImpl extends CommentServiceComponent {
 	private CommentFactory commentFactory = new CommentFactory();
 	private TaskService taskService = new TaskServiceImpl();
 	private MemberService memberService = new MemberServiceImpl();
-	private final Gson gson = new Gson();
+	private final Gson gson =  new GsonBuilder()
+   		.registerTypeAdapter(Project.class, (InstanceCreator<Project>) type -> new ProjectImpl())
+		.registerTypeAdapter(Task.class, (InstanceCreator<Task>) type -> new TaskImpl())
+		.create();
 
 
     public HashMap<String,Object> saveComment(Map<String, Object> requestBody, String email){
