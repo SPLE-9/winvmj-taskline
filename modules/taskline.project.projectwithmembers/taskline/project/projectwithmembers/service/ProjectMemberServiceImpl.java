@@ -97,7 +97,7 @@ public class ProjectMemberServiceImpl extends ProjectMemberServiceComponent {
 	}
 
     private void validateUniqueProjectMember(UUID projectId, UUID memberId) {
-		List<ProjectMember> existingProjectMembers = projectMemberRepository.getListObject("projectmember_impl", "project_projectid", projectId);
+		List<ProjectMember> existingProjectMembers = projectMemberRepository.getListObject("projectmember_comp", "project_projectid", projectId);
         Set<UUID> existingMemberIds = existingProjectMembers.stream()
                             .map(pm -> pm.getMember().getMemberId())
                             .collect(Collectors.toSet());

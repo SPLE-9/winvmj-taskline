@@ -72,7 +72,7 @@ public class NotesServiceImpl extends NotesServiceComponent{
 	}
 
     public List<HashMap<String,Object>> getAllNotes(){
-    	List<Notes> notesList = notesRepository.getAllObject("notesImpl");
+    	List<Notes> notesList = notesRepository.getAllObject("notes_impl");
 
 		return transformListToHashMap(notesList);
 	}

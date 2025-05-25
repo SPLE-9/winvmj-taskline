@@ -16,8 +16,6 @@ public interface Timelog {
 	public void setMemberId(UUID memberId);
 	public LocalDate getTimelogDate();
 	public void setTimelogDate(LocalDate timelogDate);
-	public String getTimelogType();
-	public void setTimelogType(String timelogType);
 	public String getTimelogNotes();
 	public void setTimelogNotes(String timelogNotes);
 	public Task getTaskimpl();
