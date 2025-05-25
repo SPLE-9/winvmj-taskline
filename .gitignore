@@ -2,6 +2,8 @@ src/
 /bin/
 src-gen/
 modules-gen/
+src/
+src-gen/
 bin-comp/
 db.properties
 .DS_Store

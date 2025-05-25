@@ -18,6 +18,8 @@ public class TimelogResourceImpl extends TimelogResourceComponent{
     public HashMap<String,Object> saveTimelog(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload();
+		    String memberEmail = vmjExchange.getAuthPayload().getEmail();
+			requestBody.put("memberEmail", memberEmail);
 			return timelogService.saveTimelog(requestBody);
 		}
 		
