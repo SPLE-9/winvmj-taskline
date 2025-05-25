@@ -5,17 +5,21 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import taskline.task.TaskFactory;
-//import prices.auth.vmj.annotations.Restricted;
+import vmj.auth.annotations.Restricted;
+
 //add other required packages
 
 public class TaskResourceImpl extends TaskResourceComponent{
 	
 	private TaskService taskService = new TaskServiceImpl();
 
+	@Restricted(permissionName = "member")
 	@Route(url="call/task/save")
     public HashMap<String,Object> saveTask(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
+			String email = vmjExchange.getAuthPayload().getEmail();
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
+			requestBody.put("email", email);
 			return taskService.saveTask(requestBody);
 		}
 

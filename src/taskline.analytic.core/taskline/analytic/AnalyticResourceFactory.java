@@ -1,41 +1,24 @@
 package taskline.analytic;
 
-import taskline.analytic.core.Analytic;
+import taskline.analytic.core.AnalyticResource;
 import java.lang.reflect.Constructor;
 import java.util.logging.Logger;
-import java.util.Arrays;
 
-public class AnalyticFactory{
+public class AnalyticResourceFactory{
     private static final Logger LOGGER = Logger.getLogger(AnalyticFactory.class.getName());
 
-    public AnalyticFactory()
+    public AnalyticResourceFactory()
     {
 
     }
 
-    public static Analytic createAnalytic(String fullyQualifiedName, Object ... base)
+    public static AnalyticResource createAnalyticResource(String fullyQualifiedName, Object ... base)
     {
-        Analytic record = null;
+        AnalyticResource record = null;
         try {
             Class<?> clz = Class.forName(fullyQualifiedName);
-            Constructor<?>[] constructorList = clz.getDeclaredConstructors();
-            Constructor<?> constructor = null;
-            for (int i = 0; i < constructorList.length; i++) {
-              try {
-                constructor = constructorList[i];
-                System.out.println("constructor: " + constructor.toString());
-                System.out.println("base: " + Arrays.toString(base));
-                record = (Analytic) constructor.newInstance(base);
-                i = constructorList.length;
-              } catch (IllegalArgumentException e) {
-                if (i < constructorList.length - 1) {
-                  System.out.println("Trying other constructor");
-                  continue;
-                } else {
-                  throw e;
-                }
-              }
-            }
+            Constructor<?> constructor = clz.getDeclaredConstructors()[0];
+            record = (AnalyticResource) constructor.newInstance(base);
         } 
         catch (IllegalArgumentException e)
         {

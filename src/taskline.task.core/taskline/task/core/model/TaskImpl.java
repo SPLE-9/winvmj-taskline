@@ -27,7 +27,7 @@ import taskline.project.core.Project;
 public class TaskImpl extends TaskComponent {
 
 	public TaskImpl(String title, String description, Status status, Date createdAt, Date completedAt, Member memberimpl, Project projectimpl) {
-		this.taskId =  UUID.randomUUID();;
+		this.taskId =  UUID.randomUUID();
 		this.title = title;
 		this.description = description;
 		this.status = status;
@@ -37,14 +37,14 @@ public class TaskImpl extends TaskComponent {
 		this.projectimpl = projectimpl;
 	}
 
-	public TaskImpl(String title, String description, Project projectimpl) {
+	public TaskImpl(String title, String description, Member memberimpl, Project projectimpl) {
 		this.taskId =  UUID.randomUUID();
 		this.title = title;
 		this.description = description;
 		this.status = Status.TODO;
 		this.createdAt = new Date();
 		this.completedAt = null;
-		this.memberimpl = null;
+		this.memberimpl = memberimpl;
 		this.projectimpl = projectimpl;
 	}
 

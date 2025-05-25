@@ -1,10 +1,8 @@
-package taskline.analytic.burndownbymember;
+package taskline.analytic.burndownbyproject;
 import java.util.*;
 import java.util.logging.Logger;
-
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
-import vmj.auth.annotations.Restricted;
 
 import taskline.analytic.core.*;
 
@@ -17,21 +15,19 @@ public class AnalyticResourceImpl extends AnalyticResourceDecorator {
 		this.analyticService = new AnalyticServiceImpl(recordService);
     }
 
-	@Restricted(permissionName = "member")
-	@Route(url="call/burndownbymember/planned")
+	@Route(url="call/burndownbyproject/planned")
 	public List<HashMap<String, Object>> getPlannedWork(VMJExchange vmjExchange){
-		String email = vmjExchange.getAuthPayload().getEmail();
+		String projectIdStr = vmjExchange.getGETParam("projectId");
 		HashMap<String, Object> requestBody = new HashMap<>();
-		requestBody.put("email", email);
+		requestBody.put("projectId", projectIdStr);
 		return analyticService.getPlannedWork(requestBody);
 	}
 
-	@Restricted(permissionName = "member")
-	@Route(url="call/burndownbymember/actual")
+	@Route(url="call/burndownbyproject/actual")
 	public List<HashMap<String, Object>> getActualWork(VMJExchange vmjExchange){
-		String email = vmjExchange.getAuthPayload().getEmail();
+		String projectIdStr = vmjExchange.getGETParam("projectId");
 		HashMap<String, Object> requestBody = new HashMap<>();
-		requestBody.put("email", email);
+		requestBody.put("projectId", projectIdStr);
 		return analyticService.getActualWork(requestBody);
 	}
 }
