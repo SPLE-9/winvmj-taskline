@@ -16,52 +16,31 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
     // @Restriced(permission = "")
     @Route(url="call/timelogduration/save")
     public List<HashMap<String,Object>> save(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
+		if (vmjExchange.getHttpMethod().equals("POST")) {
+			TimelogTimelogDuration timelogtimelogduration = createTimelogTimelogDuration(vmjExchange);
+			timelogtimelogdurationRepository.saveObject(timelogtimelogduration);
+			return getAllTimelogTimelogDuration(vmjExchange);
 		}
-		TimelogTimelogDuration timelogtimelogduration = createTimelogTimelogDuration(vmjExchange);
-		timelogtimelogdurationRepository.saveObject(timelogtimelogduration);
-		return getAllTimelogTimelogDuration(vmjExchange);
-	}
-
-    public Timelog createTimelogTimelogDuration(VMJExchange vmjExchange){
 		
-		TimelogTimelogDuration timelogtimelogduration = record.createTimelogTimelogDuration(vmjExchange);
-		TimelogTimelogDuration timelogtimelogdurationdeco = TimelogTimelogDurationFactory.createTimelogTimelogDuration("taskline.timelogduration.core.TimelogImpl", timelogtimelogduration, timelogId, taskId, userId, timelogDate, timelogType, timelogNotes, userimpl, taskimpl
-		timelogDuration
-		);
-			return timelogtimelogdurationdeco;
-	}
-
-
-    public Timelog createTimelogTimelogDuration(VMJExchange vmjExchange, int id){
-		TimelogTimelogDuration timelogtimelogduration = timelogtimelogdurationRepository.getObject(id);
-		int recordTimelogTimelogDurationId = (((TimelogTimelogDurationDecorator) savedTimelogTimelogDuration.getRecord()).getId();
-		
-		TimelogTimelogDuration timelogtimelogduration = record.createTimelogTimelogDuration(vmjExchange);
-		TimelogTimelogDuration timelogtimelogdurationdeco = TimelogTimelogDurationFactory.createTimelogTimelogDuration("taskline.timelogduration.core.TimelogImpl", id, timelogtimelogduration, timelogId, taskId, userId, timelogDate, timelogType, timelogNotes, userimpl, taskimpl
-		timelogDuration
-		);
-			return timelogtimelogdurationdeco;
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/timelogduration/update")
     public HashMap<String, Object> updateTimelogTimelogDuration(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
+		if (vmjExchange.getHttpMethod().equals("PUT")) {
+			String idStr = (String) vmjExchange.getRequestBodyForm("timelogIdtaskIduserId");
+			int id = Integer.parseInt(idStr);
+			
+			TimelogTimelogDuration timelogtimelogduration = timelogtimelogdurationRepository.getObject(id);
+			timelogtimelogduration = createTimelogTimelogDuration(vmjExchange, id);
+			
+			timelogtimelogdurationRepository.updateObject(timelogtimelogduration);
+			timelogtimelogduration = timelogtimelogdurationRepository.getObject(id);
+			//to do: fix association attributes
+			
+			return timelogtimelogduration.toHashMap();
 		}
-		String idStr = (String) vmjExchange.getRequestBodyForm("timelogIdtaskIduserId");
-		int id = Integer.parseInt(idStr);
 		
-		TimelogTimelogDuration timelogtimelogduration = timelogtimelogdurationRepository.getObject(id);
-		timelogtimelogduration = createTimelogTimelogDuration(vmjExchange, id);
-		
-		timelogtimelogdurationRepository.updateObject(timelogtimelogduration);
-		timelogtimelogduration = timelogtimelogdurationRepository.getObject(id);
-		//to do: fix association attributes
-		
-		return timelogtimelogduration.toHashMap();
 		
 	}
 
@@ -90,18 +69,14 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
 	// @Restriced(permission = "")
     @Route(url="call/timelogduration/delete")
     public List<HashMap<String,Object>> deleteTimelogTimelogDuration(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
+		if (vmjExchange.getHttpMethod().equals("DELETE")) {
+			String idStr = (String) vmjExchange.getRequestBodyForm("timelogIdtaskIduserId");
+			int id = Integer.parseInt(idStr);
+			timelogtimelogdurationRepository.deleteObject(id);
+			return getAllTimelogTimelogDuration(vmjExchange);
 		}
 		
-		String idStr = (String) vmjExchange.getRequestBodyForm("timelogIdtaskIduserId");
-		int id = Integer.parseInt(idStr);
-		timelogtimelogdurationRepository.deleteObject(id);
-		return getAllTimelogTimelogDuration(vmjExchange);
+		
 	}
 
-	public void getTotalDuration() {
-		// TODO: implement this method
-	}
-	
 }

@@ -19,5 +19,5 @@ public abstract class TimelogServiceComponent implements TimelogService{
     public abstract List<HashMap<String,Object>> getAllTimelog();
     public abstract List<HashMap<String,Object>> transformListToHashMap(List<Timelog> timelogList);
     public abstract List<HashMap<String,Object>> deleteTimelog(Map<String, Object> requestBody);
-	public abstract void validateTimelog(UUID taskId, LocalDate timelogDate, String timelogType);
+	public abstract void validateTimelog(UUID taskId, LocalDate timelogDate);
 }

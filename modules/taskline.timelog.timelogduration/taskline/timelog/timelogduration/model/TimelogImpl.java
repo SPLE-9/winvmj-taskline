@@ -16,27 +16,22 @@ import taskline.timelog.core.TimelogComponent;
 @Table(name="timelog_timelogduration")
 public class TimelogImpl extends TimelogDecorator {
 
-	public EFloat timelogDuration;
-	public TimelogImpl(
+	public Float timelogDuration;
+	public TimelogImpl() {
         super();
         this.objectName = TimelogImpl.class.getName();
     }
     
-    public TimelogImpl(EFloat timelogDuration) {
+    public TimelogImpl(Float timelogDuration) {
     	super();
 		this.timelogDuration = timelogDuration;
 		this.objectName = TimelogImpl.class.getName();
     }
 	
-	public TimelogImpl(TimelogComponent record, EFloat timelogDuration) {
+	public TimelogImpl(TimelogComponent record, Float timelogDuration) {
 		super(record);
 		this.timelogDuration = timelogDuration;
 		this.objectName = TimelogImpl.class.getName();
-	}
-
-
-	public void getTotalDuration() {
-		// TODO: implement this method
 	}
 
 }
