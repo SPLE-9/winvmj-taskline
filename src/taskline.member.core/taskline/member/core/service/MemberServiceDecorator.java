@@ -18,4 +18,12 @@ public abstract class MemberServiceDecorator extends MemberServiceComponent{
 		return record.getMemberById(memberId);
 	}
 
+	public List<HashMap<String,Object>> getAllMember() {
+		return record.getAllMember();
+	}
+
+	public List<HashMap<String, Object>> transformListToHashMap(List<Member> memberList) {
+		return record.transformListToHashMap(memberList);
+	}
+
 }

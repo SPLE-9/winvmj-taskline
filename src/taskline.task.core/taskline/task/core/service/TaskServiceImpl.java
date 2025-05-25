@@ -18,21 +18,25 @@ import taskline.task.TaskFactory;
 //add other required packages
 import taskline.project.core.ProjectService;
 import taskline.project.core.ProjectServiceImpl;
-import taskline.member.core.MemberImpl;
 import taskline.project.core.ProjectImpl;
-import taskline.member.core.Member;
+import taskline.member.core.*;
 import taskline.project.core.Project;
 
 public class TaskServiceImpl extends TaskServiceComponent {
 	
 	private TaskFactory taskFactory = new TaskFactory();
 	private ProjectService projectService = new ProjectServiceImpl();
+	private MemberService memberService = new MemberServiceImpl();
 	private final Gson gson = new Gson();
 
 
     public HashMap<String,Object> saveTask(Map<String, Object> requestBody){
 		if (!requestBody.containsKey("title")) {
             throw new FieldValidationException("Field 'title' not found in the request body.");
+        }
+
+		if (!requestBody.containsKey("email")) {
+            throw new FieldValidationException("Field 'email' not found in the request body.");
         }
 
 		if (!requestBody.containsKey("projectId")) {
@@ -48,8 +52,10 @@ public class TaskServiceImpl extends TaskServiceComponent {
 		String title = (String) requestBody.get("title");
 		String description = (String) requestBody.get("description");
 
+		String email = (String) requestBody.get("email");
+		Member member = memberService.getMemberByEmail(email);
 
-		Task task = taskFactory.createTask("taskline.task.core.TaskImpl", title, description, project);
+		Task task = taskFactory.createTask("taskline.task.core.TaskImpl", title, description, member,project);
 		taskRepository.saveObject(task);
 		
 		return task.toHashMap();
@@ -131,5 +137,10 @@ public class TaskServiceImpl extends TaskServiceComponent {
 		List<Task> taskList = taskRepository.getListObject("task_impl", "projectimpl_projectid", projectId);
 
 		return transformListToHashMap(taskList);
+	}
+
+	public List<Task> getTaskByMemberId(UUID memberId){
+		List<Task> taskList = taskRepository.getListObject("task_comp", "memberimpl_memberid", memberId);
+		return taskList;
 	}
 }
