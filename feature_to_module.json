@@ -9,5 +9,6 @@
     "MemberBurndown": ["taskline.analytic.burndownbymember"],
     "TimeLog": ["taskline.timelog.core"],
     "Notes": ["taskline.notes.core"],
-    "TaskWithComments": ["taskline.task.taskwithcomment"]
+    "TaskWithComments": ["taskline.task.taskwithcomment"],
+    "DurationTimeLog": ["taskline.timelog.timelogduration"]
 }
