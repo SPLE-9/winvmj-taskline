@@ -17,11 +17,11 @@ public abstract class AnalyticDecorator extends AnalyticComponent{
 	public AnalyticDecorator() {
 		super();
 		this.record = record;
-		this.analyticId =  analyticId.randomUUID();
+		this.analyticId =  UUID.randomUUID();
 	}
 
 	public AnalyticDecorator (AnalyticComponent record) {
-		this.analyticId =  analyticId.randomUUID();
+		this.analyticId =  UUID.randomUUID();
 		this.record = record;
 	}
 
@@ -31,7 +31,7 @@ public abstract class AnalyticDecorator extends AnalyticComponent{
 	}
 	
 	public AnalyticDecorator (AnalyticComponent record, String objectName) {
-		this.analyticId =  analyticId.randomUUID();
+		this.analyticId =  UUID.randomUUID();
 		this.record = record;	
 		this.objectName=objectName;
 	}
