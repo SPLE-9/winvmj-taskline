@@ -53,4 +53,8 @@ public abstract class TimelogDecorator extends TimelogComponent {
         return this.record.toHashMap();
     }
 
+	public TimelogComponent getRecord() {
+    return this.record;
+  }
+
 }
