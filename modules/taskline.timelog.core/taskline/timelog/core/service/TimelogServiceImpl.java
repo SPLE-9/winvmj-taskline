@@ -72,7 +72,8 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 			throw new NotFoundException("Timelog not found with id: " + id);
 		}
 		if (requestBody.containsKey("taskId")) {
-			timelog.setTaskId((UUID) requestBody.get("taskId"));
+			String taskIdStr = (String) requestBody.get("taskId")
+			timelog.setTaskId(UUID.fromString(taskIdStr));
 		}
 		if (requestBody.containsKey("timelogDate")) {
 			timelog.setTimelogDate((LocalDate) requestBody.get("timelogDate"));
