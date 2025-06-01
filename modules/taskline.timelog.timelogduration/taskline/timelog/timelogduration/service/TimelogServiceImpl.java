@@ -7,6 +7,7 @@ import vmj.routing.route.VMJExchange;
 import taskline.timelog.core.TimelogServiceDecorator;
 import taskline.timelog.core.TimelogImpl;
 import taskline.timelog.core.TimelogServiceComponent;
+import taskline.timelog.core.TimelogDecorator;
 
 import java.io.File;
 import java.net.URI;
@@ -102,10 +103,11 @@ public class TimelogServiceImpl extends TimelogServiceDecorator {
 		Member member = memberService.getMemberByEmail((String) requestBody.get("memberEmail"));
         UUID memberId = member.getMemberId();
 
-
+		Timelog savedTimelog = timelogRepository.getObject(id);
+		UUID recordTimelogId = (((TimelogDecorator) savedTimelog).getRecord()).getTimelogId();
         Timelog timelog = TimelogFactory.createTimelog(
             "taskline.timelog.core.TimelogImpl",
-            id,
+            recordTimelogId,
             taskId,
             memberId,
             timelogDate,

@@ -1,30 +1,30 @@
 public vmj.auth.storages.StorageImpl()
 public vmj.auth.verifiers.VerifierImpl()
-Jun 01, 2025 6:03:53 PM org.hibernate.Version logVersion
+Jun 01, 2025 7:21:54 PM org.hibernate.Version logVersion
 INFO: HHH000412: Hibernate ORM core version [WORKING]
-Jun 01, 2025 6:03:53 PM org.hibernate.cfg.Environment <clinit>
+Jun 01, 2025 7:21:54 PM org.hibernate.cfg.Environment <clinit>
 INFO: HHH000205: Loaded properties from resource hibernate.properties: {hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.PostgreSQL94Dialect, hibernate.driver_class=org.postgresql.Driver, hibernate.connection.password=****, hibernate.connection.username=postgres, hibernate.connection.url=jdbc:postgresql://localhost:5432/taskline_product_variantone, hibernate.bytecode.use_reflection_optimizer=false, hibernate.show_sql=false}
-Jun 01, 2025 6:03:54 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
+Jun 01, 2025 7:21:54 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
 INFO: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-Jun 01, 2025 6:03:54 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+Jun 01, 2025 7:21:54 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
 WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-Jun 01, 2025 6:03:54 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Jun 01, 2025 7:21:54 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001005: using driver [null] at URL [jdbc:postgresql://localhost:5432/taskline_product_variantone]
-Jun 01, 2025 6:03:54 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Jun 01, 2025 7:21:54 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001001: Connection properties: {password=****, user=postgres}
-Jun 01, 2025 6:03:54 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Jun 01, 2025 7:21:54 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001003: Autocommit mode: false
-Jun 01, 2025 6:03:54 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+Jun 01, 2025 7:21:54 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
 INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
-Jun 01, 2025 6:03:54 PM org.hibernate.dialect.Dialect <init>
+Jun 01, 2025 7:21:54 PM org.hibernate.dialect.Dialect <init>
 INFO: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
-Jun 01, 2025 6:03:55 PM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
-INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@c889805] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-Jun 01, 2025 6:03:55 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+Jun 01, 2025 7:21:55 PM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4087c7fc] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+Jun 01, 2025 7:21:56 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-Jun 01, 2025 6:03:55 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+Jun 01, 2025 7:21:56 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 WARN: SQL Error: 0, SQLState: 42701
-Jun 01, 2025 6:03:55 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+Jun 01, 2025 7:21:56 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 ERROR: ERROR: column "modulesequence" of relation "task_comp" already exists
 javax.persistence.PersistenceException: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:154)
@@ -56,7 +56,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: column "modulesequence" of 
 	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
 	... 8 more
 org.hibernate.exception.SQLGrammarException: could not execute statement
-java.lang.IllegalStateException: org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl@72443081 is closed
+java.lang.IllegalStateException: org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl@1eb9a3ef is closed
 	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.errorIfClosed(AbstractLogicalConnectionImplementor.java:37)
 	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:137)
 	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getConnectionForTransactionManagement(LogicalConnectionManagedImpl.java:276)
@@ -74,7 +74,7 @@ public vmj.auth.model.core.UserResourceImpl()
 public vmj.auth.model.passworded.UserResourceImpl(vmj.auth.model.core.UserResourceComponent)
 UserResourceImpl constructor start
 UserResourceImpl constructor middle
-UserResourceImpl userRoleDao: vmj.hibernate.integrator.RepositoryUtil@566e142
+UserResourceImpl userRoleDao: vmj.hibernate.integrator.RepositoryUtil@78a8978a
 UserResourceImpl constructor end
 timelogdurationTimelog2Resource endpoints binding
 Is Multi-Perms Annotation Present: false
@@ -153,10 +153,10 @@ taskTask2Service endpoints binding
 projectProject2Resource endpoints binding
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
-http://localhost:7776/call/project/list
+http://localhost:7776/call/project/save
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
-http://localhost:7776/call/project/save
+http://localhost:7776/call/project/list
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
 http://localhost:7776/call/project/update
@@ -175,7 +175,10 @@ memberMember2Service endpoints binding
 authResource endpoints binding
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
-http://localhost:7776/auth/login/pwd
+http://localhost:7776/auth/user/save
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/user/delete
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
 http://localhost:7776/call/user/save
@@ -184,10 +187,7 @@ Is Single Perm Annotation Present: false
 http://localhost:7776/auth/forgot-password
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
-http://localhost:7776/auth/user/save
-Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: true
-http://localhost:7776/call/user/delete
+http://localhost:7776/auth/login/pwd
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
 http://localhost:7776/auth/forgot-password-token
@@ -196,13 +196,13 @@ Is Single Perm Annotation Present: true
 http://localhost:7776/call/role/detail
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
-http://localhost:7776/call/role/list
+http://localhost:7776/call/role/save
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
 http://localhost:7776/call/role/update
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
-http://localhost:7776/call/role/save
+http://localhost:7776/call/role/list
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
 http://localhost:7776/call/role/delete
@@ -232,7 +232,7 @@ null
 amanah.cs.ui.ac.id
 emma@user.com
 Is currently logged in user an admin? false
-{    "timelogDuration": "75",    "timelogId": "e6e3dd31-2f19-4e8b-9300-0a217943efa5"}
+{    "taskId": "22cc5949-8e33-4beb-9361-e2102b041066",    "timelogDate": "2024-06-24",    "timelogDuration": "75",    "timelogId": "f023625e-43b2-44fd-975b-619c09faa679"}
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
 Check using verifier: vmj.auth.verifiers.VerifierImpl
@@ -240,9 +240,8 @@ null
 amanah.cs.ui.ac.id
 emma@user.com
 Is currently logged in user an admin? false
-java.lang.NullPointerException: Cannot invoke "String.length()" because "name" is null
-	at java.base/java.util.UUID.fromString(UUID.java:239)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogServiceImpl.updateTimelog(TimelogServiceImpl.java:90)
+java.lang.ClassCastException: class taskline.timelog.core.TimelogImpl cannot be cast to class taskline.timelog.core.TimelogDecorator (taskline.timelog.core.TimelogImpl and taskline.timelog.core.TimelogDecorator are in module taskline.timelog.core of loader 'app')
+	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogServiceImpl.updateTimelog(TimelogServiceImpl.java:107)
 	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogResourceImpl.updateTimelog(TimelogResourceImpl.java:45)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -258,7 +257,7 @@ java.lang.NullPointerException: Cannot invoke "String.length()" because "name" i
 	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.run(ServerImpl.java:532)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
 java.lang.reflect.InvocationTargetException
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:115)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:109)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at vmj.routing.route/vmj.routing.route.VMJServer$1.handle(VMJServer.java:109)
 	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
@@ -271,326 +270,9 @@ java.lang.reflect.InvocationTargetException
 	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.handle(ServerImpl.java:566)
 	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.run(ServerImpl.java:532)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.lang.NullPointerException: Cannot invoke "String.length()" because "name" is null
-	at java.base/java.util.UUID.fromString(UUID.java:239)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogServiceImpl.updateTimelog(TimelogServiceImpl.java:90)
+Caused by: java.lang.ClassCastException: class taskline.timelog.core.TimelogImpl cannot be cast to class taskline.timelog.core.TimelogDecorator (taskline.timelog.core.TimelogImpl and taskline.timelog.core.TimelogDecorator are in module taskline.timelog.core of loader 'app')
+	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogServiceImpl.updateTimelog(TimelogServiceImpl.java:107)
 	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogResourceImpl.updateTimelog(TimelogResourceImpl.java:45)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	... 12 more
-Error: {"data": {"message": "Cannot invoke "String.length()" because "name" is null","vmjErrorCode": 4006}}
-{    "taskId": "22cc5949-8e33-4beb-9361-e2102b041066",    "timelogDate": "2024-06-24",    "timelogDuration": "75",    "timelogId": "e6e3dd31-2f19-4e8b-9300-0a217943efa5"}
-Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: true
-Check using verifier: vmj.auth.verifiers.VerifierImpl
-null
-amanah.cs.ui.ac.id
-emma@user.com
-Is currently logged in user an admin? false
-public taskline.timelog.core.TimelogImpl(java.util.UUID,java.util.UUID,java.util.UUID,java.time.LocalDate,java.lang.String,taskline.task.core.Task,taskline.member.core.Member)
-public taskline.timelog.timelogduration.TimelogImpl(java.util.UUID,taskline.timelog.core.TimelogComponent,java.lang.Float)
-org.hibernate.NonUniqueObjectException: A different object with the same identifier value was already associated with the session : [taskline.timelog.core.TimelogImpl#e6e3dd31-2f19-4e8b-9300-0a217943efa5]
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.internal.StatefulPersistenceContext.checkUniqueness(StatefulPersistenceContext.java:696)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.performUpdate(DefaultSaveOrUpdateEventListener.java:287)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.entityIsDetached(DefaultSaveOrUpdateEventListener.java:230)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.performSaveOrUpdate(DefaultSaveOrUpdateEventListener.java:95)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.onSaveOrUpdate(DefaultSaveOrUpdateEventListener.java:75)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.fireSaveOrUpdate(SessionImpl.java:645)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.saveOrUpdate(SessionImpl.java:638)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.spi.CascadingActions$5.cascade(CascadingActions.java:219)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.internal.Cascade.cascadeToOne(Cascade.java:499)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.internal.Cascade.cascadeAssociation(Cascade.java:423)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.internal.Cascade.cascadeProperty(Cascade.java:220)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.internal.Cascade.cascade(Cascade.java:153)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.internal.Cascade.cascade(Cascade.java:65)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.cascadeOnUpdate(DefaultSaveOrUpdateEventListener.java:361)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.performUpdate(DefaultSaveOrUpdateEventListener.java:334)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.entityIsDetached(DefaultSaveOrUpdateEventListener.java:230)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultUpdateEventListener.performSaveOrUpdate(DefaultUpdateEventListener.java:38)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.onSaveOrUpdate(DefaultSaveOrUpdateEventListener.java:75)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.fireUpdate(SessionImpl.java:687)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.update(SessionImpl.java:680)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.update(SessionImpl.java:675)
-	at vmj.hibernate.integrator/vmj.hibernate.integrator.RepositoryUtil.updateObject(RepositoryUtil.java:64)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogServiceImpl.updateTimelog(TimelogServiceImpl.java:125)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogResourceImpl.updateTimelog(TimelogResourceImpl.java:45)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at vmj.routing.route/vmj.routing.route.VMJServer$1.handle(VMJServer.java:109)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:871)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:847)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$DefaultExecutor.execute(ServerImpl.java:204)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.handle(ServerImpl.java:566)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.run(ServerImpl.java:532)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-A different object with the same identifier value was already associated with the session : [taskline.timelog.core.TimelogImpl#e6e3dd31-2f19-4e8b-9300-0a217943efa5]
-java.lang.IllegalStateException: org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl@7642e8ef is closed
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.errorIfClosed(AbstractLogicalConnectionImplementor.java:37)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:137)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getConnectionForTransactionManagement(LogicalConnectionManagedImpl.java:276)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.rollback(AbstractLogicalConnectionImplementor.java:121)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.rollback(JdbcResourceLocalTransactionCoordinatorImpl.java:304)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.transaction.internal.TransactionImpl.rollback(TransactionImpl.java:142)
-	at vmj.hibernate.integrator/vmj.hibernate.integrator.RepositoryUtil.updateObject(RepositoryUtil.java:70)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogServiceImpl.updateTimelog(TimelogServiceImpl.java:125)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogResourceImpl.updateTimelog(TimelogResourceImpl.java:45)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at vmj.routing.route/vmj.routing.route.VMJServer$1.handle(VMJServer.java:109)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:871)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:847)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$DefaultExecutor.execute(ServerImpl.java:204)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.handle(ServerImpl.java:566)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.run(ServerImpl.java:532)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-java.lang.reflect.InvocationTargetException
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:118)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at vmj.routing.route/vmj.routing.route.VMJServer$1.handle(VMJServer.java:109)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:871)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:847)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$DefaultExecutor.execute(ServerImpl.java:204)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.handle(ServerImpl.java:566)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.run(ServerImpl.java:532)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.lang.IllegalStateException: org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl@7642e8ef is closed
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.errorIfClosed(AbstractLogicalConnectionImplementor.java:37)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:137)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getConnectionForTransactionManagement(LogicalConnectionManagedImpl.java:276)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.rollback(AbstractLogicalConnectionImplementor.java:121)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.rollback(JdbcResourceLocalTransactionCoordinatorImpl.java:304)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.transaction.internal.TransactionImpl.rollback(TransactionImpl.java:142)
-	at vmj.hibernate.integrator/vmj.hibernate.integrator.RepositoryUtil.updateObject(RepositoryUtil.java:70)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogServiceImpl.updateTimelog(TimelogServiceImpl.java:125)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogResourceImpl.updateTimelog(TimelogResourceImpl.java:45)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	... 12 more
-Error: {"data": {"message": "org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl@7642e8ef is closed","vmjErrorCode": 4006}}
-{    "taskId": "22cc5949-8e33-4beb-9361-e2102b041066",    "timelogDate": "2024-06-24",    "timelogDuration": "75",    "timelogId": "e6e3dd31-2f19-4e8b-9300-0a217943efa5"}
-Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: true
-Check using verifier: vmj.auth.verifiers.VerifierImpl
-null
-amanah.cs.ui.ac.id
-emma@user.com
-Is currently logged in user an admin? false
-public taskline.timelog.core.TimelogImpl(java.util.UUID,java.util.UUID,java.util.UUID,java.time.LocalDate,java.lang.String,taskline.task.core.Task,taskline.member.core.Member)
-public taskline.timelog.timelogduration.TimelogImpl(java.util.UUID,taskline.timelog.core.TimelogComponent,java.lang.Float)
-org.hibernate.NonUniqueObjectException: A different object with the same identifier value was already associated with the session : [taskline.timelog.core.TimelogImpl#e6e3dd31-2f19-4e8b-9300-0a217943efa5]
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.internal.StatefulPersistenceContext.checkUniqueness(StatefulPersistenceContext.java:696)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.performUpdate(DefaultSaveOrUpdateEventListener.java:287)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.entityIsDetached(DefaultSaveOrUpdateEventListener.java:230)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.performSaveOrUpdate(DefaultSaveOrUpdateEventListener.java:95)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.onSaveOrUpdate(DefaultSaveOrUpdateEventListener.java:75)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.fireSaveOrUpdate(SessionImpl.java:645)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.saveOrUpdate(SessionImpl.java:638)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.spi.CascadingActions$5.cascade(CascadingActions.java:219)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.internal.Cascade.cascadeToOne(Cascade.java:499)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.internal.Cascade.cascadeAssociation(Cascade.java:423)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.internal.Cascade.cascadeProperty(Cascade.java:220)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.internal.Cascade.cascade(Cascade.java:153)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.internal.Cascade.cascade(Cascade.java:65)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.cascadeOnUpdate(DefaultSaveOrUpdateEventListener.java:361)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.performUpdate(DefaultSaveOrUpdateEventListener.java:334)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.entityIsDetached(DefaultSaveOrUpdateEventListener.java:230)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultUpdateEventListener.performSaveOrUpdate(DefaultUpdateEventListener.java:38)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultSaveOrUpdateEventListener.onSaveOrUpdate(DefaultSaveOrUpdateEventListener.java:75)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.fireUpdate(SessionImpl.java:687)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.update(SessionImpl.java:680)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.update(SessionImpl.java:675)
-	at vmj.hibernate.integrator/vmj.hibernate.integrator.RepositoryUtil.updateObject(RepositoryUtil.java:64)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogServiceImpl.updateTimelog(TimelogServiceImpl.java:125)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogResourceImpl.updateTimelog(TimelogResourceImpl.java:45)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at vmj.routing.route/vmj.routing.route.VMJServer$1.handle(VMJServer.java:109)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:871)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:847)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$DefaultExecutor.execute(ServerImpl.java:204)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.handle(ServerImpl.java:566)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.run(ServerImpl.java:532)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-A different object with the same identifier value was already associated with the session : [taskline.timelog.core.TimelogImpl#e6e3dd31-2f19-4e8b-9300-0a217943efa5]
-java.lang.IllegalStateException: org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl@6358befe is closed
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.errorIfClosed(AbstractLogicalConnectionImplementor.java:37)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:137)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getConnectionForTransactionManagement(LogicalConnectionManagedImpl.java:276)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.rollback(AbstractLogicalConnectionImplementor.java:121)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.rollback(JdbcResourceLocalTransactionCoordinatorImpl.java:304)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.transaction.internal.TransactionImpl.rollback(TransactionImpl.java:142)
-	at vmj.hibernate.integrator/vmj.hibernate.integrator.RepositoryUtil.updateObject(RepositoryUtil.java:70)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogServiceImpl.updateTimelog(TimelogServiceImpl.java:125)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogResourceImpl.updateTimelog(TimelogResourceImpl.java:45)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at vmj.routing.route/vmj.routing.route.VMJServer$1.handle(VMJServer.java:109)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:871)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:847)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$DefaultExecutor.execute(ServerImpl.java:204)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.handle(ServerImpl.java:566)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.run(ServerImpl.java:532)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-java.lang.reflect.InvocationTargetException
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:118)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at vmj.routing.route/vmj.routing.route.VMJServer$1.handle(VMJServer.java:109)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:871)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:847)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$DefaultExecutor.execute(ServerImpl.java:204)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.handle(ServerImpl.java:566)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.run(ServerImpl.java:532)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.lang.IllegalStateException: org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl@6358befe is closed
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.errorIfClosed(AbstractLogicalConnectionImplementor.java:37)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:137)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getConnectionForTransactionManagement(LogicalConnectionManagedImpl.java:276)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.rollback(AbstractLogicalConnectionImplementor.java:121)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.rollback(JdbcResourceLocalTransactionCoordinatorImpl.java:304)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.transaction.internal.TransactionImpl.rollback(TransactionImpl.java:142)
-	at vmj.hibernate.integrator/vmj.hibernate.integrator.RepositoryUtil.updateObject(RepositoryUtil.java:70)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogServiceImpl.updateTimelog(TimelogServiceImpl.java:125)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogResourceImpl.updateTimelog(TimelogResourceImpl.java:45)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	... 12 more
-Error: {"data": {"message": "org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl@6358befe is closed","vmjErrorCode": 4006}}
-{    "taskId": "22cc5949-8e33-4beb-9361-e2102b041066",    "timelogDate": "2024-06-24",    "timelogDuration": "75",    "timelogId": "e6e3dd31-2f19-4e8b-9300-0a217943efa5"}
-Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: false
-java.lang.NullPointerException: Cannot invoke "String.length()" because "name" is null
-	at java.base/java.util.UUID.fromString(UUID.java:239)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogServiceImpl.deleteTimelog(TimelogServiceImpl.java:164)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogResourceImpl.deleteTimelog(TimelogResourceImpl.java:75)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at vmj.routing.route/vmj.routing.route.VMJServer$1.handle(VMJServer.java:109)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:871)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:847)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$DefaultExecutor.execute(ServerImpl.java:204)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.handle(ServerImpl.java:566)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.run(ServerImpl.java:532)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-java.lang.reflect.InvocationTargetException
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:115)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at vmj.routing.route/vmj.routing.route.VMJServer$1.handle(VMJServer.java:109)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:871)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:847)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$DefaultExecutor.execute(ServerImpl.java:204)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.handle(ServerImpl.java:566)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.run(ServerImpl.java:532)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: java.lang.NullPointerException: Cannot invoke "String.length()" because "name" is null
-	at java.base/java.util.UUID.fromString(UUID.java:239)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogServiceImpl.deleteTimelog(TimelogServiceImpl.java:164)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogResourceImpl.deleteTimelog(TimelogResourceImpl.java:75)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	... 12 more
-Error: {"data": {"message": "Cannot invoke "String.length()" because "name" is null","vmjErrorCode": 4006}}
-{    "id": "e6e3dd31-2f19-4e8b-9300-0a217943efa5"}
-Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: false
-Jun 01, 2025 6:09:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-WARN: SQL Error: 0, SQLState: 23503
-Jun 01, 2025 6:09:40 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
-ERROR: ERROR: update or delete on table "timelog_comp" violates foreign key constraint "fk9stl7ypq1uqqap9kxxx86mj0d" on table "timelog_duration"
-  Detail: Key (timelogid)=(e6e3dd31-2f19-4e8b-9300-0a217943efa5) is still referenced from table "timelog_duration".
-Jun 01, 2025 6:09:40 PM org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl release
-INFO: HHH000010: On release of batch it still contained JDBC statements
-javax.persistence.PersistenceException: org.hibernate.exception.ConstraintViolationException: could not execute statement
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:154)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:181)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:188)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1395)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:482)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3274)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2409)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:448)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
-	at vmj.hibernate.integrator/vmj.hibernate.integrator.RepositoryUtil.deleteObject(RepositoryUtil.java:215)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogServiceImpl.deleteTimelog(TimelogServiceImpl.java:170)
-	at taskline.timelog.timelogduration/taskline.timelog.timelogduration.TimelogResourceImpl.deleteTimelog(TimelogResourceImpl.java:75)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at vmj.routing.route/vmj.routing.route.VMJServer$1.handle(VMJServer.java:109)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:82)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:101)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:871)
-	at jdk.httpserver/com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:98)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:847)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$DefaultExecutor.execute(ServerImpl.java:204)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.handle(ServerImpl.java:566)
-	at jdk.httpserver/sun.net.httpserver.ServerImpl$Dispatcher.run(ServerImpl.java:532)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:109)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:200)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:46)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.persister.entity.AbstractEntityPersister.delete(AbstractEntityPersister.java:3694)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.persister.entity.AbstractEntityPersister.delete(AbstractEntityPersister.java:3954)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.action.internal.EntityDeleteAction.execute(EntityDeleteAction.java:123)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478)
-	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:986)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:344)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1391)
-	... 24 more
-Caused by: org.postgresql.util.PSQLException: ERROR: update or delete on table "timelog_comp" violates foreign key constraint "fk9stl7ypq1uqqap9kxxx86mj0d" on table "timelog_duration"
-  Detail: Key (timelogid)=(e6e3dd31-2f19-4e8b-9300-0a217943efa5) is still referenced from table "timelog_duration".
-	at org.postgresql.jdbc@42.2.21/org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2575)
-	at org.postgresql.jdbc@42.2.21/org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2297)
-	at org.postgresql.jdbc@42.2.21/org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:335)
-	at org.postgresql.jdbc@42.2.21/org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:481)
-	at org.postgresql.jdbc@42.2.21/org.postgresql.jdbc.PgStatement.execute(PgStatement.java:401)
-	at org.postgresql.jdbc@42.2.21/org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:164)
-	at org.postgresql.jdbc@42.2.21/org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:130)
-	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
-	... 36 more
-org.hibernate.exception.ConstraintViolationException: could not execute statement
-{    "id": "1e58076d-9610-4dfb-bdee-33a6618cf52f"}
-Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: false
+Error: {"data": {"message": "class taskline.timelog.core.TimelogImpl cannot be cast to class taskline.timelog.core.TimelogDecorator (taskline.timelog.core.TimelogImpl and taskline.timelog.core.TimelogDecorator are in module taskline.timelog.core of loader 'app')","vmjErrorCode": 4006}}
