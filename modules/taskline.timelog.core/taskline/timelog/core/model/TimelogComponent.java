@@ -71,19 +71,38 @@ public abstract class TimelogComponent implements Timelog{
 	public void setMemberId(UUID memberId) {
 		this.memberId = memberId;
 	}
-	public abstract LocalDate getTimelogDate();
-	public abstract void setTimelogDate(LocalDate timelogDate);
-	
-	public abstract String getTimelogNotes();
-	public abstract void setTimelogNotes(String timelogNotes);
-	
-	public abstract Member getMemberimpl();
-	public abstract void setMemberimpl(Member memberimpl);
-	
-	public abstract Task getTaskimpl();
-	public abstract void setTaskimpl(Task taskimpl);
 
-	public abstract void validateTimelog(UUID taskId, LocalDate timelogDate);
+	public String getTimelogNotes() {
+		return this.timelogNotes;
+	}
+
+	public void setTimelogNotes(String timelogNotes) {
+		this.timelogNotes = timelogNotes;
+	}
+	
+	public void setTimelogDate(LocalDate timelogDate) {
+		this.timelogDate = timelogDate;
+	}
+	
+	public LocalDate getTimelogDate() {
+		return this.timelogDate;
+	}
+	
+	public Task getTaskimpl() {
+		return this.taskimpl;
+	}
+	
+	public void setTaskimpl(Task taskimpl) {
+		this.taskimpl = taskimpl;
+	}
+	
+	public Member getMemberimpl() {
+		return this.memberimpl;
+	}
+	
+	public void setMemberimpl(Member memberimpl) {
+		this.memberimpl = memberimpl;
+	}
 
 	@Override
     public String toString() {

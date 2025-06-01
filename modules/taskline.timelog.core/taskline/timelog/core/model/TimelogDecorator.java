@@ -11,12 +11,18 @@ import javax.persistence.CascadeType;
 import java.time.LocalDate;
 
 @MappedSuperclass
-public abstract class TimelogDecorator extends TimelogComponent{
+public abstract class TimelogDecorator extends TimelogComponent {
     @OneToOne(cascade=CascadeType.ALL)
 	protected TimelogComponent record;
+
+	public TimelogDecorator() {
+		super();
+		this.timelogId = UUID.randomUUID();
+	}
 		
 	public TimelogDecorator (TimelogComponent record) {
 		this.record = record;
+		this.timelogId = UUID.randomUUID();
 	}
 
 	public TimelogDecorator (UUID timelogId, TimelogComponent record) {
@@ -41,10 +47,6 @@ public abstract class TimelogDecorator extends TimelogComponent{
 	}
 	public void setMemberId(UUID memberId) {
 		record.setMemberId(memberId);
-	}
-
-	public void validateTimelog(UUID taskId, LocalDate timelogDate) {
-		record.validateTimelog(taskId, timelogDate);
 	}
 
 	public HashMap<String, Object> toHashMap() {
