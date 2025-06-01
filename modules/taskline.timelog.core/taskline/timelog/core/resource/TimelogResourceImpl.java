@@ -6,7 +6,6 @@ import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import vmj.auth.annotations.Restricted;
 import taskline.timelog.TimelogFactory;
-import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
 

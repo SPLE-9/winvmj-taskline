@@ -96,6 +96,16 @@ public class TaskServiceImpl extends TaskServiceComponent {
 		return task.toHashMap();
 	}
 
+	public Task getTaskObjectById(UUID taskId) {
+		Task task = taskRepository.getObject(taskId);
+		
+		if (task == null) {
+			throw new NotFoundException("Task with taskId " + taskId +" not found");
+		}
+
+		return task;
+	}
+
     public List<HashMap<String,Object>> getAllTask(){
 		List<Task> taskList = taskRepository.getAllObject("task_impl");
 		

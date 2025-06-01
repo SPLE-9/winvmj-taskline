@@ -4,8 +4,8 @@ import java.util.*;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
+import vmj.auth.annotations.Restricted;
 import taskline.timelog.TimelogFactory;
-import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
 
@@ -13,7 +13,7 @@ public class TimelogResourceImpl extends TimelogResourceComponent{
 	
 	private TimelogService timelogService = new TimelogServiceImpl();
 
-	// @Restriced(permission = "")
+	@Restricted(permissionName = "member")
     @Route(url="call/timelog/save")
     public HashMap<String,Object> saveTimelog(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
@@ -27,7 +27,6 @@ public class TimelogResourceImpl extends TimelogResourceComponent{
 		
 	}
 
-	// @Restriced(permission = "")
     @Route(url="call/timelog/update")
     public HashMap<String, Object> updateTimelog(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("PUT")){
@@ -39,7 +38,7 @@ public class TimelogResourceImpl extends TimelogResourceComponent{
 		
 	}
 
-	// @Restriced(permission = "")
+	@Restricted(permissionName = "member")
     @Route(url="call/timelog/list/me")
     public List<HashMap<String,Object>> getMyTimelog(VMJExchange vmjExchange){		
     	if (vmjExchange.getHttpMethod().equals("GET")) {

@@ -166,7 +166,6 @@ public class Variantone {
         // TimelogServiceDecorator timelogTimelogDecorator2Service = TimelogServiceDecoratorFactory
         //     .createTimelogServiceDecorator("taskline.timelog.core.TimelogServiceDecorator"
         //     	);		
-
         TimelogService timelogTimelog2Service = TimelogServiceFactory
             .createTimelogService("taskline.timelog.core.TimelogServiceImpl"
             	);		

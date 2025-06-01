@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name="timelog_comp")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class TimelogComponent implements Timelog{
+public abstract class TimelogComponent implements Timelog {
 	@Id
 	protected UUID timelogId;
 	protected UUID taskId;

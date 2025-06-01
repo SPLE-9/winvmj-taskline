@@ -20,11 +20,13 @@ import prices.auth.vmj.annotations.Restricted;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 import taskline.member.core.*;
+import taskline.task.core.*;
 
 public class TimelogServiceImpl extends TimelogServiceComponent{
 
 	private TimelogFactory timelogFactory = new TimelogFactory();
 	MemberService memberService = new MemberServiceImpl();
+	TaskService taskService = new TaskServiceImpl();
 	
 	public HashMap<String, Object> saveTimelog(Map<String, Object> requestBody) {
 		
@@ -32,6 +34,7 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 		LocalDate timelogDate = LocalDate.parse(timelogDateString);
         UUID timelogId = UUID.randomUUID();
         UUID taskId = UUID.fromString((String) requestBody.get("taskId"));
+		Task task = taskService.getTaskObjectById(taskId);
 
 		Member member = memberService.getMemberByEmail((String) requestBody.get("memberEmail"));
         UUID memberId = member.getMemberId();
@@ -45,7 +48,9 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
             taskId,
             memberId,
             timelogDate,
-            timelogNotes
+            timelogNotes,
+			task,
+			member
         );
 
         timelogRepository.saveObject(timelog);

@@ -42,4 +42,8 @@ public abstract class TaskServiceDecorator extends TaskServiceComponent{
         return record.getTaskByMemberId(memberId);
     }
 
+	public Task getTaskObjectById(UUID taskId) {
+		return record.getTaskObjectById(taskId);
+	}
+
 }

@@ -35,10 +35,13 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
 		
 	}
 
+	@Restricted(permissionName = "member")
     @Route(url="call/timelog-duration/update")
     public HashMap<String, Object> updateTimelog(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("PUT")){
 			Map<String, Object> requestBody = vmjExchange.getPayload(); 
+			String memberEmail = vmjExchange.getAuthPayload().getEmail();
+			requestBody.put("memberEmail", memberEmail);
 			return timelogService.updateTimelog(requestBody);
 		}
 

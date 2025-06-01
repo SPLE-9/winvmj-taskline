@@ -1,6 +1,9 @@
 package taskline.timelog.timelogduration;
 
 import java.util.*;
+import java.time.format.DateTimeFormatter;
+import java.lang.Math;
+import java.time.LocalDate;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 
@@ -58,4 +61,20 @@ public class TimelogImpl extends TimelogDecorator {
 	public void setTimelogDuration(Float timelogDuration) {
 		this.timelogDuration = timelogDuration;
 	}
+
+	public HashMap<String, Object> toHashMap() {
+        HashMap<String, Object> timelogMap = new HashMap<String,Object>();
+		timelogMap.put("timelogId",getTimelogId());
+		timelogMap.put("taskId",getTaskId());
+		timelogMap.put("memberId",getMemberId());
+		timelogMap.put("timelogDate",this.timelogDate != null 
+						? this.timelogDate.format(DateTimeFormatter.ISO_LOCAL_DATE) 
+						: null);
+		timelogMap.put("timelogNotes",getTimelogNotes());
+		timelogMap.put("timelogDuration",getTimelogDuration());
+		timelogMap.put("memberimpl",getMemberimpl());
+		timelogMap.put("taskimpl",getTaskimpl());
+
+        return timelogMap;
+    }
 }

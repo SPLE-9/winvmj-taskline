@@ -2,6 +2,7 @@ package taskline.timelog.core;
 
 import java.lang.Math;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
@@ -31,13 +32,25 @@ public class TimelogImpl extends TimelogComponent {
         this.taskimpl = taskimpl;
         this.memberimpl = memberimpl;
 	}
+
+	public TimelogImpl() {
+		this.timelogId = UUID.randomUUID();
+        this.taskId = null;
+        this.memberId = null;
+        this.timelogDate = null;
+        this.timelogNotes = "";
+        this.taskimpl = null;
+        this.memberimpl = null;
+	}
 	
 	public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> timelogMap = new HashMap<String,Object>();
 		timelogMap.put("timelogId",getTimelogId());
 		timelogMap.put("taskId",getTaskId());
 		timelogMap.put("memberId",getMemberId());
-		timelogMap.put("timelogDate",getTimelogDate());
+		timelogMap.put("timelogDate",this.timelogDate != null 
+						? this.timelogDate.format(DateTimeFormatter.ISO_LOCAL_DATE) 
+						: null);
 		timelogMap.put("timelogNotes",getTimelogNotes());
 		timelogMap.put("memberimpl",getMemberimpl());
 		timelogMap.put("taskimpl",getTaskimpl());

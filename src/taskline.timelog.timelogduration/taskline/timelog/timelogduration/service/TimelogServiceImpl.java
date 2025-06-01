@@ -26,10 +26,12 @@ import taskline.timelog.core.Timelog;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 import taskline.member.core.*;
+import taskline.task.core.*;
 
 public class TimelogServiceImpl extends TimelogServiceDecorator {
     private TimelogFactory timelogFactory = new TimelogFactory();
 	MemberService memberService = new MemberServiceImpl();
+    TaskService taskService = new TaskServiceImpl();
 
     public TimelogServiceImpl (TimelogServiceComponent record) {
         super(record);
@@ -41,6 +43,7 @@ public class TimelogServiceImpl extends TimelogServiceDecorator {
 		LocalDate timelogDate = LocalDate.parse(timelogDateString);
         UUID timelogId = UUID.randomUUID();
         UUID taskId = UUID.fromString((String) requestBody.get("taskId"));
+        Task task = taskService.getTaskObjectById(taskId);
 
 		Member member = memberService.getMemberByEmail((String) requestBody.get("memberEmail"));
         UUID memberId = member.getMemberId();
@@ -57,7 +60,9 @@ public class TimelogServiceImpl extends TimelogServiceDecorator {
             taskId,
             memberId,
             timelogDate,
-            timelogNotes
+            timelogNotes,
+            task,
+            member
         );
 
         Timelog timelogDuration = TimelogFactory.createTimelog(
@@ -73,55 +78,51 @@ public class TimelogServiceImpl extends TimelogServiceDecorator {
     }
 
     public HashMap<String, Object> updateTimelog(Map<String, Object> requestBody){
-        Float duration = null;
 
 		if (!requestBody.containsKey("timelogId")) {
-			throw new IllegalArgumentException("Invalid id");
+			throw new IllegalArgumentException("no id given");
 		}
 
 		String idStr = (String) requestBody.get("timelogId");
 		UUID id = UUID.fromString(idStr);
 
-		Timelog timelog = timelogRepository.getObject(id);
+		String taskIdStr = (String) requestBody.get("taskId");
+		UUID taskId = UUID.fromString(taskIdStr);
+		Task task = taskService.getTaskObjectById(taskId);
 
-		if (timelog == null) {
-			throw new NotFoundException("Timelog not found with id: " + id);
-		}
-		if (requestBody.containsKey("taskId")) {
-			timelog.setTaskId((UUID) requestBody.get("taskId"));
-		}
-		if (requestBody.containsKey("timelogDate")) {
-			timelog.setTimelogDate((LocalDate) requestBody.get("timelogDate"));
-		}
-		if (requestBody.containsKey("timelogNotes")) {
-			timelog.setTimelogNotes((String) requestBody.get("timelogNotes"));
-		}
-        if (requestBody.containsKey("timelogDuration")) {
-			String durationStr = (String) requestBody.get("timelogDuration");
-		    duration = Float.parseFloat((String) durationStr);
-		}
+		String timelogDateStr = (String) requestBody.get("timelogDate");
+		LocalDate timelogDate = LocalDate.parse(timelogDateStr);
+	
+		String timelogNotes = (String) requestBody.get("timelogNotes");
 
-        Timelog timelogUpdated = TimelogFactory.createTimelog(
+
+		String durationStr = (String) requestBody.get("timelogDuration");
+		Float duration = Float.parseFloat((String) durationStr);
+
+		Member member = memberService.getMemberByEmail((String) requestBody.get("memberEmail"));
+        UUID memberId = member.getMemberId();
+
+        Timelog timelog = TimelogFactory.createTimelog(
             "taskline.timelog.core.TimelogImpl",
             id,
-            timelog.getTaskId(),
-            timelog.getMemberId(),
-            timelog.getTimelogDate(),
-            timelog.getTimelogNotes()
+            taskId,
+            memberId,
+            timelogDate,
+            timelogNotes,
+            task,
+            member
         );
 
-        if (duration != null) {
-            Timelog timelogDuration = TimelogFactory.createTimelog(
-                "taskline.timelog.timelogduration.TimelogImpl",
-                id,
-                timelog,
-                duration
-            );
 
-            timelogRepository.updateObject(timelogDuration);
-        }
+		Timelog timelogDuration = TimelogFactory.createTimelog(
+			"taskline.timelog.timelogduration.TimelogImpl",
+			id,
+			timelog,
+			duration
+		);
 
-		timelogRepository.updateObject(timelogUpdated);
+		timelogRepository.updateObject(timelogDuration);
+		timelogRepository.updateObject(timelog);
     
 		
 		return timelogRepository.getObject(id).toHashMap();

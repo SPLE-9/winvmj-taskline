@@ -1,6 +1,7 @@
 module taskline.timelog.timelogduration {
 	requires taskline.timelog.core;
 	requires taskline.member.core;
+	requires taskline.task.core;
     exports taskline.timelog.timelogduration;
 
 	requires vmj.routing.route;
