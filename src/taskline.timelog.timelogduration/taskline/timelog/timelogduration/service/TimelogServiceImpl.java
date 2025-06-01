@@ -102,6 +102,7 @@ public class TimelogServiceImpl extends TimelogServiceDecorator {
 		Member member = memberService.getMemberByEmail((String) requestBody.get("memberEmail"));
         UUID memberId = member.getMemberId();
 
+
         Timelog timelog = TimelogFactory.createTimelog(
             "taskline.timelog.core.TimelogImpl",
             id,

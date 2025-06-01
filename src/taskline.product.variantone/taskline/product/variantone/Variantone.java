@@ -38,10 +38,6 @@ import taskline.timelog.TimelogResourceFactory;
 import taskline.timelog.core.TimelogResource;
 import taskline.timelog.TimelogServiceFactory;
 import taskline.timelog.core.TimelogService;
-import taskline.task.taskwithcomment.CommentService;
-import taskline.task.taskwithcomment.CommentServiceFactory;
-import taskline.task.taskwithcomment.CommentResource;
-import taskline.task.taskwithcomment.CommentResourceFactory;
 
 public class Variantone {
 
@@ -163,9 +159,9 @@ public class Variantone {
             .createTaskResource("taskline.task.core.TaskResourceImpl"
                 );
 			
-        // TimelogServiceDecorator timelogTimelogDecorator2Service = TimelogServiceDecoratorFactory
-        //     .createTimelogServiceDecorator("taskline.timelog.core.TimelogServiceDecorator"
-        //     	);		
+        TimelogServiceDecorator timelogTimelogDecorator2Service = TimelogServiceDecoratorFactory
+            .createTimelogServiceDecorator("taskline.timelog.core.TimelogServiceDecorator"
+            	);		
         TimelogService timelogTimelog2Service = TimelogServiceFactory
             .createTimelogService("taskline.timelog.core.TimelogServiceImpl"
             	);		
@@ -176,11 +172,11 @@ public class Variantone {
 			
         CommentService taskwithcommentComment2Service = CommentServiceFactory
             .createCommentService("taskline.task.taskwithcomment.CommentServiceImpl"
-            	);		
+            	, taskComment0Service);		
 
         CommentResource taskwithcommentComment2Resource = CommentResourceFactory
             .createCommentResource("taskline.task.taskwithcomment.CommentResourceImpl"
-                );
+                , taskComment0Resource, taskComment0Service);
 			
         TimelogService timelogdurationTimelog2Service = TimelogServiceFactory
             .createTimelogService("taskline.timelog.timelogduration.TimelogServiceImpl"
@@ -206,8 +202,8 @@ public class Variantone {
 		System.out.println("timelogTimelog2Resource endpoints binding");
 		Router.route(timelogTimelog2Resource);
 		
-		// System.out.println("timelogTimelogDecorator2Service endpoints binding");
-		// Router.route(timelogTimelogDecorator2Service);
+		System.out.println("timelogTimelogDecorator2Service endpoints binding");
+		Router.route(timelogTimelogDecorator2Service);
 		
 		System.out.println("timelogTimelog2Service endpoints binding");
 		Router.route(timelogTimelog2Service);
@@ -285,6 +281,40 @@ public class Variantone {
 			}}
         );
 
+		featureModelMappings.put(
+	            vmj.auth.model.core.UserComponent.class.getName(),
+				new HashMap<String, String[]>() {{
+					put("components", new String[] {
+						vmj.auth.model.core.UserComponent.class.getName()
+					});
+					put("deltas", new String[] {
+						vmj.auth.model.passworded.UserImpl.class.getName()
+					});
+				}}
+	        );
+	        
+	    featureModelMappings.put(
+				vmj.auth.model.core.RoleComponent.class.getName(),
+				new HashMap<String, String[]>() {{
+					put("components", new String[] {
+						vmj.auth.model.core.RoleComponent.class.getName()
+					});
+					put("deltas", new String[] {
+					});
+				}}
+	        );
+	    
+	    featureModelMappings.put(
+				vmj.auth.model.core.UserRoleComponent.class.getName(),
+				new HashMap<String, String[]>() {{
+					put("components", new String[] {
+						vmj.auth.model.core.UserRoleComponent.class.getName()
+					});
+					put("deltas", new String[] {
+					});
+				}}
+	        );
+	    
 		return featureModelMappings;
 	}
 

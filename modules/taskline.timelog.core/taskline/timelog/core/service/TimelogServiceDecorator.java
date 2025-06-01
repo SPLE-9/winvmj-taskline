@@ -21,6 +21,10 @@ public class TimelogServiceDecorator extends TimelogServiceComponent {
     public HashMap<String, Object> updateTimelog(Map<String, Object> requestBody) {
         return record.updateTimelog(requestBody);
     }
+    
+    public HashMap<String, Object> getTimelog(String timelogIdStr) {
+		return record.getTimelog(timelogIdStr);
+	}
 
     public List<HashMap<String,Object>> getMyTimelog(String memberEmail) {
         return record.getMyTimelog(memberEmail);

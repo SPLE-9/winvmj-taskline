@@ -86,6 +86,17 @@ public class TimelogServiceImpl extends TimelogServiceComponent{
 		return timelogRepository.getObject(id).toHashMap();
 		
 	}
+    
+    public HashMap<String, Object> getTimelog(String timelogIdStr) {
+		UUID timelogId = UUID.fromString(timelogIdStr);
+
+		Timelog timelog = timelogRepository.getObject(timelogId);
+		if (timelog == null) {
+			throw new NotFoundException("Timelog with timelogId " + timelogId +" not found");
+		}
+
+		return timelog.toHashMap();
+	}
 
     public List<HashMap<String,Object>> getMyTimelog(String memberEmail){
     	Member member = memberService.getMemberByEmail(memberEmail);
