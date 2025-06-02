@@ -22,7 +22,7 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
     }
 
 	@Restricted(permissionName = "member")
-    @Route(url="call/timelog-duration/save")
+    @Route(url="call/timelogduration/save")
     public HashMap<String,Object> saveTimelog(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload();
@@ -36,7 +36,7 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
 	}
 
 	@Restricted(permissionName = "member")
-    @Route(url="call/timelog-duration/update")
+    @Route(url="call/timelogduration/update")
     public HashMap<String, Object> updateTimelog(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("PUT")){
 			Map<String, Object> requestBody = vmjExchange.getPayload(); 
@@ -50,7 +50,7 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
 	}
 
 	@Restricted(permissionName = "member")
-    @Route(url="call/timelog-duration/list/me")
+    @Route(url="call/timelogduration/list/me")
     public List<HashMap<String,Object>> getMyTimelog(VMJExchange vmjExchange){		
     	if (vmjExchange.getHttpMethod().equals("GET")) {
 		    String memberEmail = vmjExchange.getAuthPayload().getEmail(); 
@@ -59,7 +59,7 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
 		throw new NotFoundException("Route tidak ditemukan");
 
 	}
-    @Route(url="call/timelog-duration/list/all")
+    @Route(url="call/timelogduration/list/all")
     public List<HashMap<String,Object>> getAllTimelog(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("GET")) {
 		    return timelogService.getAllTimelog();
@@ -68,7 +68,7 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
 	}
 
 
-    @Route(url="call/timelog-duration/delete")
+    @Route(url="call/timelogduration/delete")
     public List<HashMap<String,Object>> deleteTimelog(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("DELETE")) {
 			Map<String, Object> requestBody = vmjExchange.getPayload(); 
