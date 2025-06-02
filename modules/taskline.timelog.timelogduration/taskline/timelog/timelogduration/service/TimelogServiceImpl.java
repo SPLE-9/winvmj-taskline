@@ -80,34 +80,37 @@ public class TimelogServiceImpl extends TimelogServiceDecorator {
 
     public HashMap<String, Object> updateTimelog(Map<String, Object> requestBody){
 
-		if (!requestBody.containsKey("timelogId")) {
-			throw new IllegalArgumentException("no id given");
-		}
+    	if (!requestBody.containsKey("timelogId")) {
+            throw new IllegalArgumentException("No ID given");
+        }
 
-		String idStr = (String) requestBody.get("timelogId");
-		UUID id = UUID.fromString(idStr);
+        UUID id = UUID.fromString((String) requestBody.get("timelogId"));
+        Timelog savedTimelog = timelogRepository.getObject(id);
 
-		String taskIdStr = (String) requestBody.get("taskId");
-		UUID taskId = UUID.fromString(taskIdStr);
-		Task task = taskService.getTaskObjectById(taskId);
+        if (savedTimelog == null) {
+            throw new NotFoundException("Timelog not found with ID: " + id);
+        }
 
-		String timelogDateStr = (String) requestBody.get("timelogDate");
-		LocalDate timelogDate = LocalDate.parse(timelogDateStr);
-	
-		String timelogNotes = (String) requestBody.get("timelogNotes");
+        // Get original core TimelogImpl (base)
+        Timelog coreTimelog = ((TimelogDecorator) savedTimelog).getRecord();
 
+        // Parse updated fields
+        UUID taskId = UUID.fromString((String) requestBody.get("taskId"));
+        Task task = taskService.getTaskObjectById(taskId);
 
-		String durationStr = (String) requestBody.get("timelogDuration");
-		Float duration = Float.parseFloat((String) durationStr);
+        String timelogDateStr = (String) requestBody.get("timelogDate");
+        LocalDate timelogDate = LocalDate.parse(timelogDateStr);
 
-		Member member = memberService.getMemberByEmail((String) requestBody.get("memberEmail"));
+        String timelogNotes = (String) requestBody.getOrDefault("timelogNotes", "");
+        Float duration = Float.parseFloat((String) requestBody.get("timelogDuration"));
+
+        Member member = memberService.getMemberByEmail((String) requestBody.get("memberEmail"));
         UUID memberId = member.getMemberId();
 
-		Timelog savedTimelog = timelogRepository.getObject(id);
-		UUID recordTimelogId = (((TimelogDecorator) savedTimelog).getRecord()).getTimelogId();
-        Timelog timelog = TimelogFactory.createTimelog(
+        // Recreate core TimelogImpl with updated values
+        Timelog updatedCoreTimelog = TimelogFactory.createTimelog(
             "taskline.timelog.core.TimelogImpl",
-            recordTimelogId,
+            coreTimelog.getTimelogId(), // same ID
             taskId,
             memberId,
             timelogDate,
@@ -116,19 +119,19 @@ public class TimelogServiceImpl extends TimelogServiceDecorator {
             member
         );
 
+        // Re-wrap it with updated duration
+        Timelog updatedDurationTimelog = TimelogFactory.createTimelog(
+            "taskline.timelog.timelogduration.TimelogImpl",
+            id,
+            updatedCoreTimelog,
+            duration
+        );
 
-		Timelog timelogDuration = TimelogFactory.createTimelog(
-			"taskline.timelog.timelogduration.TimelogImpl",
-			id,
-			timelog,
-			duration
-		);
+        // Update both layers (just in case they're stored separately)
+        timelogRepository.updateObject(updatedCoreTimelog);
+        timelogRepository.updateObject(updatedDurationTimelog);
 
-		timelogRepository.updateObject(timelogDuration);
-		timelogRepository.updateObject(timelog);
-    
-		
-		return timelogRepository.getObject(id).toHashMap();
+        return updatedDurationTimelog.toHashMap();
 		
 	}
 
