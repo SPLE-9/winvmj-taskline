@@ -247,3 +247,62 @@ INSERT INTO task_impl VALUES ('2a26f96b-3237-4b3c-bf17-b99fc74d6946') ON CONFLIC
 -- PostgreSQL database dump complete
 --
 
+
+-- Comment Seed
+INSERT INTO comment_comp (
+    commentid,
+    content,
+    createdat,
+    objectname,
+    memberimpl_memberid,
+    taskimpl_taskid
+) VALUES
+-- row 1
+('84b9fc10-a57f-4f6e-8c91-1c78dff2383a', 'Looks good!', '2025-05-25 10:15:42', 'taskline.task.taskwithcomment.CommentComponent', 'd0f3e134-82b3-4fa5-bb01-7b896dd27344', '22cc5949-8e33-4beb-9361-e2102b041066'),
+-- row 2
+('3c16e7d2-2b4a-4021-9c11-cbf06735d938', 'Needs some work.', '2025-05-25 14:22:31', 'taskline.task.taskwithcomment.CommentComponent', 'c6e15d63-d6c5-4d85-84fd-b5fef0ff318f', '2a26f96b-3237-4b3c-bf17-b99fc74d6946'),
+-- row 3
+('5925b06f-3a7f-4380-9485-247ad34c201e', 'Great job!', '2025-05-25 08:47:12', 'taskline.task.taskwithcomment.CommentComponent', 'bfbc109a-2b89-4db4-8239-dfa9f0cf3db1', '4218b255-a4d3-4ac4-b980-7e935f3e5f3a'),
+-- row 4
+('fa423e38-d5c1-4b32-a36c-e5110b8b7e55', 'Please review again.', '2025-05-25 18:30:00', 'taskline.task.taskwithcomment.CommentComponent', '8a1b1fc2-45c3-4f72-b180-1e20324f6010', '61e010bf-c26a-41b3-b09c-82119fab87dd'),
+-- row 5
+('e2d42916-61cb-45aa-bb12-cbdb9e71a3ec', 'Added suggestions.', '2025-05-25 13:00:22', 'taskline.task.taskwithcomment.CommentComponent', 'd0f3e134-82b3-4fa5-bb01-7b896dd27344', '646284dc-d397-436d-b2cf-f1814590f788'),
+-- row 6
+('1b896ee8-6f52-4d5d-b8f4-08a60b69cb94', 'Resolved the issue.', '2025-05-25 16:45:11', 'taskline.task.taskwithcomment.CommentComponent', 'c6e15d63-d6c5-4d85-84fd-b5fef0ff318f', 'b7ee8fbd-acec-4c8a-a87a-e29052059aa0'),
+-- row 7
+('26a7e687-f3d0-48f6-931e-eebc3dd8f6f7', 'Rechecked and confirmed.', '2025-05-25 09:34:56', 'taskline.task.taskwithcomment.CommentComponent', 'bfbc109a-2b89-4db4-8239-dfa9f0cf3db1', '22cc5949-8e33-4beb-9361-e2102b041066'),
+-- row 8
+('8f7dc6b2-4d12-47d7-8106-17cc0b837728', 'Awaiting feedback.', '2025-05-25 11:58:49', 'taskline.task.taskwithcomment.CommentComponent', '8a1b1fc2-45c3-4f72-b180-1e20324f6010', '2a26f96b-3237-4b3c-bf17-b99fc74d6946'),
+-- row 9
+('d83e67e1-f16a-4f85-9a5a-16e2d397d66b', 'Tested successfully.', '2025-05-25 15:20:17', 'taskline.task.taskwithcomment.CommentComponent', 'd0f3e134-82b3-4fa5-bb01-7b896dd27344', '4218b255-a4d3-4ac4-b980-7e935f3e5f3a'),
+-- row 10
+('a421fcbb-f140-4300-b233-07e3e41d82bb', 'Let me know your thoughts.', '2025-05-25 17:10:03', 'taskline.task.taskwithcomment.CommentComponent', 'c6e15d63-d6c5-4d85-84fd-b5fef0ff318f', '61e010bf-c26a-41b3-b09c-82119fab87dd');
+
+INSERT INTO comment_impl (
+    commentid,
+    recordname
+) VALUES
+-- row 1
+('84b9fc10-a57f-4f6e-8c91-1c78dff2383a', NULL),
+-- row 2
+('3c16e7d2-2b4a-4021-9c11-cbf06735d938', NULL),
+-- row 3
+('5925b06f-3a7f-4380-9485-247ad34c201e', NULL),
+-- row 4
+('fa423e38-d5c1-4b32-a36c-e5110b8b7e55', NULL),
+-- row 5
+('e2d42916-61cb-45aa-bb12-cbdb9e71a3ec', NULL),
+-- row 6
+('1b896ee8-6f52-4d5d-b8f4-08a60b69cb94', NULL),
+-- row 7
+('26a7e687-f3d0-48f6-931e-eebc3dd8f6f7', NULL),
+-- row 8
+('8f7dc6b2-4d12-47d7-8106-17cc0b837728', NULL),
+-- row 9
+('d83e67e1-f16a-4f85-9a5a-16e2d397d66b', NULL),
+-- row 10
+('a421fcbb-f140-4300-b233-07e3e41d82bb', NULL);
+
+
+
+
