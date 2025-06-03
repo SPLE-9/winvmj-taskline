@@ -81,20 +81,18 @@ public class TimelogServiceImpl extends TimelogServiceDecorator {
     public HashMap<String, Object> updateTimelog(Map<String, Object> requestBody){
 
     	if (!requestBody.containsKey("timelogId")) {
-            throw new IllegalArgumentException("No ID given");
+            throw new IllegalArgumentException("No timelogId given");
         }
 
         UUID id = UUID.fromString((String) requestBody.get("timelogId"));
         Timelog savedTimelog = timelogRepository.getObject(id);
 
         if (savedTimelog == null) {
-            throw new NotFoundException("Timelog not found with ID: " + id);
+            throw new NotFoundException("Timelog not found with timelogId: " + id);
         }
 
-        // Get original core TimelogImpl (base)
-        Timelog coreTimelog = ((TimelogDecorator) savedTimelog).getRecord();
+        Timelog coreTimelog = unwrapTimelog(savedTimelog);
 
-        // Parse updated fields
         UUID taskId = UUID.fromString((String) requestBody.get("taskId"));
         Task task = taskService.getTaskObjectById(taskId);
 
@@ -107,10 +105,9 @@ public class TimelogServiceImpl extends TimelogServiceDecorator {
         Member member = memberService.getMemberByEmail((String) requestBody.get("memberEmail"));
         UUID memberId = member.getMemberId();
 
-        // Recreate core TimelogImpl with updated values
         Timelog updatedCoreTimelog = TimelogFactory.createTimelog(
             "taskline.timelog.core.TimelogImpl",
-            coreTimelog.getTimelogId(), // same ID
+            coreTimelog.getTimelogId(), 
             taskId,
             memberId,
             timelogDate,
@@ -119,7 +116,6 @@ public class TimelogServiceImpl extends TimelogServiceDecorator {
             member
         );
 
-        // Re-wrap it with updated duration
         Timelog updatedDurationTimelog = TimelogFactory.createTimelog(
             "taskline.timelog.timelogduration.TimelogImpl",
             id,
@@ -127,12 +123,22 @@ public class TimelogServiceImpl extends TimelogServiceDecorator {
             duration
         );
 
-        // Update both layers (just in case they're stored separately)
         timelogRepository.updateObject(updatedCoreTimelog);
         timelogRepository.updateObject(updatedDurationTimelog);
 
         return updatedDurationTimelog.toHashMap();
 		
+	}
+    
+    public HashMap<String, Object> getTimelog(String timelogIdStr) {
+		UUID timelogId = UUID.fromString(timelogIdStr);
+
+		Timelog timelog = timelogRepository.getObject(timelogId);
+		if (timelog == null) {
+			throw new NotFoundException("Timelog with timelogId " + timelogId +" not found");
+		}
+
+		return timelog.toHashMap();
 	}
 
     public List<HashMap<String,Object>> getMyTimelog(String memberEmail){
@@ -184,6 +190,13 @@ public class TimelogServiceImpl extends TimelogServiceDecorator {
 		if (timelogDate == null) {
 			throw new IllegalArgumentException("Invalid timelog date");
 		}
+	}
+	
+	private Timelog unwrapTimelog(Timelog timelog) {
+	    while (timelog instanceof TimelogDecorator) {
+	        timelog = ((TimelogDecorator) timelog).getRecord();
+	    }
+	    return timelog;
 	}
 
 }

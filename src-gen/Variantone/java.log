@@ -1,30 +1,30 @@
 public vmj.auth.storages.StorageImpl()
 public vmj.auth.verifiers.VerifierImpl()
-Jun 02, 2025 3:29:46 PM org.hibernate.Version logVersion
+Jun 02, 2025 5:06:10 PM org.hibernate.Version logVersion
 INFO: HHH000412: Hibernate ORM core version [WORKING]
-Jun 02, 2025 3:29:46 PM org.hibernate.cfg.Environment <clinit>
+Jun 02, 2025 5:06:10 PM org.hibernate.cfg.Environment <clinit>
 INFO: HHH000205: Loaded properties from resource hibernate.properties: {hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.PostgreSQL94Dialect, hibernate.driver_class=org.postgresql.Driver, hibernate.connection.password=****, hibernate.connection.username=postgres, hibernate.connection.url=jdbc:postgresql://localhost:5432/taskline_product_variantone, hibernate.bytecode.use_reflection_optimizer=false, hibernate.show_sql=false}
-Jun 02, 2025 3:29:46 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
+Jun 02, 2025 5:06:10 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
 INFO: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-Jun 02, 2025 3:29:46 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+Jun 02, 2025 5:06:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
 WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-Jun 02, 2025 3:29:46 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Jun 02, 2025 5:06:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001005: using driver [null] at URL [jdbc:postgresql://localhost:5432/taskline_product_variantone]
-Jun 02, 2025 3:29:46 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Jun 02, 2025 5:06:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001001: Connection properties: {password=****, user=postgres}
-Jun 02, 2025 3:29:46 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Jun 02, 2025 5:06:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001003: Autocommit mode: false
-Jun 02, 2025 3:29:46 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+Jun 02, 2025 5:06:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
 INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
-Jun 02, 2025 3:29:46 PM org.hibernate.dialect.Dialect <init>
+Jun 02, 2025 5:06:11 PM org.hibernate.dialect.Dialect <init>
 INFO: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
-Jun 02, 2025 3:29:47 PM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
-INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4087c7fc] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-Jun 02, 2025 3:29:47 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+Jun 02, 2025 5:06:12 PM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@72b6832e] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+Jun 02, 2025 5:06:12 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-Jun 02, 2025 3:29:48 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+Jun 02, 2025 5:06:12 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 WARN: SQL Error: 0, SQLState: 42701
-Jun 02, 2025 3:29:48 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+Jun 02, 2025 5:06:12 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 ERROR: ERROR: column "modulesequence" of relation "task_comp" already exists
 javax.persistence.PersistenceException: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:154)
@@ -56,7 +56,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: column "modulesequence" of 
 	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
 	... 8 more
 org.hibernate.exception.SQLGrammarException: could not execute statement
-java.lang.IllegalStateException: org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl@1eb9a3ef is closed
+java.lang.IllegalStateException: org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl@373052b5 is closed
 	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.errorIfClosed(AbstractLogicalConnectionImplementor.java:37)
 	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:137)
 	at org.hibernate.orm.core@5.5.0.Final/org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getConnectionForTransactionManagement(LogicalConnectionManagedImpl.java:276)
@@ -74,7 +74,7 @@ public vmj.auth.model.core.UserResourceImpl()
 public vmj.auth.model.passworded.UserResourceImpl(vmj.auth.model.core.UserResourceComponent)
 UserResourceImpl constructor start
 UserResourceImpl constructor middle
-UserResourceImpl userRoleDao: vmj.hibernate.integrator.RepositoryUtil@78a8978a
+UserResourceImpl userRoleDao: vmj.hibernate.integrator.RepositoryUtil@390037e7
 UserResourceImpl constructor end
 timelogdurationTimelog2Resource endpoints binding
 Is Multi-Perms Annotation Present: false
@@ -95,9 +95,6 @@ http://localhost:7776/call/timelog-duration/delete
 timelogdurationTimelog2Service endpoints binding
 taskwithcommentComment2Resource endpoints binding
 Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: false
-http://localhost:7776/call/task-comment/list
-Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
 http://localhost:7776/call/comment/save
 Is Multi-Perms Annotation Present: false
@@ -112,6 +109,9 @@ http://localhost:7776/call/comment/list
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
 http://localhost:7776/call/comment/delete
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/task-comment/list
 taskwithcommentComment2Service endpoints binding
 timelogTimelog2Resource endpoints binding
 Is Multi-Perms Annotation Present: false
@@ -136,9 +136,6 @@ timelogTimelog2Service endpoints binding
 taskTask2Resource endpoints binding
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
-http://localhost:7776/call/project-task/list
-Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: false
 http://localhost:7776/call/task/save
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
@@ -152,6 +149,9 @@ http://localhost:7776/call/task/list
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
 http://localhost:7776/call/task/delete
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/call/project-task/list
 taskTask2Service endpoints binding
 projectProject2Resource endpoints binding
 Is Multi-Perms Annotation Present: false
@@ -178,7 +178,13 @@ memberMember2Service endpoints binding
 authResource endpoints binding
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
-http://localhost:7776/auth/forgot-password-token
+http://localhost:7776/auth/login/pwd
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+http://localhost:7776/auth/user/save
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: true
+http://localhost:7776/call/user/delete
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
 http://localhost:7776/call/user/save
@@ -187,13 +193,7 @@ Is Single Perm Annotation Present: false
 http://localhost:7776/auth/forgot-password
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: false
-http://localhost:7776/auth/user/save
-Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: true
-http://localhost:7776/call/user/delete
-Is Multi-Perms Annotation Present: false
-Is Single Perm Annotation Present: false
-http://localhost:7776/auth/login/pwd
+http://localhost:7776/auth/forgot-password-token
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
 http://localhost:7776/call/role/detail
@@ -224,3 +224,17 @@ http://localhost:7776/auth/register
 Is Multi-Perms Annotation Present: false
 Is Single Perm Annotation Present: true
 http://localhost:7776/call/user/changerole
+{    "email": "emma@user.com",    "password": "123456"}
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+UserRoleImpl created with no role or user
+{    "email": "emma@user.com",    "password": "123456"}
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+UserRoleImpl created with no role or user
+
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false
+
+Is Multi-Perms Annotation Present: false
+Is Single Perm Annotation Present: false

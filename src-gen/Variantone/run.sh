@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/.bash_profile
+source ~/.zshrc  
 
 cleanup() {
     pkill -P $$

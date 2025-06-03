@@ -74,6 +74,13 @@ public class TimelogImpl extends TimelogDecorator {
 		timelogMap.put("timelogDuration",getTimelogDuration());
 		timelogMap.put("memberimpl",getMemberimpl());
 		timelogMap.put("taskimpl",getTaskimpl());
+		
+		if (this.getTaskimpl() != null) {
+			timelogMap.put("taskTitle", this.getTaskimpl().getTitle());
+	    }
+	    if (this.getMemberimpl() != null) {
+	    	timelogMap.put("memberName", this.getMemberimpl().getName());
+	    }
 
         return timelogMap;
     }
