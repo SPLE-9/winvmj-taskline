@@ -48,6 +48,17 @@ public class TimelogResourceImpl extends TimelogResourceDecorator {
 		throw new NotFoundException("Route tidak ditemukan");
 		
 	}
+	
+	@Restricted(permissionName = "member")
+    @Route(url="call/timelogduration/detail")
+    public HashMap<String,Object> getTimelog(VMJExchange vmjExchange){		
+    	if (vmjExchange.getHttpMethod().equals("GET")) {
+    		String timelogIdStr = vmjExchange.getGETParam("timelogId");
+			return timelogService.getTimelog(timelogIdStr);
+		}
+		throw new NotFoundException("Route tidak ditemukan");
+
+	}
 
 	@Restricted(permissionName = "member")
     @Route(url="call/timelogduration/list/me")
